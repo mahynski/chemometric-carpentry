@@ -13,7 +13,7 @@ What we hope to achieve:
 1. [Introduction](notebooks/Introduction.ipynb)
     * The [Jupyter Notebook](https://jupyter.org/)
     * The [Python](https://www.python.org/) Language
-        * [Numpy](https://numpy.org/), [Scipy](https://scipy.org/), and [Matplotlib](https://matplotlib.org/)
+        * [Numpy](https://numpy.org/), [Scipy](https://scipy.org/), [pandas](https://pandas.pydata.org/) and [Matplotlib](https://matplotlib.org/)
         * watermarking
         * [scitkit-learn](https://scikit-learn.org/stable/index.html)
         * [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/)

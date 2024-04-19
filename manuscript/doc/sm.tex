@@ -1,0 +1,75 @@
+\documentclass[%
+ aip,
+% jmp,
+% bmf,
+% sd,
+% rsi,
+ amsmath,amssymb,
+preprint,%
+ %reprint,%
+%author-year,%
+%author-numerical,%
+% Conference Proceedings
+]{revtex4-1}
+
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage{etoolbox}
+
+\usepackage[table]{xcolor}
+\newcommand{\cob}{\color{blue}}
+\newcommand{\cor}{\color{red}}
+
+%% Apr 2021: AIP requests that the corresponding 
+%% email to be moved after the affiliations
+\makeatletter
+\def\@email#1#2{%
+ \endgroup
+ \patchcmd{\titleblock@produce}
+  {\frontmatter@RRAPformat}
+  {\frontmatter@RRAPformat{\produce@RRAP{*#1\href{mailto:#2}{#2}}}\frontmatter@RRAPformat}
+  {}{}
+}%
+\makeatother
+
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thesection}{S\arabic{section}}
+
+\begin{document}
+
+\title[Supplementary Material (SM): XXX]{Supplementary Material (SM): XXX}
+% Force line breaks with \\
+\author{Nathan A. Mahynski}
+ \email{nathan.mahynski@nist.gov.}
+\author{Vincent K. Shen}
+ %\altaffiliation[Also at ]{Physics Department, XYZ University.}%Lines break automatically or can be forced with \\
+ 
+\affiliation{ 
+Chemical Sciences Division, National Institute of Standards and Technology, Gaithersburg, MD, USA
+%\\This line break forced with \textbackslash\textbackslash
+}%
+
+%\author{C. Author}
+% \homepage{http://www.Second.institution.edu/~Charlie.Author.}
+%\affiliation{%
+%Second institution and/or address%\\This line break forced% with \\
+%}%
+
+\date{\today}% It is always \today, today,
+             %  but any date may be explicitly specified
+
+\maketitle
+\clearpage
+
+
+\clearpage
+\bibliography{./bibliography}
+
+\end{document}

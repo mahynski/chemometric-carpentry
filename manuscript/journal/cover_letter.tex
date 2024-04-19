@@ -1,0 +1,101 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Long Lined Cover Letter
+% LaTeX Template
+% Version 1.0 (1/6/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Matthew J. Miller
+% http://www.matthewjmiller.net/howtos/customized-cover-letter-scripts/
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt,stdletter,dateno,sigleft]{newlfm} % Extra options: 'sigleft' for a left-aligned signature, 'stdletternofrom' to remove the from address, 'letterpaper' for US letter paper - consult the newlfm class manual for more options
+
+\usepackage[final]{pdfpages}
+\usepackage{charter} % Use the Charter font for the document text
+\usepackage{xcolor}
+\newcommand{\cor}{\color{red}}
+\newcommand{\cog}{\color{green}}
+\newcommand{\cob}{\color{blue}}
+
+\newsavebox{\Luiuc}\sbox{\Luiuc}{\parbox[b]{1.75in}{\vspace{0.5in}
+\includegraphics[width=0.5\linewidth]{nist.png}}} % Company/institution logo at the top left of the page
+\makeletterhead{Uiuc}{\Lheader{\usebox{\Luiuc}}}
+
+\newlfmP{sigsize=45pt} % Slightly decrease the height of the signature field
+\newlfmP{addrfromphone} % Print a phone number under the sender's address
+\newlfmP{addrfromemail} % Print an email address under the sender's address
+\PhrPhone{Phone} % Customize the "Telephone" text
+\PhrEmail{Email} % Customize the "E-mail" text
+
+\lthUiuc % Print the company/institution logo
+
+%----------------------------------------------------------------------------------------
+%	YOUR NAME AND CONTACT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\namefrom{\fromsig{\includegraphics[height=1.0cm]{./signature_nam}} \\ \\ Nathan A. Mahynski (on behalf of all coauthors)} % Name
+
+\addrfrom{
+\today\\[12pt] % Date
+Chemical Sciences Division \\
+Material Measurement Laboratory \\
+National Institute of Standards and Technology \\
+100 Bureau Drive STOP 8320 \\
+Gaithersburg, MD 20899-8320 USA \\
+}
+
+\phonefrom{(301) 975-6836} % Phone number
+
+\emailfrom{nathan.mahynski@nist.gov} % Email address
+
+%----------------------------------------------------------------------------------------
+%	ADDRESSEE AND GREETING/CLOSING
+%----------------------------------------------------------------------------------------
+
+\greetto{Dear Prof. XYZ,} % Greeting text
+\closeline{Sincerely,} % Closing text
+
+\nameto{Prof. XYZ} % Addressee of the letter above the to address
+
+\addrto{
+XYZ Professor of XYZ \\
+XYZ University\\
+Street Address \\
+City, State Zip Code \\
+Country
+}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\begin{newlfm}
+
+%----------------------------------------------------------------------------------------
+%	LETTER CONTENT
+%----------------------------------------------------------------------------------------
+
+Please find enclosed our manuscript entitled ``XYZ,'' which we would like to publish in {\it XYZ}.  
+
+
+[JUSTIFICATION AND DESCRIPTION]
+
+
+As a result, we anticipate this work will be of interest to XYZ, and is thus well-suited to the readership of {\it XYZ}.  We thank the referees and editors in advance for their time and consideration.
+
+\end{newlfm}
+%----------------------------------------------------------------------------------------
+
+%\clearpage
+
+\end{document}

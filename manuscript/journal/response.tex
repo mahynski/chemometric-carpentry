@@ -1,0 +1,94 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Long Lined Cover Letter
+% LaTeX Template
+% Version 1.0 (1/6/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Matthew J. Miller
+% http://www.matthewjmiller.net/howtos/customized-cover-letter-scripts/
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt,stdletter,dateno,sigleft]{newlfm} % Extra options: 'sigleft' for a left-aligned signature, 'stdletternofrom' to remove the from address, 'letterpaper' for US letter paper - consult the newlfm class manual for more options
+
+\usepackage[final]{pdfpages}
+\usepackage{charter} % Use the Charter font for the document text
+\usepackage{xcolor}
+\newcommand{\cor}{\color{red}}
+\newcommand{\cog}{\color{green}}
+\newcommand{\cob}{\color{blue}}
+
+\newsavebox{\Luiuc}\sbox{\Luiuc}{\parbox[b]{1.75in}{\vspace{0.5in}
+\includegraphics[width=0.5\linewidth]{nist.png}}} % Company/institution logo at the top left of the page
+\makeletterhead{Uiuc}{\Lheader{\usebox{\Luiuc}}}
+\lthUiuc % Print the company/institution logo
+
+\begin{document}
+\begin{newlfm}
+
+We thank the referees for their favorable assessment of our work and recommendation for publication.  The following document reproduces the comments from the referees in {\bf black}, our comments in {\cob blue}, and any changes to the manuscript are shown in {\cor red}.  
+
+\clearpage
+
+Response to Reviewer 1:
+
+{\bf Reviewer #1:
+Comments ...
+}
+
+{\cob 
+We thank the referee for their positive assessment of our work.
+}
+
+{\bf
+Comments ...
+}
+
+{\cob
+We have made the following modifications:
+}
+
+{\cor
+Modifications ...
+}
+
+\clearpage
+
+Response to Reviewer 2:
+
+{\bf Reviewer #2:
+Comments ...
+}
+
+{\cob 
+We thank the referee for their positive assessment of our work.
+}
+
+{\bf
+Comments ...
+}
+
+{\cob
+We have made the following modifications:
+}
+
+{\cor
+Modifications ...
+}
+
+\end{newlfm}
+%----------------------------------------------------------------------------------------
+
+%\clearpage
+
+\end{document}

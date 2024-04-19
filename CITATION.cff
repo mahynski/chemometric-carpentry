@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Please cite this repository as indicated below."
+authors:
+  - family-names: Mahynski
+    given-names: Nathan
+    orcid: https://orcid.org/0000-0002-0008-8749
+title: "My Research Project"
+version: 0.0.1
+doi: 12.34566/zenodo.1234
+date-released: YYYY-MM-DD

@@ -10,7 +10,7 @@ What we hope to achieve:
 3. Improve reproducibility and transparency
 
 ## Outline
-1. Introduction
+1. [Introduction](notebooks/Introduction.ipynb)
     * The Jupyter Notebook
     * The Python Language
         * Numpy, Scipy, and Matplotlib

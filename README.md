@@ -1,32 +1,62 @@
-Project Name
----
-1. Insert description here.
-2. Rename repo with a 4 digit year-of-completion prefix, e.g., "2022-"; this can be updated later. Convention is to use hyphens between words and all lower case.
-3. Create a [conda](https://www.anaconda.com/) environment for this project.  First modify `conda-env.yml` to include the relevant repositories and dependencies needed; also give the environment a good name (e.g., similar or same as this repo). Then create the environment (see below).
+# Chemical Informatics Short Course
 
-Installation
----
-Set up the conda environment for this project.
-```code
-$ conda env create -f conda-env.yml
-$ conda activate PROJECT-NAME
-$ python -m ipykernel install --user --name=PROJECT-NAME
-```
+## Objectives
 
-It is also useful to export the entire conda environment for posterity.
-```code
-$ conda env export > environment.yml
-```
+The goal of this short course is to introduce and explain elementary chemometric analysis methods relevant for our work at NIST.  We will also touch on more advanced ML approaches.  The course will cover the use of python-based tools that can accelerate your workflow and improve reproducibility. We will assume no prior knowledge or familiarity with any of these methods, tools, or mathematical background.  We will review only as much mathematics as is necessary to ground an understanding of the methods discussed, but a deep understanding is not necessary for application, which is the focus of this course.
 
-Contributors
----
-Update the CITATION.cff file to enable appropriate citations.  
+What we hope to achieve:
+1. Give you a new set of tools to help you do your job better
+2. Create a coherent and more consistent approach to analysis within the CSD
+3. Improve reproducibility and transparency
 
-Versioning
----
-* Use the [public-template](https://github.com/mahynski/public-template) to create a fresh repo to release the code and details after a manuscript is published, tag the release, then use zenodo to capture changes to future changes/releases made to that repo. This serves as the primary **public facing** repo.
-* In addition, create a "published" branch on this repo to correspond to when the associated paper is published. This is retained as the primary **private** repo where future work can be tested. Subsequent branches, such as "revision-YYYY-MM-DD" can be created later and similarly reflected in the public-template version if revisions are necessary. 
+## Outline
+1. Introduction
+    * The Jupyter Notebook
+    * The Python Language
+        * Numpy, Scipy, and Matplotlib
+        * scitkit-learn
+        * PyChemAuth
+    * Common Chemometric Problems
+        * N << p
+        * The Authentication Problem
+        <!-- OOD / class modeling vs. discriminators -->
+        * Regression, Classification, and Clustering
+    * Introductory Statistics
+        * χ$^{2}$ statistics 
+        * Baseline Performance Metrics
+        <!-- 
+        R^2 definition (can be < 0), vs. spearman, majority classifier
+        random guessing in N dimensions -> PCA -->
+2. Techniques
+    * Pipelines
+    * Cross-Validation
+    * Class Imbalance
+3. Models
+    * Ordinary Least Squares (OLS)
+    * Principal Components Analysis (PCA) and Regression (PCR)
+    * Partial Least-Squares (PLS) or Projection to Latent Structures
+    * Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis
+    * Partial Least-Squares-Discriminant Analysis (PLS-DA)
+    * Soft Independent Modeling of Class Analogies (SIMCA)
+4. Machine Learning Techniques
+    * Decision Trees
+    * Ensemble Methods
+    * Random Forests
+    * Logistic Regression (actually classification!)
+5. Inspection and Comparison
+    * Comparing relative performance of pipelines
+    * Model-agnostic inspection methods
 
-Associated Publications
+# The Future
+
+* Feedback 
+* New Topic Areas?
+* Submitting bug requests to PyChemAuth
+* Submitting new feature requests to PyChemAuth
+* Contributing to PyChemAuth examples
+
 ---
-[LINK TO MANUSCIPT]()
+
+Instructors:
+* Nate Mahynski, nathan.mahynski@nist.gov
+* Bill Krekelberg, william.krekelberg@nist.gov

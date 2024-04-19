@@ -1,4 +1,4 @@
-# Chemical Informatics Short Course
+# Chemometrics Short Course
 
 ## Objectives
 

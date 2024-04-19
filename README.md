@@ -11,12 +11,12 @@ What we hope to achieve:
 
 ## Outline
 1. [Introduction](notebooks/Introduction.ipynb)
-    * The Jupyter Notebook
-    * The Python Language
-        * Numpy, Scipy, and Matplotlib
+    * The [Jupyter Notebook](https://jupyter.org/)
+    * The [Python](https://www.python.org/) Language
+        * [Numpy](https://numpy.org/), [Scipy](https://scipy.org/), and [Matplotlib](https://matplotlib.org/)
         * watermarking
-        * scitkit-learn
-        * PyChemAuth
+        * [scitkit-learn](https://scikit-learn.org/stable/index.html)
+        * [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/)
     * Common Chemometric Problems
         * N << p
         * The Authentication Problem

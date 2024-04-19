@@ -28,18 +28,18 @@ What we hope to achieve:
         <!-- 
         R^2 definition (can be < 0), vs. spearman, majority classifier
         random guessing in N dimensions -> PCA -->
-2. Techniques
+2. [Techniques](notebooks/Techniques.ipynb)
     * Pipelines
     * Cross-Validation
     * Class Imbalance
-3. Models
+3. Conventional Chemometric Models
     * Ordinary Least Squares (OLS)
     * Principal Components Analysis (PCA) and Regression (PCR)
     * Partial Least-Squares (PLS) or Projection to Latent Structures
     * Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis
     * Partial Least-Squares-Discriminant Analysis (PLS-DA)
     * Soft Independent Modeling of Class Analogies (SIMCA)
-4. Machine Learning Techniques
+4. Machine Learning Models
     * Decision Trees
     * Ensemble Methods
     * Random Forests

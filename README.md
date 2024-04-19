@@ -14,6 +14,7 @@ What we hope to achieve:
     * The Jupyter Notebook
     * The Python Language
         * Numpy, Scipy, and Matplotlib
+        * watermarking
         * scitkit-learn
         * PyChemAuth
     * Common Chemometric Problems

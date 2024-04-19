@@ -32,19 +32,19 @@ What we hope to achieve:
     * Pipelines
     * Cross-Validation
     * Class Imbalance
-3. Conventional Chemometric Models
+3. [Conventional Chemometric Models](notebooks/Conventional_Chemometric_Models.ipynb)
     * Ordinary Least Squares (OLS)
     * Principal Components Analysis (PCA) and Regression (PCR)
     * Partial Least-Squares (PLS) or Projection to Latent Structures
     * Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis
     * Partial Least-Squares-Discriminant Analysis (PLS-DA)
     * Soft Independent Modeling of Class Analogies (SIMCA)
-4. Machine Learning Models
+4. [Machine Learning Models](notebooks/Machine_Learning_Models.ipynb)
     * Decision Trees
     * Ensemble Methods
     * Random Forests
     * Logistic Regression (actually classification!)
-5. Inspection and Comparison
+5. [Inspection and Comparison](notebooks/Inspection_and_Comparison.ipynb)
     * Comparing relative performance of pipelines
     * Model-agnostic inspection methods
 

@@ -47,6 +47,7 @@ What we hope to achieve:
 5. [Inspection and Comparison](notebooks/Inspection_and_Comparison.ipynb)
     * Comparing relative performance of pipelines
     * Model-agnostic inspection methods
+    * Do I need more data?
 
 # The Future
 

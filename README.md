@@ -52,7 +52,7 @@ What we hope to achieve:
     * Ordinary Least Squares (OLS)
     * Principal Components Analysis (PCA) and Regression (PCR)
     * Partial Least-Squares (PLS) or Projection to Latent Structures
-    * Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis
+    * Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis (QDA)
     * Partial Least-Squares-Discriminant Analysis (PLS-DA)
     * Soft Independent Modeling of Class Analogies (SIMCA)
 4. [Machine Learning Models](notebooks/Machine_Learning_Models.ipynb)

@@ -30,7 +30,7 @@ What we hope to achieve:
         * Regression, Classification, and Clustering
         * [scitkit-learn](https://scikit-learn.org/stable/index.html)
         * [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/)
-    * Introductory Statistics
+    * Statistics Background
         * $\chi^2$ statistics 
         * Baseline Performance Metrics
         <!-- 

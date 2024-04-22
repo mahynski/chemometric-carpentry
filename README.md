@@ -1,4 +1,4 @@
-# Chemometrics Short Course
+# A Short Course in Chemometrics
 
 ## Objectives
 

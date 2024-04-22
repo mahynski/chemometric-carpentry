@@ -28,6 +28,7 @@ What we hope to achieve:
         <!-- 
         R^2 definition (can be < 0), vs. spearman, majority classifier
         random guessing in N dimensions -> PCA -->
+        * Rashomon sets
 2. [Techniques](notebooks/Techniques.ipynb)
     * Exploratory Data Analysis (EDA)
     * Pipelines

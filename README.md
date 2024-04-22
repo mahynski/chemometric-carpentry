@@ -30,8 +30,12 @@ What we hope to achieve:
         random guessing in N dimensions -> PCA -->
 2. [Techniques](notebooks/Techniques.ipynb)
     * Pipelines
-    * Cross-Validation
-    * Class Imbalance
+    * Evaluation metrics
+    * Data splitting
+    * Cross-Validation 
+3. [Pre-processing](notebooks/Preprocessing.ipynb)
+    * Scaling and centering
+    * Class balancing (SMOTE)
 3. [Conventional Chemometric Models](notebooks/Conventional_Chemometric_Models.ipynb)
     * Ordinary Least Squares (OLS)
     * Principal Components Analysis (PCA) and Regression (PCR)

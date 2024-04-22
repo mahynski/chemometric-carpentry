@@ -29,12 +29,14 @@ What we hope to achieve:
         R^2 definition (can be < 0), vs. spearman, majority classifier
         random guessing in N dimensions -> PCA -->
 2. [Techniques](notebooks/Techniques.ipynb)
+    * Exploratory Data Analysis (EDA)
     * Pipelines
     * Evaluation metrics
     * Data splitting
     * Cross-Validation 
 3. [Pre-processing](notebooks/Preprocessing.ipynb)
     * Scaling and centering
+    * Imputation
     * Class balancing (SMOTE)
     * Feature selection <!-- correlation and JSD -->
 3. [Conventional Chemometric Models](notebooks/Conventional_Chemometric_Models.ipynb)

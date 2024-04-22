@@ -12,16 +12,24 @@ What we hope to achieve:
 ## Outline
 1. [Introduction](notebooks/Introduction.ipynb)
     * The [Jupyter Notebook](https://jupyter.org/)
+        * The Basics
+        * Google [Colab](https://colab.research.google.com/)
+        * Runtime Environment
+        * Installing Libraries and Tools
+        * Saving Code 
     * The [Python](https://www.python.org/) Language
-        * [Numpy](https://numpy.org/), [Scipy](https://scipy.org/), [pandas](https://pandas.pydata.org/) and [Matplotlib](https://matplotlib.org/)
-        * watermarking
-        * [scitkit-learn](https://scikit-learn.org/stable/index.html)
-        * [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/)
+        * Variable Types    
+        * [Numpy](https://numpy.org/), [Scipy](https://scipy.org/), and [Pandas](https://pandas.pydata.org/)
+        * Plotting with [Matplotlib](https://matplotlib.org/)
+        * Defining Functions
+        * Object Orientation and Classes
     * Common Chemometric Problems
         * N << p
         * The Authentication Problem
         <!-- OOD / class modeling vs. discriminators -->
         * Regression, Classification, and Clustering
+        * [scitkit-learn](https://scikit-learn.org/stable/index.html)
+        * [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/)
     * Introductory Statistics
         * $\chi^2$ statistics 
         * Baseline Performance Metrics

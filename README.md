@@ -36,6 +36,7 @@ What we hope to achieve:
 3. [Pre-processing](notebooks/Preprocessing.ipynb)
     * Scaling and centering
     * Class balancing (SMOTE)
+    * Feature selection <!-- correlation and JSD -->
 3. [Conventional Chemometric Models](notebooks/Conventional_Chemometric_Models.ipynb)
     * Ordinary Least Squares (OLS)
     * Principal Components Analysis (PCA) and Regression (PCR)
@@ -48,6 +49,7 @@ What we hope to achieve:
     * Ensemble Methods
     * Random Forests
     * Logistic Regression (actually classification!)
+    * Out-of-distribution / novelty detection
 5. [Inspection and Comparison](notebooks/Inspection_and_Comparison.ipynb)
     * Comparing relative performance of pipelines
     * Model-agnostic inspection methods

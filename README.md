@@ -6,7 +6,7 @@ The goal of this short course is to introduce and explain elementary chemometric
 
 What we hope to achieve:
 1. Give you a new set of tools to help you do your job better
-2. Create a coherent and more consistent approach to analysis across NIST
+2. Create a coherent and more consistent approach to chemometric analysis across NIST
 3. Improve reproducibility and transparency
 
 ## Outline

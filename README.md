@@ -23,7 +23,7 @@ What we hope to achieve:
         <!-- OOD / class modeling vs. discriminators -->
         * Regression, Classification, and Clustering
     * Introductory Statistics
-        * χ$^{2}$ statistics 
+        * $\chi^2$ statistics 
         * Baseline Performance Metrics
         <!-- 
         R^2 definition (can be < 0), vs. spearman, majority classifier

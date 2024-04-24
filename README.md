@@ -27,9 +27,17 @@
             * Variable Assignment and Operators
             * Sequences: Lists, Dictionaries, and Tuples
             * Referencing
-            * Logic
-            * Loops
+        * Logic
+            * Comparison Operators
+            * Logical Operators
+            * If Else Statements
+        * Loops
+            * For Loops
+            * While Loops
         * [Numpy](https://numpy.org/), [Scipy](https://scipy.org/), and [Pandas](https://pandas.pydata.org/)
+            * Numpy
+            * Scipy
+            * Pandas
         * Plotting with [Matplotlib](https://matplotlib.org/)
         * Defining Functions
         * Object Orientation and Classes

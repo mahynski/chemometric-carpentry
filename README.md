@@ -16,11 +16,19 @@
     * The [Jupyter Notebook](https://jupyter.org/)
         * The Basics
         * Google [Colab](https://colab.research.google.com/)
-        * Runtime Environment
+        * Managing Your Session
         * Installing Libraries and Tools
         * Saving Code 
     * The [Python](https://www.python.org/) Language
-        * Variable Types    
+        * Why Learn Python?
+        * Before We Get Started
+        * Variables
+            * Built-in Data Types
+            * Variable Assignment and Operators
+            * Sequences: Lists, Dictionaries, and Tuples
+            * Referencing
+            * Logic
+            * Loops
         * [Numpy](https://numpy.org/), [Scipy](https://scipy.org/), and [Pandas](https://pandas.pydata.org/)
         * Plotting with [Matplotlib](https://matplotlib.org/)
         * Defining Functions

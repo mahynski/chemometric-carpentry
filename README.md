@@ -2,12 +2,14 @@
 
 ## Objectives
 
-The goal of this short course is to introduce and explain elementary chemometric analysis methods relevant for our work at NIST.  We will also touch on more advanced ML approaches.  The course will cover the use of python-based tools that can accelerate your workflow and improve reproducibility. We will assume no prior knowledge or familiarity with any of these methods, tools, or mathematical background.  We will review only as much mathematics as is necessary to ground an understanding of the methods discussed since a deep understanding is not necessary for application, which is the focus of this course.
+:telescope: The goal of this short course is to introduce and explain elementary chemometric analysis methods relevant for our work at NIST.  We will also touch on more advanced ML approaches.  The course will cover the use of python-based tools that can accelerate your workflow and improve reproducibility. We will assume no prior knowledge or familiarity with any of these methods, tools, or mathematical background.  We will review only as much mathematics as is necessary to ground an understanding of the methods discussed since a deep understanding is not necessary for application, which is the focus of this course.
 
-What we hope to achieve:
+:rocket: What we hope to achieve:
 1. Give you a new set of tools to help you do your job better
-2. Create a coherent and more consistent approach to chemometric analysis across NIST
+2. Create a coherent and more consistent approach to chemometric analysis across NIST by introducing you to a standard library for these tasks
 3. Improve reproducibility and transparency
+
+:books: In the end you will be able to go to a library of standardized example  notebooks, select the one you need, enter your data, then run it from start to finish.  This course will also teach you to modify and expand things as needed.
 
 ## Outline
 1. [Introduction](notebooks/Introduction.ipynb)

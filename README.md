@@ -17,7 +17,7 @@
         * The Basics
         * Google [Colab](https://colab.research.google.com/)
         * Managing Your Session
-        * Installing Libraries and Tools
+        * Installing Python Packages
         * Saving Code 
     * The [Python](https://www.python.org/) Language
         * Why Learn Python?

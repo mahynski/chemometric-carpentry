@@ -40,6 +40,10 @@
             * Pandas
         * Plotting with [Matplotlib](https://matplotlib.org/)
         * Defining Functions
+            * Documentation and Type Hints
+            * Scope
+            * Number and Order of Arguments
+            * Default Values
         * Object Orientation and Classes
     * Common Chemometric Problems
         * N << p

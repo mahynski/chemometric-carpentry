@@ -79,8 +79,7 @@
     * Random Forests
     * Logistic Regression (actually classification!)
     * Out-of-distribution / novelty detection
-<!--
-5. Deep Learning
+<!--5. Deep Learning
     * Universal Approximation Theorem
     * Working in the Small Data Limit
         * Transfer Learning 
@@ -98,8 +97,7 @@
     * Chemical Foundation Models
         * Huggingface
         * ChemBERTA
-    * DeepChem
--->
+    * DeepChem-->
 5. [Inspection and Comparison](notebooks/Inspection_and_Comparison.ipynb)
     * Comparing relative performance of pipelines
     * Model-agnostic inspection methods

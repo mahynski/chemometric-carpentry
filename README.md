@@ -79,6 +79,27 @@
     * Random Forests
     * Logistic Regression (actually classification!)
     * Out-of-distribution / novelty detection
+<!--
+5. Deep Learning
+    * Universal Approximation Theorem
+    * Working in the Small Data Limit
+        * Transfer Learning 
+        * Fine Tuning
+    * Embeddings
+    * Convolutional Neural Nets
+        * Leveraging Transfer Learning
+        * Imaging Transformations
+        * Out-of-Distribution Detection
+    * Large Language Models
+        * Transformers
+            * GPT
+            * BERT
+        * RAG Systems
+    * Chemical Foundation Models
+        * Huggingface
+        * ChemBERTA
+    * DeepChem
+-->
 5. [Inspection and Comparison](notebooks/Inspection_and_Comparison.ipynb)
     * Comparing relative performance of pipelines
     * Model-agnostic inspection methods

@@ -79,6 +79,11 @@
     * Random Forests
     * Logistic Regression (actually classification!)
     * Out-of-distribution / novelty detection
+5. [Inspection and Comparison](notebooks/Inspection_and_Comparison.ipynb)
+    * Comparing relative performance of pipelines
+    * Model-agnostic inspection methods
+    * Do I need more data?
+
 <!--5. Deep Learning
     * Universal Approximation Theorem
     * Working in the Small Data Limit
@@ -98,10 +103,6 @@
         * Huggingface
         * ChemBERTA
     * DeepChem-->
-5. [Inspection and Comparison](notebooks/Inspection_and_Comparison.ipynb)
-    * Comparing relative performance of pipelines
-    * Model-agnostic inspection methods
-    * Do I need more data?
 
 # The Future
 

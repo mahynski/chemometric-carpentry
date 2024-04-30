@@ -108,6 +108,12 @@
         * ChemBERTA
     * DeepChem-->
 
+# Next Steps:
+
+* You can ask questions, find support, and start a conversation on the [GitHub Discussions page](https://github.com/mahynski/chemometric-carpentry/discussions) for this course.
+* If you find a mistake, please submit a [Bug Report]().
+* If you would us to cover new area(s) or have an idea to improve this, please submit a [Feature Request]()!
+
 # The Future
 
 * Feedback 

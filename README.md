@@ -110,18 +110,12 @@
 
 # Next Steps:
 
-* You can ask questions, find support, and start a conversation on the [GitHub Discussions page](https://github.com/mahynski/chemometric-carpentry/discussions) for this course.
-* If you find a mistake, please submit a [Bug Report]().
-* If you would us to cover new area(s) or have an idea to improve this, please submit a [Feature Request]()!
-
-# The Future
-
-* Feedback 
-* New Topic Areas?
-* Submitting bug requests to PyChemAuth
-* Submitting new feature requests to PyChemAuth
-* Contributing to PyChemAuth examples
-
+* ❓ You can ask questions, provide feedback, and find community support on the [GitHub Discussions page](https://github.com/mahynski/chemometric-carpentry/discussions) for this course.
+* ✖️ If you find a mistake please submit a [Bug Report](https://github.com/mahynski/chemometric-carpentry/issues/new/choose).
+* 🔭 If you would us to cover new area(s) or have an idea to improve this course, please submit a [Feature Request](https://github.com/mahynski/chemometric-carpentry/issues/new/choose)!
+* 💡 Is you have requests or ideas specific to [PyChemAuth](https://github.com/mahynski/pychemauth) you can find similar options on its [Issues page](https://github.com/mahynski/pychemauth/issues).
+* 🧑‍🤝‍🧑 Please consider contributing to PyChemAuth examples!
+  
 ---
 
 Instructors:

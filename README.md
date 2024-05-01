@@ -45,7 +45,7 @@
             * Number and Order of Arguments
             * Default Values
         * Object Orientation and Classes
-    * Common Chemometric Problems
+    * Chemometrics
         * N << p
         * The Authentication Problem
             * Some Motivating Examples

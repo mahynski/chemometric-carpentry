@@ -15,7 +15,7 @@
 1. Introduction
     * [The Jupyter Notebook](notebooks/1.1_The_Jupyter_Notebook.ipynb)
         * The Basics
-        * Google [Colab](https://colab.research.google.com/)
+        * Google Colab
         * Managing Your Session
         * Installing Python Packages
         * Saving Code 
@@ -34,11 +34,11 @@
         * Loops
             * For Loops
             * While Loops
-        * [Numpy](https://numpy.org/), [Scipy](https://scipy.org/), and [Pandas](https://pandas.pydata.org/)
+        * Numpy, Scipy, and Pandas
             * Numpy
             * Scipy
             * Pandas
-        * Plotting with [Matplotlib](https://matplotlib.org/)
+        * Plotting with Matplotlib
         * Defining Functions
             * Documentation and Type Hints
             * Scope
@@ -52,8 +52,8 @@
             * Class Models
             * A Machine Learning Perspective 
         * Regression, Classification, and Clustering
-        * [scitkit-learn](https://scikit-learn.org/stable/index.html)
-        * [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/)
+        * scitkit-learn
+        * PyChemAuth
     * [Statistics Background](notebooks/1.4_Statistics_Background.ipynb)
         * $\chi^2$ statistics 
         * Baseline Performance Metrics

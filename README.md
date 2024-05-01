@@ -48,7 +48,8 @@
     * Common Chemometric Problems
         * N << p
         * The Authentication Problem
-        <!-- OOD / class modeling vs. discriminators -->
+            * Class Models
+            * A Machine Learning Perspective 
         * Regression, Classification, and Clustering
         * [scitkit-learn](https://scikit-learn.org/stable/index.html)
         * [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/)

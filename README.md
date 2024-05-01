@@ -48,6 +48,7 @@
     * Common Chemometric Problems
         * N << p
         * The Authentication Problem
+            * Some Motivating Examples
             * Class Models
             * A Machine Learning Perspective 
         * Regression, Classification, and Clustering

@@ -45,7 +45,7 @@
             * Number and Order of Arguments
             * Default Values
         * Object Orientation and Classes
-    * Chemometrics
+    * [Chemometrics](notebooks/1.3_The_Python_Language.ipynb)
         * N << p
         * The Authentication Problem
             * Some Motivating Examples
@@ -54,7 +54,7 @@
         * Regression, Classification, and Clustering
         * [scitkit-learn](https://scikit-learn.org/stable/index.html)
         * [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/)
-    * Statistics Background
+    * [Statistics Background](notebooks/1.4_Statistics_Background.ipynb)
         * $\chi^2$ statistics 
         * Baseline Performance Metrics
         <!-- 

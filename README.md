@@ -12,14 +12,14 @@
 :books: In the end you will be able to go to a library of standardized example  notebooks, select the one you need, enter your data, then run it from start to finish.  This course will also teach you to modify and expand things as needed.
 
 ## Outline
-1. [Introduction](notebooks/Introduction.ipynb)
-    * The [Jupyter Notebook](https://jupyter.org/)
+1. Introduction
+    * [The Jupyter Notebook](notebooks/1.1_The_Jupyter_Notebook.ipynb)
         * The Basics
         * Google [Colab](https://colab.research.google.com/)
         * Managing Your Session
         * Installing Python Packages
         * Saving Code 
-    * The [Python](https://www.python.org/) Language
+    * [The Python Language](notebooks/1.2_The_Python_Language.ipynb)
         * Why Learn Python?
         * Before We Get Started
         * Variables

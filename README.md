@@ -45,7 +45,7 @@
             * Number and Order of Arguments
             * Default Values
         * Object Orientation and Classes
-    * [Chemometrics](main/notebooks/1.3_The_Python_Language.ipynb)
+    * [Chemometrics](main/notebooks/1.3_Chemometrics.ipynb)
         * N << p
         * The Authentication Problem
             * Some Motivating Examples

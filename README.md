@@ -123,3 +123,4 @@
 Instructors:
 * Nate Mahynski, nathan.mahynski@nist.gov
 * Bill Krekelberg, william.krekelberg@nist.gov
+* Tom Allison, thomas.allison@nist.gov

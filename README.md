@@ -13,7 +13,7 @@
 
 ## Outline
 1. Introduction
-    * [The Jupyter Notebook](main/notebooks/1.1_The_Jupyter_Notebook.ipynb)
+    * [The Jupyter Notebook](tree/main/notebooks/1.1_The_Jupyter_Notebook.ipynb)
         * The Basics
         * Google Colab
         * Managing Your Session

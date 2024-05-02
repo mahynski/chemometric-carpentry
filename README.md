@@ -13,13 +13,13 @@
 
 ## Outline
 1. Introduction
-    * [The Jupyter Notebook](tree/main/notebooks/1.1_The_Jupyter_Notebook.ipynb)
+    * [The Jupyter Notebook](notebooks/1.1_The_Jupyter_Notebook.ipynb)
         * The Basics
         * Google Colab
         * Managing Your Session
         * Installing Python Packages
         * Saving Code 
-    * [The Python Language](main/notebooks/1.2_The_Python_Language.ipynb)
+    * [The Python Language](notebooks/1.2_The_Python_Language.ipynb)
         * Why Learn Python?
         * Before We Get Started
         * Variables
@@ -45,7 +45,7 @@
             * Number and Order of Arguments
             * Default Values
         * Object Orientation and Classes
-    * [Chemometrics](main/notebooks/1.3_Chemometrics.ipynb)
+    * [Chemometrics](notebooks/1.3_Chemometrics.ipynb)
         * N << p
         * The Authentication Problem
             * Some Motivating Examples
@@ -54,38 +54,38 @@
         * Regression, Classification, and Clustering
         * scitkit-learn
         * PyChemAuth
-    * [Statistics Background](main/notebooks/1.4_Statistics_Background.ipynb)
+    * [Statistics Background](notebooks/1.4_Statistics_Background.ipynb)
         * $\chi^2$ statistics 
         * Baseline Performance Metrics
         <!-- 
         R^2 definition (can be < 0), vs. spearman, majority classifier
         random guessing in N dimensions -> PCA -->
         * Rashomon sets
-2. [Techniques](main/notebooks/Techniques.ipynb)
+2. [Techniques](notebooks/Techniques.ipynb)
     * Exploratory Data Analysis (EDA)
     * Pipelines
     * Evaluation metrics
     * Data splitting
     * Cross-Validation 
-3. [Pre-processing](main/notebooks/Preprocessing.ipynb)
+3. [Pre-processing](notebooks/Preprocessing.ipynb)
     * Scaling and centering
     * Imputation
     * Class balancing (SMOTE)
     * Feature selection <!-- correlation and JSD -->
-3. [Conventional Chemometric Models](main/notebooks/Conventional_Chemometric_Models.ipynb)
+3. [Conventional Chemometric Models](notebooks/Conventional_Chemometric_Models.ipynb)
     * Ordinary Least Squares (OLS)
     * Principal Components Analysis (PCA) and Regression (PCR)
     * Partial Least-Squares (PLS) or Projection to Latent Structures
     * Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis (QDA)
     * Partial Least-Squares-Discriminant Analysis (PLS-DA)
     * Soft Independent Modeling of Class Analogies (SIMCA)
-4. [Machine Learning Models](main/notebooks/Machine_Learning_Models.ipynb)
+4. [Machine Learning Models](notebooks/Machine_Learning_Models.ipynb)
     * Decision Trees
     * Ensemble Methods
     * Random Forests
     * Logistic Regression (actually classification!)
     * Out-of-distribution / novelty detection
-5. [Inspection and Comparison](main/notebooks/Inspection_and_Comparison.ipynb)
+5. [Inspection and Comparison](notebooks/Inspection_and_Comparison.ipynb)
     * Comparing relative performance of pipelines
     * Model-agnostic inspection methods
     * Do I need more data?

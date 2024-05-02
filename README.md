@@ -46,11 +46,11 @@
             * Default Values
         * Object Orientation and Classes
     * [Chemometrics](notebooks/1.3_Chemometrics.ipynb)
-        * N << p
         * The Authentication Problem
             * Some Motivating Examples
             * Class Models
             * A Machine Learning Perspective 
+        * N << p
         * Regression, Classification, and Clustering
         * scitkit-learn
         * PyChemAuth

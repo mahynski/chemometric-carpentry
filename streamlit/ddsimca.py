@@ -46,7 +46,7 @@ if uploaded_file is not None:
         # stratify=dataframe[target_column]
       )
 
-      alpha = st.slider(label="Type I Error Rate ($\alpha$)", min_value=0.0, max_value=1.0, value=0.05, step=0.01, placeholder="$\alpha$", disabled=False, label_visibility="visible")
+      alpha = st.slider(label="Type I Error Rate (alpha)", min_value=0.0, max_value=1.0, value=0.05, step=0.01, placeholder="alpha", disabled=False, label_visibility="visible")
 
       data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])
 

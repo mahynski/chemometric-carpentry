@@ -31,10 +31,21 @@ uploaded_file = st.file_uploader(
 if uploaded_file is not None:
     dataframe = pd.read_csv(uploaded_file)
 
-    target_column = st.selectbox(label="Select a column as the target class.", options=dataframe.columns, index=0, placeholder="Select a column", disabled=False, label_visibility="visible")
-    target_class = st.selectbox(label="Select a class to model.", options=dataframe[target_column].unique(), index=0, placeholder="Select a class", disabled=False, label_visibility="visible")
-    random_state = st.number_input(label="Random seed for data shuffling.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
-    test_size = st.slider(label="Select a positive fraction of the data to use as a test set to proceed.", min_value=0.0, max_value=1.0, value=0.0, step=0.05, disabled=False, label_visibility="visible")
+    col1, col2 = st.columns(2)
+
+    with col1:
+      target_column = st.selectbox(label="Select a column as the target class.", options=dataframe.columns, index=0, placeholder="Select a column", disabled=False, label_visibility="visible")
+      target_class = st.selectbox(label="Select a class to model.", options=dataframe[target_column].unique(), index=0, placeholder="Select a class", disabled=False, label_visibility="visible")
+      random_state = st.number_input(label="Random seed for data shuffling.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
+      test_size = st.slider(label="Select a positive fraction of the data to use as a test set to proceed.", min_value=0.0, max_value=1.0, value=0.0, step=0.05, disabled=False, label_visibility="visible")
+
+    with col2:
+      alpha = st.slider(label="Type I error rate (significance level).", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
+      n_components = st.slider(label="Number of dimensions to project into.", min_value=1, max_value=X_train.shape[1], value=1, step=1, disabled=False, label_visibility="visible")
+      gamma = st.slider(label="Significance level for determining outliers (gamma).", min_value=0.0, max_value=alpha, value=0.01, step=0.01, disabled=False, label_visibility="visible")
+      robust = st.selectbox(label="Whether or not to apply robust methods to estimate degrees of freedom.", options=["semi", True], index=0, key=None, help=None, on_change=None, args=None, kwargs=None, placeholder="Choose an option", disabled=False, label_visibility="visible")
+      scale_x = st.toggle(label="Whether or not to scale X columns by the standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
+      sft = st.toggle(label="Whether or not to use called sequential focused trimming for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
 
     if test_size > 0:
       X_train, X_test, y_train, y_test = train_test_split(
@@ -46,8 +57,7 @@ if uploaded_file is not None:
         # stratify=dataframe[target_column]
       )
 
-      alpha = st.slider(label="Type I Error Rate (alpha)", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
-
+      
       data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])
 
       with data_tab:

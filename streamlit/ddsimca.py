@@ -8,7 +8,7 @@ from streamlit_extras.add_vertical_space import add_vertical_space
 st.set_page_config(layout="wide")
 
 with st.sidebar:
-    st.title('DD-SIMCA')
+    st.title('DD-SIMCA: Data-Driven Soft Independent Modeling of Class Analogies')
     st.markdown('''
     ## About this application
     This tool uses the [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/index.html) python package for analysis.
@@ -17,6 +17,15 @@ with st.sidebar:
     st.write('Made by ***Nate Mahynski***')
     st.write('nathan.mahynski@nist.gov')
 
+st.write("Start by uploading some data to model.")
+
+uploaded_file = st.file_uploader(
+  label, type=['csv', 'xlsx', 'xls'], accept_multiple_files=False, 
+  key=None, help="Upload a CSV, XLSX, or XLS file. Observations should be in rows, while columns should correspond to different features", 
+  on_change=None, label_visibility="visible")
+if uploaded_file is not None:
+    dataframe = pd.read_csv(uploaded_file)
+    st.dataframe(dataframe)
 
 if __name__ == "__main__":
   print('ddsimca')

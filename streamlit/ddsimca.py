@@ -25,9 +25,12 @@ uploaded_file = st.file_uploader(
   type=['csv'], accept_multiple_files=False, 
   key=None, help="", 
   on_change=None, label_visibility="visible")
+
 if uploaded_file is not None:
     dataframe = pd.read_csv(uploaded_file)
     st.dataframe(dataframe)
+
+    target_column = st.selectbox(label="Select a column as the target class.", options=dataframe.columns, index=0, placeholder="Select a column", disabled=False, label_visibility="visible")
 
 if __name__ == "__main__":
   print('ddsimca')

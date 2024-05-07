@@ -78,7 +78,7 @@
     * Partial Least-Squares (PLS) or Projection to Latent Structures
     * Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis (QDA)
     * Partial Least-Squares-Discriminant Analysis (PLS-DA)
-    * Soft Independent Modeling of Class Analogies (SIMCA)
+    * Soft Independent Modeling of Class Analogies (SIMCA), [Interactive Tool](https://chemometric-carpentry-ddsimca.streamlit.app/)
 4. [Machine Learning Models](chemometric-carpentry/blob/main/notebooks/5_Machine_Learning_Models.ipynb)
     * Decision Trees
     * Ensemble Methods

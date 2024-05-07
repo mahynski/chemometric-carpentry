@@ -38,7 +38,7 @@ if uploaded_file is not None:
     test_size = st.slider(label="Fraction of data to use as test set", min_value=0.0, max_value=1.0, value=0.2, step=0.05, disabled=False, label_visibility="visible")
 
     X_train, X_test, y_train, y_test = train_test_split(
-      dataframe[dataframe.columns != target_column],
+      dataframe[[c for c in dataframe.columns if c != target_column]],
       dataframe[target_column],
       shuffle=True,
       random_state=random_state,
@@ -61,7 +61,6 @@ if uploaded_file is not None:
     with results_tab:
       st.header("Modeling Results")
     
-    # add tabs to display test, train data, analysis
 
 if __name__ == "__main__":
   print('ddsimca')

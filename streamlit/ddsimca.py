@@ -20,8 +20,9 @@ with st.sidebar:
 st.write("Start by uploading some data to model.")
 
 uploaded_file = st.file_uploader(
-  label, type=['csv', 'xlsx', 'xls'], accept_multiple_files=False, 
-  key=None, help="Upload a CSV, XLSX, or XLS file. Observations should be in rows, while columns should correspond to different features", 
+  label="Upload a CSV file. Observations should be in rows, while columns should correspond to different features",
+  type=['csv'], accept_multiple_files=False, 
+  key=None, help="", 
   on_change=None, label_visibility="visible")
 if uploaded_file is not None:
     dataframe = pd.read_csv(uploaded_file)

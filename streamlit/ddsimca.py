@@ -14,7 +14,14 @@ with st.sidebar:
     st.title('DD-SIMCA: Data-Driven Soft Independent Modeling of Class Analogies')
     st.markdown('''
     ## About this application
-    This tool uses the [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/index.html) python package for analysis.
+    This tool uses the [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/index.html) python 
+    package for analysis.
+    
+    :heavy_check_mark: It is intended to demonstrate the use of DD-SIMCA for modeling data.
+
+    :x: It is not intended to be used in production.  Instead, use the Jupyter notebooks provided in 
+    [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/index.html) for reproducible, high-quality
+    analysis.
     ''')
     add_vertical_space(2)
     st.write('Made by ***Nate Mahynski***')
@@ -34,9 +41,9 @@ if uploaded_file is not None:
     col1, col2 = st.columns(2)
 
     with col1:
-      target_column = st.selectbox(label="Select a column as the target class.", options=dataframe.columns, index=0, placeholder="Select a column", disabled=False, label_visibility="visible")
-      target_class = st.selectbox(label="Select a class to model.", options=dataframe[target_column].unique(), index=0, placeholder="Select a class", disabled=False, label_visibility="visible")
-      random_state = st.number_input(label="Random seed for data shuffling.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
+      target_column = st.selectbox(label="Select a column as the target class.", options=dataframe.columns, index=None, placeholder="Select a column", disabled=False, label_visibility="visible")
+      target_class = st.selectbox(label="Select a class to model.", options=dataframe[target_column].unique(), index=None, placeholder="Select a class", disabled=False, label_visibility="visible")
+      random_state = st.number_input(label="Random seed for data shuffling before stratified splitting.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
       test_size = st.slider(label="Select a positive fraction of the data to use as a test set to proceed.", min_value=0.0, max_value=1.0, value=0.0, step=0.05, disabled=False, label_visibility="visible")
 
     with col2:
@@ -47,7 +54,7 @@ if uploaded_file is not None:
       scale_x = st.toggle(label="Scale X columns by their standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
       sft = st.toggle(label="Use sequential focused trimming for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
 
-    if test_size > 0:
+    if test_size > 0 and target_column is not None:
       X_train, X_test, y_train, y_test = train_test_split(
         dataframe[[c for c in dataframe.columns if c != target_column]].values,
         dataframe[target_column].values,

@@ -43,9 +43,9 @@ if uploaded_file is not None:
       alpha = st.slider(label="Type I error rate (significance level).", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
       n_components = st.slider(label="Number of dimensions to project into.", min_value=1, max_value=dataframe.shape[1]-1, value=1, step=1, disabled=False, label_visibility="visible")
       gamma = st.slider(label="Significance level for determining outliers (gamma).", min_value=0.0, max_value=alpha, value=0.01, step=0.01, disabled=False, label_visibility="visible")
-      robust = st.selectbox(label="Whether or not to apply robust methods to estimate degrees of freedom.", options=["semi", True], index=0, key=None, help=None, on_change=None, args=None, kwargs=None, placeholder="Choose an option", disabled=False, label_visibility="visible")
-      scale_x = st.toggle(label="Whether or not to scale X columns by the standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
-      sft = st.toggle(label="Whether or not to use called sequential focused trimming for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
+      robust = st.selectbox(label="Apply robust methods to estimate degrees of freedom?", options=["semi", True], index=0, key=None, help=None, on_change=None, args=None, kwargs=None, placeholder="Choose an option", disabled=False, label_visibility="visible")
+      scale_x = st.toggle(label="Scale X columns by their standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
+      sft = st.toggle(label="Use sequential focused trimming for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
 
     if test_size > 0:
       X_train, X_test, y_train, y_test = train_test_split(
@@ -54,10 +54,9 @@ if uploaded_file is not None:
         shuffle=True,
         random_state=random_state,
         test_size=test_size,
-        # stratify=dataframe[target_column]
+        stratify=dataframe[target_column]
       )
 
-      
       data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])
 
       with data_tab:
@@ -74,7 +73,3 @@ if uploaded_file is not None:
       
       with results_tab:
         st.header("Modeling Results")
-    
-
-if __name__ == "__main__":
-  print('ddsimca')

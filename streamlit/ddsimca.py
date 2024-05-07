@@ -49,12 +49,12 @@ if uploaded_file is not None:
 
     if test_size > 0:
       X_train, X_test, y_train, y_test = train_test_split(
-        dataframe[[c for c in dataframe.columns if c != target_column]],
-        dataframe[target_column],
+        dataframe[[c for c in dataframe.columns if c != target_column]].values,
+        dataframe[target_column].values,
         shuffle=True,
         random_state=random_state,
         test_size=test_size,
-        stratify=dataframe[target_column]
+        stratify=dataframe[target_column].values
       )
 
       data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])

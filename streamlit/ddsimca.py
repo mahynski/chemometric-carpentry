@@ -3,6 +3,7 @@ Interactive demonstration of DD-SIMCA.
 Author: Nathan A. Mahynski
 """
 import sklearn
+from sklearn.model_selection import train_test_split
 import pandas as pd
 import streamlit as st
 from streamlit_extras.add_vertical_space import add_vertical_space
@@ -36,17 +37,30 @@ if uploaded_file is not None:
     random_state = st.number_input(label="Random seed", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
     test_size = st.slider(label="Fraction of data to use as test set", min_value=0.0, max_value=1.0, value=0.2, step=0.05, disabled=False, label_visibility="visible")
 
-    X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(
+    X_train, X_test, y_train, y_test = train_test_split(
       dataframe[dataframe.columns != target_column],
       dataframe[target_column],
       shuffle=True,
       random_state=random_state,
       test_size=test_size,
       stratify=dataframe[target_column]
-      )
+    )
 
     alpha = st.number_input(label=r"Type I Error Rate ($\alpha$)", min_value=0, max_value=1, value=0.05, step=0.01, placeholder=r"$\alpha$", disabled=False, label_visibility="visible")
 
+    train_tab, test_tab, results_tab = st.tabs(["Training Data", "Testing Data", "Modeling Results"])
+
+    with train_tab:
+      st.header("Training Data")
+      st.dataframe(X_train)
+
+    with test_tab:
+      st.header("Testing Data")
+      st.dataframe(X_test)
+    
+    with results_tab:
+      st.header("Modeling Results")
+    
     # add tabs to display test, train data, analysis
 
 if __name__ == "__main__":

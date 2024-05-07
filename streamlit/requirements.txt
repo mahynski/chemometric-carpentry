@@ -1,1 +1,2 @@
 git+https://github.com/mahynski/pychemauth@main
+streamlit-extras

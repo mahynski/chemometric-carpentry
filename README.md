@@ -61,31 +61,31 @@
         R^2 definition (can be < 0), vs. spearman, majority classifier
         random guessing in N dimensions -> PCA -->
         * Rashomon sets
-2. [Techniques](chemometric-carpentry/blob/main/notebooks/Techniques.ipynb)
+2. [Techniques](chemometric-carpentry/blob/main/notebooks/2_Techniques.ipynb)
     * Exploratory Data Analysis (EDA)
     * Pipelines
     * Evaluation metrics
     * Data splitting
     * Cross-Validation 
-3. [Pre-processing](chemometric-carpentry/blob/main/notebooks/Preprocessing.ipynb)
+3. [Pre-processing](chemometric-carpentry/blob/main/notebooks/3_Preprocessing.ipynb)
     * Scaling and centering
     * Imputation
     * Class balancing (SMOTE)
     * Feature selection <!-- correlation and JSD -->
-3. [Conventional Chemometric Models](chemometric-carpentry/blob/main/notebooks/Conventional_Chemometric_Models.ipynb)
+3. [Conventional Chemometric Models](chemometric-carpentry/blob/main/notebooks/4_Conventional_Chemometric_Models.ipynb)
     * Ordinary Least Squares (OLS)
     * Principal Components Analysis (PCA) and Regression (PCR)
     * Partial Least-Squares (PLS) or Projection to Latent Structures
     * Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis (QDA)
     * Partial Least-Squares-Discriminant Analysis (PLS-DA)
     * Soft Independent Modeling of Class Analogies (SIMCA)
-4. [Machine Learning Models](chemometric-carpentry/blob/main/notebooks/Machine_Learning_Models.ipynb)
+4. [Machine Learning Models](chemometric-carpentry/blob/main/notebooks/5_Machine_Learning_Models.ipynb)
     * Decision Trees
     * Ensemble Methods
     * Random Forests
     * Logistic Regression (actually classification!)
     * Out-of-distribution / novelty detection
-5. [Inspection and Comparison](chemometric-carpentry/blob/main/notebooks/Inspection_and_Comparison.ipynb)
+5. [Inspection and Comparison](chemometric-carpentry/blob/main/notebooks/6_Inspection_and_Comparison.ipynb)
     * Comparing relative performance of pipelines
     * Model-agnostic inspection methods
     * Do I need more data?

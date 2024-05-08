@@ -65,7 +65,6 @@
     * Exploratory Data Analysis (EDA)
     * Pipelines
     * Evaluation metrics
-    * Data splitting
     * Cross-Validation 
 3. [Pre-processing](chemometric-carpentry/blob/main/notebooks/3_Preprocessing.ipynb)
     * Scaling and centering

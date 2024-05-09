@@ -63,6 +63,8 @@
         * Rashomon sets
 2. [Techniques](chemometric-carpentry/blob/main/notebooks/2_Techniques.ipynb)
     * Exploratory Data Analysis (EDA)
+        * Basic Suggestions
+        * Jensen-Shannon Divergence  
     * Pipelines
     * Evaluation metrics
     * Cross-Validation 

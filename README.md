@@ -64,7 +64,13 @@
 2. [Techniques](chemometric-carpentry/blob/main/notebooks/2_Techniques.ipynb)
     * Exploratory Data Analysis (EDA)
         * Basic Suggestions
-        * Jensen-Shannon Divergence  
+        * Jensen-Shannon Divergence
+            * What is it?
+            * Developing an Intuition
+            * JSD Reveals Plausible Tree Stumps
+            * Identifying Clusters
+            * Binary vs OvA
+            * Common Pitfalls
     * Pipelines
     * Evaluation metrics
     * Cross-Validation 

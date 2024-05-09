@@ -72,13 +72,13 @@
             * Binary vs OvA
             * Common Pitfalls
     * Pipelines
-    * Evaluation metrics
+    * Evaluation Metrics
     * Cross-Validation 
 3. [Pre-processing](chemometric-carpentry/blob/main/notebooks/3_Preprocessing.ipynb)
-    * Scaling and centering
+    * Scaling and Centering
     * Imputation
-    * Class balancing (SMOTE)
-    * Feature selection <!-- correlation and JSD -->
+    * Class Balancing (SMOTE)
+    * Feature Selection <!-- correlation and JSD -->
 3. [Conventional Chemometric Models](chemometric-carpentry/blob/main/notebooks/4_Conventional_Chemometric_Models.ipynb)
     * Ordinary Least Squares (OLS)
     * Principal Components Analysis (PCA) and Regression (PCR)
@@ -91,11 +91,11 @@
     * Ensemble Methods
     * Random Forests
     * Logistic Regression (actually classification!)
-    * Out-of-distribution / novelty detection
+    * Out-of-Distribution / Novelty Detection
 5. [Inspection and Comparison](chemometric-carpentry/blob/main/notebooks/6_Inspection_and_Comparison.ipynb)
-    * Comparing relative performance of pipelines
-    * Model-agnostic inspection methods
-    * Do I need more data?
+    * Comparing Relative Performance of Pipelines
+    * Model-agnostic Inspection Methods
+    * Do I Need More Data?
 
 <!--5. Deep Learning
     * Universal Approximation Theorem

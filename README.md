@@ -76,7 +76,14 @@
     * Cross-Validation 
 3. [Pre-processing](chemometric-carpentry/blob/main/notebooks/3_Preprocessing.ipynb)
     * Scaling and Centering
-    * Imputation
+    * Filtering
+       * MSC
+       * SNV and RNV
+       * Savitzky-Golay  
+    * Handling Missing Values and Imputation
+       * Limits of Detection (LOD)
+       * Basic Imputation
+       * Predictive Imputers  
     * Class Balancing (SMOTE)
     * Feature Selection <!-- correlation and JSD -->
 3. [Conventional Chemometric Models](chemometric-carpentry/blob/main/notebooks/4_Conventional_Chemometric_Models.ipynb)

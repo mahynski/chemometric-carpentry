@@ -19,7 +19,7 @@
         * Managing Your Session
         * Installing Python Packages
         * Saving Code 
-    * [The Python Language](/notebooks/1.2_The_Python_Language.ipynb)
+    * [The Python Language](./notebooks/1.2_The_Python_Language.ipynb)
         * Why Learn Python?
         * Before We Get Started
         * Variables

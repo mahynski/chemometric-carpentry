@@ -19,7 +19,7 @@
         * Managing Your Session
         * Installing Python Packages
         * Saving Code 
-    * [The Python Language](notebooks/1.2_The_Python_Language.ipynb)
+    * [The Python Language](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/1.2_The_Python_Language.ipynb)
         * Why Learn Python?
         * Before We Get Started
         * Variables
@@ -45,7 +45,7 @@
             * Number and Order of Arguments
             * Default Values
         * Object Orientation and Classes
-    * [Chemometrics](chemometric-carpentry/blob/main/notebooks/1.3_Chemometrics.ipynb)
+    * [Chemometrics](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/1.3_Chemometrics.ipynb)
         * The Authentication Problem
             * Some Motivating Examples
             * Class Models
@@ -54,14 +54,14 @@
         * Regression, Classification, and Clustering
         * scitkit-learn
         * PyChemAuth
-    * [Statistics Background](chemometric-carpentry/blob/main/notebooks/1.4_Statistics_Background.ipynb)
+    * [Statistics Background](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/1.4_Statistics_Background.ipynb)
         * $\chi^2$ statistics 
         * Baseline Performance Metrics
         <!-- 
         R^2 definition (can be < 0), vs. spearman, majority classifier
         random guessing in N dimensions -> PCA -->
         * Rashomon sets
-2. [Techniques](chemometric-carpentry/blob/main/notebooks/2_Techniques.ipynb)
+2. [Techniques](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/2_Techniques.ipynb)
     * Exploratory Data Analysis (EDA)
         * Basic Suggestions
         * Jensen-Shannon Divergence
@@ -74,7 +74,7 @@
     * Pipelines
     * Evaluation Metrics
     * Cross-Validation 
-3. [Pre-processing](chemometric-carpentry/blob/main/notebooks/3_Preprocessing.ipynb)
+3. [Pre-processing](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/3_Preprocessing.ipynb)
     * Scaling and Centering
     * Filtering
        * MSC
@@ -86,20 +86,20 @@
        * Predictive Imputers  
     * Class Balancing (SMOTE)
     * Feature Selection <!-- correlation and JSD -->
-3. [Conventional Chemometric Models](chemometric-carpentry/blob/main/notebooks/4_Conventional_Chemometric_Models.ipynb)
+3. [Conventional Chemometric Models](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/4_Conventional_Chemometric_Models.ipynb)
     * Ordinary Least Squares (OLS)
     * Principal Components Analysis (PCA) and Regression (PCR)
     * Partial Least-Squares (PLS) or Projection to Latent Structures
     * Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis (QDA)
     * Partial Least-Squares-Discriminant Analysis (PLS-DA)
     * Soft Independent Modeling of Class Analogies (SIMCA), [Interactive Tool](https://chemometric-carpentry-ddsimca.streamlit.app/)
-4. [Machine Learning Models](chemometric-carpentry/blob/main/notebooks/5_Machine_Learning_Models.ipynb)
+4. [Machine Learning Models](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/5_Machine_Learning_Models.ipynb)
     * Decision Trees
     * Ensemble Methods
     * Random Forests
     * Logistic Regression (actually classification!)
     * Out-of-Distribution / Novelty Detection
-5. [Inspection and Comparison](chemometric-carpentry/blob/main/notebooks/6_Inspection_and_Comparison.ipynb)
+5. [Inspection and Comparison](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/6_Inspection_and_Comparison.ipynb)
     * Comparing Relative Performance of Pipelines
     * Model-agnostic Inspection Methods
     * Do I Need More Data?

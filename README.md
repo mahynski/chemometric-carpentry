@@ -80,12 +80,14 @@
        * MSC
        * SNV and RNV
        * Savitzky-Golay  
-    * Handling Missing Values and Imputation
+    * Missing Values and Imputation
        * Limits of Detection (LOD)
        * Basic Imputation
        * Predictive Imputers  
-    * Class Balancing (SMOTE)
-    * Feature Selection <!-- correlation and JSD -->
+    * Class Balancing
+       * SMOTE
+       * Imblearn pipelines
+    * Feature Selection 
 3. [Conventional Chemometric Models](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/4_Conventional_Chemometric_Models.ipynb)
     * Ordinary Least Squares (OLS)
     * Principal Components Analysis (PCA) and Regression (PCR)

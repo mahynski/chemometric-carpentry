@@ -13,13 +13,13 @@
 
 ## Outline
 1. Introduction
-    * [The Jupyter Notebook](chemometric-carpentry/blob/main/notebooks/1.1_The_Jupyter_Notebook.ipynb)
+    * [The Jupyter Notebook](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/1.1_The_Jupyter_Notebook.ipynb)
         * The Basics
         * Google Colab
         * Managing Your Session
         * Installing Python Packages
         * Saving Code 
-    * [The Python Language](chemometric-carpentry/blob/main/notebooks/1.2_The_Python_Language.ipynb)
+    * [The Python Language](notebooks/1.2_The_Python_Language.ipynb)
         * Why Learn Python?
         * Before We Get Started
         * Variables

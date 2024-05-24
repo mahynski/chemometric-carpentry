@@ -99,7 +99,7 @@
     * Partial Least-Squares (PLS) or Projection to Latent Structures
        * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/pls.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/pls.html) | Interactive Tool 
     * Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis (QDA)
-       * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/lda.html) | Interactive Tool 
+       * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/lda.html) | [sklearn API](https://scikit-learn.org/stable/modules/generated/sklearn.discriminant_analysis.LinearDiscriminantAnalysis.html) | Interactive Tool 
     * Partial Least-Squares-Discriminant Analysis (PLS-DA)
        * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/plsda.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/plsda.html) | Interactive Tool 
     * Soft Independent Modeling of Class Analogies (SIMCA)

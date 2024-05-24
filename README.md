@@ -93,11 +93,17 @@
     * Feature Selection 
 3. [Conventional Chemometric Models](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/4_Conventional_Chemometric_Models.ipynb)
     * Ordinary Least Squares (OLS)
+       * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/ols.html) | Interactive Tool 
     * Principal Components Analysis (PCA) and Regression (PCR)
+       * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/pca_pcr.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/pca.html) | Interactive Tool
     * Partial Least-Squares (PLS) or Projection to Latent Structures
+       * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/pls.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/pls.html) | Interactive Tool 
     * Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis (QDA)
+       * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/lda.html) | Interactive Tool 
     * Partial Least-Squares-Discriminant Analysis (PLS-DA)
-    * Soft Independent Modeling of Class Analogies (SIMCA), [Interactive Tool](https://chemometric-carpentry-ddsimca.streamlit.app/)
+       * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/plsda.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/plsda.html) | Interactive Tool 
+    * Soft Independent Modeling of Class Analogies (SIMCA)
+       * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/simca.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/simca.html) | [Interactive Tool](https://chemometric-carpentry-ddsimca.streamlit.app/)
 4. [Machine Learning Models](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/5_Machine_Learning_Models.ipynb)
     * Decision Trees
     * Ensemble Methods

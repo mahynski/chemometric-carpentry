@@ -114,7 +114,7 @@
     * Comparing Relative Performance of Pipelines
     * Model-agnostic Inspection Methods
     * Do I Need More Data?
-7. Case Studies
+7. [Case Studies](https://pychemauth.readthedocs.io/en/latest/applications.html)
 
 <!--5. Deep Learning
     * Universal Approximation Theorem

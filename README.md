@@ -91,7 +91,7 @@
        * ScaledSMOTEENN
        * Imblearn pipelines
     * Feature Selection 
-3. [Conventional Chemometric Models](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/4_Conventional_Chemometric_Models.ipynb)
+4. [Conventional Chemometric Models](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/4_Conventional_Chemometric_Models.ipynb)
     * Ordinary Least Squares (OLS)
        * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/ols.html) | Interactive Tool 
     * Principal Components Analysis (PCA) and Regression (PCR)
@@ -104,16 +104,17 @@
        * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/plsda.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/plsda.html) | Interactive Tool 
     * Soft Independent Modeling of Class Analogies (SIMCA)
        * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/simca.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/simca.html) | [Interactive Tool](https://chemometric-carpentry-ddsimca.streamlit.app/)
-4. [Machine Learning Models](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/5_Machine_Learning_Models.ipynb)
+5. [Machine Learning Models](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/5_Machine_Learning_Models.ipynb)
     * Decision Trees
     * Ensemble Methods
     * Random Forests
     * Logistic Regression (actually classification!)
     * Out-of-Distribution / Novelty Detection
-5. [Inspection and Comparison](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/6_Inspection_and_Comparison.ipynb)
+6. [Inspection and Comparison](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/6_Inspection_and_Comparison.ipynb)
     * Comparing Relative Performance of Pipelines
     * Model-agnostic Inspection Methods
     * Do I Need More Data?
+7. Case Studies
 
 <!--5. Deep Learning
     * Universal Approximation Theorem

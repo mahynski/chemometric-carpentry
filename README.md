@@ -86,6 +86,9 @@
        * Predictive Imputers  
     * Class Balancing
        * SMOTE
+       * Edited Nearest Neighbors (ENN)
+       * SMOTEENN
+       * ScaledSMOTEENN
        * Imblearn pipelines
     * Feature Selection 
 3. [Conventional Chemometric Models](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/4_Conventional_Chemometric_Models.ipynb)

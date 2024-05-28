@@ -103,6 +103,7 @@ if uploaded_file is not None:
         _ = dds.model.visualize(X_train, y_train)
         fig = plt.gcf()
         fig.set_size_inches(3,2)
+        fig.set_title('Training Set')
         st.pyplot(fig, use_container_width=False)
 
         dds.metrics(X_train, y_train)

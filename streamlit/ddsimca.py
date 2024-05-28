@@ -105,6 +105,9 @@ if uploaded_file is not None:
         with col1sub:
           ax = dds.model.visualize(X_train, y_train)
           ax.set_title('Training Set')
+          for item in ([ax.title, ax.xaxis.label, ax.yaxis.label, ax.get_xticklabels(), ax.get_yticklabels()]):
+              item.set_fontsize(12)
+
           fig = plt.gcf()
           fig.set_size_inches(2, 2)
           st.pyplot(fig, use_container_width=False)

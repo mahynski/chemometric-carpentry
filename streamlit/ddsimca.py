@@ -11,7 +11,7 @@ from sklearn.model_selection import train_test_split
 
 from streamlit_extras.add_vertical_space import add_vertical_space
 
-from pychemauth.classifier.simca import DDSIMCA_Model
+from pychemauth.classifier.simca import SIMCA_Authenticator
 
 st.set_page_config(layout="wide")
 
@@ -61,6 +61,8 @@ if uploaded_file is not None:
       robust = st.selectbox(label="Apply robust methods to estimate degrees of freedom?", options=["semi", "classical"], index=0, key=None, help=None, on_change=None, args=None, kwargs=None, placeholder="Choose an option", disabled=False, label_visibility="visible")
       scale_x = st.toggle(label="Scale X columns by their standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
       sft = st.toggle(label="Use sequential focused trimming for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
+      if target_column is not None: 
+        use =  st.radio("Use a Compliant or Rigorous training method?", ["Rigorous", "Compliant"], captions = [f"Ignore alternatives during training (use only {target_class})", "Use alternatives to assess specificity."], index=None)
 
     if test_size > 0 and target_column is not None:
       X_train, X_test, y_train, y_test = train_test_split(
@@ -89,7 +91,7 @@ if uploaded_file is not None:
       with results_tab:
         st.header("Modeling Results")
 
-        dds = DDSIMCA_Model(n_components=n_components, scale_x=scale_x, alpha=alpha, gamma=gamma, robust=robust, sft=sft)
+        dds = SIMCA_Authenticator(n_components=n_components, scale_x=scale_x, alpha=alpha, gamma=gamma, robust=robust, sft=sft, style='dd-simca', target_class=target_class, use=use)
         _ = dds.fit(X_train, y_train)
 
         _ = dds.extremes_plot(X_train_dds, upper_frac=1.0)

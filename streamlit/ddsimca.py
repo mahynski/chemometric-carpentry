@@ -107,8 +107,8 @@ if uploaded_file is not None:
             csps = metrics['CSPS']
             alts = csps.keys()
             print(alts)
-            df_c = pd.DataFrame(data=[csps[k] for k in alts], columns=['Performance'], index=[alts])
-            return df_t, df_c
+            # df_c = pd.DataFrame(data=[csps[k] for k in alts], columns=['Performance'], index=[alts])
+            return df_t, df_t
 
           col1sub, col2sub = st.columns([2, 2])
           with col1sub:

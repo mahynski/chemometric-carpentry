@@ -106,7 +106,7 @@ if uploaded_file is not None:
             df_t = pd.DataFrame(data=[metrics['TEFF'], metrics['TSNS'], metrics['TSPS']], columns=['Performance'], index=['Total Efficiency (TEFF)', 'Total Sensitivity (TSNS)', 'Total Specificity (TSPS)'])
             csps = metrics['CSPS']
             alts = list(csps.keys())
-            df_c = pd.DataFrame(data=[[csps[k]] for k in alts], columns=['Performance'], index=[alts])
+            df_c = pd.DataFrame(data=[[csps[k]] for k in alts], columns=['Class Specificity'], index=[alts])
             return df_t, df_c
 
           col1sub, col2sub = st.columns([2, 2])
@@ -136,9 +136,9 @@ if uploaded_file is not None:
             fig.set_size_inches(2, 2)
             st.pyplot(fig, use_container_width=False)
 
-            # df_t, df_c = summary_metrics(X_test, y_test, dds)
-            # st.dataframe(df_t)
-            # st.dataframe(df_c)
+            df_t, df_c = summary_metrics(X_test, y_test, dds)
+            st.dataframe(df_t)
+            st.dataframe(df_c)
 
         
 

@@ -93,7 +93,7 @@ if uploaded_file is not None:
         st.header("Modeling Results")
 
         
-        dds = SIMCA_Authenticator(n_components=n_components, scale_x=scale_x, alpha=alpha, gamma=gamma, robust=robust, sft=sft, style='dd-simca', target_class=target_class, use=use)
+        dds = SIMCA_Authenticator(n_components=n_components, scale_x=scale_x, alpha=alpha, gamma=gamma, robust=robust, sft=sft, style='dd-simca', target_class=target_class, use=use.lower())
         _ = dds.fit(X_train, y_train)
 
         # _ = dds.model.extremes_plot(X_train, upper_frac=1.0)

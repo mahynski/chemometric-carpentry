@@ -3,10 +3,15 @@ Interactive demonstration of DD-SIMCA.
 Author: Nathan A. Mahynski
 """
 import sklearn
-from sklearn.model_selection import train_test_split
+
 import pandas as pd
 import streamlit as st
+
+from sklearn.model_selection import train_test_split
+
 from streamlit_extras.add_vertical_space import add_vertical_space
+
+from pychemauth.classifier.simca import DDSIMCA_Model
 
 st.set_page_config(layout="wide")
 
@@ -83,3 +88,8 @@ if uploaded_file is not None:
       
       with results_tab:
         st.header("Modeling Results")
+        _ = dds.fit(X_train, y_train)
+
+        _ = dds.extremes_plot(X_train_dds, upper_frac=1.0)
+        _ = dds.visualize(X_train, y_train)
+

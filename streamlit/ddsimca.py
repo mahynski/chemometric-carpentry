@@ -119,7 +119,7 @@ if uploaded_file is not None:
           fig.set_size_inches(2, 2)
           st.pyplot(fig, use_container_width=False)
 
-          st.dataframe(summary_metrics(X_train, y_train, dds))
+          # st.dataframe(summary_metrics(X_train, y_train, dds))
 
         with col2sub:
           st.subheader('Test Set')

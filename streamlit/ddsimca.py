@@ -95,13 +95,15 @@ if uploaded_file is not None:
         dds = SIMCA_Authenticator(n_components=n_components, scale_x=scale_x, alpha=alpha, gamma=gamma, robust=robust, sft=sft, style='dd-simca', target_class=target_class, use=use)
         _ = dds.fit(X_train, y_train)
 
-        _ = dds.model.extremes_plot(X_train, upper_frac=1.0)
-        fig = plt.gcf()
-        fig.set_size_inches(3,2)
-        st.pyplot(fig, use_container_width=False)
+        # _ = dds.model.extremes_plot(X_train, upper_frac=1.0)
+        # fig = plt.gcf()
+        # fig.set_size_inches(3,2)
+        # st.pyplot(fig, use_container_width=False)
 
         _ = dds.model.visualize(X_train, y_train)
         fig = plt.gcf()
         fig.set_size_inches(3,2)
         st.pyplot(fig, use_container_width=False)
+
+        dds.metrics(X_train, y_train)
 

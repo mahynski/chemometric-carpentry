@@ -92,6 +92,7 @@ if uploaded_file is not None:
       with results_tab:
         st.header("Modeling Results")
 
+        st.subheader('Training Set')
         dds = SIMCA_Authenticator(n_components=n_components, scale_x=scale_x, alpha=alpha, gamma=gamma, robust=robust, sft=sft, style='dd-simca', target_class=target_class, use=use)
         _ = dds.fit(X_train, y_train)
 
@@ -100,11 +101,16 @@ if uploaded_file is not None:
         # fig.set_size_inches(3,2)
         # st.pyplot(fig, use_container_width=False)
 
-        ax = dds.model.visualize(X_train, y_train)
-        ax.set_title('Training Set')
-        fig = plt.gcf()
-        fig.set_size_inches(3,2)
-        st.pyplot(fig, use_container_width=False)
+        col1sub, col2sub = st.columns([3, 1])
+        with col1sub:
+          ax = dds.model.visualize(X_train, y_train)
+          ax.set_title('Training Set')
+          fig = plt.gcf()
+          fig.set_size_inches(3,2)
+          st.pyplot(fig, use_container_width=False)
 
-        dds.metrics(X_train, y_train)
+        with col2sub:
+          dds.metrics(X_train, y_train)
+
+        st.subheader('Test Set')
 

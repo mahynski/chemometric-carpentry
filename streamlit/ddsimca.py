@@ -106,7 +106,7 @@ if uploaded_file is not None:
           ax = dds.model.visualize(X_train, y_train)
           ax.set_title('Training Set')
           for item in ([ax.xaxis.label, ax.yaxis.label]):
-              item.set_fontsize(12)
+              item.set_fontsize(6)
 
           fig = plt.gcf()
           fig.set_size_inches(2, 2)

@@ -100,10 +100,10 @@ if uploaded_file is not None:
         # fig.set_size_inches(3,2)
         # st.pyplot(fig, use_container_width=False)
 
-        _ = dds.model.visualize(X_train, y_train)
+        ax = dds.model.visualize(X_train, y_train)
+        ax.set_title('Training Set')
         fig = plt.gcf()
         fig.set_size_inches(3,2)
-        fig.set_title('Training Set')
         st.pyplot(fig, use_container_width=False)
 
         dds.metrics(X_train, y_train)

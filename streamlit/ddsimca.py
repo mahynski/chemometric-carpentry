@@ -106,7 +106,7 @@ if uploaded_file is not None:
           ax = dds.model.visualize(X_train, y_train)
           ax.set_title('Training Set')
           fig = plt.gcf()
-          fig.set_size_inches(4, 4)
+          fig.set_size_inches(2, 2)
           st.pyplot(fig, use_container_width=False)
 
         with col2sub:

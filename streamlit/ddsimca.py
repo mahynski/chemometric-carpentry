@@ -94,6 +94,6 @@ if uploaded_file is not None:
         dds = SIMCA_Authenticator(n_components=n_components, scale_x=scale_x, alpha=alpha, gamma=gamma, robust=robust, sft=sft, style='dd-simca', target_class=target_class, use=use)
         _ = dds.fit(X_train, y_train)
 
-        _ = dds.extremes_plot(X_train_dds, upper_frac=1.0)
-        _ = dds.visualize(X_train, y_train)
+        _ = dds.model.extremes_plot(X_train_dds, upper_frac=1.0)
+        _ = dds.model.visualize(X_train, y_train)
 

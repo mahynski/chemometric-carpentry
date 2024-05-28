@@ -92,7 +92,7 @@ if uploaded_file is not None:
       with results_tab:
         st.header("Modeling Results")
 
-        st.subheader('Training Set')
+        
         dds = SIMCA_Authenticator(n_components=n_components, scale_x=scale_x, alpha=alpha, gamma=gamma, robust=robust, sft=sft, style='dd-simca', target_class=target_class, use=use)
         _ = dds.fit(X_train, y_train)
 
@@ -101,8 +101,9 @@ if uploaded_file is not None:
         # fig.set_size_inches(3,2)
         # st.pyplot(fig, use_container_width=False)
 
-        col1sub, col2sub = st.columns([3, 1])
+        col1sub, col2sub = st.columns([2, 2])
         with col1sub:
+          st.subheader('Training Set')
           ax = dds.model.visualize(X_train, y_train)
           ax.set_title('Training Set')
           plt.legend(fontsize=6, bbox_to_anchor=(1,1))
@@ -114,9 +115,20 @@ if uploaded_file is not None:
           st.pyplot(fig, use_container_width=False)
 
         with col2sub:
-          metrics = dds.metrics(X_train, y_train)
-          df_ = pd.DataFrame(data=[metrics['TEFF'], metrics['TSNS'], metrics['TSPS']], index=['Total Efficiency (TEFF)', 'Total Sensitivity (TSNS)', 'Total Specificity (TSPS)'])
-          st.dataframe(df_)
+          st.subheader('Test Set')
+          ax = dds.model.visualize(X_test, y_test)
+          ax.set_title('Test Set')
+          plt.legend(fontsize=6, bbox_to_anchor=(1,1))
+          for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+              item.set_fontsize(6)
 
-        st.subheader('Test Set')
+          fig = plt.gcf()
+          fig.set_size_inches(2, 2)
+          st.pyplot(fig, use_container_width=False)
+
+          # metrics = dds.metrics(X_train, y_train)
+          # df_ = pd.DataFrame(data=[metrics['TEFF'], metrics['TSNS'], metrics['TSPS']], index=['Total Efficiency (TEFF)', 'Total Sensitivity (TSNS)', 'Total Specificity (TSPS)'])
+          # st.dataframe(df_)
+
+        
 

@@ -6,6 +6,7 @@ import sklearn
 
 import pandas as pd
 import streamlit as st
+import matplotlib.pyplot as plt
 
 from sklearn.model_selection import train_test_split
 
@@ -95,6 +96,6 @@ if uploaded_file is not None:
         _ = dds.fit(X_train, y_train)
 
         ax = dds.model.extremes_plot(X_train, upper_frac=1.0)
-        st.pyplot(ax.gcf())
+        st.pyplot(plt.gcf())
         # _ = dds.model.visualize(X_train, y_train)
 

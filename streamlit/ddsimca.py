@@ -133,7 +133,7 @@ if uploaded_file is not None:
           fig.set_size_inches(2, 2)
           st.pyplot(fig, use_container_width=False)
 
-          st.dataframe(summary_metrics(X_test, y_test, dds))
+          # st.dataframe(summary_metrics(X_test, y_test, dds))
 
         
 

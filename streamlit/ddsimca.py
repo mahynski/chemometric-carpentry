@@ -111,8 +111,8 @@ if uploaded_file is not None:
 
         with col2sub:
           metrics = dds.metrics(X_train, y_train)
-          df_ = pd.DataFrame(data=[metrics['TEFF'], metrics['TSNS'], metrics['TSPS'], index=['Total Efficiency (TEFF)', 'Total Sensitivity (TSNS)', 'Total Specificity (TSPS)'])
+          df_ = pd.DataFrame(data=[metrics['TEFF'], metrics['TSNS'], metrics['TSPS']], index=['Total Efficiency (TEFF)', 'Total Sensitivity (TSNS)', 'Total Specificity (TSPS)'])
           st.dataframe(df_)
-          
+
         st.subheader('Test Set')
 

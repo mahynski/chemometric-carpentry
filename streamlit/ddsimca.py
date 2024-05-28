@@ -99,5 +99,9 @@ if uploaded_file is not None:
         fig = plt.gcf()
         fig.set_size_inches(3,2)
         st.pyplot(fig, use_container_width=False)
-        # _ = dds.model.visualize(X_train, y_train)
+
+        _ = dds.model.visualize(X_train, y_train)
+        fig = plt.gcf()
+        fig.set_size_inches(3,2)
+        st.pyplot(fig, use_container_width=False)
 

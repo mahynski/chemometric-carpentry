@@ -98,6 +98,6 @@ if uploaded_file is not None:
         _ = dds.model.extremes_plot(X_train, upper_frac=1.0)
         fig = plt.gcf()
         fig.set_size_inches(3,2)
-        st.pyplot(fig)
+        st.pyplot(fig, use_container_width=False)
         # _ = dds.model.visualize(X_train, y_train)
 

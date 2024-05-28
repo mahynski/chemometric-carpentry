@@ -58,7 +58,7 @@ if uploaded_file is not None:
       alpha = st.slider(label="Type I error rate (significance level).", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
       n_components = st.slider(label="Number of dimensions to project into.", min_value=1, max_value=dataframe.shape[1]-1, value=1, step=1, disabled=False, label_visibility="visible")
       gamma = st.slider(label="Significance level for determining outliers (gamma).", min_value=0.0, max_value=alpha, value=0.01, step=0.01, disabled=False, label_visibility="visible")
-      robust = st.selectbox(label="Apply robust methods to estimate degrees of freedom?", options=["semi", True], index=0, key=None, help=None, on_change=None, args=None, kwargs=None, placeholder="Choose an option", disabled=False, label_visibility="visible")
+      robust = st.selectbox(label="Apply robust methods to estimate degrees of freedom?", options=["semi", "classical"], index=0, key=None, help=None, on_change=None, args=None, kwargs=None, placeholder="Choose an option", disabled=False, label_visibility="visible")
       scale_x = st.toggle(label="Scale X columns by their standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
       sft = st.toggle(label="Use sequential focused trimming for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
 
@@ -88,6 +88,8 @@ if uploaded_file is not None:
       
       with results_tab:
         st.header("Modeling Results")
+
+        dds = DDSIMCA_Model(n_components=n_components, scale_x=scale_x, alpha=alpha, gamma=gamma, robust=robust, sft=sft)
         _ = dds.fit(X_train, y_train)
 
         _ = dds.extremes_plot(X_train_dds, upper_frac=1.0)

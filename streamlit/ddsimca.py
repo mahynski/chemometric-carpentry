@@ -103,8 +103,11 @@ if uploaded_file is not None:
 
           def summary_metrics(X, y, model):
             metrics = model.metrics(X, y)
-            df_ = pd.DataFrame(data=[metrics['TEFF'], metrics['TSNS'], metrics['TSPS']], index=['Total Efficiency (TEFF)', 'Total Sensitivity (TSNS)', 'Total Specificity (TSPS)'])
-            return df_
+            df_t = pd.DataFrame(data=[metrics['TEFF'], metrics['TSNS'], metrics['TSPS']], columns=['Performance'], index=['Total Efficiency (TEFF)', 'Total Sensitivity (TSNS)', 'Total Specificity (TSPS)'])
+            csps = metrics['CSPS']
+            alts = csps.keys()
+            df_c = pd.DataFrame(data=[csps[k] for k in alts], columns=['Performance'], index=[alts])
+            return df_t, df_c
 
           col1sub, col2sub = st.columns([2, 2])
           with col1sub:
@@ -118,7 +121,9 @@ if uploaded_file is not None:
             fig.set_size_inches(2, 2)
             st.pyplot(fig, use_container_width=False)
 
-            st.dataframe(summary_metrics(X_train, y_train, dds))
+            df_t, df_c = summary_metrics(X_train, y_train, dds)
+            st.dataframe(df_t)
+            st.dataframe(df_c)
 
           with col2sub:
             st.subheader('Test Set')
@@ -131,7 +136,9 @@ if uploaded_file is not None:
             fig.set_size_inches(2, 2)
             st.pyplot(fig, use_container_width=False)
 
-            st.dataframe(summary_metrics(X_test, y_test, dds))
+            df_t, df_c = summary_metrics(X_test, y_test, dds)
+            st.dataframe(df_t)
+            st.dataframe(df_c)
 
         
 

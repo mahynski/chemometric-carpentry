@@ -106,7 +106,7 @@ if uploaded_file is not None:
             df_t = pd.DataFrame(data=[metrics['TEFF'], metrics['TSNS'], metrics['TSPS']], columns=['Performance'], index=['Total Efficiency (TEFF)', 'Total Sensitivity (TSNS)', 'Total Specificity (TSPS)'])
             csps = metrics['CSPS']
             alts = csps.keys()
-            return alts
+            return csps
             # df_c = pd.DataFrame(data=[csps[k] for k in alts], columns=['Performance'], index=[alts])
             # return df_t, df_c
 

@@ -105,7 +105,7 @@ if uploaded_file is not None:
         with col1sub:
           ax = dds.model.visualize(X_train, y_train)
           ax.set_title('Training Set')
-          plt.legend(fontsize=6, bbox_to_inches=(1,1))
+          plt.legend(fontsize=6, bbox_to_anchor=(1,1))
           for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
               item.set_fontsize(6)
 

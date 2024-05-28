@@ -92,46 +92,46 @@ if uploaded_file is not None:
       with results_tab:
         st.header("Modeling Results")
 
-        
-        dds = SIMCA_Authenticator(n_components=n_components, scale_x=scale_x, alpha=alpha, gamma=gamma, robust=robust, sft=sft, style='dd-simca', target_class=target_class, use=use.lower())
-        _ = dds.fit(X_train, y_train)
+        if use is not None:
+          dds = SIMCA_Authenticator(n_components=n_components, scale_x=scale_x, alpha=alpha, gamma=gamma, robust=robust, sft=sft, style='dd-simca', target_class=target_class, use=use.lower())
+          _ = dds.fit(X_train, y_train)
 
-        # _ = dds.model.extremes_plot(X_train, upper_frac=1.0)
-        # fig = plt.gcf()
-        # fig.set_size_inches(3,2)
-        # st.pyplot(fig, use_container_width=False)
+          # _ = dds.model.extremes_plot(X_train, upper_frac=1.0)
+          # fig = plt.gcf()
+          # fig.set_size_inches(3,2)
+          # st.pyplot(fig, use_container_width=False)
 
-        def summary_metrics(X, y, model):
-          metrics = model.metrics(X, y)
-          df_ = pd.DataFrame(data=[metrics['TEFF'], metrics['TSNS'], metrics['TSPS']], index=['Total Efficiency (TEFF)', 'Total Sensitivity (TSNS)', 'Total Specificity (TSPS)'])
-          return df_
+          def summary_metrics(X, y, model):
+            metrics = model.metrics(X, y)
+            df_ = pd.DataFrame(data=[metrics['TEFF'], metrics['TSNS'], metrics['TSPS']], index=['Total Efficiency (TEFF)', 'Total Sensitivity (TSNS)', 'Total Specificity (TSPS)'])
+            return df_
 
-        col1sub, col2sub = st.columns([2, 2])
-        with col1sub:
-          st.subheader('Training Set')
-          ax = dds.model.visualize(X_train, y_train)
-          plt.legend(fontsize=6, bbox_to_anchor=(1,1))
-          for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
-              item.set_fontsize(6)
+          col1sub, col2sub = st.columns([2, 2])
+          with col1sub:
+            st.subheader('Training Set')
+            ax = dds.model.visualize(X_train, y_train)
+            plt.legend(fontsize=6, bbox_to_anchor=(1,1))
+            for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+                item.set_fontsize(6)
 
-          fig = plt.gcf()
-          fig.set_size_inches(2, 2)
-          st.pyplot(fig, use_container_width=False)
+            fig = plt.gcf()
+            fig.set_size_inches(2, 2)
+            st.pyplot(fig, use_container_width=False)
 
-          st.dataframe(summary_metrics(X_train, y_train, dds))
+            st.dataframe(summary_metrics(X_train, y_train, dds))
 
-        with col2sub:
-          st.subheader('Test Set')
-          ax = dds.model.visualize(X_test, y_test)
-          plt.legend(fontsize=6, bbox_to_anchor=(1,1))
-          for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
-              item.set_fontsize(6)
+          with col2sub:
+            st.subheader('Test Set')
+            ax = dds.model.visualize(X_test, y_test)
+            plt.legend(fontsize=6, bbox_to_anchor=(1,1))
+            for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+                item.set_fontsize(6)
 
-          fig = plt.gcf()
-          fig.set_size_inches(2, 2)
-          st.pyplot(fig, use_container_width=False)
+            fig = plt.gcf()
+            fig.set_size_inches(2, 2)
+            st.pyplot(fig, use_container_width=False)
 
-          st.dataframe(summary_metrics(X_test, y_test, dds))
+            st.dataframe(summary_metrics(X_test, y_test, dds))
 
         
 

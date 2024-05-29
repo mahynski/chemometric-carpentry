@@ -162,18 +162,16 @@ if (test_size > 0):
     st.header("Original Data")
     st.dataframe(dataframe)
 
-#   with train_tab:
-#     st.header("Training Data")
-#     st.write(f'Note: when multiple classes are provided, only the target class ({target_class}) is used to train the model.  The alternative classes will be used to evaluate model specificity, if desired.')
-#     st.dataframe(pd.DataFrame(data=np.hstack((X_train, y_train.reshape(-1,1))), columns=[c for c in dataframe.columns if c != target_column]+[target_column], index=idx_train))
+  with train_tab:
+    st.header("Training Data")
+    st.dataframe(pd.DataFrame(data=np.hstack((X_train, y_train.reshape(-1,1))), columns=dataframe.columns, index=idx_train))
 
-#   with test_tab:
-#     st.header("Testing Data")
-#     st.write(f'Note: all classes are used to evaluate the metrics on the test set.  If alternative classes are provided, they are used to compute model specificity.')
-#     st.dataframe(pd.DataFrame(data=np.hstack((X_test, y_test.reshape(-1,1))), columns=[c for c in dataframe.columns if c != target_column]+[target_column], index=idx_test))
+  with test_tab:
+    st.header("Testing Data")
+    st.dataframe(pd.DataFrame(data=np.hstack((X_test, y_test.reshape(-1,1))), columns=dataframe.columns, index=idx_test))
       
-#   with results_tab:
-#     st.header("Modeling Results")
+  with results_tab:
+    st.header("Modeling Results")
 
 #     dds = SIMCA_Authenticator(
 #         n_components=n_components, 

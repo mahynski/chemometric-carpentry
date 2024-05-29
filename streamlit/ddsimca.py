@@ -94,7 +94,7 @@ with col2_:
         stroke_width=stroke_width,
         stroke_color=stroke_color,
         background_color=bg_color,
-        background_image=Image.open("tennis-balls.jpeg"),
+        background_image=Image.open("tennis-balls.jpg"),
         update_streamlit=False,
         height=500,
         drawing_mode=drawing_mode,

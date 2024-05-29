@@ -154,7 +154,7 @@ with st.expander("Settings"):
           use =  st.radio("Use a Compliant or Rigorous scoring method?", ["Rigorous", "Compliant"], captions = [f"Compute only model sensitivity (use only {target_class}); the score is computed as "+r"-(TSNS - (1 - $\alpha$))$^2$).", "Use alternatives to assess specificity also; now TEFF is treated as the score."], index=None)
           use = str(use).lower()
 
-if (uploaded_file is not None) and test_size > 0 and target_column is not None:
+if (uploaded_file is not None) and test_size > 0 and target_column is not None and use is not None:
   X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
       dataframe[[c for c in dataframe.columns if c != target_column]].values,
       dataframe[target_column].values,

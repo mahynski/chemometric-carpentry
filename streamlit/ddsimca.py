@@ -151,7 +151,7 @@ with st.expander("Settings"):
         sft = st.toggle(label="Use sequential focused trimming (SFT) for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
         st.write("Note: SFT relies on a Semi-Robust approach during data cleaning, then uses a Classical at the end for the final model.")
         if target_column is not None: 
-          use =  st.radio("Use a Compliant or Rigorous scoring method?", ["Rigorous", "Compliant"], captions = [f"Ignore alternatives and compute only sensitivity (use only {target_class})", "Use alternatives to assess specificity also."], index=None)
+          use =  st.radio("Use a Compliant or Rigorous scoring method?", ["Rigorous", "Compliant"], captions = [f"Ignore alternatives and compute only sensitivity (use only {target_class}); the score is "+r"-(TSNS - (1 - \alpha))^2).", "Use alternatives to assess specificity also; now TEFF is treated as the score."], index=None)
           use = str(use).lower()
 
 if (uploaded_file is not None) and test_size > 0 and target_column is not None:

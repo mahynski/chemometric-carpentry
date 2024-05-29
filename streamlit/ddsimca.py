@@ -44,31 +44,31 @@ with col1_:
     st.markdown(r'''
       Step 1: The raw data is **broken up by group (supervised)**; then **for each group** a PCA model for the data is constructed as follows:
         
-    $$
-    X = TP^T + E.
-    $$
+      $$
+      X = TP^T + E.
+      $$
 
-    Here, $X$, is the training data and has dimensions NxJ where $T$ is the scores matrix (projection of $X$ into some space, NxK, determined by), $P$ is the loadings matrix (JxK), and $E$ as the error or residual matrix.  $E$ may be explicitly calculated by $E = X - TP^T$. $X$ should be centered, and possibly scaled, as is required for PCA.
+      Here, $X$, is the training data and has dimensions NxJ where $T$ is the scores matrix (projection of $X$ into some space, NxK, determined by), $P$ is the loadings matrix (JxK), and $E$ as the error or residual matrix.  $E$ may be explicitly calculated by $E = X - TP^T$. $X$ should be centered, and possibly scaled, as is required for PCA.
 
-    Step 2: Compute the Outer Distance (squared), q, and Score Distance (squared), h, for each point where each are defined as:
+      Step 2: Compute the Outer Distance (squared), q, and Score Distance (squared), h, for each point where each are defined as:
 
-    $$
-    h_i = \sum_{j=1}^K \frac{t_{i,j}^2}{\lambda_j}
-    $$
+      $$
+      h_i = \sum_{j=1}^K \frac{t_{i,j}^2}{\lambda_j}
+      $$
 
-    $$
-    q_i = \sum_{j=1}^K e_{i,j}^2.
-    $$
+      $$
+      q_i = \sum_{j=1}^K e_{i,j}^2.
+      $$
 
-    Step 3: Compute the critical distance for class membership. It has been [shown](https://onlinelibrary.wiley.com/doi/pdf/10.1002/cem.1147?casa_token=0NaS1t1S6mYAAAAA:VHFiiSku72EY2KXifPJtZhwXlX8PhwGPDPKUN5LvBnhB2sSTe315Uc7vlX7GmuIlgPJTNIr8chd8JA) that both the SD and OD can be well approximated by scaled chi-squared distributions.  Thus, a critical distance can be defined by a linear combination:
+      Step 3: Compute the critical distance for class membership. It has been [shown](https://onlinelibrary.wiley.com/doi/pdf/10.1002/cem.1147?casa_token=0NaS1t1S6mYAAAAA:VHFiiSku72EY2KXifPJtZhwXlX8PhwGPDPKUN5LvBnhB2sSTe315Uc7vlX7GmuIlgPJTNIr8chd8JA) that both the SD and OD can be well approximated by scaled chi-squared distributions.  Thus, a critical distance can be defined by a linear combination:
 
-    $$
-    c = N_h \frac{h}{h_0} + N_q \frac{q}{q_0} \sim \chi^2(N_h+N_q)
-    $$
+      $$
+      c = N_h \frac{h}{h_0} + N_q \frac{q}{q_0} \sim \chi^2(N_h+N_q)
+      $$
 
-    Here, $N_h$ and $N_q$ are degrees of freedom, and $h_0$ and $q_0$ are scaling factors.  These can be estimated in a [data-driven way](https://doi.org/10.1002/cem.2506), i.e., estimated from the training set rather than fixed based on the size of the set, hence the name "DD-SIMCA."  
-    
-    The final decision rule for a class is $c < c_{\rm crit}$ with $c_{\rm crit} = \chi^{-2}(1-\alpha, N_h+N_q)$.
+      Here, $N_h$ and $N_q$ are degrees of freedom, and $h_0$ and $q_0$ are scaling factors.  These can be estimated in a [data-driven way](https://doi.org/10.1002/cem.2506), i.e., estimated from the training set rather than fixed based on the size of the set, hence the name "DD-SIMCA."  
+      
+      The final decision rule for a class is $c < c_{\rm crit}$ with $c_{\rm crit} = \chi^{-2}(1-\alpha, N_h+N_q)$.
     ''')
 
 with col2_:
@@ -87,7 +87,6 @@ with col2_:
     
     stroke_width = st.slider("Stroke width: ", 1, 25, 3)
     
-    # Create a canvas component
     canvas_result = st_canvas(
         fill_color="rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity
         stroke_width=stroke_width,
@@ -101,9 +100,6 @@ with col2_:
         display_toolbar=True,
         key="canvas_app",
     )
-    # if canvas_result.image_data is not None:
-    #   st.image(canvas_result.image_data)
-
 
 st.divider() 
 
@@ -179,11 +175,6 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
       dds = SIMCA_Authenticator(n_components=n_components, scale_x=scale_x, alpha=alpha, gamma=gamma, robust=robust, sft=sft, style='dd-simca', target_class=target_class, use=use.lower())
       _ = dds.fit(X_train, y_train)
 
-        # _ = dds.model.extremes_plot(X_train, upper_frac=1.0)
-        # fig = plt.gcf()
-        # fig.set_size_inches(3,2)
-        # st.pyplot(fig, use_container_width=False)
-
       def display_metrics(X, y, model):
         metrics = model.metrics(X, y)
         col1_, col2_, col3_, col4_ = st.columns(4)
@@ -205,6 +196,11 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
 
         fig = plt.gcf()
         fig.set_size_inches(2, 2)
+        st.pyplot(fig, use_container_width=False)
+
+        _ = dds.model.extremes_plot(X_train, upper_frac=1.0)
+        fig = plt.gcf()
+        fig.set_size_inches(3,2)
         st.pyplot(fig, use_container_width=False)
 
       with col2sub:

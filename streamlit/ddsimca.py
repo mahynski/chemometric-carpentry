@@ -147,9 +147,10 @@ with st.expander("Settings"):
           use = str(use).lower()
 
 if (uploaded_file is not None) and test_size > 0 and target_column is not None:
-  X_train, X_test, y_train, y_test = train_test_split(
+  X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
       dataframe[[c for c in dataframe.columns if c != target_column]].values,
       dataframe[target_column].values,
+      dataframe.index.values,
       shuffle=True,
       random_state=random_state,
       test_size=test_size,
@@ -164,7 +165,7 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
 
   with train_tab:
     st.header("Training Data")
-    st.dataframe(X_train)
+    st.dataframe(pd.DataFrame(data=X_train, columns=[c for c in dataframe.columns if c != target_column], index=idx_train))
 
   with test_tab:
     st.header("Testing Data")

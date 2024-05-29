@@ -73,15 +73,20 @@ with col1_:
 
 with col2_:
   with st.expander('Click to expand a writable canvas.'):
-    drawing_mode = st.selectbox(
-        "Drawing tool:", ("point", "freedraw", "line", "rect", "circle", "transform")
-    )
-    stroke_width = st.slider("Stroke width: ", 1, 25, 3)
-    if drawing_mode == 'point':
+    col1_, col2_, col3_ =st.columns(3)
+    with col1_:
+      drawing_mode = st.selectbox(
+          "Drawing tool:", ("point", "freedraw", "line", "rect", "circle", "transform")
+      )
+      if drawing_mode == 'point':
         point_display_radius = st.slider("Point display radius: ", 1, 25, 3)
-    stroke_color = st.color_picker("Stroke color hex: ")
-    bg_color = st.color_picker("Background color hex: ", "#eee")
-
+    with col2_:
+      stroke_color = st.color_picker("Stroke color")
+    with col3_:
+      bg_color = st.color_picker("Background color", "#eee")
+    
+    stroke_width = st.slider("Stroke width: ", 1, 25, 3)
+    
     # Create a canvas component
     canvas_result = st_canvas(
         fill_color="rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity

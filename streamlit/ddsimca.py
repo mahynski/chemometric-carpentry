@@ -69,80 +69,80 @@ with st.expander("Configure Settings"):
         if target_column is not None: 
           use =  st.radio("Use a Compliant or Rigorous training method?", ["Rigorous", "Compliant"], captions = [f"Ignore alternatives during training (use only {target_class})", "Use alternatives to assess specificity."], index=None)
 
-    if test_size > 0 and target_column is not None:
-      X_train, X_test, y_train, y_test = train_test_split(
-        dataframe[[c for c in dataframe.columns if c != target_column]].values,
-        dataframe[target_column].values,
-        shuffle=True,
-        random_state=random_state,
-        test_size=test_size,
-        stratify=dataframe[target_column].values
-      )
+if test_size > 0 and target_column is not None:
+    X_train, X_test, y_train, y_test = train_test_split(
+      dataframe[[c for c in dataframe.columns if c != target_column]].values,
+      dataframe[target_column].values,
+      shuffle=True,
+      random_state=random_state,
+      test_size=test_size,
+      stratify=dataframe[target_column].values
+    )
 
-      data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])
+    data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])
 
-      with data_tab:
-        st.header("Original Data")
-        st.dataframe(dataframe)
+    with data_tab:
+      st.header("Original Data")
+      st.dataframe(dataframe)
 
-      with train_tab:
-        st.header("Training Data")
-        st.dataframe(X_train)
+    with train_tab:
+      st.header("Training Data")
+      st.dataframe(X_train)
 
-      with test_tab:
-        st.header("Testing Data")
-        st.dataframe(X_test)
+    with test_tab:
+      st.header("Testing Data")
+      st.dataframe(X_test)
       
-      with results_tab:
-        st.header("Modeling Results")
+    with results_tab:
+      st.header("Modeling Results")
 
-        if use is not None:
-          dds = SIMCA_Authenticator(n_components=n_components, scale_x=scale_x, alpha=alpha, gamma=gamma, robust=robust, sft=sft, style='dd-simca', target_class=target_class, use=use.lower())
-          _ = dds.fit(X_train, y_train)
+      if use is not None:
+        dds = SIMCA_Authenticator(n_components=n_components, scale_x=scale_x, alpha=alpha, gamma=gamma, robust=robust, sft=sft, style='dd-simca', target_class=target_class, use=use.lower())
+        _ = dds.fit(X_train, y_train)
 
-          # _ = dds.model.extremes_plot(X_train, upper_frac=1.0)
-          # fig = plt.gcf()
-          # fig.set_size_inches(3,2)
-          # st.pyplot(fig, use_container_width=False)
+        # _ = dds.model.extremes_plot(X_train, upper_frac=1.0)
+        # fig = plt.gcf()
+        # fig.set_size_inches(3,2)
+        # st.pyplot(fig, use_container_width=False)
 
-          def summary_metrics(X, y, model):
-            metrics = model.metrics(X, y)
-            df_t = pd.DataFrame(data=[metrics['TEFF'], metrics['TSNS'], metrics['TSPS']], columns=['Performance'], index=['Total Efficiency (TEFF)', 'Total Sensitivity (TSNS)', 'Total Specificity (TSPS)'])
-            csps = metrics['CSPS']
-            alts = list(csps.keys())
-            df_c = pd.DataFrame(data=[[csps[k]] for k in alts], columns=['Class Specificity'], index=[alts])
-            return df_t, df_c
+        def summary_metrics(X, y, model):
+          metrics = model.metrics(X, y)
+          df_t = pd.DataFrame(data=[metrics['TEFF'], metrics['TSNS'], metrics['TSPS']], columns=['Performance'], index=['Total Efficiency (TEFF)', 'Total Sensitivity (TSNS)','Total Specificity (TSPS)'])
+          csps = metrics['CSPS']
+          alts = list(csps.keys())
+          df_c = pd.DataFrame(data=[[csps[k]] for k in alts], columns=['Class Specificity'], index=[alts])
+          return df_t, df_c
 
-          col1sub, col2sub = st.columns([2, 2])
-          with col1sub:
-            st.subheader('Training Set')
-            ax = dds.model.visualize(X_train, y_train)
-            plt.legend(fontsize=6, bbox_to_anchor=(1,1))
-            for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
-                item.set_fontsize(6)
+        col1sub, col2sub = st.columns([2, 2])
+        with col1sub:
+          st.subheader('Training Set')
+          ax = dds.model.visualize(X_train, y_train)
+          plt.legend(fontsize=6, bbox_to_anchor=(1,1))
+          for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+              item.set_fontsize(6)
 
-            fig = plt.gcf()
-            fig.set_size_inches(2, 2)
-            st.pyplot(fig, use_container_width=False)
+          fig = plt.gcf()
+          fig.set_size_inches(2, 2)
+          st.pyplot(fig, use_container_width=False)
 
-            df_t, df_c = summary_metrics(X_train, y_train, dds)
-            st.dataframe(df_t)
-            st.dataframe(df_c)
+          df_t, df_c = summary_metrics(X_train, y_train, dds)
+          st.dataframe(df_t)
+          st.dataframe(df_c)
 
-          with col2sub:
-            st.subheader('Test Set')
-            ax = dds.model.visualize(X_test, y_test)
-            plt.legend(fontsize=6, bbox_to_anchor=(1,1))
-            for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
-                item.set_fontsize(6)
+        with col2sub:
+          st.subheader('Test Set')
+          ax = dds.model.visualize(X_test, y_test)
+          plt.legend(fontsize=6, bbox_to_anchor=(1,1))
+          for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+              item.set_fontsize(6)
 
-            fig = plt.gcf()
-            fig.set_size_inches(2, 2)
-            st.pyplot(fig, use_container_width=False)
+          fig = plt.gcf()
+          fig.set_size_inches(2, 2)
+          st.pyplot(fig, use_container_width=False)
 
-            df_t, df_c = summary_metrics(X_test, y_test, dds)
-            st.dataframe(df_t)
-            st.dataframe(df_c)
+          df_t, df_c = summary_metrics(X_test, y_test, dds)
+          st.dataframe(df_t)
+          st.dataframe(df_c)
 
         
 

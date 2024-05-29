@@ -172,7 +172,7 @@ if (test_size > 0):
       
   with results_tab:
     st.header("Modeling Results")
-
+    st.write(reg_type)
     if reg_type is None:
       model = linear_model.LinearRegression(fit_intercept=True)
     elif reg_type == "LASSO (L1)":

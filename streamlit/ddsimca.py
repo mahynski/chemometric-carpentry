@@ -74,6 +74,7 @@ with col1_:
 
 with col2_:
   with st.expander('Click to expand a writable canvas.'):
+    pass
 
 st.divider() 
 

@@ -74,7 +74,9 @@ with col1_:
 
 with col2_:
   with st.expander('Click to expand a writable canvas.'):
-    pass
+    drawing_mode = st.selectbox(
+        "Drawing tool:", ("point", "freedraw", "line", "rect", "circle", "transform")
+    )
 
 st.divider() 
 

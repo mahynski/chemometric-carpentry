@@ -157,7 +157,7 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
       stratify=dataframe[target_column].values
   )
 
-  data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])
+  data_tab, train_tab, test_tab, results_tab, probs_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results", "Model Properties"])
 
   with data_tab:
     st.header("Original Data")
@@ -230,7 +230,8 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
         # ax = dds.model.extremes_plot(X_test, upper_frac=1.0)
         # configure_plot(ax)
 
-        st.write(dds.model._DDSIMCA_Model__Nh_)
+  with probs_tab:
+    st.write(r"$N_h = $"+f"{dds.model._DDSIMCA_Model__Nh_}")
         
 
 # display DoF

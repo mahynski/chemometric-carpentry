@@ -100,6 +100,8 @@ with col2_:
         display_toolbar=True,
         key="canvas_app",
     )
+    if canvas_result.image_data is not None:
+      st.image(canvas_result.image_data)
 
 st.divider() 
 

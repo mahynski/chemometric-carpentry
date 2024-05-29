@@ -89,6 +89,7 @@ with col2_:
     
     canvas_result = st_canvas(
         fill_color="rgba(255, 165, 0, 0.3)",
+        initial_drawing=None,
         stroke_width=stroke_width,
         stroke_color=stroke_color,
         background_color=bg_color,
@@ -100,8 +101,6 @@ with col2_:
         display_toolbar=True,
         key="canvas_app",
     )
-    if canvas_result.image_data is not None:
-      st.image(canvas_result.image_data)
 
 st.divider() 
 

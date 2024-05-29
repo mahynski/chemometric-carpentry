@@ -118,6 +118,13 @@ if test_size > 0 and target_column is not None:
         df_c = pd.DataFrame(data=[[csps[k]] for k in alts], columns=['Class Specificity'], index=[alts])
         return df_t, df_c
 
+      def display_metrics(X, y, model):
+        metrics = model.metrics(X, y)
+        col1_, col2_, col3_ = st.columns(3)
+        col1_.metric(label='Total Efficiency (TEFF)', value=metrics['TEFF'])
+        col2_.metric(label='Total Sensitivity (TSNS)', value=metrics['TSNS'])
+        col3_.metric(label='Total Specificity (TSPS)', value=metrics['TSPS'])
+
       col1sub, col2sub = st.columns([2, 2])
       with col1sub:
         st.subheader('Training Set')
@@ -130,9 +137,10 @@ if test_size > 0 and target_column is not None:
         fig.set_size_inches(2, 2)
         st.pyplot(fig, use_container_width=False)
 
-        df_t, df_c = summary_metrics(X_train, y_train, dds)
-        st.dataframe(df_t)
-        st.dataframe(df_c)
+        # df_t, df_c = summary_metrics(X_train, y_train, dds)
+        # st.dataframe(df_t)
+        # st.dataframe(df_c)
+        display_metrics(X_train, y_train, dds)
 
       with col2sub:
         st.subheader('Test Set')

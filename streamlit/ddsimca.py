@@ -73,23 +73,23 @@ with col1_:
 
 with col2_:
   with st.expander('Click to expand a writable canvas.'):
-    col1a_, col2a_, col3a_ =st.columns(3)
+    # col1a_, col2a_, col3a_ =st.columns(3)
     
     drawing_mode = 'point'
     point_display_radius = 1
     bg_color = "#eee"
     stroke_color = "#000"
 
-    with col1a_:
-      drawing_mode = st.selectbox(
-          "Drawing tool:", ("point", "freedraw", "line", "rect", "circle", "transform")
-      )
-      if drawing_mode == 'point':
-        point_display_radius = st.slider("Point display radius: ", 1, 25, 3)
-    with col2a_:
-      stroke_color = st.color_picker("Stroke color")
-    with col3a_:
-      bg_color = st.color_picker("Background color", "#eee")
+    # with col1a_:
+    drawing_mode = st.selectbox(
+        "Drawing tool:", ("point", "freedraw", "line", "rect", "circle", "transform")
+    )
+    if drawing_mode == 'point':
+      point_display_radius = st.slider("Point display radius: ", 1, 25, 3)
+    # with col2a_:
+    stroke_color = st.color_picker("Stroke color")
+    # with col3a_:
+    bg_color = st.color_picker("Background color", "#eee")
     
     stroke_width = st.slider("Stroke width: ", 1, 25, 3)
     

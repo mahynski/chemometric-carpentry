@@ -13,6 +13,8 @@ from sklearn.model_selection import train_test_split
 from streamlit_drawable_canvas import st_canvas
 from streamlit_extras.add_vertical_space import add_vertical_space
 
+from PIL import Image
+
 from pychemauth.classifier.simca import SIMCA_Authenticator
 
 st.set_page_config(layout="wide")
@@ -92,7 +94,7 @@ with col2_:
         stroke_width=stroke_width,
         stroke_color=stroke_color,
         background_color=bg_color,
-        # background_image=None,
+        background_image=Image.open("tennis-balls.jpeg"),
         update_streamlit=False,
         height=500,
         drawing_mode=drawing_mode,

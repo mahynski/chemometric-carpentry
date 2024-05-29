@@ -58,7 +58,7 @@ with col1_:
 
       $$\vec{b} = (X^TX)^{-1}X^T\vec{y}.$$
 
-      This is equivalent to finding the $\vec{b}$ that minimized the loss, $L$:
+      This is equivalent to finding the $\vec{b}$ that minimizes the loss, $L$:
 
       $$
       L = ||X\vec{b} -\vec{y} ||_2^2.
@@ -95,7 +95,7 @@ with col2_:
         background_color=bg_color,
         background_image=None,
         update_streamlit=False,
-        height=800,
+        height=700,
         drawing_mode=drawing_mode,
         point_display_radius=point_display_radius if drawing_mode == 'point' else 0,
         display_toolbar=True,

@@ -121,9 +121,9 @@ if test_size > 0 and target_column is not None:
       def display_metrics(X, y, model):
         metrics = model.metrics(X, y)
         col1_, col2_, col3_ = st.columns(3)
-        col1_.metric(label='Total Efficiency (TEFF)', value=metrics['TEFF'])
-        col2_.metric(label='Total Sensitivity (TSNS)', value=metrics['TSNS'])
-        col3_.metric(label='Total Specificity (TSPS)', value=metrics['TSPS'])
+        col1_.metric(label='Total Efficiency (TEFF)', value='%.3f'%metrics['TEFF'])
+        col2_.metric(label='Total Sensitivity (TSNS)', value='%.3f'%metrics['TSNS'])
+        col3_.metric(label='Total Specificity (TSPS)', value='%.3f'%metrics['TSPS'])
 
       col1sub, col2sub = st.columns([2, 2])
       with col1sub:

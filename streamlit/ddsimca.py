@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 
 from sklearn.model_selection import train_test_split
 
+from streamlit_drawable_canvas import st_canvas
 from streamlit_extras.add_vertical_space import add_vertical_space
 
 from pychemauth.classifier.simca import SIMCA_Authenticator
@@ -72,7 +73,7 @@ with col1_:
     ''')
 
 with col2_:
-  pass
+  with st.expander('Click to expand a writable canvas.'):
 
 st.divider() 
 
@@ -103,10 +104,10 @@ with st.expander("Settings"):
         test_size = st.slider(label="Select a positive fraction of the data to use as a test set to begin analysis.", min_value=0.0, max_value=1.0, value=0.0, step=0.05, disabled=False, label_visibility="visible")
 
       with col2:
-        alpha = st.slider(label="Type I error rate ($\alpha$).", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
+        alpha = st.slider(label=r"Type I error rate ($\alpha$).", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
         n_components = st.slider(label="Number of dimensions to project into.", min_value=1, max_value=dataframe.shape[1]-3, # account for target and index columns also
         value=1, step=1, disabled=False, label_visibility="visible")
-        gamma = st.slider(label="Significance level for determining outliers ($\gamma$).", min_value=0.0, max_value=alpha, value=0.01, step=0.01, disabled=False, label_visibility="visible")
+        gamma = st.slider(label=r"Significance level for determining outliers ($\gamma$).", min_value=0.0, max_value=alpha, value=0.01, step=0.01, disabled=False, label_visibility="visible")
         robust = st.selectbox(label="How should we estimate $\chi^2$ degrees of freedom?", options=["Semi-Robust", "Classical"], index=0, key=None, help=None, on_change=None, args=None, kwargs=None, placeholder="Choose an option", disabled=False, label_visibility="visible")
         robust = str(robust).lower()
         if robust == 'semi-robust':

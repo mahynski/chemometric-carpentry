@@ -94,7 +94,7 @@ with col2_:
         stroke_color=stroke_color,
         background_color=bg_color,
         background_image=None,
-        update_streamlit=True,
+        update_streamlit=False,
         height=500,
         drawing_mode=drawing_mode,
         point_display_radius=point_display_radius if drawing_mode == 'point' else 0,

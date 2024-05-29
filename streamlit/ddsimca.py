@@ -142,6 +142,7 @@ with st.expander("Settings"):
           robust = 'semi' # Rename for PyChemAuth
         scale_x = st.toggle(label="Scale X columns by their standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
         sft = st.toggle(label="Use sequential focused trimming for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
+        st.write("Note: SFT relies on a Semi-Robust approach during data cleaning, then uses a Classical at the end for the final model.")
         if target_column is not None: 
           use =  st.radio("Use a Compliant or Rigorous scoring method?", ["Rigorous", "Compliant"], captions = [f"Ignore alternatives and compute only sensitivity (use only {target_class})", "Use alternatives to assess specificity also."], index=None)
           use = str(use).lower()

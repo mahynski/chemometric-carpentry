@@ -183,6 +183,13 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
         col3_.metric(label='Total Specificity (TSPS)', value='%.3f'%metrics['TSPS'])
         col4_.metric(label='Model Score', value='%.3f'%model.score(X, y))
 
+      def configure_plot(ax):
+        for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+          item.set_fontsize(6)
+        fig = plt.gcf()
+        fig.set_size_inches(2, 2)
+        st.pyplot(fig, use_container_width=False)
+
       col1sub, col2sub = st.columns([2, 2])
       with col1sub:
         st.subheader('Training Set')
@@ -191,19 +198,21 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
 
         ax = dds.model.visualize(X_train, y_train)
         plt.legend(fontsize=6, bbox_to_anchor=(1,1))
-        for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
-          item.set_fontsize(6)
+        configure_plot(ax)
+        # for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+        #   item.set_fontsize(6)
 
-        fig = plt.gcf()
-        fig.set_size_inches(2, 2)
-        st.pyplot(fig, use_container_width=False)
+        # fig = plt.gcf()
+        # fig.set_size_inches(2, 2)
+        # st.pyplot(fig, use_container_width=False)
 
         ax = dds.model.extremes_plot(X_train, upper_frac=1.0)
-        for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
-          item.set_fontsize(6)
-        fig = plt.gcf()
-        fig.set_size_inches(2, 2)
-        st.pyplot(fig, use_container_width=False)
+        configure_plot(ax)
+        # for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+        #   item.set_fontsize(6)
+        # fig = plt.gcf()
+        # fig.set_size_inches(2, 2)
+        # st.pyplot(fig, use_container_width=False)
 
       with col2sub:
         st.subheader('Test Set')

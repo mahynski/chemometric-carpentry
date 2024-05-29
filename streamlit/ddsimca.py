@@ -63,12 +63,16 @@ with st.expander("Configure Settings"):
         alpha = st.slider(label="Type I error rate (significance level).", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
         n_components = st.slider(label="Number of dimensions to project into.", min_value=1, max_value=dataframe.shape[1]-3, # account for target and index columns also
         value=1, step=1, disabled=False, label_visibility="visible")
-        gamma = st.slider(label="Significance level for determining outliers (gamma).", min_value=0.0, max_value=alpha, value=0.01, step=0.01, disabled=False, label_visibility="visible")
-        robust = st.selectbox(label="Apply robust methods to estimate degrees of freedom?", options=["semi", "classical"], index=0, key=None, help=None, on_change=None, args=None, kwargs=None, placeholder="Choose an option", disabled=False, label_visibility="visible")
+        gamma = st.slider(label="Significance level for determining outliers ($\gamma$).", min_value=0.0, max_value=alpha, value=0.01, step=0.01, disabled=False, label_visibility="visible")
+        robust = st.selectbox(label="How should we estimate $\chi^2$ degrees of freedom?", options=["Semi-Robust", "Classical"], index=0, key=None, help=None, on_change=None, args=None, kwargs=None, placeholder="Choose an option", disabled=False, label_visibility="visible")
+        robust = robust.lower()
+        if robust == 'semi-robust':
+          robust = 'semi' # Rename for PyChemAuth
         scale_x = st.toggle(label="Scale X columns by their standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
         sft = st.toggle(label="Use sequential focused trimming for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
-        # if target_column is not None: 
-        #   use =  st.radio("Use a Compliant or Rigorous training method?", ["Rigorous", "Compliant"], captions = [f"Ignore alternatives during training (use only {target_class})", "Use alternatives to assess specificity."], index=None)
+        if target_column is not None: 
+          use =  st.radio("Use a Compliant or Rigorous scoring method?", ["Rigorous", "Compliant"], captions = [f"Ignore alternatives during training (use only {target_class})", "Use alternatives to assess specificity."], index=None)
+          use = use.lower()
 
 if test_size > 0 and target_column is not None:
   X_train, X_test, y_train, y_test = train_test_split(

@@ -40,7 +40,7 @@ col1_, col2_ = st.columns(2)
 with col1_:
   st.header('How DD-SIMCA Works:')
 
-  with st.expander():
+  with st.expander('How DD-SIMCA Works:'):
     st.markdown(r'''
       Step 1: The raw data is **broken up by group (supervised)**; then **for each group** a PCA model for the data is constructed as follows:
         

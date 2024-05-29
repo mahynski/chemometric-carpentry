@@ -183,10 +183,8 @@ if (test_size > 0):
 
     _ = model.fit(X_train, y_train)
 
-    y_pred = model.predict(X_pred)
-
-    plt.plot(y_test, y_pred, 'o')
-    plt.title(r'Test Set ($R^2=$'+f"{'%.3f'%model.score(X_test, y_test)})")
+    plt.plot(y_train, model.predict(X_train), 'o')
+    plt.title(r'Training Set ($R^2=$'+f"{'%.3f'%model.score(X_train, y_train)})")
 
 
 #     def display_metrics(X, y, model):

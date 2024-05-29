@@ -14,6 +14,7 @@ from sklearn.model_selection import train_test_split
 from streamlit_drawable_canvas import st_canvas
 from streamlit_extras.add_vertical_space import add_vertical_space
 
+from sklearn.model_selection import train_test_split
 
 st.set_page_config(layout="wide")
 

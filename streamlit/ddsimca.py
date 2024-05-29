@@ -95,6 +95,8 @@ with col2_:
         point_display_radius=point_display_radius if drawing_mode == 'point' else 0,
         key="canvas",
     )
+    if canvas_result.image_data is not None:
+      st.image(canvas_result.image_data)
 
 
 st.divider() 

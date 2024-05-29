@@ -89,11 +89,10 @@ with col2_:
     
     canvas_result = st_canvas(
         fill_color="rgba(255, 165, 0, 0.3)",
-        initial_drawing=None,
         stroke_width=stroke_width,
         stroke_color=stroke_color,
         background_color=bg_color,
-        background_image=None,
+        # background_image=None,
         update_streamlit=False,
         height=500,
         drawing_mode=drawing_mode,

@@ -241,24 +241,26 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
         # configure_plot(ax)
 
   with probs_tab:
-    st.write(r"$N_h = $"+f"{dds.model._DDSIMCA_Model__Nh_}")
-    st.write(r"$N_q = $"+f"{dds.model._DDSIMCA_Model__Nq_}")
+    if use is not None:
+      st.write(r"$N_h = $"+f"{dds.model._DDSIMCA_Model__Nh_}")
+      st.write(r"$N_q = $"+f"{dds.model._DDSIMCA_Model__Nq_}")
 
-    st.write(r"$h_0 = $"+f"{dds.model._DDSIMCA_Model__h0_}")
-    st.write(r"$q_0 = $"+f"{dds.model._DDSIMCA_Model__q0_}")
+      st.write(r"$h_0 = $"+f"{dds.model._DDSIMCA_Model__h0_}")
+      st.write(r"$q_0 = $"+f"{dds.model._DDSIMCA_Model__q0_}")
         
   with out_tab:
-    st.write(f"If SFT is used, here are the {target_class} points identified and removed from the training set.")
+    if use is not None:
+      st.write(f"If SFT is used, here are the {target_class} points identified and removed from the training set.")
 
-    if sft:
-      st.dataframe(
-        pd.DataFrame(data=dds.model._DDSIMCA_Model__sft_history_['removed']['X'], columns=[c for c in dataframe.columns if c != target_column]),
-        hide_index=True
-      )
+      if sft:
+        st.dataframe(
+          pd.DataFrame(data=dds.model._DDSIMCA_Model__sft_history_['removed']['X'], columns=[c for c in dataframe.columns if c != target_column]),
+          hide_index=True
+        )
 
-      st.write('The detailed SFT history is given here:')
-      st.write(dds.model._DDSIMCA_Model__sft_history_["iterations"])
-        
+        st.write('The detailed SFT history is given here:')
+        st.write(dds.model._DDSIMCA_Model__sft_history_["iterations"])
+          
 
 # display training set outliers if removed via SFT
 # class SPS

@@ -37,7 +37,7 @@ with st.sidebar:
 
 col1_, col2_ = st.columns(2)
 
-with col1_
+with col1_:
   st.markdown(r'''
   How DD-SIMCA Works:
 

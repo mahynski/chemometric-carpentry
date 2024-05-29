@@ -36,9 +36,9 @@ with st.sidebar:
     st.write('Made by ***Nate Mahynski***')
     st.write('nathan.mahynski@nist.gov')
 
-col1_, col2_ = st.columns(2)
-
 st.header('Recall How DD-SIMCA Works')
+
+col1_, col2_ = st.columns(2)
 with col1_:
   with st.expander('Click here to see the details.'):
     st.markdown(r'''

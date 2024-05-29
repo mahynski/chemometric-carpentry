@@ -38,7 +38,7 @@ with st.sidebar:
     st.write('Made by ***Nate Mahynski***')
     st.write('nathan.mahynski@nist.gov')
 
-st.header('Recall How DD-SIMCA Works')
+st.header('Review How DD-SIMCA Works')
 
 col1_, col2_ = st.columns(2)
 with col1_:
@@ -189,11 +189,13 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
 
       def display_metrics(X, y, model):
         metrics = model.metrics(X, y)
-        col1_, col2_, col3_, col4_ = st.columns(4)
+        accuracy = model.model.accuracy(X, y == target_class)
+        col1_, col2_, col3_, col4_, col5_ = st.columns(5)
         col1_.metric(label='Total Efficiency (TEFF)', value='%.3f'%metrics['TEFF'])
         col2_.metric(label='Total Sensitivity (TSNS)', value='%.3f'%metrics['TSNS'])
         col3_.metric(label='Total Specificity (TSPS)', value='%.3f'%metrics['TSPS'])
-        col4_.metric(label='Model Score', value='%.3f'%model.score(X, y))
+        col4_.metric(label='Accuracy', value='%.3f'%accuracy)
+        col5_.metric(label='Model Score', value='%.3f'%model.score(X, y))
 
       def configure_plot(ax):
         for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):

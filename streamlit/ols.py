@@ -239,6 +239,13 @@ if (test_size > 0):
       configure_plot(ax)
 
 
+
+# bar chart for coefficients on each feature
+
+
+
+
+
 #     def display_metrics(X, y, model):
 #       metrics = model.metrics(X, y)
 #       accuracy = model.model.accuracy(X, y == target_class)

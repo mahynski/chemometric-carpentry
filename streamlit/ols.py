@@ -143,7 +143,6 @@ with st.expander("Settings"):
         if reg_type is not None:
           reg_strength = st.select_slider("Regularization strength", options=np.logspace(-6, 2, 17))
 
-        # plot model predictions vs actual
         # plot residuals + distribution
         # plot coefficients for each feature
 
@@ -186,8 +185,6 @@ if (test_size > 0):
     def configure_plot(ax):
       for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
         item.set_fontsize(6)
-      ax.set_xlabel('Actual Value')
-      ax.set_ylabel('Predicted Value')
       fig = plt.gcf()
       fig.set_size_inches(2, 2)
       st.pyplot(fig, use_container_width=False)
@@ -199,7 +196,14 @@ if (test_size > 0):
       fig, ax = plt.subplots(nrows=1, ncols=1)
       _ = ax.plot(y_train, model.predict(X_train), 'o', ms=1)
       _ = ax.plot(y_train, y_train, '-', color='k', lw=1)
+      ax.set_xlabel('Actual Value')
+      ax.set_ylabel('Predicted Value')
       ax.set_title(r'Training Set ($R^2=$'+f"{'%.3f'%model.score(X_train, y_train)})")
+      configure_plot(ax)
+
+      fig, ax = plt.subplots(nrows=1, ncols=1)
+      resid = np.abs(model.predict(X_train) - y_train)
+      _ = ax.hist(resid, bins=20)
       configure_plot(ax)
 
     with col2sub:
@@ -208,6 +212,8 @@ if (test_size > 0):
       fig, ax = plt.subplots(nrows=1, ncols=1)
       _ = ax.plot(y_test, model.predict(X_test), 'o', ms=1)
       _ = ax.plot(y_test, y_test, '-', color='k', lw=1)
+      ax.set_xlabel('Actual Value')
+      ax.set_ylabel('Predicted Value')
       ax.set_title(r'Test Set ($R^2=$'+f"{'%.3f'%model.score(X_test, y_test)})")
       configure_plot(ax)
 

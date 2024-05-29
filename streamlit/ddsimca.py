@@ -164,7 +164,7 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
       stratify=dataframe[target_column].values
   )
 
-  data_tab, train_tab, test_tab, results_tab, probs_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results", "Model Properties"])
+  data_tab, train_tab, test_tab, results_tab, probs_tab, out_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results", "Model Properties", "Training Set Outliers"])
 
   with data_tab:
     st.header("Original Data")
@@ -244,7 +244,10 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
     st.write(r"$h_0 = $"+f"{dds.model._DDSIMCA_Model__h0_}")
     st.write(r"$q_0 = $"+f"{dds.model._DDSIMCA_Model__q0_}")
         
+  with out_tab:
+    st.write("If SFT is used, here are the points identified and removed from the training set to build the model.")
 
-# display DoF
+    st.write(f"Number of loops = {dds.model.__sft_history_['outer_loops']}")
+    st.dataframe(pd.DataFrame(data=dds.model.__sft_history_['removed']['X'], columns=[c for c in dataframe.columns if c != target_column]))
 # display training set outliers if removed via SFT
 # class SPS

@@ -38,10 +38,10 @@ with st.sidebar:
 col1_, col2_ = st.columns(2)
 
 with col1_:
+  st.header('How DD-SIMCA Works:')
+  
   st.markdown(r'''
-  How DD-SIMCA Works:
-
-  Step 1: The raw data is **broken up by group (supervised)**; then **for each group** a PCA model for the data is constructed as follows:
+    Step 1: The raw data is **broken up by group (supervised)**; then **for each group** a PCA model for the data is constructed as follows:
       
   $$
   X = TP^T + E.
@@ -66,7 +66,8 @@ with col1_:
   $$
 
   Here, $N_h$ and $N_q$ are degrees of freedom, and $h_0$ and $q_0$ are scaling factors.  These can be estimated in a [data-driven way](https://doi.org/10.1002/cem.2506), i.e., estimated from the training set rather than fixed based on the size of the set, hence the name "DD-SIMCA."  
-  The final decision rule for a class is $c < c_{crit}$ with $c_{crit} = \chi^{-2}(1-\alpha, N_h+N_q)$.
+  
+  The final decision rule for a class is $c < c_{\rm crit}$ with $c_{\rm crit} = \chi^{-2}(1-\alpha, N_h+N_q)$.
   ''')
 
 with col2_:

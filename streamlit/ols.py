@@ -204,6 +204,8 @@ if (test_size > 0):
       fig, ax = plt.subplots(nrows=1, ncols=1)
       resid = np.abs(model.predict(X_train) - y_train)
       _ = ax.hist(resid, bins=20)
+      ax.set_xlabel(r'|y_{predicted} - y_{actual}|')
+      ax.set_ylabel('Counts')
       configure_plot(ax)
 
     with col2sub:

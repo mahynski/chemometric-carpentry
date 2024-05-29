@@ -70,7 +70,7 @@ with col1_:
   ''')
 
 with col2_:
-
+  pass
 
 st.divider() 
 

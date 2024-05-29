@@ -173,7 +173,7 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
 
   with train_tab:
     st.header("Training Data")
-    st.dataframe(pd.DataFrame(data=X_train, columns=[c for c in dataframe.columns if c != target_column], index=idx_train))
+    st.dataframe(pd.DataFrame(data=np.hstack((X_train, y_train.reshape(-1,1))), columns=[c for c in dataframe.columns if c != target_column]+[target_column], index=idx_train))
 
   with test_tab:
     st.header("Testing Data")

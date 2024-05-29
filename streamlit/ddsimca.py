@@ -155,7 +155,7 @@ with st.expander("Settings"):
           use =  st.radio("Use a Compliant or Rigorous scoring method?", ["Rigorous", "Compliant"], captions = [f"Compute only model sensitivity (use only {target_class}); the score is computed as "+r"-(TSNS - (1 - $\alpha$))$^2$).", "Use alternatives to assess specificity also; now TEFF is treated as the score."], index=None)
           if use is not None:
             use = str(use).lower()
-st.write(use)
+
 if (uploaded_file is not None) and (test_size > 0) and (target_column is not None) and (use is not None):
   X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
       dataframe[[c for c in dataframe.columns if c != target_column]].values,
@@ -186,8 +186,7 @@ if (uploaded_file is not None) and (test_size > 0) and (target_column is not Non
   with results_tab:
     st.header("Modeling Results")
 
-    if use is not None:
-      dds = SIMCA_Authenticator(
+    dds = SIMCA_Authenticator(
         n_components=n_components, 
         scale_x=scale_x, 
         alpha=alpha, 
@@ -197,72 +196,71 @@ if (uploaded_file is not None) and (test_size > 0) and (target_column is not Non
         style='dd-simca', 
         target_class=target_class, 
         use=use.lower()
-      )
-      _ = dds.fit(X_train, y_train)
+    )
+    
+    _ = dds.fit(X_train, y_train)
 
-      def display_metrics(X, y, model):
-        metrics = model.metrics(X, y)
-        accuracy = model.model.accuracy(X, y == target_class)
-        col1_, col2_, col3_, col4_, col5_ = st.columns(5)
-        col1_.metric(label='Total Efficiency (TEFF)', value='%.3f'%metrics['TEFF'])
-        col2_.metric(label='Total Sensitivity (TSNS)', value='%.3f'%metrics['TSNS'])
-        col3_.metric(label='Total Specificity (TSPS)', value='%.3f'%metrics['TSPS'])
-        col4_.metric(label='Accuracy', value='%.3f'%accuracy)
-        col5_.metric(label='Model Score', value='%.3f'%model.score(X, y))
+    def display_metrics(X, y, model):
+      metrics = model.metrics(X, y)
+      accuracy = model.model.accuracy(X, y == target_class)
+      col1_, col2_, col3_, col4_, col5_ = st.columns(5)
+      col1_.metric(label='Total Efficiency (TEFF)', value='%.3f'%metrics['TEFF'])
+      col2_.metric(label='Total Sensitivity (TSNS)', value='%.3f'%metrics['TSNS'])
+      col3_.metric(label='Total Specificity (TSPS)', value='%.3f'%metrics['TSPS'])
+      col4_.metric(label='Accuracy', value='%.3f'%accuracy)
+      col5_.metric(label='Model Score', value='%.3f'%model.score(X, y))
 
-      def configure_plot(ax):
-        for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
-          item.set_fontsize(6)
-        fig = plt.gcf()
-        fig.set_size_inches(2, 2)
-        st.pyplot(fig, use_container_width=False)
+    def configure_plot(ax):
+      for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+        item.set_fontsize(6)
+      fig = plt.gcf()
+      fig.set_size_inches(2, 2)
+      st.pyplot(fig, use_container_width=False)
 
-      col1sub, col2sub = st.columns([2, 2])
-      with col1sub:
-        st.subheader('Training Set')
+    col1sub, col2sub = st.columns([2, 2])
+    with col1sub:
+      st.subheader('Training Set')
         
-        display_metrics(X_train, y_train, dds)
+      display_metrics(X_train, y_train, dds)
 
-        ax = dds.model.visualize(X_train, y_train)
-        plt.legend(fontsize=6, bbox_to_anchor=(1,1))
-        configure_plot(ax)
+      ax = dds.model.visualize(X_train, y_train)
+      plt.legend(fontsize=6, bbox_to_anchor=(1,1))
+      configure_plot(ax)
 
-        # ax = dds.model.extremes_plot(X_train, upper_frac=1.0)
-        # configure_plot(ax)
+      # ax = dds.model.extremes_plot(X_train, upper_frac=1.0)
+      # configure_plot(ax)
 
-      with col2sub:
-        st.subheader('Test Set')
+    with col2sub:
+      st.subheader('Test Set')
         
-        display_metrics(X_test, y_test, dds)
+      display_metrics(X_test, y_test, dds)
 
-        ax = dds.model.visualize(X_test, y_test)
-        plt.legend(fontsize=6, bbox_to_anchor=(1,1))
-        configure_plot(ax)
+      ax = dds.model.visualize(X_test, y_test)
+      plt.legend(fontsize=6, bbox_to_anchor=(1,1))
+      configure_plot(ax)
 
-        # ax = dds.model.extremes_plot(X_test, upper_frac=1.0)
-        # configure_plot(ax)
+      # ax = dds.model.extremes_plot(X_test, upper_frac=1.0)
+      # configure_plot(ax)
 
   with probs_tab:
-    if use is not None:
-      st.write(r"$N_h = $"+f"{dds.model._DDSIMCA_Model__Nh_}")
-      st.write(r"$N_q = $"+f"{dds.model._DDSIMCA_Model__Nq_}")
+    st.write(r"$N_h = $"+f"{dds.model._DDSIMCA_Model__Nh_}")
+    st.write(r"$N_q = $"+f"{dds.model._DDSIMCA_Model__Nq_}")
 
-      st.write(r"$h_0 = $"+f"{dds.model._DDSIMCA_Model__h0_}")
-      st.write(r"$q_0 = $"+f"{dds.model._DDSIMCA_Model__q0_}")
-        
-  with out_tab:
-    if use is not None:
-      st.write(f"If SFT is used, here are the {target_class} points identified and removed from the training set.")
-
-      if sft:
-        st.dataframe(
-          pd.DataFrame(data=dds.model._DDSIMCA_Model__sft_history_['removed']['X'], columns=[c for c in dataframe.columns if c != target_column]),
-          hide_index=True
-        )
-
-        st.write('The detailed SFT history is given here:')
-        st.write(dds.model._DDSIMCA_Model__sft_history_["iterations"])
+    st.write(r"$h_0 = $"+f"{dds.model._DDSIMCA_Model__h0_}")
+    st.write(r"$q_0 = $"+f"{dds.model._DDSIMCA_Model__q0_}")
           
+  with out_tab:
+    st.write(f"If SFT is used, here are the {target_class} points identified and removed from the training set.")
+
+    if sft:
+      st.dataframe(
+        pd.DataFrame(data=dds.model._DDSIMCA_Model__sft_history_['removed']['X'], columns=[c for c in dataframe.columns if c != target_column]),
+        hide_index=True
+      )
+
+      st.write('The detailed SFT history is given here:')
+      st.write(dds.model._DDSIMCA_Model__sft_history_["iterations"])
+            
 
 # display training set outliers if removed via SFT
 # class SPS

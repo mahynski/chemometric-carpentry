@@ -259,7 +259,7 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
       st.write(idx_train[mask])
       st.write(idx_train)
 
-      for iter_ in range(dds.model._DDSIMCA_Model__sft_history_['outer_loops']):
+      for iter_ in range(1, dds.model._DDSIMCA_Model__sft_history_['outer_loops']+1):
         st.write(dds.model._DDSIMCA_Model__sft_history_["iterations"][iter_])
 
 # display training set outliers if removed via SFT

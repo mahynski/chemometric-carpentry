@@ -1,0 +1,213 @@
+"""
+Interactive demonstration of OLS Regression.
+Author: Nathan A. Mahynski
+"""
+import sklearn
+
+import numpy as np
+import pandas as pd
+import streamlit as st
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+
+from streamlit_drawable_canvas import st_canvas
+from streamlit_extras.add_vertical_space import add_vertical_space
+
+
+st.set_page_config(layout="wide")
+
+with st.sidebar:
+    st.title('OLS: Ordinary Least Squares Regression')
+    st.markdown('''
+    ## About this application
+    This tool uses the [scikit-learn](https://scikit-learn.org/stable/) python 
+    package for analysis, but is designed to accompany [PyChemAuth](https://pychemauth.readthedocs.io) as a teaching tool.
+    
+    :heavy_check_mark: It is intended as a teaching tool to demonstrate the use of OLS for modeling data.
+
+    :x: It is not intended to be used in production.  Instead, use the Jupyter notebooks provided in 
+    [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/index.html) for reproducible, high-quality
+    analysis. For example, consider using [this notebook instead.](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/ols.html)
+    ''')
+    add_vertical_space(2)
+    st.write('Made by ***Nate Mahynski***')
+    st.write('nathan.mahynski@nist.gov')
+
+st.header('Review How OLS Works')
+
+col1_, col2_ = st.columns(2)
+with col1_:
+  with st.expander('Click here to see the details.'):
+    st.markdown(r'''
+      
+    ''')
+
+with col2_:
+  with st.expander('Click to expand a writable canvas.'):
+    col1a_, col2a_, col3a_ = st.columns(3)
+    with col1a_:
+      drawing_mode = st.selectbox(
+          "Drawing tool:", ("freedraw", "line", "rect", "circle", "transform", "polygon", "point"),
+      )
+      if drawing_mode == 'point':
+        point_display_radius = st.slider("Point display radius: ", 1, 25, 3)
+    with col2a_:
+      stroke_color = st.color_picker("Stroke color")
+    with col3a_:
+      bg_color = st.color_picker("Background color", "#eee")
+    
+    stroke_width = st.slider("Stroke width: ", 1, 25, 3)
+    
+    canvas_result = st_canvas(
+        fill_color="rgba(255, 165, 0, 0.3)",
+        stroke_width=stroke_width,
+        stroke_color=stroke_color,
+        background_color=bg_color,
+        background_image=None,
+        update_streamlit=False,
+        height=800,
+        drawing_mode=drawing_mode,
+        point_display_radius=point_display_radius if drawing_mode == 'point' else 0,
+        display_toolbar=True,
+        key="canvas_app",
+    )
+
+st.divider() 
+
+st.header("Upload Your Data")
+
+uploaded_file = st.file_uploader(
+  label="Upload a CSV file. Observations should be in rows, while columns should correspond to different features. An example file is available [here](https://github.com/mahynski/chemometric-carpentry/blob/c9a91d65f8f5d151dad40a6aed8044c9654cf48c/data/simca-iris.csv).",
+  type=['csv'], accept_multiple_files=False, 
+  key=None, help="", 
+  on_change=None, label_visibility="visible")
+
+st.divider() 
+
+st.header("Configure The Model")
+
+use = None
+with st.expander("Settings"):
+  
+  if uploaded_file is not None:
+      dataframe = pd.read_csv(uploaded_file)
+
+      col1, col2 = st.columns(2)
+
+      with col1:
+        st.subheader("Data Settings")
+
+        target_column = st.selectbox(label="Select a column as the target.", options=dataframe.columns, index=None, placeholder="Select a column", disabled=False, label_visibility="visible")
+        random_state = st.number_input(label="Random seed for data shuffling before stratified splitting.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
+        test_size = st.slider(label="Select a positive fraction of the data to use as a test set to begin analysis.", min_value=0.0, max_value=1.0, value=0.0, step=0.05, disabled=False, label_visibility="visible")
+
+      with col2:
+        st.subheader("Model Settings")
+        pass
+
+if (test_size > 0):
+  X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
+      dataframe[[c for c in dataframe.columns if c != target_column]].values,
+      dataframe[target_column].values,
+      dataframe.index.values,
+      shuffle=True,
+      random_state=random_state,
+      test_size=test_size,
+      stratify=dataframe[target_column].values
+  )
+
+  data_tab, train_tab, test_tab, results_tab, probs_tab, out_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results", "Model Properties", "Training Set Outliers"])
+
+  with data_tab:
+    st.header("Original Data")
+    st.dataframe(dataframe)
+
+  with train_tab:
+    st.header("Training Data")
+    st.write(f'Note: when multiple classes are provided, only the target class ({target_class}) is used to train the model.  The alternative classes will be used to evaluate model specificity, if desired.')
+    st.dataframe(pd.DataFrame(data=np.hstack((X_train, y_train.reshape(-1,1))), columns=[c for c in dataframe.columns if c != target_column]+[target_column], index=idx_train))
+
+  with test_tab:
+    st.header("Testing Data")
+    st.write(f'Note: all classes are used to evaluate the metrics on the test set.  If alternative classes are provided, they are used to compute model specificity.')
+    st.dataframe(pd.DataFrame(data=np.hstack((X_test, y_test.reshape(-1,1))), columns=[c for c in dataframe.columns if c != target_column]+[target_column], index=idx_test))
+      
+  with results_tab:
+    st.header("Modeling Results")
+
+    dds = SIMCA_Authenticator(
+        n_components=n_components, 
+        scale_x=scale_x, 
+        alpha=alpha, 
+        gamma=gamma, 
+        robust=robust, 
+        sft=sft, 
+        style='dd-simca', 
+        target_class=target_class, 
+        use=use.lower()
+    )
+    
+    _ = dds.fit(X_train, y_train)
+
+    def display_metrics(X, y, model):
+      metrics = model.metrics(X, y)
+      accuracy = model.model.accuracy(X, y == target_class)
+      col1_, col2_, col3_, col4_, col5_ = st.columns(5)
+      col1_.metric(label='Total Efficiency (TEFF)', value='%.3f'%metrics['TEFF'])
+      col2_.metric(label='Total Sensitivity (TSNS)', value='%.3f'%metrics['TSNS'])
+      col3_.metric(label='Total Specificity (TSPS)', value='%.3f'%metrics['TSPS'])
+      col4_.metric(label='Accuracy', value='%.3f'%accuracy)
+      col5_.metric(label='Model Score', value='%.3f'%model.score(X, y))
+
+    def configure_plot(ax):
+      for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+        item.set_fontsize(6)
+      fig = plt.gcf()
+      fig.set_size_inches(2, 2)
+      st.pyplot(fig, use_container_width=False)
+
+    col1sub, col2sub = st.columns([2, 2])
+    with col1sub:
+      st.subheader('Training Set')
+        
+      display_metrics(X_train, y_train, dds)
+
+      ax = dds.model.visualize(X_train, y_train)
+      plt.legend(fontsize=6, bbox_to_anchor=(1,1))
+      configure_plot(ax)
+
+      # ax = dds.model.extremes_plot(X_train, upper_frac=1.0)
+      # configure_plot(ax)
+
+    with col2sub:
+      st.subheader('Test Set')
+        
+      display_metrics(X_test, y_test, dds)
+
+      ax = dds.model.visualize(X_test, y_test)
+      plt.legend(fontsize=6, bbox_to_anchor=(1,1))
+      configure_plot(ax)
+
+      # ax = dds.model.extremes_plot(X_test, upper_frac=1.0)
+      # configure_plot(ax)
+
+  with probs_tab:
+    st.write(r"$N_h = $"+f"{dds.model._DDSIMCA_Model__Nh_}")
+    st.write(r"$N_q = $"+f"{dds.model._DDSIMCA_Model__Nq_}")
+
+    st.write(r"$h_0 = $"+f"{dds.model._DDSIMCA_Model__h0_}")
+    st.write(r"$q_0 = $"+f"{dds.model._DDSIMCA_Model__q0_}")
+          
+  with out_tab:
+    st.write(f"If SFT is used, here are the {target_class} points identified and removed from the training set.")
+
+    if sft:
+      st.dataframe(
+        pd.DataFrame(data=dds.model._DDSIMCA_Model__sft_history_['removed']['X'], columns=[c for c in dataframe.columns if c != target_column]),
+        hide_index=True
+      )
+
+      st.write('The detailed SFT history is given here:')
+      st.write(dds.model._DDSIMCA_Model__sft_history_["iterations"])
+          

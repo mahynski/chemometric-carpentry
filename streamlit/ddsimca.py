@@ -124,6 +124,7 @@ with st.expander("Settings"):
 
       col1, col2 = st.columns(2)
 
+      st.subheading("Data Settings")
       with col1:
         target_column = st.selectbox(label="Select a column as the target class.", options=dataframe.columns, index=None, placeholder="Select a column", disabled=False, label_visibility="visible")
         if target_column is not None:
@@ -131,6 +132,7 @@ with st.expander("Settings"):
         random_state = st.number_input(label="Random seed for data shuffling before stratified splitting.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
         test_size = st.slider(label="Select a positive fraction of the data to use as a test set to begin analysis.", min_value=0.0, max_value=1.0, value=0.0, step=0.05, disabled=False, label_visibility="visible")
 
+      st.subheading("Model Settings")
       with col2:
         alpha = st.slider(label=r"Type I error rate ($\alpha$).", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
         n_components = st.slider(label="Number of dimensions to project into.", min_value=1, max_value=dataframe.shape[1]-2, # account for target column also
@@ -142,7 +144,7 @@ with st.expander("Settings"):
           robust = 'semi' # Rename for PyChemAuth
         scale_x = st.toggle(label="Scale X columns by their standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
         sft = st.toggle(label="Use sequential focused trimming (SFT) for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
-        st.write("\tNote: SFT relies on a Semi-Robust approach during data cleaning, then uses a Classical at the end for the final model.")
+        st.write("Note: SFT relies on a Semi-Robust approach during data cleaning, then uses a Classical at the end for the final model.")
         if target_column is not None: 
           use =  st.radio("Use a Compliant or Rigorous scoring method?", ["Rigorous", "Compliant"], captions = [f"Ignore alternatives and compute only sensitivity (use only {target_class})", "Use alternatives to assess specificity also."], index=None)
           use = str(use).lower()

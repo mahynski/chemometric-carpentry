@@ -146,10 +146,7 @@ with st.expander("Settings"):
 
         # select strength
         if reg_type is not None:
-          reg_strength = st.select_slider("Regularization strength", options=np.logspace(-6, 2, 17))
-
-        # plot residuals + distribution
-        # plot coefficients for each feature
+          reg_strength = st.select_slider("Regularization strength", options=np.logspace(-6, 6, 25))
 
 if (test_size > 0):
   X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(

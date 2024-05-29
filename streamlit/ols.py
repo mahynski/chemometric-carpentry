@@ -195,7 +195,7 @@ if (test_size > 0):
       st.subheader('Training Set')
         
       fig, ax = plt.subplots(nrows=1, ncols=1)
-      _ = ax.plot(y_train, model.predict(X_train), 'o')
+      _ = ax.plot(y_train, model.predict(X_train), 'o', ms=3)
       ax.set_title(r'Training Set ($R^2=$'+f"{'%.3f'%model.score(X_train, y_train)})")
       configure_plot(ax)
 

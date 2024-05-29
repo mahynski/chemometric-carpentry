@@ -93,7 +93,7 @@
     * Feature Selection 
 4. [Conventional Chemometric Models](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/4_Conventional_Chemometric_Models.ipynb)
     * Ordinary Least Squares (OLS)
-       * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/ols.html) | Interactive Tool 
+       * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/ols.html) | [Interactive Tool](https://chemometric-carpentry-ols.streamlit.app/)
     * Principal Components Analysis (PCA) and Regression (PCR)
        * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/pca_pcr.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/pca.html) | Interactive Tool
     * Partial Least-Squares (PLS) or Projection to Latent Structures

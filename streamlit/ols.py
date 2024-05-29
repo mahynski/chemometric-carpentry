@@ -10,6 +10,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 from sklearn.model_selection import train_test_split
+from sklearn import linear_model
 
 from streamlit_drawable_canvas import st_canvas
 from streamlit_extras.add_vertical_space import add_vertical_space
@@ -173,19 +174,20 @@ if (test_size > 0):
   with results_tab:
     st.header("Modeling Results")
 
-#     dds = SIMCA_Authenticator(
-#         n_components=n_components, 
-#         scale_x=scale_x, 
-#         alpha=alpha, 
-#         gamma=gamma, 
-#         robust=robust, 
-#         sft=sft, 
-#         style='dd-simca', 
-#         target_class=target_class, 
-#         use=use.lower()
-#     )
-    
-#     _ = dds.fit(X_train, y_train)
+    if reg_type is None:
+      model = linear_model.LinearRegression(fit_intercept=True)
+    elif reg_type == "LASSO (L1)":
+      model = linear_model.Lasso(alpha=reg_strength, fit_intercept=True)
+    else:
+      model = linear_model.Ridge(alpha=reg_strength, fit_intercept=True)
+
+    _ = model.fit(X_train, y_train)
+
+    y_pred = model.predict(X_pred)
+
+    plt.plot(y_test, y_pred, 'o')
+    plt.title(r'Test Set ($R^2=$'+f"{'%.3f'%model.score(X_test, y_test)})")
+
 
 #     def display_metrics(X, y, model):
 #       metrics = model.metrics(X, y)

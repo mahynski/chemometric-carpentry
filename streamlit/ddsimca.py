@@ -98,7 +98,7 @@ with col2_:
         drawing_mode=drawing_mode,
         point_display_radius=point_display_radius if drawing_mode == 'point' else 0,
         display_toolbar=True,
-        key="canvas_app",
+        # key="canvas_app",
     )
 
 st.divider() 

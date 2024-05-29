@@ -183,9 +183,9 @@ if (test_size > 0):
 
     _ = model.fit(X_train, y_train)
 
-    fig = plt.plot(y_train, model.predict(X_train), 'o')
+    ax = plt.plot(y_train, model.predict(X_train), 'o')
     plt.title(r'Training Set ($R^2=$'+f"{'%.3f'%model.score(X_train, y_train)})")
-    st.pyplot(fig)
+    st.pyplot(plt.gcf())
 
 
 #     def display_metrics(X, y, model):

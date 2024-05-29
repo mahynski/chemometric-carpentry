@@ -57,6 +57,19 @@ with col1_:
       $$X^T\vec{y} = X^TX\vec{b},$$
 
       $$\vec{b} = (X^TX)^{-1}X^T\vec{y}.$$
+
+      This is equivalent to finding the $\vec{b}$ that minimized the loss, $L$:
+
+      $$
+      L = ||X\vec{b} -\vec{y} ||_2^2.
+      $$
+
+      However, when we have many terms (e.g., $p > n$) we can start to overfit to our model. Overfitting is often characterized by coefficients with large values, for example, consider polynomials functions with large coefficients of alternating sign.  This insight is what has given rise to several forms of regularization:
+
+      * L2 or ["ridge" regression](https://scikit-learn.org/stable/modules/linear_model.html#ridge-regression)
+      * L1 or ["LASSO" regression](https://scikit-learn.org/stable/modules/linear_model.html#lasso)
+
+      In both cases, instead of simply minimizing the error between the model and the observations (pure OLS) another term is added to $L$ to prevent the model from overfitting.  We will explore both below.
     ''')
 
 with col2_:
@@ -86,7 +99,7 @@ with col2_:
         drawing_mode=drawing_mode,
         point_display_radius=point_display_radius if drawing_mode == 'point' else 0,
         display_toolbar=True,
-        # key="canvas_app",
+        key="canvas_app",
     )
 
 st.divider() 

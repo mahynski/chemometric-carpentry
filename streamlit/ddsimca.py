@@ -120,7 +120,7 @@ st.divider()
 
 st.header("Configure The Model")
 
-with st.expander(""):
+with st.expander("Settings"):
   
   if uploaded_file is not None:
       dataframe = pd.read_csv(uploaded_file)

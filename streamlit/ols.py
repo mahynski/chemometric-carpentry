@@ -141,7 +141,7 @@ with st.expander("Settings"):
 
         # select strength
         if reg_type is not None:
-          reg_srength = st.select_slider("Regularization strength", options=np.logspace(-6, 2, 11))
+          reg_srength = st.select_slider("Regularization strength", options=np.logspace(-6, 2, 9))
 
         st.write(reg_type)
         # plot model predictions vs actual

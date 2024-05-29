@@ -248,7 +248,7 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
     st.write(r"$q_0 = $"+f"{dds.model._DDSIMCA_Model__q0_}")
         
   with out_tab:
-    st.write(f"If SFT is used, here are the points identified and removed from the training set {target_class} points to build the model.")
+    st.write(f"If SFT is used, here are the {target_class} points identified and removed from the training set.")
 
     if sft:
       st.dataframe(

@@ -80,7 +80,7 @@ if test_size > 0 and target_column is not None:
       stratify=dataframe[target_column].values
     )
 
-#     data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])
+  data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])
 
 #     with data_tab:
 #       st.header("Original Data")

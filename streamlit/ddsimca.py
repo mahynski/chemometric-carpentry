@@ -254,6 +254,6 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
 
       # outlier_idx = enumerate(dds.model.check_outliers(X_train)[1])
       
-      st.write(np.where(dds.model.check_outliers(X_train)[1]))
+      st.write(dds.model.check_outliers(X_train)[1][y_train == target_class])
 # display training set outliers if removed via SFT
 # class SPS

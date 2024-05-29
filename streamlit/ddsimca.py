@@ -95,7 +95,7 @@ with col2_:
         background_color=bg_color,
         background_image=None,
         update_streamlit=True,
-        height=550,
+        height=500,
         drawing_mode=drawing_mode,
         point_display_radius=point_display_radius if drawing_mode == 'point' else 0,
         display_toolbar=True,

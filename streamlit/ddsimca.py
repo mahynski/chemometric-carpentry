@@ -255,12 +255,7 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
         hide_index=True
       )
 
-      mask_out = dds.model.check_outliers(X_train)[1]
-      mask_target = y_train == target_class
-      mask = mask_target & mask_out
-      st.write(idx_train[mask])
-      st.write(idx_train)
-
+      st.write('The detailed SFT history is given here:')
       st.write(dds.model._DDSIMCA_Model__sft_history_["iterations"])
         
 

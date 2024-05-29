@@ -98,6 +98,7 @@ with col2_:
         height=150,
         drawing_mode=drawing_mode,
         point_display_radius=point_display_radius if drawing_mode == 'point' else 0,
+        display_toolbar=True,
         key="full app",
     )
     # if canvas_result.image_data is not None:

@@ -141,23 +141,22 @@ with st.expander("Settings"):
 
         # select strength
         if reg_type is not None:
-          reg_srength = st.select_slider("Regularization strength", options=np.logspace(-6, 2, 9))
+          reg_srength = st.select_slider("Regularization strength", options=np.logspace(-6, 2, 18))
 
-        st.write(reg_type)
         # plot model predictions vs actual
         # plot residuals + distribution
         # plot coefficients for each feature
 
-# if (test_size > 0):
-#   X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
-#       dataframe[[c for c in dataframe.columns if c != target_column]].values,
-#       dataframe[target_column].values,
-#       dataframe.index.values,
-#       shuffle=True,
-#       random_state=random_state,
-#       test_size=test_size,
-#       stratify=dataframe[target_column].values
-#   )
+if (test_size > 0):
+  X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
+      dataframe[[c for c in dataframe.columns if c != target_column]].values,
+      dataframe[target_column].values,
+      dataframe.index.values,
+      shuffle=True,
+      random_state=random_state,
+      test_size=test_size,
+      stratify=dataframe[target_column].values
+  )
 
 #   data_tab, train_tab, test_tab, results_tab, probs_tab, out_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results", "Model Properties", "Training Set Outliers"])
 

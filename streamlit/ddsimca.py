@@ -89,7 +89,7 @@ with col2_:
     
     canvas_result = st_canvas(
         fill_color="rgba(255, 165, 0, 0.3)",
-        initial_drawing=None,
+        initial_drawing=canvas_result.json_data if canvas_result.json_data is not None,
         stroke_width=stroke_width,
         stroke_color=stroke_color,
         background_color=bg_color,

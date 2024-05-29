@@ -40,7 +40,38 @@ col1_, col2_ = st.columns(2)
 with col1_:
   with st.expander('Click here to see the details.'):
     st.markdown(r'''
-      
+      OLS stands for [ordinary least squares regression](https://en.wikipedia.org/wiki/Ordinary_least_squares). This is generally considered to be the simplest of all regression methods.
+
+      We want to develop a model for some scalar response variable, $\vec{y}$, in terms of $p$ explanatory variables, or features stored in a matrix $X$.  The dimensions of $X$ are $n \times p$; assume $\vec{y}$ is a column vector ($n \times 1$) with a single scalar value for each row in $X$.
+
+      $$y_0 = b_0 +b_1x_{0,1}+\dots b_px_{0,p}$$
+
+      $$y_1 = b_0 +b_1x_{1,1}+\dots b_px_{1,p}$$
+
+      $$\dots$$
+
+      In matrix form we can write $\vec{y} = X\vec{b} + \vec{e}$, where $\vec{e}$ is some error and $\vec{b}$ is a vector of coefficients of the size ($p \times 1$). $\vec{b}$ needs to be solved for.  This is done by minimizing the square error, $err = \sum (\vec{y} - X\vec{b})^2$, hence the name "least squares regression".  To solve this we can take the derivative and set it equal to zero.  Thus, we arrive at:
+
+      $$-2X^T(\vec{y} - X\vec{b}) = 0,$$
+
+      $$X^T\vec{y} = X^TX\vec{b},$$
+
+      $$\vec{b} = (X^TX)^{-1}X^T\vec{y}.$$
+
+      The canonical problem is evaluating $(X^TX)^{-1}$.  Often times either
+
+      1. $X$ is very large and this hard to do, or 
+      2. $X$ is not invertible.
+
+      Note that in the above equations we have a constant $b_0$; implicitly, $x_{i,0} = 1$ for all $i < n$.  We could add another dimension to $X$ so its first column is a constant value of 1, then fit (use `fit_intercept=True` option below). However, this  adds another essentially meaningless column since it is just a shift.  A better approach is to mean-center $\vec{y}$ so instead we have
+
+      $$y_0-b_0 = b_1x_{0,1}+\dots b_px_{0,p}$$
+
+      $$y_1-b_0 = b_1x_{1,1}+\dots b_px_{1,p}$$
+
+      $$\dots$$
+
+      where now the shift is incorporated implicitly on the left hand side.  
     ''')
 
 with col2_:

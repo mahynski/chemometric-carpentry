@@ -79,7 +79,7 @@ st.divider()
 st.header("Upload Your Data")
 
 uploaded_file = st.file_uploader(
-  label="Upload a CSV file. Observations should be in rows, while columns should correspond to different features. An example file is available [here](google.com).",
+  label="Upload a CSV file. Observations should be in rows, while columns should correspond to different features. An example file is available [here](https://github.com/mahynski/chemometric-carpentry/blob/c9a91d65f8f5d151dad40a6aed8044c9654cf48c/data/simca-iris.csv).",
   type=['csv'], accept_multiple_files=False, 
   key=None, help="", 
   on_change=None, label_visibility="visible")
@@ -117,7 +117,7 @@ with st.expander("Settings"):
           use =  st.radio("Use a Compliant or Rigorous scoring method?", ["Rigorous", "Compliant"], captions = [f"Ignore alternatives and compute only sensitivity (use only {target_class})", "Use alternatives to assess specificity also."], index=None)
           use = str(use).lower()
 
-if test_size > 0 and target_column is not None:
+if (uploaded_file is not None) and test_size > 0 and target_column is not None:
   X_train, X_test, y_train, y_test = train_test_split(
       dataframe[[c for c in dataframe.columns if c != target_column]].values,
       dataframe[target_column].values,

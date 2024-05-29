@@ -204,7 +204,7 @@ if (test_size > 0):
       fig, ax = plt.subplots(nrows=1, ncols=1)
       resid = model.predict(X_train) - y_train
       _ = ax.hist(resid, bins=20)
-      ax.set_xlabel(r'$|y_{predicted} - y_{actual}|$')
+      ax.set_xlabel(r'$y_{predicted} - y_{actual}$')
       ax.set_ylabel('Counts')
       configure_plot(ax)
 
@@ -217,6 +217,13 @@ if (test_size > 0):
       ax.set_xlabel('Actual Value')
       ax.set_ylabel('Predicted Value')
       ax.set_title(r'Test Set ($R^2=$'+f"{'%.3f'%model.score(X_test, y_test)})")
+      configure_plot(ax)
+
+      fig, ax = plt.subplots(nrows=1, ncols=1)
+      resid = model.predict(X_test) - y_test
+      _ = ax.hist(resid, bins=20)
+      ax.set_xlabel(r'$y_{predicted} - y_{actual}$')
+      ax.set_ylabel('Counts')
       configure_plot(ax)
 
 

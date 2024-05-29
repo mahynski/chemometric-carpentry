@@ -38,9 +38,8 @@ with st.sidebar:
 
 col1_, col2_ = st.columns(2)
 
+st.header('Recall How DD-SIMCA Works')
 with col1_:
-  st.header('Recall How DD-SIMCA Works')
-
   with st.expander('Click here to see the details.'):
     st.markdown(r'''
       Step 1: The raw data is **broken up by group (supervised)**; then **for each group** a PCA model for the data is constructed as follows:
@@ -77,6 +76,13 @@ with col2_:
     drawing_mode = st.selectbox(
         "Drawing tool:", ("point", "freedraw", "line", "rect", "circle", "transform")
     )
+    stroke_width = st.slider("Stroke width: ", 1, 25, 3)
+    if drawing_mode == 'point':
+        point_display_radius = st.slider("Point display radius: ", 1, 25, 3)
+    stroke_color = st.color_picker("Stroke color hex: ")
+    bg_color = st.color_picker("Background color hex: ", "#eee")
+    bg_image = st.file_uploader("Background image:", type=["png", "jpg"])
+    realtime_update = True
 
 st.divider() 
 

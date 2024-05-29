@@ -76,7 +76,7 @@ with col2_:
     # col1a_, col2a_, col3a_ =st.columns(3)
     # with col1a_:
     drawing_mode = st.selectbox(
-        "Drawing tool:", ("point", "freedraw", "line", "rect", "circle", "transform")
+        "Drawing tool:", ("freedraw", "line", "rect", "circle", "transform", "polygon", "point"),
     )
     if drawing_mode == 'point':
       point_display_radius = st.slider("Point display radius: ", 1, 25, 3)

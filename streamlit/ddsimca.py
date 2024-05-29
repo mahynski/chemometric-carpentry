@@ -124,16 +124,17 @@ with st.expander("Settings"):
 
       col1, col2 = st.columns(2)
 
-      st.subheader("Data Settings")
       with col1:
+        st.subheader("Data Settings")
+
         target_column = st.selectbox(label="Select a column as the target class.", options=dataframe.columns, index=None, placeholder="Select a column", disabled=False, label_visibility="visible")
         if target_column is not None:
           target_class = st.selectbox(label="Select a class to model.", options=dataframe[target_column].unique(), index=None, placeholder="Select a class", disabled=False, label_visibility="visible")
         random_state = st.number_input(label="Random seed for data shuffling before stratified splitting.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
         test_size = st.slider(label="Select a positive fraction of the data to use as a test set to begin analysis.", min_value=0.0, max_value=1.0, value=0.0, step=0.05, disabled=False, label_visibility="visible")
 
-      st.subheader("Model Settings")
       with col2:
+        st.subheader("Model Settings")
         alpha = st.slider(label=r"Type I error rate ($\alpha$).", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
         n_components = st.slider(label="Number of dimensions to project into.", min_value=1, max_value=dataframe.shape[1]-2, # account for target column also
         value=1, step=1, disabled=False, label_visibility="visible")

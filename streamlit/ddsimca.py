@@ -133,7 +133,7 @@ with st.expander("Settings"):
 
       with col2:
         alpha = st.slider(label=r"Type I error rate ($\alpha$).", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
-        n_components = st.slider(label="Number of dimensions to project into.", min_value=1, max_value=dataframe.shape[1]-3, # account for target and index columns also
+        n_components = st.slider(label="Number of dimensions to project into.", min_value=1, max_value=dataframe.shape[1]-2, # account for target column also
         value=1, step=1, disabled=False, label_visibility="visible")
         gamma = st.slider(label=r"Significance level for determining outliers ($\gamma$).", min_value=0.0, max_value=alpha, value=0.01, step=0.01, disabled=False, label_visibility="visible")
         robust = st.selectbox(label="How should we estimate $\chi^2$ degrees of freedom?", options=["Semi-Robust", "Classical"], index=0, key=None, help=None, on_change=None, args=None, kwargs=None, placeholder="Choose an option", disabled=False, label_visibility="visible")
@@ -233,3 +233,4 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
 
 # display DoF
 # display training set outliers if removed via SFT
+# class SPS

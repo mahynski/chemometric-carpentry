@@ -169,7 +169,7 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
 
   with test_tab:
     st.header("Testing Data")
-    st.dataframe(X_test)
+    st.dataframe(pd.DataFrame(data=X_test, columns=[c for c in dataframe.columns if c != target_column], index=idx_test))
       
   with results_tab:
     st.header("Modeling Results")

@@ -229,6 +229,9 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
         # fig.set_size_inches(2, 2)
         # st.pyplot(fig, use_container_width=False)
 
+        ax = dds.model.extremes_plot(X_test, upper_frac=1.0)
+        configure_plot(ax)
+
         
 
 # display DoF

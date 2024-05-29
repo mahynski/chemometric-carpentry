@@ -183,10 +183,29 @@ if (test_size > 0):
 
     _ = model.fit(X_train, y_train)
 
-    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(3,3))
-    _ = ax.plot(y_train, model.predict(X_train), 'o')
-    ax.set_title(r'Training Set ($R^2=$'+f"{'%.3f'%model.score(X_train, y_train)})")
-    st.pyplot(fig)
+    def configure_plot(ax):
+      for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+        item.set_fontsize(6)
+      fig = plt.gcf()
+      fig.set_size_inches(2, 2)
+      st.pyplot(fig, use_container_width=False)
+
+    col1sub, col2sub = st.columns([2, 2])
+    with col1sub:
+      st.subheader('Training Set')
+        
+      fig, ax = plt.subplots(nrows=1, ncols=1)
+      _ = ax.plot(y_train, model.predict(X_train), 'o')
+      ax.set_title(r'Training Set ($R^2=$'+f"{'%.3f'%model.score(X_train, y_train)})")
+      configure_plot(ax)
+
+      # ax = dds.model.extremes_plot(X_train, upper_frac=1.0)
+      # configure_plot(ax)
+
+    with col2sub:
+      st.subheader('Test Set')
+
+      pass
 
 
 #     def display_metrics(X, y, model):

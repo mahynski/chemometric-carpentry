@@ -232,6 +232,10 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
 
   with probs_tab:
     st.write(r"$N_h = $"+f"{dds.model._DDSIMCA_Model__Nh_}")
+    st.write(r"$N_q = $"+f"{dds.model._DDSIMCA_Model__Nq_}")
+
+    st.write(r"$h_0 = $"+f"{dds.model._DDSIMCA_Model__h0_}")
+    st.write(r"$q_0 = $"+f"{dds.model._DDSIMCA_Model__q0_}")
         
 
 # display DoF

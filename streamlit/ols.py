@@ -57,21 +57,6 @@ with col1_:
       $$X^T\vec{y} = X^TX\vec{b},$$
 
       $$\vec{b} = (X^TX)^{-1}X^T\vec{y}.$$
-
-      The canonical problem is evaluating $(X^TX)^{-1}$.  Often times either
-
-      1. $X$ is very large and this hard to do, or 
-      2. $X$ is not invertible.
-
-      Note that in the above equations we have a constant $b_0$; implicitly, $x_{i,0} = 1$ for all $i < n$.  We could add another dimension to $X$ so its first column is a constant value of 1, then fit (use `fit_intercept=True` option below). However, this  adds another essentially meaningless column since it is just a shift.  A better approach is to mean-center $\vec{y}$ so instead we have
-
-      $$y_0-b_0 = b_1x_{0,1}+\dots b_px_{0,p}$$
-
-      $$y_1-b_0 = b_1x_{1,1}+\dots b_px_{1,p}$$
-
-      $$\dots$$
-
-      where now the shift is incorporated implicitly on the left hand side.  
     ''')
 
 with col2_:
@@ -101,7 +86,7 @@ with col2_:
         drawing_mode=drawing_mode,
         point_display_radius=point_display_radius if drawing_mode == 'point' else 0,
         display_toolbar=True,
-        key="canvas_app",
+        # key="canvas_app",
     )
 
 st.divider() 

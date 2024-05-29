@@ -94,7 +94,7 @@ with col2_:
         stroke_width=stroke_width,
         stroke_color=stroke_color,
         background_color=bg_color,
-        background_image=Image.open("https://github.com/mahynski/chemometric-carpentry/blob/c3a821338e532b382cc817e1f11fe2e3e443aadb/streamlit/tennis-balls.jpg"),
+        background_image=None,
         update_streamlit=False,
         height=500,
         drawing_mode=drawing_mode,

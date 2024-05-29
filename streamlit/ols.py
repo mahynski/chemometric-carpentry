@@ -198,6 +198,7 @@ if (test_size > 0):
         
       fig, ax = plt.subplots(nrows=1, ncols=1)
       _ = ax.plot(y_train, model.predict(X_train), 'o', ms=1)
+      _ = ax.plot(y_train, y_train, '-', color='k')
       ax.set_title(r'Training Set ($R^2=$'+f"{'%.3f'%model.score(X_train, y_train)})")
       configure_plot(ax)
 
@@ -206,6 +207,7 @@ if (test_size > 0):
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
       _ = ax.plot(y_test, model.predict(X_test), 'o', ms=1)
+      _ = ax.plot(y_test, y_test, '-', color='k')
       ax.set_title(r'Test Set ($R^2=$'+f"{'%.3f'%model.score(X_test, y_test)})")
       configure_plot(ax)
 

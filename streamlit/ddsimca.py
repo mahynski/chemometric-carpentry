@@ -221,12 +221,13 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
 
         ax = dds.model.visualize(X_test, y_test)
         plt.legend(fontsize=6, bbox_to_anchor=(1,1))
-        for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
-          item.set_fontsize(6)
+        configure_plot(ax)
+        # for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+        #   item.set_fontsize(6)
 
-        fig = plt.gcf()
-        fig.set_size_inches(2, 2)
-        st.pyplot(fig, use_container_width=False)
+        # fig = plt.gcf()
+        # fig.set_size_inches(2, 2)
+        # st.pyplot(fig, use_container_width=False)
 
         
 

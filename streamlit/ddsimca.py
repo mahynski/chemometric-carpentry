@@ -68,7 +68,10 @@ with col1_:
       c = N_h \frac{h}{h_0} + N_q \frac{q}{q_0} \sim \chi^2(N_h+N_q)
       $$
 
-      Here, $N_h$ and $N_q$ are degrees of freedom, and $h_0$ and $q_0$ are scaling factors.  These can be estimated in a [data-driven way](https://doi.org/10.1002/cem.2506), i.e., estimated from the training set rather than fixed based on the size of the set, hence the name "DD-SIMCA."  
+      Here, $N_h$ and $N_q$ are degrees of freedom, and $h_0$ and $q_0$ are scaling factors.  These can be estimated in a [data-driven way](https://doi.org/10.1002/cem.2506), i.e., estimated from the training set rather than fixed based on the size of the set, hence the name "DD-SIMCA."
+      * A robust approach is recommended when the data is "dirty".
+      * If the data has been cleaned, it is recommended to use a classical approach to estimate these numbers.
+
       
       The final decision rule for a class is $c < c_{\rm crit}$ with $c_{\rm crit} = \chi^{-2}(1-\alpha, N_h+N_q)$.
     ''')
@@ -117,7 +120,7 @@ st.divider()
 
 st.header("Configure The Model")
 
-with st.expander("Settings"):
+with st.expander(""):
   
   if uploaded_file is not None:
       dataframe = pd.read_csv(uploaded_file)

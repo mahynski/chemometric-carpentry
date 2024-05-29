@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn import linear_model
 
+from pychemauth.preprocessing.scaling import RobustScaler, CorrectedScaler
+
 from streamlit_drawable_canvas import st_canvas
 from streamlit_extras.add_vertical_space import add_vertical_space
 
@@ -131,13 +133,16 @@ with st.expander("Settings"):
         random_state = st.number_input(label="Random seed for data shuffling before stratified splitting.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
         test_size = st.slider(label="Select a positive fraction of the data to use as a test set to begin analysis.", min_value=0.0, max_value=1.0, value=0.0, step=0.05, disabled=False, label_visibility="visible")
 
-        # standardization
+        standardization = st.selectbox("What type of standardization should be applied?", (None, "Scaler", "Robust Scaler"), index=0)
+        if standardization is not None:
+          center = st.toggle("Use centering", value=False)
+          scale = st.toggle("Use scale", value=False)
 
       with col2:
         st.subheader("Model Settings")
 
         # select regularization type
-        reg_type = st.selectbox("What type of regularization should be applied?", (None, "LASSO (L1)", " Ridge (L2)"), index=0)
+        reg_type = st.selectbox("What type of regularization should be applied?", (None, "LASSO (L1)", "Ridge (L2)"), index=0)
 
         # select strength
         if reg_type is not None:
@@ -155,6 +160,16 @@ if (test_size > 0):
     random_state=random_state,
     test_size=test_size,
   )
+
+  if standardization == "Scaler":
+    scaler = CorrectedScaler(with_mean=center, with_std=scale)
+  elif standardization == "RobustScaler":
+    scaler = RobustScaler(with_median=center, with_iqr=scale)
+  else:
+    scaler = CorrectedScaler(with_mean=False, with_std=False)
+
+  X_train = scaler.fit_transform(X_train)
+  X_test = scaler.transform(X_test)
 
   data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])
 

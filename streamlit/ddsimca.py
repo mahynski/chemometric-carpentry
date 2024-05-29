@@ -253,8 +253,10 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
       st.dataframe(pd.DataFrame(data=dds.model._DDSIMCA_Model__sft_history_['removed']['X'], columns=[c for c in dataframe.columns if c != target_column]))
 
       # outlier_idx = enumerate(dds.model.check_outliers(X_train)[1])
-      
-      st.write(idx_train[dds.model.check_outliers(X_train)[1]])
+      mask_out = dds.model.check_outliers(X_train)[1]
+      mask_target = y_train == target_class
+      mask = mask_target & mask_out
+      st.write(idx_train[mask])
       st.write(idx_train)
 # display training set outliers if removed via SFT
 # class SPS

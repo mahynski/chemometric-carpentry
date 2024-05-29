@@ -131,9 +131,21 @@ with st.expander("Settings"):
         random_state = st.number_input(label="Random seed for data shuffling before stratified splitting.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
         test_size = st.slider(label="Select a positive fraction of the data to use as a test set to begin analysis.", min_value=0.0, max_value=1.0, value=0.0, step=0.05, disabled=False, label_visibility="visible")
 
+        # standardization
+
       with col2:
         st.subheader("Model Settings")
-        pass
+
+        # select regularization type
+        reg_type = st.selectbox("What type of regularization should be applied?", (None, "LASSO (L1)", " Ridge (L2)"), index=0)
+
+        # select strength
+        if reg_type is not None:
+          reg_srength = st.select_slider("Regularization strength", options=np.logspace(-3, 2, 10))
+
+        # plot model predictions vs actual
+        # plot residuals + distribution
+        # plot coefficients for each feature
 
 if (test_size > 0):
   X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(

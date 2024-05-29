@@ -38,9 +38,9 @@ with st.sidebar:
 col1_, col2_ = st.columns(2)
 
 with col1_:
-  st.header('How DD-SIMCA Works:')
+  st.header('Recall How DD-SIMCA Works')
 
-  with st.expander('How DD-SIMCA Works:'):
+  with st.expander('Click here to see the details.'):
     st.markdown(r'''
       Step 1: The raw data is **broken up by group (supervised)**; then **for each group** a PCA model for the data is constructed as follows:
         
@@ -76,17 +76,17 @@ with col2_:
 
 st.divider() 
 
-st.header("Start by uploading some data to model.")
+st.header("Upload Your Data")
 
 uploaded_file = st.file_uploader(
-  label="Upload a CSV file. Observations should be in rows, while columns should correspond to different features",
+  label="Upload a CSV file. Observations should be in rows, while columns should correspond to different features. An example file is available [here](google.com).",
   type=['csv'], accept_multiple_files=False, 
   key=None, help="", 
   on_change=None, label_visibility="visible")
 
 st.divider() 
 
-st.header("Configure the model.")
+st.header("Configure The Model")
 
 with st.expander("Settings"):
   
@@ -114,7 +114,7 @@ with st.expander("Settings"):
         scale_x = st.toggle(label="Scale X columns by their standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
         sft = st.toggle(label="Use sequential focused trimming for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
         if target_column is not None: 
-          use =  st.radio("Use a Compliant or Rigorous scoring method?", ["Rigorous", "Compliant"], captions = [f"Ignore alternatives during training (use only {target_class})", "Use alternatives to assess specificity."], index=None)
+          use =  st.radio("Use a Compliant or Rigorous scoring method?", ["Rigorous", "Compliant"], captions = [f"Ignore alternatives and compute only sensitivity (use only {target_class})", "Use alternatives to assess specificity also."], index=None)
           use = str(use).lower()
 
 if test_size > 0 and target_column is not None:
@@ -153,14 +153,6 @@ if test_size > 0 and target_column is not None:
         # fig.set_size_inches(3,2)
         # st.pyplot(fig, use_container_width=False)
 
-      def summary_metrics(X, y, model):
-        metrics = model.metrics(X, y)
-        df_t = pd.DataFrame(data=[metrics['TEFF'], metrics['TSNS'], metrics['TSPS']], columns=['Performance'], index=['Total Efficiency (TEFF)', 'Total Sensitivity (TSNS)','Total Specificity (TSPS)'])
-        csps = metrics['CSPS']
-        alts = list(csps.keys())
-        df_c = pd.DataFrame(data=[[csps[k]] for k in alts], columns=['Class Specificity'], index=[alts])
-        return df_t, df_c
-
       def display_metrics(X, y, model):
         metrics = model.metrics(X, y)
         col1_, col2_, col3_, col4_ = st.columns(4)
@@ -172,6 +164,9 @@ if test_size > 0 and target_column is not None:
       col1sub, col2sub = st.columns([2, 2])
       with col1sub:
         st.subheader('Training Set')
+        
+        display_metrics(X_train, y_train, dds)
+
         ax = dds.model.visualize(X_train, y_train)
         plt.legend(fontsize=6, bbox_to_anchor=(1,1))
         for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
@@ -181,10 +176,11 @@ if test_size > 0 and target_column is not None:
         fig.set_size_inches(2, 2)
         st.pyplot(fig, use_container_width=False)
 
-        display_metrics(X_train, y_train, dds)
-
       with col2sub:
         st.subheader('Test Set')
+        
+        display_metrics(X_test, y_test, dds)
+
         ax = dds.model.visualize(X_test, y_test)
         plt.legend(fontsize=6, bbox_to_anchor=(1,1))
         for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
@@ -194,7 +190,7 @@ if test_size > 0 and target_column is not None:
         fig.set_size_inches(2, 2)
         st.pyplot(fig, use_container_width=False)
 
-        display_metrics(X_test, y_test, dds)
-
         
 
+# display DoF
+# display training set outliers if removed via SFT

@@ -258,5 +258,9 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
       mask = mask_target & mask_out
       st.write(idx_train[mask])
       st.write(idx_train)
+
+      for iter_ in range(dds.model._DDSIMCA_Model__sft_history_['outer_loops']):
+        st.write(dds.model._DDSIMCA_Model__sft_history_["iterations"][iter_])
+
 # display training set outliers if removed via SFT
 # class SPS

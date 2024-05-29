@@ -71,14 +71,14 @@ with st.expander("Configure Settings"):
         #   use =  st.radio("Use a Compliant or Rigorous training method?", ["Rigorous", "Compliant"], captions = [f"Ignore alternatives during training (use only {target_class})", "Use alternatives to assess specificity."], index=None)
 
 if test_size > 0 and target_column is not None:
-    X_train, X_test, y_train, y_test = train_test_split(
+  X_train, X_test, y_train, y_test = train_test_split(
       dataframe[[c for c in dataframe.columns if c != target_column]].values,
       dataframe[target_column].values,
       shuffle=True,
       random_state=random_state,
       test_size=test_size,
       stratify=dataframe[target_column].values
-    )
+  )
 
   data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])
 

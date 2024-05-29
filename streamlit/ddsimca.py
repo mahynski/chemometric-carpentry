@@ -88,7 +88,7 @@ with col2_:
     stroke_width = st.slider("Stroke width: ", 1, 25, 3)
     
     canvas_result = st_canvas(
-        fill_color="rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity
+        fill_color="rgba(255, 165, 0, 0.3)",
         stroke_width=stroke_width,
         stroke_color=stroke_color,
         background_color=bg_color,
@@ -172,7 +172,17 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
     st.header("Modeling Results")
 
     if use is not None:
-      dds = SIMCA_Authenticator(n_components=n_components, scale_x=scale_x, alpha=alpha, gamma=gamma, robust=robust, sft=sft, style='dd-simca', target_class=target_class, use=use.lower())
+      dds = SIMCA_Authenticator(
+        n_components=n_components, 
+        scale_x=scale_x, 
+        alpha=alpha, 
+        gamma=gamma, 
+        robust=robust, 
+        sft=sft, 
+        style='dd-simca', 
+        target_class=target_class, 
+        use=use.lower()
+      )
       _ = dds.fit(X_train, y_train)
 
       def display_metrics(X, y, model):
@@ -199,20 +209,9 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
         ax = dds.model.visualize(X_train, y_train)
         plt.legend(fontsize=6, bbox_to_anchor=(1,1))
         configure_plot(ax)
-        # for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
-        #   item.set_fontsize(6)
 
-        # fig = plt.gcf()
-        # fig.set_size_inches(2, 2)
-        # st.pyplot(fig, use_container_width=False)
-
-        ax = dds.model.extremes_plot(X_train, upper_frac=1.0)
-        configure_plot(ax)
-        # for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
-        #   item.set_fontsize(6)
-        # fig = plt.gcf()
-        # fig.set_size_inches(2, 2)
-        # st.pyplot(fig, use_container_width=False)
+        # ax = dds.model.extremes_plot(X_train, upper_frac=1.0)
+        # configure_plot(ax)
 
       with col2sub:
         st.subheader('Test Set')
@@ -222,15 +221,9 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
         ax = dds.model.visualize(X_test, y_test)
         plt.legend(fontsize=6, bbox_to_anchor=(1,1))
         configure_plot(ax)
-        # for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
-        #   item.set_fontsize(6)
 
-        # fig = plt.gcf()
-        # fig.set_size_inches(2, 2)
-        # st.pyplot(fig, use_container_width=False)
-
-        ax = dds.model.extremes_plot(X_test, upper_frac=1.0)
-        configure_plot(ax)
+        # ax = dds.model.extremes_plot(X_test, upper_frac=1.0)
+        # configure_plot(ax)
 
         
 

@@ -252,7 +252,7 @@ if (uploaded_file is not None) and test_size > 0 and target_column is not None:
       st.write(f"Number of loops = {dds.model._DDSIMCA_Model__sft_history_['outer_loops']}")
       st.dataframe(
         pd.DataFrame(data=dds.model._DDSIMCA_Model__sft_history_['removed']['X'], columns=[c for c in dataframe.columns if c != target_column]),
-        hide_index=False
+        hide_index=True
       )
 
       mask_out = dds.model.check_outliers(X_train)[1]

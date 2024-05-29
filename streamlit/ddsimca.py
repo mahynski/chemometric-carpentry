@@ -36,15 +36,7 @@ with st.sidebar:
     st.write('nathan.mahynski@nist.gov')
 
 st.markdown('''
-  A more modern incarnation of SIMCA is data-driven SIMCA or DD-SIMCA.  There are several descriptions of the technique:
-
-1. ["Acceptance areas for multivariate classification derived by projection methods," Pomerantsev, A., Journal of Chemometrics 22 (2008) 601-609.](https://doi.org/10.1002/cem.1147)
-
-2. ["Concept and role of extreme objects in PCA/SIMCA," Pomerantsev, A. and Rodionova, O., Journal of Chemometrics 28 (2014) 429-438.](https://doi.org/10.1002/cem.2506)
-
-3. ["Detection of outliers in projection-based modeling," Rodionova, O., and Pomerantsev, A., Anal. Chem. 92 (2020) 2656-2664.](https://doi.org/10.1021/acs.analchem.9b04611)
-
-Briefly, the idea is to use not only the outer distance based on the error, but also an "inner distance" or "score distance" based on the distance a point is from the class center in the class subspace.  
+How DD-SIMCA Works:
 
 Step 1: The raw data is **broken up by group (supervised)**; then **for each group** a PCA model for the data is constructed as follows:
     
@@ -54,20 +46,27 @@ $$
 
 Here, $X$, is the training data and has dimensions NxJ where $T$ is the scores matrix (projection of $X$ into some space, NxK, determined by), $P$ is the loadings matrix (JxK), and $E$ as the error or residual matrix.  $E$ may be explicitly calculated by $E = X - TP^T$. $X$ should be centered, and possibly scaled, as is required for PCA.
 
-Step 2: Compute the OD (squared), q, and SD (squared), h, for each point where each are defined as:
+Step 2: Compute the Outer Distance (squared), q, and Score Distance (squared), h, for each point where each are defined as:
 
-$$h_i = \sum_{j=1}^K \frac{t_{i,j}^2}{\lambda_j}$$
+$$
+h_i = \sum_{j=1}^K \frac{t_{i,j}^2}{\lambda_j}
+$$
 
-$$q_i = \sum_{j=1}^K e_{i,j}^2.$$
+$$
+q_i = \sum_{j=1}^K e_{i,j}^2.
+$$
 
-Step 3: Compute the critical distance for class membership. It has been shown by [Pomerantsev](https://onlinelibrary.wiley.com/doi/pdf/10.1002/cem.1147?casa_token=0NaS1t1S6mYAAAAA:VHFiiSku72EY2KXifPJtZhwXlX8PhwGPDPKUN5LvBnhB2sSTe315Uc7vlX7GmuIlgPJTNIr8chd8JA) that both the SD and OD can be well approximated by scaled chi-squared distributions.  Thus, a critical distance can be defined by a linear combination:
+Step 3: Compute the critical distance for class membership. It has been [shown](https://onlinelibrary.wiley.com/doi/pdf/10.1002/cem.1147?casa_token=0NaS1t1S6mYAAAAA:VHFiiSku72EY2KXifPJtZhwXlX8PhwGPDPKUN5LvBnhB2sSTe315Uc7vlX7GmuIlgPJTNIr8chd8JA) that both the SD and OD can be well approximated by scaled chi-squared distributions.  Thus, a critical distance can be defined by a linear combination:
 
 $$
 c = N_h \frac{h}{h_0} + N_q \frac{q}{q_0} \sim \chi^2(N_h+N_q)
 $$
 
-Here, $N_h$ and $N_q$ are degrees of freedom, and $h_0$ and $q_0$ are scaling factors.  These can be estimated in a [data-driven way](https://doi.org/10.1002/cem.2506), i.e., estimated from the training set rather than fixed based on the size of the set, hence the name "DD-SIMCA."  Methods of estimation are discussed in Ref. [2].  The final decision rule for a class is $c < c_{\rm crit}$ with $c_{\rm crit} = \chi^{-2}(1-\alpha, N_h+N_q)$.
+Here, $N_h$ and $N_q$ are degrees of freedom, and $h_0$ and $q_0$ are scaling factors.  These can be estimated in a [data-driven way](https://doi.org/10.1002/cem.2506), i.e., estimated from the training set rather than fixed based on the size of the set, hence the name "DD-SIMCA."  
+The final decision rule for a class is $c < c_{crit}$ with $c_{crit} = \chi^{-2}(1-\alpha, N_h+N_q)$.
 ''')
+
+st.divider() 
 
 st.write("Start by uploading some data to model.")
 

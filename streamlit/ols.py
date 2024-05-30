@@ -210,7 +210,7 @@ if (test_size > 0):
       xmin, xmax = ax.get_xlim()
       x = np.linspace(xmin, xmax, 100)
       p = norm.pdf(x, mu, std)
-      ax.plot(x, p, 'r', linewidth=1, label='Guassian Fit')
+      ax.plot(x, p, 'k', linewidth=1, label='Guassian Fit')
       ax.axvline(mu, color='r', label=f'Gaussian Center ({"%.3f"%mu})')
       ax.legend(loc='best', fontsize=6)
 

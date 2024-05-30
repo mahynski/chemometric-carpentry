@@ -148,9 +148,10 @@ with st.expander("Settings"):
         if reg_type is not None:
           reg_strength = st.select_slider("Regularization strength", options=np.logspace(-6, 6, 25))
 
+feature_names = [c for c in dataframe.columns if c != target_column]
 if (test_size > 0):
   X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
-    dataframe[[c for c in dataframe.columns if c != target_column]].values,
+    dataframe[feature_names].values,
     dataframe[target_column].values,
     dataframe.index.values,
     shuffle=True,
@@ -176,11 +177,11 @@ if (test_size > 0):
 
   with train_tab:
     st.header("Training Data")
-    st.dataframe(pd.DataFrame(data=np.hstack((X_train, y_train.reshape(-1,1))), columns=dataframe.columns, index=idx_train))
+    st.dataframe(pd.DataFrame(data=np.hstack((X_train, y_train.reshape(-1,1))), columns=feature_names+[target_column], index=idx_train))
 
   with test_tab:
     st.header("Testing Data")
-    st.dataframe(pd.DataFrame(data=np.hstack((X_test, y_test.reshape(-1,1))), columns=dataframe.columns, index=idx_test))
+    st.dataframe(pd.DataFrame(data=np.hstack((X_test, y_test.reshape(-1,1))), columns=feature_names+[target_column], index=idx_test))
       
   with results_tab:
     st.header("Modeling Results")
@@ -237,6 +238,15 @@ if (test_size > 0):
       ax.set_xlabel(r'$y_{predicted} - y_{actual}$')
       ax.set_ylabel('Counts')
       configure_plot(ax)
+
+      ranked_features = sorted(zip(model.coef_, feature_names), key=lambda x:np.abs(x[0]), reverse=True)
+      ax = plt.bar(
+        x=np.arange(1, len(model.coef_)+1),
+        height=[x[0] for x in ranked_features],
+        align='center'
+      )
+      ax.set_xticks(np.arange(1, len(model.coef_)+1), [x[1] for x in ranked_features], rotation=90)
+      st.pyplot(plt.gcf())
 
 
 

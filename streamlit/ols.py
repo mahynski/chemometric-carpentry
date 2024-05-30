@@ -239,14 +239,15 @@ if (test_size > 0):
       ax.set_ylabel('Counts')
       configure_plot(ax)
 
+      fig, ax = plt.subplots()
       ranked_features = sorted(zip(model.coef_, feature_names), key=lambda x:np.abs(x[0]), reverse=True)
-      _ = plt.bar(
+      _ = ax.bar(
         x=np.arange(1, len(model.coef_)+1),
         height=[x[0] for x in ranked_features],
         align='center'
       )
-      plt.xticks(np.arange(1, len(model.coef_)+1), [x[1] for x in ranked_features], rotation=90)
-      st.pyplot(plt.gcf())
+      ax.set_xticks(np.arange(1, len(model.coef_)+1), [x[1] for x in ranked_features], rotation=90)
+      st.pyplot(fig)
 
 
 

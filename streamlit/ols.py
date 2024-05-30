@@ -211,6 +211,7 @@ if (test_size > 0):
       x = np.linspace(xmin, xmax, 100)
       p = norm.pdf(x, mu, std)
       ax.plot(x, p, 'k', linewidth=1)
+      ax.axvline(mu, color='red')
 
     col1sub, col2sub = st.columns([2, 2])
     with col1sub:

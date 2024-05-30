@@ -245,7 +245,7 @@ if (test_size > 0):
         height=[x[0] for x in ranked_features],
         align='center'
       )
-      ax.set_xticks(np.arange(1, len(model.coef_)+1), [x[1] for x in ranked_features], rotation=90)
+      ax.set_xlabels(np.arange(1, len(model.coef_)+1), [x[1] for x in ranked_features], rotation=90)
       st.pyplot(plt.gcf())
 
 

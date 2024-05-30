@@ -210,7 +210,7 @@ if (test_size > 0):
       xmin, xmax = ax.get_xlim()
       x = np.linspace(xmin, xmax, 100)
       p = norm.pdf(x, mu, std)
-      ax.plot(x, p, 'k', linewidth=2)
+      ax.plot(x, p, 'k', linewidth=1)
 
     col1sub, col2sub = st.columns([2, 2])
     with col1sub:
@@ -226,9 +226,10 @@ if (test_size > 0):
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
       resid = model.predict(X_train) - y_train
-      _ = ax.hist(resid, bins=20)
+      _ = ax.hist(resid, bins=20, density=True)
       ax.set_xlabel(r'$y_{predicted} - y_{actual}$')
-      ax.set_ylabel('Counts')
+      ax.set_ylabel('Frequency')
+      fit_gaussian(resid, ax)
       configure_plot(ax)
 
     with col2sub:
@@ -246,7 +247,7 @@ if (test_size > 0):
       resid = model.predict(X_test) - y_test
       _ = ax.hist(resid, bins=20, density=True)
       ax.set_xlabel(r'$y_{predicted} - y_{actual}$')
-      ax.set_ylabel('Counts')
+      ax.set_ylabel('Frequency')
       fit_gaussian(resid, ax)
       configure_plot(ax)
 

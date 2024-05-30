@@ -9,7 +9,7 @@
 2. Create a coherent and more consistent approach to chemometric analysis by introducing you to a standard library for these tasks
 3. Improve reproducibility and transparency
 
-:books: In the end you will be able to go to a [library of standardized example notebooks](https://pychemauth.readthedocs.io/en/latest/index.html), select the one you need, enter your data, then run it from start to finish.  This course will also teach you to modify and expand things as needed.
+:books: In the end you will be able to go to a [library of standardized example notebooks](https://pychemauth.readthedocs.io/en/latest/applications.html), select the one you need, enter your data, then run it from start to finish.  This course will also teach you to modify and expand things as needed.
 
 ## Outline
 1. Introduction

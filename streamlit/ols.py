@@ -204,9 +204,9 @@ if (test_size > 0):
       fig.set_size_inches(*size)
       st.pyplot(fig, use_container_width=False)
 
-    def fit_gaussian(X, ax):
+    def fit_gaussian(data, ax):
       from scipy.stats import norm
-      mu, std = norm.fit(X)
+      mu, std = norm.fit(data)
       xmin, xmax = ax.get_xlim()
       x = np.linspace(xmin, xmax, 100)
       p = norm.pdf(x, mu, std)
@@ -244,7 +244,7 @@ if (test_size > 0):
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
       resid = model.predict(X_test) - y_test
-      _ = ax.hist(resid, bins=20)
+      _ = ax.hist(resid, bins=20, density=True)
       ax.set_xlabel(r'$y_{predicted} - y_{actual}$')
       ax.set_ylabel('Counts')
       fit_gaussian(resid, ax)

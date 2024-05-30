@@ -99,7 +99,7 @@
            * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/pca_pcr.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/pca.html) | Interactive Tool
         * Partial Least-Squares (PLS) or Projection to Latent Structures
            * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/pls.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/pls.html) | Interactive Tool 
-    * Classification Models
+    * Classification and Authentication Models
         * Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis (QDA)
            * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/lda.html) | [sklearn API](https://scikit-learn.org/stable/modules/generated/sklearn.discriminant_analysis.LinearDiscriminantAnalysis.html) | Interactive Tool 
         * Partial Least-Squares-Discriminant Analysis (PLS-DA)

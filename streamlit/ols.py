@@ -210,8 +210,9 @@ if (test_size > 0):
       xmin, xmax = ax.get_xlim()
       x = np.linspace(xmin, xmax, 100)
       p = norm.pdf(x, mu, std)
-      ax.plot(x, p, 'k', linewidth=1)
-      ax.axvline(mu, color='red')
+      ax.plot(x, p, 'r', linewidth=1, label='Guassian Fit')
+      ax.axvline(mu, color='r', label=f'Gaussian Center ({"%.3f"%mu})')
+      ax.label(loc='best')
 
     col1sub, col2sub = st.columns([2, 2])
     with col1sub:

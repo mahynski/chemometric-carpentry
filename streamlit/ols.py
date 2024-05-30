@@ -240,12 +240,12 @@ if (test_size > 0):
       configure_plot(ax)
 
       ranked_features = sorted(zip(model.coef_, feature_names), key=lambda x:np.abs(x[0]), reverse=True)
-      ax = plt.bar(
+      _ = plt.bar(
         x=np.arange(1, len(model.coef_)+1),
         height=[x[0] for x in ranked_features],
         align='center'
       )
-      ax.set_xlabels(np.arange(1, len(model.coef_)+1), [x[1] for x in ranked_features], rotation=90)
+      plt.gca().set_xlabels(np.arange(1, len(model.coef_)+1), [x[1] for x in ranked_features], rotation=90)
       st.pyplot(plt.gcf())
 
 

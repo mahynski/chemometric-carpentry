@@ -247,7 +247,7 @@ if (test_size > 0):
       _ = ax.hist(resid, bins=20)
       ax.set_xlabel(r'$y_{predicted} - y_{actual}$')
       ax.set_ylabel('Counts')
-      fit_gaussian(X_test, ax)
+      fit_gaussian(resid, ax)
       configure_plot(ax)
 
   with coef_tab:

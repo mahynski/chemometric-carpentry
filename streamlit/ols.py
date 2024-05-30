@@ -130,6 +130,8 @@ with st.expander("Settings"):
         st.subheader("Data Settings")
 
         target_column = st.selectbox(label="Select a column as the target.", options=dataframe.columns, index=None, placeholder="Select a column", disabled=False, label_visibility="visible")
+        feature_names = [c for c in dataframe.columns if c != target_column]
+
         random_state = st.number_input(label="Random seed for data shuffling before stratified splitting.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
         test_size = st.slider(label="Select a positive fraction of the data to use as a test set to begin analysis.", min_value=0.0, max_value=1.0, value=0.0, step=0.05, disabled=False, label_visibility="visible")
 
@@ -148,7 +150,7 @@ with st.expander("Settings"):
         if reg_type is not None:
           reg_strength = st.select_slider("Regularization strength", options=np.logspace(-6, 6, 25))
 
-feature_names = [c for c in dataframe.columns if c != target_column]
+
 if (test_size > 0):
   X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
     dataframe[feature_names].values,

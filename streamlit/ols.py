@@ -118,7 +118,7 @@ st.divider()
 
 st.header("Configure The Model")
 
-use = None
+test_size = 0.0
 with st.expander("Settings"):
   
   if uploaded_file is not None:

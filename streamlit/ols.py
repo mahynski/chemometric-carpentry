@@ -262,7 +262,7 @@ if (test_size > 0):
       align='center'
     )
     ax.set_xticks(np.arange(1, len(model.coef_)+1), [x[1] for x in ranked_features], rotation=90)
-    configure_plot(ax, size=(4,2))
+    configure_plot(ax, size=(int(round(len(model.coef_)/4.)),2))
 
 
 

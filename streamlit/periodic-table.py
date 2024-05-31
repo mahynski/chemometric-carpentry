@@ -106,13 +106,13 @@ if uploaded_file is not None:
     tooltips=TOOLTIPS if hover else None,
   )
 
-  t_slider = Slider(
-    start=0,
-    end=2,
-    value=0,  # Start visualization from t=0
-    step=step,
-    title="t value",
-  )
+  # t_slider = Slider(
+  #   start=0,
+  #   end=2,
+  #   value=0,  # Start visualization from t=0
+  #   step=step,
+  #   title="t value",
+  # )
 
   # Build table as grid
   r = p.rect(
@@ -128,6 +128,9 @@ if uploaded_file is not None:
     ),
   )
 
+  if 't_value' not in st.session_state:
+    st.session_state.t_value = 0.0
+
   def recompute():#attr, old, new):
     """Cluster and color elements."""
     (
@@ -138,7 +141,7 @@ if uploaded_file is not None:
       np.asarray(X.values, dtype=np.float64),
       feature_names=X.columns,
       display=False,
-      t=st.session_state.t_slider, #t_slider.value,
+      t=st.session_state.t_value, #t_slider.value,
     )
 
     cm_ = matplotlib.colormaps["rainbow"].resampled(
@@ -236,7 +239,7 @@ if uploaded_file is not None:
 
   # t_slider.on_change("value", recompute)
   # st.bokeh_chart(t_slider)
-  t_value = st.slider("t value", min_value=0.0, max_value=2.0, value=0.0, step=0.1, key="t_slider")#, on_change=recompute)
+  t_value = st.slider("t value", min_value=0.0, max_value=2.0, value=0.0, step=0.1, key="t_value")#, on_change=recompute)
 
 
 # periods = ["I", "II", "III", "IV", "V", "VI", "VII"]

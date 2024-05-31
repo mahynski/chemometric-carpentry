@@ -212,13 +212,13 @@ if uploaded_file is not None:
       #     text_font_size="7px",
       #     **text_props
       # )
-      p.text(
-          x=x,
-          y=dodge("period", -0.2, range=p.y_range),
-          text="atomic mass",
-          text_font_size="7px",
-          **text_props
-      )
+      # p.text(
+      #     x=x,
+      #     y=dodge("period", -0.2, range=p.y_range),
+      #     text="atomic mass",
+      #     text_font_size="7px",
+      #     **text_props
+      # )
       p.outline_line_color = None
       p.grid.grid_line_color = None
       p.axis.axis_line_color = None

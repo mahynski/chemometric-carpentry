@@ -128,8 +128,8 @@ if uploaded_file is not None:
     ),
   )
 
-  if 't_value' not in st.session_state:
-    st.session_state.t_value = 0.0
+  # if 't_value' not in st.session_state:
+  #   st.session_state.t_value = 0.0
 
   def recompute():#attr, old, new):
     """Cluster and color elements."""

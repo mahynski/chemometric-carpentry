@@ -55,7 +55,7 @@ col1, col2 = st.columns(2)
 
 if uploaded_file is not None:
   t_value = st.slider("t value", min_value=0.0, max_value=2.0, value=0.0, step=0.1, key="t_value")
-  
+
   with col1:
     # Select elements from whatever is provided.
     X = pd.read_csv(uploaded_file)
@@ -136,7 +136,8 @@ if uploaded_file is not None:
         feature_names=X.columns,
         display=True,
         t=st.session_state.t_value, 
-        highlight=False
+        highlight=False,
+        figsize=(10,4)
       )
 
       cm_ = matplotlib.colormaps["rainbow"].resampled(

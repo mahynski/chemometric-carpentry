@@ -260,7 +260,7 @@ if (test_size > 0):
       configure_plot(ax)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
-      ax = plot_proj(ax, X_train, y_train)
+      ax = plot_proj(ax, X_train, y_train, train=True)
       configure_plot(ax)
 
     with col2sub:
@@ -273,7 +273,7 @@ if (test_size > 0):
       configure_plot(ax)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
-      ax = plot_proj(ax, X_test, y_test)
+      ax = plot_proj(ax, X_test, y_test, train=False)
       configure_plot(ax)
 
   with load_tab:

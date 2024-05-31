@@ -161,7 +161,8 @@ if (test_size > 0):
         alpha=alpha,
         gamma=gamma,
         scale_x=scale_x, # PCA always centers, but you can choose whether or not to scale the columns by st. dev. (autoscaling)
-        robust=robust # Estimate the degrees of freedom for the chi-squared acceptance area below using robust, data-driven approach
+        robust=robust, # Estimate the degrees of freedom for the chi-squared acceptance area below using robust, data-driven approach
+        sft=sft
     )
 
     _ = model.fit(X_train)

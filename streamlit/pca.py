@@ -44,6 +44,27 @@ col1_, col2_ = st.columns(2)
 with col1_:
   with st.expander('Click here to see the details.'):
     st.markdown(r'''
+    PCA stands for [principal components analysis](https://en.wikipedia.org/wiki/Principal_component_analysis) This is often used as an unsupervised dimensionality reduction technique, and by itself does not provide a predictive model.  Regression or classification is often performed in the reduced space afterwards.  PCA is the first step in a number of authentication models like SIMCA.
+
+    PCA essentially finds the directions that maximize the covariance of mean-centered X ($\sim X^TX$ **up to a normalizing constant**), then projects the data into a lower dimension space made of the top eigenvectors.  The "top" eigenvectors are determined by the magnitude of their eigenvalues.  These represent the orthogonal directions in space that describe most of the data variation
+
+    Before performing PCA we (column-wise) center the data on the mean which is critical so that the eigenvectors "start" at the center of the data "cloud" and extend outward capturing how the data is distributed.  Note that PCA is "unsupervised" which means we won't be using $Y$, and therefore we don't need to worry about those values. PCA is also **sensitive to data scaling**, so X must be standardized, or autoscaled, if features were measured on different scales (in different units) and we want to assign equal importance to all features. 
+
+    Basic steps:
+
+    1. Mean center $X$, where $X$ has shape $n \times p$ (optionally scale the data).
+
+    2. Build covariance matrix, $cov(X^T) = X^TX / (n-1)$. 
+
+    3. Find unit eigenvectors and eigenvalues, sorted from largest to smallest.
+
+    4. Project $T = XW$, where $W$'s columns are the top $k$ eigenvectors so that W has the shape $p \times k$.
+
+    $T$ is refered to as the "scores" matrix and represents the projection (compression) of the data; $W^T$ is related to the "loadings" matrix.
+
+    In general, if we create a model of some data like:
+
+    $$X = TP^T + E$$
     ''')
 
 with col2_:

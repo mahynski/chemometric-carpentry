@@ -221,12 +221,12 @@ if uploaded_file is not None:
     p.legend.location = "top_center"
     p.hover.renderers = [r]
 
-    st.bokeh_chart(p)
+    # st.bokeh_chart(p)
 
   # Color things for the first time
   # recompute()
   t_value = st.slider("t value", min_value=0.0, max_value=2.0, value=0.0, step=0.1, key="t_value", on_change=recompute)
-
+  st.bokeh_chart(p)
 
 # periods = ["I", "II", "III", "IV", "V", "VI", "VII"]
 # groups = [str(x) for x in range(1, 19)]

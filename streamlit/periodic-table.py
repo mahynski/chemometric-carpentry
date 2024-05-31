@@ -119,11 +119,38 @@ if uploaded_file is not None:
       cluster_id_to_feature_ids,
       fig,
     ) = InspectData.cluster_collinear(
-        np.asarray(X.values, dtype=np.float64),
-        feature_names=X.columns,
-        display=False,
-        t=t_slider.value,
+      np.asarray(X.values, dtype=np.float64),
+      feature_names=X.columns,
+      display=False,
+      t=t_slider.value,
     )
+
+    cm_ = matplotlib.colormaps["rainbow"].resampled(
+      len(cluster_id_to_feature_ids)
+    )
+    cmap = {"0": "#999d9a"}  # gray
+    for idx, elements in sorted(
+      cluster_id_to_feature_ids.items(), key=lambda x: x[0]
+    ):
+      cmap[str(idx)] = matplotlib.colors.rgb2hex(
+        cm_(idx - 1), keep_alpha=True
+      )
+      for elem in elements:
+        df["cluster"].where(
+          (
+            df["symbol"].apply(lambda x: str(x).lower())
+            == elem.lower()
+          ),
+          str(idx),
+          inplace=True,
+        )
+
+        df.sort_values(
+          "cluster",
+          inplace=True,
+          key=lambda x: pd.Series([int(x_) for x_ in x]),
+        )
+        source.data = ColumnDataSource.from_df(df)
 
 
 

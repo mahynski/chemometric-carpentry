@@ -138,7 +138,7 @@ if uploaded_file is not None:
       np.asarray(X.values, dtype=np.float64),
       feature_names=X.columns,
       display=False,
-      t=t_value, #t_slider.value,
+      t=st.session_state.t_slider, #t_slider.value,
     )
 
     cm_ = matplotlib.colormaps["rainbow"].resampled(
@@ -236,7 +236,7 @@ if uploaded_file is not None:
 
   # t_slider.on_change("value", recompute)
   # st.bokeh_chart(t_slider)
-  t_value = st.slider("t value", min_value=0.0, max_value=2.0, value=0.0, step=0.1, key="slider")#, on_change=recompute)
+  t_value = st.slider("t value", min_value=0.0, max_value=2.0, value=0.0, step=0.1, key="t_slider")#, on_change=recompute)
 
 
 # periods = ["I", "II", "III", "IV", "V", "VI", "VII"]

@@ -2,20 +2,18 @@
 Interactive demonstration of correlations between elements with an interactive periodic table.
 Author: Nathan A. Mahynski
 """
-import sklearn
-
 import numpy as np
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
 
-from sklearn.model_selection import train_test_split
-from sklearn import linear_model
-
-from pychemauth.preprocessing.scaling import RobustScaler, CorrectedScaler
-
-from streamlit_drawable_canvas import st_canvas
 from streamlit_extras.add_vertical_space import add_vertical_space
+
+from bokeh.layouts import column
+from bokeh.models import ColumnDataSource, Slider
+from bokeh.plotting import figure
+from bokeh.sampledata.periodic_table import elements
+from bokeh.transform import dodge, factor_cmap
 
 st.set_page_config(layout="wide")
 
@@ -35,6 +33,55 @@ with st.sidebar:
     add_vertical_space(2)
     st.write('Made by ***Nate Mahynski***')
     st.write('nathan.mahynski@nist.gov')
+
+def create(doc):
+  """Create the table."""
+  periods = ["I", "II", "III", "IV", "V", "VI", "VII"]
+  groups = [str(x) for x in range(1, 19)]
+
+  df = elements.copy()
+  df["atomic mass"] = df["atomic mass"].astype(str)
+  df["group"] = df["group"].astype(str)
+  df["period"] = [periods[x - 1] for x in df.period]
+  df = df[df.group != "-"]
+  df = df[df.symbol != "Lr"]
+  df = df[df.symbol != "Lu"]
+
+  # For coloring
+  df["cluster"] = ["0"] * df.shape[0]
+
+  source = ColumnDataSource(df)
+
+  TOOLTIPS = [
+    ("Name", "@name"),
+    ("Atomic number", "@{atomic number}"),
+    ("Atomic mass (amu) ", "@{atomic mass}"),
+    ("Type", "@metal"),
+    ("CPK color", "$color[hex, swatch]:CPK"),
+    ("Electronic configuration", "@{electronic configuration}"),
+    ("Electronegativity", "@electronegativity"),
+    ("Atomic Radius (pm)", "@{atomic radius}"),
+    ("Ion Radius (pm)", "@{ion radius}"),
+    ("VdW Radius (pm)", "@{van der Waals radius}"),
+    ("Standard State", "@{standard state}"),
+    ("Bonding Type", "@{bonding type}"),
+    ("Melting Point (K)", "@{melting point}"),
+    ("Boiling Point (K)", "@{boiling point}"),
+    ("Density (g/m^3)", "@density"),
+  ]
+
+  p = figure(
+      title="",
+      width=1000,
+      height=450,
+      x_range=groups,
+      y_range=list(reversed(periods)),
+      tools="hover" if hover else "",
+      toolbar_location=None,
+      tooltips=TOOLTIPS if hover else None,
+  )
+
+st.bokeh_chart(create, use_container_width=True)
 
 # st.header('Review How OLS Works')
 

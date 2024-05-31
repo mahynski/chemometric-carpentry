@@ -261,4 +261,5 @@ if uploaded_file is not None:
       T=0.25
     )
 
-  st.write(f'Elements selected: {{element: categorizer(element) for element in best_choices}}')
+  res = {element: categorizer(element) for element in best_choices}
+  st.write(f'Elements selected: {res}')

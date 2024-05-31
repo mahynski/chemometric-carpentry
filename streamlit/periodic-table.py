@@ -49,6 +49,7 @@ st.markdown('''
   2. picking a threshold, and 
   3. keeping only a single feature from each cluster.
 
+  In this example, we will interactively explore how this works for trace element data.
 ''')
 
 st.header("Upload Your Data")

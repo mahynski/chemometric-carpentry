@@ -229,7 +229,8 @@ if uploaded_file is not None:
     p.legend.location = "top_center"
     p.hover.renderers = [r]
 
-    st.write('hellow')
+    step += 0.1
+    st.write(f'hello {step}')
     st.bokeh_chart(p)
 
   # Color things for the first time

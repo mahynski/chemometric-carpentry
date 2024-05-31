@@ -129,7 +129,7 @@ if (test_size > 0):
     test_size=test_size,
   )
 
-  data_tab, train_tab, test_tab, results_tab, coef_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results", "Coefficients"])
+  data_tab, train_tab, test_tab, results_tab, load_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results", "Loadings"])
 
   with data_tab:
     st.header("Original Data")
@@ -156,28 +156,20 @@ if (test_size > 0):
 
     _ = model.fit(X_train)
 
-#     def configure_plot(ax, size=(2,2)):
-#       for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
-#         item.set_fontsize(6)
-#       fig = plt.gcf()
-#       fig.set_size_inches(*size)
-#       st.pyplot(fig, use_container_width=False)
+    def configure_plot(ax, size=(2,2)):
+      for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+        item.set_fontsize(6)
+      fig = plt.gcf()
+      fig.set_size_inches(*size)
+      st.pyplot(fig, use_container_width=False)
 
-#     def fit_gaussian(data, ax):
-#       from scipy.stats import norm
-#       mu, std = norm.fit(data)
-#       xmin, xmax = ax.get_xlim()
-#       x = np.linspace(xmin, xmax, 100)
-#       p = norm.pdf(x, mu, std)
-#       ax.plot(x, p, 'k', linewidth=1, label='Guassian Fit')
-#       ax.axvline(mu, color='r', label=f'Gaussian Center ({"%.3f"%mu})')
-#       ax.legend(loc='best', fontsize=6)
-
-#     col1sub, col2sub = st.columns([2, 2])
-#     with col1sub:
-#       st.subheader('Training Set')
+    col1sub, col2sub = st.columns([2, 2])
+    with col1sub:
+      st.subheader('Training Set')
         
-#       fig, ax = plt.subplots(nrows=1, ncols=1)
+      fig, ax = plt.subplots(nrows=1, ncols=1)
+      ax = model.visualize(X, ax=ax)
+
 #       _ = ax.plot(y_train, model.predict(X_train), 'o', ms=1)
 #       _ = ax.plot(y_train, y_train, '-', color='k', lw=1)
 #       ax.set_xlabel('Actual Value')

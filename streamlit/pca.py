@@ -222,12 +222,12 @@ if (test_size > 0):
 
       cutoff = estimate_boundary(rmax=rmax, rbins=rbins)
       return cutoff
-      
+
     ellipse_data = {}
     def plot_proj(ax, X, y=None, train=True):
       fig, ax = plt.subplots(nrows=1, ncols=1)
       proj_ = model.transform(X)
-      if n_components >= 2:
+      if n_components >= 2: # 2d plot
         if y is not None:
           cats = np.unique(y)
           for i,cat in enumerate(cats):
@@ -272,7 +272,7 @@ if (test_size > 0):
 
         ax.set_xlabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
         ax.set_ylabel(f'PC 2 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[1])}%)')
-      else:
+      else:  # 1D plot
         if y is not None:
           cats = np.unique(y)
           for i,cat in enumerate(cats):
@@ -291,7 +291,6 @@ if (test_size > 0):
               class_center, S, d_crit,
               rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
               rbins=100,
-              tbins=180,
             )
             ax.plot([i+1-0.2, i+1+0.2], [cutoff[0], cutoff[0]], color=f'C{i}', lw=1)
             ax.plot([i+1-0.2, i+1+0.2], [cutoff[1], cutoff[1]], color=f'C{i}', lw=1)

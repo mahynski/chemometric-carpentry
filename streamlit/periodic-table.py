@@ -107,7 +107,7 @@ if uploaded_file is not None:
     p = figure(
       title="",
       width=1000,
-      height=300,
+      height=290,
       x_range=groups,
       y_range=list(reversed(periods)),
       tools="hover" if hover else "",
@@ -171,9 +171,6 @@ if uploaded_file is not None:
       )
       source.data = ColumnDataSource.from_df(df)
 
-      # Unfortunately, there doesn't seem to be a way to link the color to the source.  Even
-      # using a column in the df causes an error about waiting, so the best way forward seems
-      # to be to re-build the table each time.
       r = p.rect(
           "group",
           "period",

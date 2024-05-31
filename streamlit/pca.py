@@ -220,24 +220,24 @@ if (test_size > 0):
       return ax
 
     def soft_boundary_2d(class_center, S, d_crit, rmax=10.0, rbins=100, tbins=90):
-        def estimate_boundary(rmax, rbins, tbins):
-            cutoff = []
-            for theta in np.linspace(0, 2 * np.pi, tbins):
-                for r in np.linspace(0, rmax, rbins):
-                    sPC = class_center + r * np.array([np.cos(theta), np.sin(theta)])
+      def estimate_boundary(rmax, rbins, tbins):
+        cutoff = []
+        for theta in np.linspace(0, 2 * np.pi, tbins):
+          for r in np.linspace(0, rmax, rbins):
+            sPC = class_center + r * np.array([np.cos(theta), np.sin(theta)])
 
-                    d = np.matmul(
-                        np.matmul(
-                            (sPC - class_center),
-                            np.linalg.inv(self.__S_),
-                        ),
-                        (sPC - class_center).reshape(-1, 1),
-                    )[0]
-                    if d > d_crit:
-                        cutoff.append(sPC)
-                        break
+            d = np.matmul(
+                  np.matmul(
+                    (sPC - class_center),
+                    np.linalg.inv(self.__S_),
+                  ),
+                  (sPC - class_center).reshape(-1, 1),
+                )[0]
+            if d > d_crit:
+              cutoff.append(sPC)
+              break
 
-            return np.array(cutoff)
+        return np.array(cutoff)
 
       cutoff = estimate_boundary(rmax=rmax, rbins=rbins, tbins=tbins)
       return cutoff

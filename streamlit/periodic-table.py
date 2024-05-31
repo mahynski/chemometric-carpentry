@@ -2,6 +2,8 @@
 Interactive demonstration of correlations between elements with an interactive periodic table.
 Author: Nathan A. Mahynski
 """
+import matplotlib
+
 import numpy as np
 import pandas as pd
 import streamlit as st

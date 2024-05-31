@@ -230,7 +230,7 @@ if (test_size > 0):
             d = np.matmul(
                   np.matmul(
                     (sPC - class_center),
-                    np.linalg.inv(self.__S_),
+                    np.linalg.inv(S),
                   ),
                   (sPC - class_center).reshape(-1, 1),
                 )[0]

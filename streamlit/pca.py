@@ -233,11 +233,21 @@ if (test_size > 0):
       configure_plot(ax)
 
   with load_tab:
-    fig, ax = plt.subplots(nrows=1, ncols=1)
-    ax = model.plot_loadings(feature_names, ax=ax)
-    for txt in ax.texts:
-      txt.set_fontsize(6)
-      # ax.text(float(txt[0]), float(txt[1]), txt[2], fontsize=6)
-    configure_plot(ax)
-    # st.write(ax.texts[0])
-    
+    if n_components >= 2:
+      fig, ax = plt.subplots(nrows=1, ncols=1)
+      ax = model.plot_loadings(feature_names, ax=ax)
+      for txt in ax.texts:
+        txt.set_fontsize(6)
+      configure_plot(ax)
+    else:
+      fig, ax = plt.subplots()
+      ranked_features = sorted(zip(model._PCA__pca_.components_[0], feature_names), key=lambda x:np.abs(x[0]), reverse=True)
+      _ = ax.bar(
+        x=np.arange(1, len(model.coef_)+1),
+        height=[x[0] for x in ranked_features],
+        align='center'
+      )
+      ax.set_xticks(np.arange(1, len(model._PCA__pca_.components_[0])+1), [x[1] for x in ranked_features], rotation=90)
+      configure_plot(ax, size=(int(round(len(model._PCA__pca_.components_[0])/4.)),2))
+
+      

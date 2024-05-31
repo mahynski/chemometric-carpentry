@@ -350,7 +350,7 @@ if (test_size > 0):
       add_vertical_space(2)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
-      ax = plot_proj(ax, X_test, y_test, train=False)
+      ax = plot_proj(ax, X_test, y_test, train=False, alpha=ellipse_alpha)
       configure_plot(ax)
 
   with load_tab:

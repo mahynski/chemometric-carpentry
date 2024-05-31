@@ -34,6 +34,8 @@ with st.sidebar:
     st.write('Made by ***Nate Mahynski***')
     st.write('nathan.mahynski@nist.gov')
 
+step = 0.1
+hover = True
 
 st.header("Upload Your Data")
 
@@ -104,7 +106,7 @@ if uploaded_file is not None:
                   start=0,
                   end=2,
                   value=0,  # Start visualization from t=0
-                  step=0.1,
+                  step=step,
                   title="t value",
               )
   # t_slider.on_change("value", recompute)

@@ -107,7 +107,7 @@ if uploaded_file is not None:
     p = figure(
       title="",
       width=1000,
-      height=290,
+      height=295,
       x_range=groups,
       y_range=list(reversed(periods)),
       tools="hover" if hover else "",

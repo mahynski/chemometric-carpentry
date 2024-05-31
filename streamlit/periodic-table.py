@@ -260,4 +260,4 @@ if uploaded_file is not None:
     T=0.25
   )
 
-  wt.write(best_choices)
+  st.write(best_choices)

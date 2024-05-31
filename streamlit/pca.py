@@ -186,6 +186,8 @@ if (test_size > 0):
         else:
           ax.plot(proj_[:,0], proj_[:,1], 'o')
 
+      return ax
+
     col1sub, col2sub = st.columns([2, 2])
     with col1sub:
       st.subheader('Training Set')
@@ -197,7 +199,7 @@ if (test_size > 0):
       configure_plot(ax)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
-      plot_proj(ax, X_train, y_train)
+      ax = plot_proj(ax, X_train, y_train)
       configure_plot(ax)
         
 

@@ -169,8 +169,8 @@ if (test_size > 0):
         proj_ = model.transform(X)
         if target_column is not None:
           cats = (dataframe[target_column].unique())
-          for cat in cats:
-            ax.plot(proj_[:,0], proj_[:,1], 'o', label=cat)
+          for i,cat in enumerate(cats):
+            ax.plot(proj_[:,0], proj_[:,1], 'o', label=cat, color=f'C{i}', ms=1)
           ax.legend(fontsize=6, loc='best')
         else:
           ax.plot(proj_[:,0], proj_[:,1], 'o')

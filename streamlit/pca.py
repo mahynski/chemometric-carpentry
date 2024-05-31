@@ -46,7 +46,7 @@ with col1_:
     st.markdown(r'''
     PCA stands for [principal components analysis](https://en.wikipedia.org/wiki/Principal_component_analysis) This is often used as an unsupervised dimensionality reduction technique, and by itself does not provide a predictive model.  Regression or classification is often performed in the reduced space afterwards.  PCA is the first step in a number of authentication models like SIMCA.
 
-    PCA essentially finds the directions that maximize the covariance of mean-centered X ($\sim X^TX$ **up to a normalizing constant**), then projects the data into a lower dimension space made of the top eigenvectors.  The "top" eigenvectors are determined by the magnitude of their eigenvalues.  These represent the orthogonal directions in space that describe most of the data variation
+    PCA essentially finds the directions that maximize the covariance of mean-centered $X$ ($\sim X^TX$ **up to a normalizing constant**), then projects the data into a lower dimension space made of the top eigenvectors.  The "top" eigenvectors are determined by the magnitude of their eigenvalues.  These represent the orthogonal directions in space that describe most of the data variation
 
     Before performing PCA we (column-wise) center the data on the mean which is critical so that the eigenvectors "start" at the center of the data "cloud" and extend outward capturing how the data is distributed.  Note that PCA is "unsupervised" which means we won't be using $Y$, and therefore we don't need to worry about those values. PCA is also **sensitive to data scaling**, so X must be standardized, or autoscaled, if features were measured on different scales (in different units) and we want to assign equal importance to all features. 
 
@@ -60,11 +60,9 @@ with col1_:
 
     4. Project $T = XW$, where $W$'s columns are the top $k$ eigenvectors so that W has the shape $p \times k$.
 
-    $T$ is refered to as the "scores" matrix and represents the projection (compression) of the data; $W^T$ is related to the "loadings" matrix.
+    $T$ is refered to as the "scores" matrix and represents the projection (compression) of the data; $W^T$ is the "loadings" matrix.
 
-    In general, if we create a model of some data like:
-
-    $$X = TP^T + E$$
+    See the description of [DD-SIMCA](https://chemometric-carpentry-ddsimca.streamlit.app/) for an explanation of the other settings.
     ''')
 
 with col2_:

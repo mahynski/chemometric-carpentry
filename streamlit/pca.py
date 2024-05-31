@@ -186,6 +186,23 @@ if (test_size > 0):
         else:
           ax.plot(proj_[:,0], proj_[:,1], 'o')
 
+        ax.set_xlabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
+        ax.set_ylabel(f'PC 2 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[1])}%)')
+      else:
+        if y is not None:
+          cats = np.unique(y)
+          for i,cat in enumerate(cats):
+            mask = cat == y
+            ax.plot([i+1]*np.sum(mask), proj_[mask,0], 'o', label=cat, color=f'C{i}', ms=1)
+          ax.legend(fontsize=6, loc='best')
+        else:
+          ax.plot([1]*np.sum(mask), proj_[:,0], 'o')
+
+        ax.set_xlabels('Class')
+        ax.set_xlim(0, len(cats)+2)
+        ax.set_xticks(np.arange(1, len(cats)+1), cats, rotation=90)
+        ax.set_ylabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
+
       return ax
 
     col1sub, col2sub = st.columns([2, 2])
@@ -200,8 +217,6 @@ if (test_size > 0):
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
       ax = plot_proj(ax, X_train, y_train)
-      ax.set_xlabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
-      ax.set_ylabel(f'PC 2 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[1])}%)')
       configure_plot(ax)
 
     with col2sub:
@@ -215,8 +230,6 @@ if (test_size > 0):
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
       ax = plot_proj(ax, X_test, y_test)
-      ax.set_xlabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
-      ax.set_ylabel(f'PC 2 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[1])}%)')
       configure_plot(ax)
 
   with load_tab:

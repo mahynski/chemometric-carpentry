@@ -163,6 +163,18 @@ if (test_size > 0):
       fig.set_size_inches(*size)
       st.pyplot(fig, use_container_width=False)
 
+    def plot_proj(ax, X):
+      fig, ax = plt.subplots(nrows=1, ncols=1)
+      if n_components >= 2:
+        proj_ = model.transform(X)
+        if target_column is not None:
+          cats = (dataframe[target_column].unique())
+          for cat in cats:
+            ax.plot(proj_[:,0], proj_[:,1], 'o', label=cat)
+          ax.legend(fontsize=6, loc='best')
+        else:
+          ax.plot(proj_[:,0], proj_[:,1], 'o')
+
     col1sub, col2sub = st.columns([2, 2])
     with col1sub:
       st.subheader('Training Set')
@@ -174,15 +186,7 @@ if (test_size > 0):
       configure_plot(ax)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
-      if n_components >= 2:
-        proj_ = model.transform(X_train)[:,:2]
-        if target_columns is not None:
-          cats = (dataframe[target_column].unique())
-          for cat in cats:
-            ax.plot(proj_[:,0], proj_[:,1], 'o', label=cat)
-          ax.legend(fontsize=6, loc='best')
-        else:
-          ax.plot(proj_[:,0], proj_[:,1], 'o')
+      plot_proj(ax, X_train)
       configure_plot(ax)
         
 

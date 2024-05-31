@@ -250,6 +250,15 @@ if uploaded_file is not None:
     However, in practice, it might be easier to actually measure certain features (here, elements) than others.  For
     example, perhaps different sets of elements are measured on different instruments and it would be advantageous to
     have a model which relies on just one instrument to provide the necessary measurements.
+
+    Monte Carlo can be used to stochastically search for a set of features which have as many of the same "categories"
+    as possible. We can manually assign categories using a funtion, like the one illustrated below.  The input should
+    be the feature (element) name and the output should be a category.  For illustration, we are simply assigning 
+    the category of each element as its period.  However, you can customize this function as you desire.  
+    
+
+    Refer to the [notebook here](https://pychemauth.readthedocs.io/en/latest/jupyter/api/eda.html) for more examples.
+    
   ''')
 
   col1, col2, col3 = st.columns([3, 3, 1])

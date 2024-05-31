@@ -227,6 +227,9 @@ if uploaded_file is not None:
     p.legend.location = "top_center"
     p.hover.renderers = [r]
 
+  # Color things for the first time
+  recompute(None, None, None)
+
   t_slider.on_change("value", recompute)
   st.bokeh_chart(t_slider)
   st.bokeh_chart(p)

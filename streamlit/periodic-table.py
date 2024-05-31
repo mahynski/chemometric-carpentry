@@ -99,15 +99,20 @@ if uploaded_file is not None:
       ("Density (g/m^3)", "@density"),
     ]
 
+    if 'mouseover' in st.session_state:
+      hover = st.session_state.mouseover
+    else:
+      hover = False
+
     p = figure(
       title="",
       width=1000,
       height=300,
       x_range=groups,
       y_range=list(reversed(periods)),
-      tools="hover" if st.session_state.mouseover else "",
+      tools="hover" if hover else "",
       toolbar_location=None,
-      tooltips=TOOLTIPS if st.session_state.mouseover else None,
+      tooltips=TOOLTIPS if hover else None,
     )
 
     # Build table as grid
@@ -228,7 +233,7 @@ if uploaded_file is not None:
       p.hover.renderers = [r]
 
       st.bokeh_chart(p, use_container_width=True)
-      
+
       mouseover = st.toggle('Mouseover Properties', value=False, key='mouseover')
 
       return fig

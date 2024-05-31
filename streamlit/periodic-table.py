@@ -245,6 +245,10 @@ if uploaded_file is not None:
     
   st.divider()
 
+  n_restarts = st.slider("Number of restarts", 0, 100, value=10)
+  max_iters = st.slider("Maximum iterations", 0, 100, value=10)
+  T = st.slider("Maximum iterations", 0.0, 1.0, value=0.25, step=0.1)
+
   with st.echo():
     def categorizer(element_symbol):
       from bokeh.sampledata.periodic_table import elements
@@ -256,9 +260,9 @@ if uploaded_file is not None:
       categorizer, # Function you define above
       X=X, # Input dataframe
       seed=42, 
-      n_restarts=50,
-      max_iters=100,
-      T=0.25
+      n_restarts=n_restarts,
+      max_iters=max_iters,
+      T=T
     )
 
   res = {element: categorizer(element) for element in best_choices}

@@ -223,5 +223,5 @@ if (test_size > 0):
     fig, ax = plt.subplots(nrows=1, ncols=1)
     ax = model.plot_loadings(feature_names, ax=ax)
     configure_plot(ax)
-    st.write(ax.texts)
+    st.write(ax.texts[0])
     

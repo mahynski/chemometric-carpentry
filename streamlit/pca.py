@@ -163,14 +163,15 @@ if (test_size > 0):
       fig.set_size_inches(*size)
       st.pyplot(fig, use_container_width=False)
 
-    def plot_proj(ax, X):
+    def plot_proj(ax, X, y):
       fig, ax = plt.subplots(nrows=1, ncols=1)
       if n_components >= 2:
         proj_ = model.transform(X)
         if target_column is not None:
-          cats = (dataframe[target_column].unique())
+          cats = np.unique(y)
           for i,cat in enumerate(cats):
-            ax.plot(proj_[:,0], proj_[:,1], 'o', label=cat, color=f'C{i}', ms=1)
+            mask = cat == y
+            ax.plot(proj_[mask,0], proj_[mask,1], 'o', label=cat, color=f'C{i}', ms=1)
           ax.legend(fontsize=6, loc='best')
         else:
           ax.plot(proj_[:,0], proj_[:,1], 'o')
@@ -186,7 +187,7 @@ if (test_size > 0):
       configure_plot(ax)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
-      plot_proj(ax, X_train)
+      plot_proj(ax, X_train, y_train)
       configure_plot(ax)
         
 

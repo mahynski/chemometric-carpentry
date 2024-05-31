@@ -207,6 +207,22 @@ if (test_size > 0):
         else:
           ax.plot(proj_[:,0], proj_[:,1], 'o')
 
+          if train:
+            class_center = np.mean(proj_[:,:2], axis=0)
+            S = MinCovDet(assume_centered=False, random_state=42).fit(proj_[:,:2]).covariance_
+            d_crit = scipy.stats.chi2.ppf(1.0 - alpha, 2)
+            ellipse_data['none'] = (class_center, S, d_crit)
+          else:
+            class_center, S, d_crit = ellipse_data['none']
+
+          cutoff = soft_boundary_2d(
+            class_center, S, d_crit,
+            rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
+            rbins=100,
+            tbins=180,
+          )
+          ax.plot(cutoff[:, 0], cutoff[:, 1], color=f'C{i}', lw=1)
+
         ax.set_xlabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
         ax.set_ylabel(f'PC 2 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[1])}%)')
       else:
@@ -215,6 +231,23 @@ if (test_size > 0):
           for i,cat in enumerate(cats):
             mask = cat == y
             ax.plot([i+1]*np.sum(mask), proj_[mask,0], 'o', label=cat, color=f'C{i}', ms=1)
+
+            if train:
+              class_center = np.mean(proj_[mask,:1], axis=0)
+              S = MinCovDet(assume_centered=False, random_state=42).fit(proj_[mask,:1]).covariance_
+              d_crit = scipy.stats.chi2.ppf(1.0 - alpha, 2)
+              ellipse_data[cat] = (class_center, S, d_crit)
+            else:
+              class_center, S, d_crit = ellipse_data[cat]
+
+            cutoff = soft_boundary_1d(
+              class_center, S, d_crit,
+              rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
+              rbins=100,
+              tbins=180,
+            )
+            ax.plot(cutoff[:, 0], cutoff[:, 1], color=f'C{i}', lw=1)
+
           ax.legend(fontsize=6, loc='best')
         else:
           ax.plot([1]*np.sum(mask), proj_[:,0], 'o')
@@ -226,7 +259,7 @@ if (test_size > 0):
 
       return ax
 
-    def soft_boundary_2d(class_center, S, d_crit, rmax=10.0, rbins=100, tbins=90):
+    def soft_boundary_2d(class_center, S, d_crit, rmax=10.0, rbins=1000, tbins=90):
       def estimate_boundary(rmax, rbins, tbins):
         cutoff = []
         for theta in np.linspace(0, 2 * np.pi, tbins):
@@ -247,6 +280,31 @@ if (test_size > 0):
         return np.array(cutoff)
 
       cutoff = estimate_boundary(rmax=rmax, rbins=rbins, tbins=tbins)
+      return cutoff
+
+    def soft_boundary_1d(class_center, S, d_crit, rmax=10.0, rbins=1000):
+      def estimate_boundary(rmax, rbins):
+        cutoff = []
+        # For each center, choose a systematic orientation
+        for direction in [+1, -1]:
+          # Walk "outward" until you meet the threshold
+          for r in np.linspace(0, rmax, rbins):
+            sPC = class_center + r * direction
+            d = np.matmul(
+                  np.matmul(
+                    (sPC - class_center),
+                    np.linalg.inv(S),
+                  ),
+                  (sPC - class_center).reshape(-1, 1),
+                )[0]
+            if d > d_crit:
+              cutoff.append(sPC)
+              break
+
+        return np.array(cutoff)
+
+      cutoff = estimate_boundary(rmax=rmax, rbins=rbins)
+
       return cutoff
 
     col1sub, col2sub = st.columns([2, 2])

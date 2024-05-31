@@ -175,8 +175,8 @@ if (test_size > 0):
 
     def plot_proj(ax, X, y=None):
       fig, ax = plt.subplots(nrows=1, ncols=1)
+      proj_ = model.transform(X)
       if n_components >= 2:
-        proj_ = model.transform(X)
         if y is not None:
           cats = np.unique(y)
           for i,cat in enumerate(cats):

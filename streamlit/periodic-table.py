@@ -256,7 +256,7 @@ if uploaded_file is not None:
       categorizer, # Function you define above
       X=X, # Input dataframe
       seed=42, 
-      n_restarts=10,
+      n_restarts=50,
       max_iters=100,
       T=0.25
     )

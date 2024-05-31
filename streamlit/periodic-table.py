@@ -112,6 +112,20 @@ if uploaded_file is not None:
     title="t value",
   )
 
+  # Build table as grid
+  r = p.rect(
+    "group",
+    "period",
+    0.95,
+    0.95,
+    source=source,
+    fill_alpha=1.0,
+    legend_field="cluster",
+    color=factor_cmap(
+      "cluster", factors=["0"], palette=["#999d9a"]
+    ),
+  )
+
   def recompute(attr, old, new):
     """Cluster and color elements."""
     (

@@ -256,6 +256,6 @@ if uploaded_file is not None:
     X=X,
     seed=0,
     n_restarts=10,
-    max_iters=1000,
+    max_iters=100,
     T=0.25
   )

@@ -99,7 +99,7 @@ with st.expander("Settings"):
       with col1:
         st.subheader("Data Settings")
 
-        target_column = st.selectbox(label="Select the column which indicates class, if present.", options=dataframe.columns, index=None, placeholder="Select a column", disabled=False, label_visibility="visible")
+        target_column = st.selectbox(label="Select the column which indicates class, if present.  PCA will ignore this column.", options=dataframe.columns, index=None, placeholder="Select a column", disabled=False, label_visibility="visible")
         feature_names = [c for c in dataframe.columns if c != target_column]
 
         random_state = st.number_input(label="Random seed for data shuffling before stratified splitting.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
@@ -169,13 +169,8 @@ if (test_size > 0):
         
       fig, ax = plt.subplots(nrows=1, ncols=1)
       ax = model.visualize(X_train, ax=ax)
-
-#       _ = ax.plot(y_train, model.predict(X_train), 'o', ms=1)
-#       _ = ax.plot(y_train, y_train, '-', color='k', lw=1)
-#       ax.set_xlabel('Actual Value')
-#       ax.set_ylabel('Predicted Value')
-#       ax.set_title(r'Training Set ($R^2=$'+f"{'%.3f'%model.score(X_train, y_train)})")
-#       configure_plot(ax)
+      ax.set_title(r'Training Set")
+      configure_plot(ax)
 
 #       fig, ax = plt.subplots(nrows=1, ncols=1)
 #       resid = model.predict(X_train) - y_train

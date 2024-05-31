@@ -139,7 +139,7 @@ if (test_size > 0):
       test_size=test_size,
     )
 
-  data_tab, train_tab, test_tab, results_tab, load_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results", "Loadings"])
+  data_tab, train_tab, test_tab, results_tab, load_tab, props_tab, out_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results", "Loadings", "Model Properties", "Training Set Outliers"])
 
   with data_tab:
     st.header("Original Data")
@@ -249,5 +249,24 @@ if (test_size > 0):
       )
       ax.set_xticks(np.arange(1, len(model._PCA__pca_.components_[0])+1), [x[1] for x in ranked_features], rotation=90)
       configure_plot(ax, size=(int(round(len(model._PCA__pca_.components_[0])/4.)),2))
+
+  with props_tab:
+    st.write(r"$N_h = $"+f"{model._PCA__Nh_}")
+    st.write(r"$N_q = $"+f"{model._PCA__Nq_}")
+
+    st.write(r"$h_0 = $"+f"{model._PCA__h0_}")
+    st.write(r"$q_0 = $"+f"{model._PCA__q0_}")
+          
+  with out_tab:
+    st.write("If SFT is used, here are the points identified and removed from the training set.")
+
+    if sft:
+      st.dataframe(
+        pd.DataFrame(data=model._PCA__sft_history_['removed']['X'], columns=feature_names),
+        hide_index=True
+      )
+
+      st.write('The detailed SFT history is given here:')
+      st.write(model._PCA__sft_history_["iterations"])
 
       

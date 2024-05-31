@@ -219,14 +219,8 @@ if (test_size > 0):
       ax.set_ylabel(f'PC 2 ({"%.2f"%(100*model._PCA__pca_.explained_variance_ratio_[1])}%)')
       configure_plot(ax)
 
-
-#   with load_tab:
-#     fig, ax = plt.subplots()
-#     ranked_features = sorted(zip(model.coef_, feature_names), key=lambda x:np.abs(x[0]), reverse=True)
-#     _ = ax.bar(
-#       x=np.arange(1, len(model.coef_)+1),
-#       height=[x[0] for x in ranked_features],
-#       align='center'
-#     )
-#     ax.set_xticks(np.arange(1, len(model.coef_)+1), [x[1] for x in ranked_features], rotation=90)
-#     configure_plot(ax, size=(int(round(len(model.coef_)/4.)),2))
+  with load_tab:
+    fig, ax = plt.subplots(nrows=1, ncols=1)
+    ax = model.plot_loadings(feature_names, ax=ax)
+    configure_plot(ax)
+    

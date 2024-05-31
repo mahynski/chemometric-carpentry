@@ -1,4 +1,4 @@
+bokeh==2.4.3
 git+https://github.com/mahynski/pychemauth@main
 streamlit-extras
 streamlit-drawable-canvas
-bokeh==2.4.3

@@ -223,7 +223,8 @@ if (test_size > 0):
     fig, ax = plt.subplots(nrows=1, ncols=1)
     ax = model.plot_loadings(feature_names, ax=ax)
     for txt in ax.texts:
-      ax.text(float(txt[0]), float(txt[1]), txt[2], fontsize=6)
+      st.write(txt)
+      # ax.text(float(txt[0]), float(txt[1]), txt[2], fontsize=6)
     configure_plot(ax)
     # st.write(ax.texts[0])
     

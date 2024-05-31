@@ -238,7 +238,7 @@ if uploaded_file is not None:
 
   # t_slider.on_change("value", recompute)
   # st.bokeh_chart(t_slider)
-  st.slider("t value", min_value=0, max_value=2, value=0, step=step)#, on_change=recompute)
+  st.slider("t value", min_value=0.0, max_value=2.0, value=0.0, step=0.1)#, on_change=recompute)
   
 
 

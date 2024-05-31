@@ -151,7 +151,7 @@ t_slider = Slider(
                 start=0,
                 end=2,
                 value=0,  # Start visualization from t=0
-                step=step,
+                step=0.1,
                 title="t value",
             )
 t_slider.on_change("value")#, recompute)

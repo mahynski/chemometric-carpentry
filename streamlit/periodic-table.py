@@ -129,7 +129,7 @@ if uploaded_file is not None:
     ) = InspectData.cluster_collinear(
       np.asarray(X.values, dtype=np.float64),
       feature_names=X.columns,
-      display=False,
+      display=True,
       t=st.session_state.t_value, 
     )
 

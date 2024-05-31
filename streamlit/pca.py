@@ -20,13 +20,13 @@ from streamlit_extras.add_vertical_space import add_vertical_space
 st.set_page_config(layout="wide")
 
 with st.sidebar:
-    st.title('PCA & PCR: Principal Components Analysis and Regression')
+    st.title('PCA: Principal Components Analysis')
     st.markdown('''
     ## About this application
     This tool uses the [PyChemAuth]https://pychemauth.readthedocs.io/en/latest/index.html) python 
     package for analysis.
     
-    :heavy_check_mark: It is intended as a teaching tool to demonstrate the use of PCA and PCR for modeling data.
+    :heavy_check_mark: It is intended as a teaching tool to demonstrate the use of PCA for modeling data.
 
     :x: It is not intended to be used in production.  Instead, use the Jupyter notebooks provided in 
     [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/index.html) for reproducible, high-quality
@@ -36,7 +36,7 @@ with st.sidebar:
     st.write('Made by ***Nate Mahynski***')
     st.write('nathan.mahynski@nist.gov')
 
-st.header('Review How PCA and PCR Work')
+st.header('Review How PCA Works')
 
 col1_, col2_ = st.columns(2)
 with col1_:

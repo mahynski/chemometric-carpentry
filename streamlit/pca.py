@@ -176,6 +176,53 @@ if (test_size > 0):
       fig.set_size_inches(*size)
       st.pyplot(fig, use_container_width=False)
 
+    def soft_boundary_2d(class_center, S, d_crit, rmax=10.0, rbins=1000, tbins=90):
+      def estimate_boundary(rmax, rbins, tbins):
+        cutoff = []
+        for theta in np.linspace(0, 2 * np.pi, tbins):
+          for r in np.linspace(0, rmax, rbins):
+            sPC = class_center + r * np.array([np.cos(theta), np.sin(theta)])
+
+            d = np.matmul(
+                  np.matmul(
+                    (sPC - class_center),
+                    np.linalg.inv(S),
+                  ),
+                  (sPC - class_center).reshape(-1, 1),
+                )[0]
+            if d > d_crit:
+              cutoff.append(sPC)
+              break
+
+        return np.array(cutoff)
+
+      cutoff = estimate_boundary(rmax=rmax, rbins=rbins, tbins=tbins)
+      return cutoff
+
+    def soft_boundary_1d(class_center, S, d_crit, rmax=10.0, rbins=1000):
+      def estimate_boundary(rmax, rbins):
+        cutoff = []
+        # For each center, choose a systematic orientation
+        for direction in [+1, -1]:
+          # Walk "outward" until you meet the threshold
+          for r in np.linspace(0, rmax, rbins):
+            sPC = class_center + r * direction
+            d = np.matmul(
+                  np.matmul(
+                    (sPC - class_center),
+                    np.linalg.inv(S),
+                  ),
+                  (sPC - class_center).reshape(-1, 1),
+                )[0]
+            if d > d_crit:
+              cutoff.append(sPC)
+              break
+
+        return np.array(cutoff)
+
+      cutoff = estimate_boundary(rmax=rmax, rbins=rbins)
+      return cutoff
+      
     ellipse_data = {}
     def plot_proj(ax, X, y=None, train=True):
       fig, ax = plt.subplots(nrows=1, ncols=1)
@@ -259,54 +306,6 @@ if (test_size > 0):
         ax.set_ylabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
 
       return ax
-
-    def soft_boundary_2d(class_center, S, d_crit, rmax=10.0, rbins=1000, tbins=90):
-      def estimate_boundary(rmax, rbins, tbins):
-        cutoff = []
-        for theta in np.linspace(0, 2 * np.pi, tbins):
-          for r in np.linspace(0, rmax, rbins):
-            sPC = class_center + r * np.array([np.cos(theta), np.sin(theta)])
-
-            d = np.matmul(
-                  np.matmul(
-                    (sPC - class_center),
-                    np.linalg.inv(S),
-                  ),
-                  (sPC - class_center).reshape(-1, 1),
-                )[0]
-            if d > d_crit:
-              cutoff.append(sPC)
-              break
-
-        return np.array(cutoff)
-
-      cutoff = estimate_boundary(rmax=rmax, rbins=rbins, tbins=tbins)
-      return cutoff
-
-    def soft_boundary_1d(class_center, S, d_crit, rmax=10.0, rbins=1000):
-      def estimate_boundary(rmax, rbins):
-        cutoff = []
-        # For each center, choose a systematic orientation
-        for direction in [+1, -1]:
-          # Walk "outward" until you meet the threshold
-          for r in np.linspace(0, rmax, rbins):
-            sPC = class_center + r * direction
-            d = np.matmul(
-                  np.matmul(
-                    (sPC - class_center),
-                    np.linalg.inv(S),
-                  ),
-                  (sPC - class_center).reshape(-1, 1),
-                )[0]
-            if d > d_crit:
-              cutoff.append(sPC)
-              break
-
-        return np.array(cutoff)
-
-      cutoff = estimate_boundary(rmax=rmax, rbins=rbins)
-
-      return cutoff
 
     col1sub, col2sub = st.columns([2, 2])
     with col1sub:

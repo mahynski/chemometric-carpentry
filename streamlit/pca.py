@@ -166,7 +166,7 @@ if (test_size > 0):
 
     _ = model.fit(X_train)
 
-    def configure_plot(ax, size=(2,2)):
+    def configure_plot(ax, size=(3,3)):
       for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
         item.set_fontsize(6)
       fig = plt.gcf()
@@ -200,8 +200,8 @@ if (test_size > 0):
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
       ax = plot_proj(ax, X_train, y_train)
-      ax.set_xlabel(f'PC 1 ({"%.2f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
-      ax.set_ylabel(f'PC 2 ({"%.2f"%(100*model._PCA__pca_.explained_variance_ratio_[1])}%)')
+      ax.set_xlabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
+      ax.set_ylabel(f'PC 2 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[1])}%)')
       configure_plot(ax)
 
     with col2sub:

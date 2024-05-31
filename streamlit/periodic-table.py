@@ -247,12 +247,12 @@ if uploaded_file is not None:
 
   col1, col2 = st.columns(2)
 
-  with col1:
+  with col2:
     n_restarts = st.slider("Number of restarts", 0, 100, value=10)
     max_iters = st.slider("Maximum iterations", 0, 100, value=10)
-    T = st.slider("Maximum iterations", 0.0, 1.0, value=0.25, step=0.05)
+    T = st.slider("Temperature", 0.0, 1.0, value=0.25, step=0.05)
 
-  with col2:
+  with col1:
     with st.echo():
       def categorizer(element_symbol):
         from bokeh.sampledata.periodic_table import elements
@@ -269,5 +269,5 @@ if uploaded_file is not None:
         T=T
       )
 
-  res = {element: categorizer(element) for element in best_choices}
-  st.write(f'Elements selected: {res}')
+  res = pd.DataFrame(data=[[element, categorizer(element)] for element in best_choices], columns=['Element', 'Period']}
+  st.dataframe(res)

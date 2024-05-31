@@ -243,7 +243,7 @@ if (test_size > 0):
       fig, ax = plt.subplots()
       ranked_features = sorted(zip(model._PCA__pca_.components_[0], feature_names), key=lambda x:np.abs(x[0]), reverse=True)
       _ = ax.bar(
-        x=np.arange(1, len(model.coef_)+1),
+        x=np.arange(1, len(model._PCA__pca_.components_[0])+1),
         height=[x[0] for x in ranked_features],
         align='center'
       )

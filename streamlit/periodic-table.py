@@ -252,13 +252,13 @@ if uploaded_file is not None:
       return period
 
     best_choices = InspectData.minimize_cluster_label_entropy(
-      cluster_id_to_feature_ids,
-      categorizer,
-      X=X,
-      seed=0,
+      cluster_id_to_feature_ids, # Output of InspectData.cluster_collinear
+      categorizer, # Function you define above
+      X=X, # Input dataframe
+      seed=42, 
       n_restarts=10,
       max_iters=100,
       T=0.25
     )
 
-  st.write(best_choices)
+  st.write(f'Elements selected: {best_choices}')

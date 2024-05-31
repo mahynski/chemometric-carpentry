@@ -98,7 +98,7 @@
         * Ordinary Least Squares (OLS)
            * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/ols.html) | [sklearn API](https://scikit-learn.org/stable/modules/linear_model.html) | [Interactive Tool](https://chemometric-carpentry-ols.streamlit.app/)
         * Principal Components Analysis (PCA) and Regression (PCR)
-           * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/pca_pcr.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/pca.html) | Interactive Tool
+           * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/pca_pcr.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/pca.html) | [Interactive PCA Tool](), [Interactive PCR Tool]()
         * Partial Least-Squares (PLS) or Projection to Latent Structures
            * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/pls.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/pls.html) | Interactive Tool 
     * Classification and Authentication Models

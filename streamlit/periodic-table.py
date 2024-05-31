@@ -110,7 +110,7 @@ if uploaded_file is not None:
       y_range=list(reversed(periods)),
       tools="", #hover" if st.session_state.mouseover else "",
       toolbar_location=None,
-      tooltips=TOOLTIPS if hover else None,
+      tooltips=TOOLTIPS if st.session_state.mouseover else None,
     )
 
     # Build table as grid

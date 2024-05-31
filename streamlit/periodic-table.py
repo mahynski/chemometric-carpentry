@@ -245,25 +245,29 @@ if uploaded_file is not None:
     
   st.divider()
 
-  n_restarts = st.slider("Number of restarts", 0, 100, value=10)
-  max_iters = st.slider("Maximum iterations", 0, 100, value=10)
-  T = st.slider("Maximum iterations", 0.0, 1.0, value=0.25, step=0.1)
+  col1, col2 = st.columns(2)
 
-  with st.echo():
-    def categorizer(element_symbol):
-      from bokeh.sampledata.periodic_table import elements
-      period = int(elements['period'][elements['symbol'] == element_symbol])
-      return period
+  with col1:
+    n_restarts = st.slider("Number of restarts", 0, 100, value=10)
+    max_iters = st.slider("Maximum iterations", 0, 100, value=10)
+    T = st.slider("Maximum iterations", 0.0, 1.0, value=0.25, step=0.05)
 
-    best_choices = InspectData.minimize_cluster_label_entropy(
-      cluster_id_to_feature_ids, # Output of InspectData.cluster_collinear
-      categorizer, # Function you define above
-      X=X, # Input dataframe
-      seed=42, 
-      n_restarts=n_restarts,
-      max_iters=max_iters,
-      T=T
-    )
+  with col2:
+    with st.echo():
+      def categorizer(element_symbol):
+        from bokeh.sampledata.periodic_table import elements
+        period = int(elements['period'][elements['symbol'] == element_symbol])
+        return period
+
+      best_choices = InspectData.minimize_cluster_label_entropy(
+        cluster_id_to_feature_ids, # Output of InspectData.cluster_collinear
+        categorizer, # Function you define above
+        X=X, # Input dataframe
+        seed=42, 
+        n_restarts=n_restarts,
+        max_iters=max_iters,
+        T=T
+      )
 
   res = {element: categorizer(element) for element in best_choices}
   st.write(f'Elements selected: {res}')

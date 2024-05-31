@@ -254,9 +254,9 @@ if uploaded_file is not None:
 
   with col1:
     with st.echo():
-      def categorizer(element_symbol):
+      def categorizer(symbol):
         from bokeh.sampledata.periodic_table import elements
-        period = int(elements['period'][elements['symbol'] == element_symbol])
+        period = int(elements['period'][elements['symbol'] == symbol])
         return period
 
       best_choices = InspectData.minimize_cluster_label_entropy(
@@ -268,7 +268,8 @@ if uploaded_file is not None:
         max_iters=max_iters,
         T=T
       )
-      
+
   with col3:
+    st.write('Elements Selected:')
     res = pd.DataFrame(data=[[element, categorizer(element)] for element in best_choices], columns=['Element', 'Period'])
     st.dataframe(res)

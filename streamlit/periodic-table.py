@@ -147,6 +147,9 @@ p.legend.orientation = "horizontal"
 p.legend.location ="top_center"
 p.hover.renderers = [r] # only hover element boxes
 
+def recompute(attr, old, new):
+  return
+  
 t_slider = Slider(
                 start=0,
                 end=2,
@@ -154,7 +157,7 @@ t_slider = Slider(
                 step=0.1,
                 title="t value",
             )
-t_slider.on_change("value")#, recompute)
+t_slider.on_change("value", recompute)
 
 st.bokeh_chart(p)
 

@@ -192,8 +192,8 @@ if (test_size > 0):
             cutoff = soft_boundary_2d(
               class_center, S, d_crit,
               rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
-              rbins=100,
-              tbins=90,
+              rbins=300,
+              tbins=180,
             )
             ax.plot(cutoff[:, 0], cutoff[:, 1], color=f'C{i}')
 
@@ -252,10 +252,6 @@ if (test_size > 0):
       ax.set_title('Training Set')
       ax.legend(fontsize=6, loc='upper right')
       configure_plot(ax)
-
-
-      
-
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
       ax = plot_proj(ax, X_train, y_train)

@@ -151,7 +151,7 @@ if uploaded_file is not None:
       )
       for elem in elements:
         df["cluster"].where(
-          (
+          ~(
             df["symbol"].apply(lambda x: str(x).lower())
             == elem.lower()
           ),
@@ -159,15 +159,73 @@ if uploaded_file is not None:
           inplace=True,
         )
 
-        df.sort_values(
-          "cluster",
-          inplace=True,
-          key=lambda x: pd.Series([int(x_) for x_ in x]),
-        )
-        source.data = ColumnDataSource.from_df(df)
+    df.sort_values(
+      "cluster",
+      inplace=True,
+      key=lambda x: pd.Series([int(x_) for x_ in x]),
+    )
+    source.data = ColumnDataSource.from_df(df)
 
-
-
+    # Unfortunately, there doesn't seem to be a way to link the color to the source.  Even
+    # using a column in the df causes an error about waiting, so the best way forward seems
+    # to be to re-build the table each time.
+    r = p.rect(
+        "group",
+        "period",
+        0.95,
+        0.95,
+        source=source,
+        fill_alpha=1.0,
+        legend_field="cluster",
+        color=factor_cmap(
+            "cluster",
+            palette=list(cmap.values()),
+            factors=list(cmap.keys()),
+        ),
+      )
+    text_props = dict(
+        source=df,  # Leave unconnected from source since this doesn't need to be updated
+        text_align="left",
+        text_baseline="middle",
+        color="white",
+    )
+    x = dodge("group", -0.4, range=p.x_range)
+    p.text(
+        x=x,
+        y="period",
+        text="symbol",
+        text_font_style="bold",
+        **text_props
+    )
+    p.text(
+        x=x,
+        y=dodge("period", 0.3, range=p.y_range),
+        text="atomic number",
+        text_font_size="11px",
+        **text_props
+    )
+    p.text(
+        x=x,
+        y=dodge("period", -0.35, range=p.y_range),
+        text="name",
+        text_font_size="7px",
+        **text_props
+    )
+    p.text(
+        x=x,
+        y=dodge("period", -0.2, range=p.y_range),
+        text="atomic mass",
+        text_font_size="7px",
+        **text_props
+    )
+    p.outline_line_color = None
+    p.grid.grid_line_color = None
+    p.axis.axis_line_color = None
+    p.axis.major_tick_line_color = None
+    p.axis.major_label_standoff = 0
+    p.legend.orientation = "horizontal"
+    p.legend.location = "top_center"
+    p.hover.renderers = [r]
 
   t_slider.on_change("value", recompute)
   st.bokeh_chart(t_slider)

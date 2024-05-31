@@ -62,7 +62,7 @@ with col1_:
 
     $T$ is refered to as the "scores" matrix and represents the projection (compression) of the data; $W^T$ is the "loadings" matrix.
 
-    See the description of [DD-SIMCA](https://chemometric-carpentry-ddsimca.streamlit.app/) for an explanation of the other settings.
+    This demonstration tool will accept data with multiple classes and use all the data it is given.  Authentication models like DD-SIMCA break up this data by class and creaet a PCA-based model for each individual class.  See the description of [DD-SIMCA](https://chemometric-carpentry-ddsimca.streamlit.app/) for an explanation of the other settings like $\gamma$ and model properties.
     ''')
 
 with col2_:

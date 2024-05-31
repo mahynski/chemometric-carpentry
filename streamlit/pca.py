@@ -261,10 +261,10 @@ if (test_size > 0):
     st.write("If SFT is used, here are the points identified and removed from the training set.")
 
     if sft:
-      st.dataframe(
-        pd.DataFrame(data=model._PCA__sft_history_['removed']['X'], columns=feature_names),
-        hide_index=True
-      )
+      # st.dataframe(
+      #   pd.DataFrame(data=model._PCA__sft_history_['removed']['X'], columns=feature_names),
+      #   hide_index=True
+      # )
 
       st.write('The detailed SFT history is given here:')
       st.write(model.sft_history)

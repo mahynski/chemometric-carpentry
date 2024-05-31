@@ -229,7 +229,7 @@ if uploaded_file is not None:
     p.legend.location = "top_center"
     p.hover.renderers = [r]
 
-    step += 0.1
+    # step += 0.1
     st.write(f'hello {step}')
     st.bokeh_chart(p)
 

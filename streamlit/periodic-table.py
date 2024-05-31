@@ -120,7 +120,7 @@ if uploaded_file is not None:
     ),
   )
 
-  def recompute()
+  def recompute():
     """Cluster and color elements; redraw periodic table."""
     (
       selected_features,

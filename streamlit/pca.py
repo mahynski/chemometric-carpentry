@@ -10,8 +10,8 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 from sklearn.model_selection import train_test_split
-from sklearn import linear_model
 
+from pychemauth.classifier.pca import PCA
 from pychemauth.preprocessing.scaling import RobustScaler, CorrectedScaler
 
 from streamlit_drawable_canvas import st_canvas
@@ -30,7 +30,7 @@ with st.sidebar:
 
     :x: It is not intended to be used in production.  Instead, use the Jupyter notebooks provided in 
     [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/index.html) for reproducible, high-quality
-    analysis. For example, consider using this notebook for [PCA](https://pychemauth.readthedocs.io/en/latest/jupyter/api/pca.html) or this one for [PCR](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/pca_pcr.html) instead.
+    analysis. For example, consider using [this notebook instead.](https://pychemauth.readthedocs.io/en/latest/jupyter/api/pca.html)
     ''')
     add_vertical_space(2)
     st.write('Made by ***Nate Mahynski***')
@@ -102,8 +102,8 @@ with st.expander("Settings"):
         target_column = st.selectbox(label="Select the column which indicates class, if present.", options=dataframe.columns, index=None, placeholder="Select a column", disabled=False, label_visibility="visible")
         feature_names = [c for c in dataframe.columns if c != target_column]
 
-        # random_state = st.number_input(label="Random seed for data shuffling before stratified splitting.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
-        # test_size = st.slider(label="Select a positive fraction of the data to use as a test set to begin analysis.", min_value=0.0, max_value=1.0, value=0.0, step=0.05, disabled=False, label_visibility="visible")
+        random_state = st.number_input(label="Random seed for data shuffling before stratified splitting.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
+        test_size = st.slider(label="Select a positive fraction of the data to use as a test set to begin analysis.", min_value=0.0, max_value=1.0, value=0.0, step=0.05, disabled=False, label_visibility="visible")
 
         standardization = st.selectbox("What type of standardization should be applied?", (None, "Scaler", "Robust Scaler"), index=0)
         if standardization is not None:
@@ -113,54 +113,67 @@ with st.expander("Settings"):
       with col2:
         st.subheader("Model Settings")
 
-        n_components = st.slider("Number of components to use?", 1, len(feature_names)-1, value=1)
+        alpha = st.slider(label=r"Type I error rate ($\alpha$).", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
+        n_components = st.slider(label="Number of dimensions to project into.", min_value=1, max_value=len(feature_names)-1,
+        value=1, step=1, disabled=False, label_visibility="visible")
+        gamma = st.slider(label=r"Significance level for determining outliers ($\gamma$).", min_value=0.0, max_value=alpha, value=0.01, step=0.01, disabled=False, label_visibility="visible")
+        robust = st.selectbox(label="How should we estimate $\chi^2$ degrees of freedom?", options=["Semi-Robust", "Classical"], index=0, key=None, help=None, on_change=None, args=None, kwargs=None, placeholder="Choose an option", disabled=False, label_visibility="visible")
+        robust = str(robust).lower()
+        if robust == 'semi-robust':
+          robust = 'semi' # Rename for PyChemAuth
+        scale_x = st.toggle(label="Scale X columns by their standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
+        sft = st.toggle(label="Use sequential focused trimming (SFT) for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
+        st.write("Note: SFT relies on a Semi-Robust approach during data cleaning, then uses a Classical at the end for the final model.")
+        if target_column is not None: 
+          use =  st.radio("Use a Compliant or Rigorous scoring method?", ["Rigorous", "Compliant"], captions = [f"Compute only model sensitivity (use only {target_class}); the score is computed as "+r"-(TSNS - (1 - $\alpha$))$^2$).", "Use alternatives to assess specificity also; now TEFF is treated as the score."], index=None)
+          if use is not None:
+            use = str(use).lower()
 
+if (test_size > 0):
+  X_train, X_test, idx_train, idx_test = train_test_split(
+    dataframe[feature_names].values,
+    dataframe.index.values,
+    shuffle=True,
+    random_state=random_state,
+    test_size=test_size,
+  )
 
-# if (test_size > 0):
-#   X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
-#     dataframe[feature_names].values,
-#     dataframe[target_column].values,
-#     dataframe.index.values,
-#     shuffle=True,
-#     random_state=random_state,
-#     test_size=test_size,
-#   )
+  if standardization == "Scaler":
+    scaler = CorrectedScaler(with_mean=center, with_std=scale)
+  elif standardization == "RobustScaler":
+    scaler = RobustScaler(with_median=center, with_iqr=scale)
+  else:
+    scaler = CorrectedScaler(with_mean=False, with_std=False)
 
-#   if standardization == "Scaler":
-#     scaler = CorrectedScaler(with_mean=center, with_std=scale)
-#   elif standardization == "RobustScaler":
-#     scaler = RobustScaler(with_median=center, with_iqr=scale)
-#   else:
-#     scaler = CorrectedScaler(with_mean=False, with_std=False)
+  X_train = scaler.fit_transform(X_train)
+  X_test = scaler.transform(X_test)
 
-#   X_train = scaler.fit_transform(X_train)
-#   X_test = scaler.transform(X_test)
+  data_tab, train_tab, test_tab, results_tab, coef_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results", "Coefficients"])
 
-#   data_tab, train_tab, test_tab, results_tab, coef_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results", "Coefficients"])
+  with data_tab:
+    st.header("Original Data")
+    st.dataframe(dataframe)
 
-#   with data_tab:
-#     st.header("Original Data")
-#     st.dataframe(dataframe)
+  with train_tab:
+    st.header("Training Data")
+    st.dataframe(pd.DataFrame(data=X_train, columns=feature_names, index=idx_train))
 
-#   with train_tab:
-#     st.header("Training Data")
-#     st.dataframe(pd.DataFrame(data=np.hstack((X_train, y_train.reshape(-1,1))), columns=feature_names+[target_column], index=idx_train))
-
-#   with test_tab:
-#     st.header("Testing Data")
-#     st.dataframe(pd.DataFrame(data=np.hstack((X_test, y_test.reshape(-1,1))), columns=feature_names+[target_column], index=idx_test))
+  with test_tab:
+    st.header("Testing Data")
+    st.dataframe(pd.DataFrame(data=X_test, columns=feature_names, index=idx_test))
       
-#   with results_tab:
-#     st.header("Modeling Results")
+  with results_tab:
+    st.header("Modeling Results")
 
-#     if reg_type is None:
-#       model = linear_model.LinearRegression(fit_intercept=True)
-#     elif reg_type == "LASSO (L1)":
-#       model = linear_model.Lasso(alpha=reg_strength, fit_intercept=True)
-#     else:
-#       model = linear_model.Ridge(alpha=reg_strength, fit_intercept=True)
+    model = PCA(
+        n_components=n_components,
+        alpha=alpha,
+        gamma=gamma,
+        scale_x=scale_x, # PCA always centers, but you can choose whether or not to scale the columns by st. dev. (autoscaling)
+        robust=robust # Estimate the degrees of freedom for the chi-squared acceptance area below using robust, data-driven approach
+    )
 
-#     _ = model.fit(X_train, y_train)
+    _ = model.fit(X_train)
 
 #     def configure_plot(ax, size=(2,2)):
 #       for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):

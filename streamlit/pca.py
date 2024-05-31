@@ -224,7 +224,7 @@ if (test_size > 0):
       return cutoff
 
     ellipse_data = {}
-    def plot_proj(ax, X, alpha, y=None, train=True):
+    def plot_proj(ax, X, y=None, train=True, alpha=0.05):
       fig, ax = plt.subplots(nrows=1, ncols=1)
       proj_ = model.transform(X)
       if n_components >= 2: # 2d plot

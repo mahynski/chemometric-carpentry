@@ -39,7 +39,6 @@ with st.sidebar:
     st.write('nathan.mahynski@nist.gov')
 
 step = 0.1
-hover = True
 
 st.header("Upload Your Data")
 
@@ -57,8 +56,6 @@ if uploaded_file is not None:
   t_value = st.slider("t value", min_value=0.0, max_value=2.0, value=0.0, step=0.1, key="t_value")
 
   with col1:
-    mouseover = st.toggle('Mouseover', value=True, key='mouseover')
-
     # Select elements from whatever is provided.
     X = pd.read_csv(uploaded_file)
     known_elements = [str(e).lower() for e in elements.copy().symbol.values]
@@ -108,7 +105,7 @@ if uploaded_file is not None:
       height=300,
       x_range=groups,
       y_range=list(reversed(periods)),
-      tools="", #hover" if st.session_state.mouseover else "",
+      tools="hover" if st.session_state.mouseover else "",
       toolbar_location=None,
       tooltips=TOOLTIPS if st.session_state.mouseover else None,
     )
@@ -231,6 +228,8 @@ if uploaded_file is not None:
       p.hover.renderers = [r]
 
       st.bokeh_chart(p, use_container_width=True)
+      
+      mouseover = st.toggle('Mouseover Properties', value=False, key='mouseover')
 
       return fig
 

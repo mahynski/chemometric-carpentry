@@ -205,13 +205,13 @@ if uploaded_file is not None:
           text_font_size="11px",
           **text_props
       )
-      p.text(
-          x=x,
-          y=dodge("period", -0.35, range=p.y_range),
-          text="name",
-          text_font_size="7px",
-          **text_props
-      )
+      # p.text(
+      #     x=x,
+      #     y=dodge("period", -0.35, range=p.y_range),
+      #     text="name",
+      #     text_font_size="7px",
+      #     **text_props
+      # )
       p.text(
           x=x,
           y=dodge("period", -0.2, range=p.y_range),

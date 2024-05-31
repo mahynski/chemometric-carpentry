@@ -128,7 +128,7 @@ if uploaded_file is not None:
     ),
   )
 
-  def recompute(attr, old, new):
+  def recompute():#attr, old, new):
     """Cluster and color elements."""
     (
       selected_features,
@@ -234,10 +234,11 @@ if uploaded_file is not None:
     st.bokeh_chart(p)
 
   # Color things for the first time
-  recompute(None, None, None)
+  recompute()#None, None, None)
 
-  t_slider.on_change("value", recompute)
-  st.bokeh_chart(t_slider)
+  # t_slider.on_change("value", recompute)
+  # st.bokeh_chart(t_slider)
+  st.slider("t value", min_value=0, max_value=2, value=0, step=step, on_change=recompute)
   
 
 

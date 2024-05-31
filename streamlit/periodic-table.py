@@ -242,6 +242,16 @@ if uploaded_file is not None:
     
   st.divider()
 
+  st.header('Selecting Elements from Each Category')
+
+  st.markdown('''
+    Now that we have performed this clustering, how can we select which element from each cluster to actually use?
+    In principle, all sets of choices should give approximately the same amount of information to a downstream model.
+    However, in practice, it might be easier to actually measure certain features (here, elements) than others.  For
+    example, perhaps different sets of elements are measured on different instruments and it would be advantageous to
+    have a model which relies on just one instrument to provide the necessary measurements.
+  ''')
+
   col1, col2, col3 = st.columns([3, 3, 1])
 
   with col2:

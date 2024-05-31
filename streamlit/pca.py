@@ -347,7 +347,7 @@ if (test_size > 0):
       ax.legend(fontsize=6, loc='upper right')
       configure_plot(ax)
 
-      add_vertical_space(2)
+      add_vertical_space(6)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
       ax = plot_proj(ax, X_test, y_test, train=False, alpha=ellipse_alpha)

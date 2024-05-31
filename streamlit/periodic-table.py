@@ -106,14 +106,6 @@ if uploaded_file is not None:
     tooltips=TOOLTIPS if hover else None,
   )
 
-  # t_slider = Slider(
-  #   start=0,
-  #   end=2,
-  #   value=0,  # Start visualization from t=0
-  #   step=step,
-  #   title="t value",
-  # )
-
   # Build table as grid
   r = p.rect(
     "group",
@@ -128,11 +120,8 @@ if uploaded_file is not None:
     ),
   )
 
-  # if 't_value' not in st.session_state:
-  #   st.session_state.t_value = 0.0
-
-  def recompute():#attr, old, new):
-    """Cluster and color elements."""
+  def recompute()
+    """Cluster and color elements; redraw periodic table."""
     (
       selected_features,
       cluster_id_to_feature_ids,
@@ -235,11 +224,8 @@ if uploaded_file is not None:
     st.bokeh_chart(p)
 
   # Color things for the first time
-  recompute()#None, None, None)
-
-  # t_slider.on_change("value", recompute)
-  # st.bokeh_chart(t_slider)
-  t_value = st.slider("t value", min_value=0.0, max_value=2.0, value=0.0, step=0.1, key="t_value")#, on_change=recompute)
+  # recompute()
+  t_value = st.slider("t value", min_value=0.0, max_value=2.0, value=0.0, step=0.1, key="t_value", on_change=recompute)
 
 
 # periods = ["I", "II", "III", "IV", "V", "VI", "VII"]

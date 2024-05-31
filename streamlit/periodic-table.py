@@ -245,19 +245,20 @@ if uploaded_file is not None:
     
   st.divider()
 
-  def categorizer(element_symbol):
-    from bokeh.sampledata.periodic_table import elements
-    period = int(elements['period'][elements['symbol'] == element_symbol])
-    return period
+  with st.echo():
+    def categorizer(element_symbol):
+      from bokeh.sampledata.periodic_table import elements
+      period = int(elements['period'][elements['symbol'] == element_symbol])
+      return period
 
-  best_choices = InspectData.minimize_cluster_label_entropy(
-    cluster_id_to_feature_ids,
-    categorizer,
-    X=X,
-    seed=0,
-    n_restarts=10,
-    max_iters=100,
-    T=0.25
-  )
+    best_choices = InspectData.minimize_cluster_label_entropy(
+      cluster_id_to_feature_ids,
+      categorizer,
+      X=X,
+      seed=0,
+      n_restarts=10,
+      max_iters=100,
+      T=0.25
+    )
 
   st.write(best_choices)

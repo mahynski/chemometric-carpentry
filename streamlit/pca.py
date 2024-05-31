@@ -105,11 +105,6 @@ with st.expander("Settings"):
         random_state = st.number_input(label="Random seed for data shuffling before stratified splitting.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
         test_size = st.slider(label="Select a positive fraction of the data to use as a test set to begin analysis.", min_value=0.0, max_value=1.0, value=0.0, step=0.05, disabled=False, label_visibility="visible")
 
-        standardization = st.selectbox("What type of standardization should be applied?", (None, "Scaler", "Robust Scaler"), index=0)
-        if standardization is not None:
-          center = st.toggle("Use centering", value=False)
-          scale = st.toggle("Use scale", value=False)
-
       with col2:
         st.subheader("Model Settings")
 
@@ -124,10 +119,6 @@ with st.expander("Settings"):
         scale_x = st.toggle(label="Scale X columns by their standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
         sft = st.toggle(label="Use sequential focused trimming (SFT) for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
         st.write("Note: SFT relies on a Semi-Robust approach during data cleaning, then uses a Classical at the end for the final model.")
-        if target_column is not None: 
-          use =  st.radio("Use a Compliant or Rigorous scoring method?", ["Rigorous", "Compliant"], captions = [f"Compute only model sensitivity (use only {target_class}); the score is computed as "+r"-(TSNS - (1 - $\alpha$))$^2$).", "Use alternatives to assess specificity also; now TEFF is treated as the score."], index=None)
-          if use is not None:
-            use = str(use).lower()
 
 if (test_size > 0):
   X_train, X_test, idx_train, idx_test = train_test_split(
@@ -137,16 +128,6 @@ if (test_size > 0):
     random_state=random_state,
     test_size=test_size,
   )
-
-  if standardization == "Scaler":
-    scaler = CorrectedScaler(with_mean=center, with_std=scale)
-  elif standardization == "RobustScaler":
-    scaler = RobustScaler(with_median=center, with_iqr=scale)
-  else:
-    scaler = CorrectedScaler(with_mean=False, with_std=False)
-
-  X_train = scaler.fit_transform(X_train)
-  X_test = scaler.transform(X_test)
 
   data_tab, train_tab, test_tab, results_tab, coef_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results", "Coefficients"])
 

@@ -121,13 +121,23 @@ with st.expander("Settings"):
         st.write("Note: SFT relies on a Semi-Robust approach during data cleaning, then uses a Classical at the end for the final model.")
 
 if (test_size > 0):
-  X_train, X_test, idx_train, idx_test = train_test_split(
-    dataframe[feature_names].values,
-    dataframe.index.values,
-    shuffle=True,
-    random_state=random_state,
-    test_size=test_size,
-  )
+  if target_column is None:
+    X_train, X_test, idx_train, idx_test = train_test_split(
+      dataframe[feature_names].values,
+      dataframe.index.values,
+      shuffle=True,
+      random_state=random_state,
+      test_size=test_size,
+    )
+  else:
+    X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
+      dataframe[feature_names].values,
+      dataframe[target_column].values,
+      dataframe.index.values,
+      shuffle=True,
+      random_state=random_state,
+      test_size=test_size,
+    )
 
   data_tab, train_tab, test_tab, results_tab, load_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results", "Loadings"])
 
@@ -163,11 +173,11 @@ if (test_size > 0):
       fig.set_size_inches(*size)
       st.pyplot(fig, use_container_width=False)
 
-    def plot_proj(ax, X, y):
+    def plot_proj(ax, X, y=None):
       fig, ax = plt.subplots(nrows=1, ncols=1)
       if n_components >= 2:
         proj_ = model.transform(X)
-        if target_column is not None:
+        if y is not None:
           cats = np.unique(y)
           for i,cat in enumerate(cats):
             mask = cat == y

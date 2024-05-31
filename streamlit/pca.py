@@ -345,31 +345,31 @@ if (test_size > 0):
     with col1sub:
       st.subheader('Training Set')
         
-      fig, ax = plt.subplots(nrows=1, ncols=1)
-      ax = model.visualize(X_train, ax=ax)
-      ax.set_title('Training Set')
-      ax.legend(fontsize=6, loc='upper right')
-      configure_plot(ax)
-
       ellipse_alpha = st.slider(label=r"Type I error rate ($\alpha$) for ellipse.", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
       ax = plot_proj(ax, X_train, y_train, train=True, alpha=ellipse_alpha)
       configure_plot(ax)
 
+      fig, ax = plt.subplots(nrows=1, ncols=1)
+      ax = model.visualize(X_train, ax=ax)
+      ax.set_title('Training Set')
+      ax.legend(fontsize=6, loc='upper right')
+      configure_plot(ax)
+
     with col2sub:
       st.subheader('Test Set')
+
+      add_vertical_space(6)
+      
+      fig, ax = plt.subplots(nrows=1, ncols=1)
+      ax = plot_proj(ax, X_test, y_test, train=False, alpha=ellipse_alpha)
+      configure_plot(ax)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
       ax = model.visualize(X_test, ax=ax)
       ax.set_title('Test Set')
       ax.legend(fontsize=6, loc='upper right')
-      configure_plot(ax)
-
-      add_vertical_space(6)
-
-      fig, ax = plt.subplots(nrows=1, ncols=1)
-      ax = plot_proj(ax, X_test, y_test, train=False, alpha=ellipse_alpha)
       configure_plot(ax)
 
   with load_tab:

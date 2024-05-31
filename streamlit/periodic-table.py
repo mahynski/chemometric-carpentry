@@ -149,7 +149,7 @@ p.hover.renderers = [r] # only hover element boxes
 
 def recompute(attr, old, new):
   return
-  
+
 t_slider = Slider(
                 start=0,
                 end=2,
@@ -158,7 +158,7 @@ t_slider = Slider(
                 title="t value",
             )
 t_slider.on_change("value", recompute)
-
+st.bokeh_chart(t_slider)
 st.bokeh_chart(p)
 
 # st.header('Review How OLS Works')

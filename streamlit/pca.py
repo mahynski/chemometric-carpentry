@@ -199,9 +199,9 @@ if (test_size > 0):
               class_center, S, d_crit,
               rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
               rbins=100,
-              tbins=360,
+              tbins=180,
             )
-            ax.plot(cutoff[:, 0], cutoff[:, 1], color=f'C{i}')
+            ax.plot(cutoff[:, 0], cutoff[:, 1], color=f'C{i}', lw=1)
 
           ax.legend(fontsize=6, loc='best')
         else:

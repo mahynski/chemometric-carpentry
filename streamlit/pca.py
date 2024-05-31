@@ -267,6 +267,6 @@ if (test_size > 0):
       )
 
       st.write('The detailed SFT history is given here:')
-      st.write(model._PCA__sft_history_["iterations"])
+      st.write(model.sft_history)
 
       

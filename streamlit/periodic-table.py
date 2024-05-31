@@ -15,6 +15,8 @@ from bokeh.plotting import figure
 from bokeh.sampledata.periodic_table import elements
 from bokeh.transform import dodge, factor_cmap
 
+from pychemauth.eda.explore import InspectData
+
 st.set_page_config(layout="wide")
 
 with st.sidebar:
@@ -103,13 +105,30 @@ if uploaded_file is not None:
   )
 
   t_slider = Slider(
-                  start=0,
-                  end=2,
-                  value=0,  # Start visualization from t=0
-                  step=step,
-                  title="t value",
-              )
-  # t_slider.on_change("value", recompute)
+    start=0,
+    end=2,
+    value=0,  # Start visualization from t=0
+    step=step,
+    title="t value",
+  )
+
+  def recompute(attr, old, new):
+    """Cluster and color elements."""
+    (
+      selected_features,
+      cluster_id_to_feature_ids,
+      fig,
+    ) = InspectData.cluster_collinear(
+        np.asarray(X.values, dtype=np.float64),
+        feature_names=X.columns,
+        display=False,
+        t=t_slider.value,
+    )
+
+
+
+
+  t_slider.on_change("value", recompute)
   st.bokeh_chart(t_slider)
   st.bokeh_chart(p)
 

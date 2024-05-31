@@ -224,7 +224,7 @@ if (test_size > 0):
       return cutoff
 
     ellipse_data = {}
-    def plot_proj(ax, X, y=None, train=True):
+    def plot_proj(ax, X, alpha, y=None, train=True):
       fig, ax = plt.subplots(nrows=1, ncols=1)
       proj_ = model.transform(X)
       if n_components >= 2: # 2d plot
@@ -299,6 +299,22 @@ if (test_size > 0):
         else:
           ax.plot([1]*np.sum(mask), proj_[:,0], 'o')
 
+          if train:
+            class_center = np.mean(proj_[mask,:1], axis=0)
+            S = MinCovDet(assume_centered=False, random_state=42).fit(proj_[mask,:1]).covariance_
+            d_crit = scipy.stats.chi2.ppf(1.0 - alpha, 2)
+            ellipse_data['none'] = (class_center, S, d_crit)
+          else:
+            class_center, S, d_crit = ellipse_data['none']
+
+          cutoff = soft_boundary_1d(
+            class_center, S, d_crit,
+            rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
+            rbins=100,
+          )
+          ax.plot([i+1-0.2, i+1+0.2], [cutoff[0], cutoff[0]], color=f'C{i}', lw=1)
+          ax.plot([i+1-0.2, i+1+0.2], [cutoff[1], cutoff[1]], color=f'C{i}', lw=1)
+
         ax.set_xlabel('Class')
         ax.set_xlim(0, len(cats)+1)
         ax.set_xticks(np.arange(1, len(cats)+1), cats, rotation=90)
@@ -316,8 +332,10 @@ if (test_size > 0):
       ax.legend(fontsize=6, loc='upper right')
       configure_plot(ax)
 
+      ellipse_alpha = st.slider(label=r"Type I error rate ($\alpha$) for ellipse.", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
+
       fig, ax = plt.subplots(nrows=1, ncols=1)
-      ax = plot_proj(ax, X_train, y_train, train=True)
+      ax = plot_proj(ax, X_train, y_train, train=True, alpha=ellipse_alpha)
       configure_plot(ax)
 
     with col2sub:
@@ -328,6 +346,8 @@ if (test_size > 0):
       ax.set_title('Test Set')
       ax.legend(fontsize=6, loc='upper right')
       configure_plot(ax)
+
+      add_vertical_space(2)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
       ax = plot_proj(ax, X_test, y_test, train=False)

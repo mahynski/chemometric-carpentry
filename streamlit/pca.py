@@ -170,7 +170,7 @@ if (test_size > 0):
       fig, ax = plt.subplots(nrows=1, ncols=1)
       ax = model.visualize(X_train, ax=ax)
       ax.set_title('Training Set')
-      ax.legend(fontsize=6)
+      ax.legend(fontsize=6, loc='top right')
       configure_plot(ax)
 
     with col2sub:

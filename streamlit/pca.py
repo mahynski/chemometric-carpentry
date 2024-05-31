@@ -3,6 +3,7 @@ Interactive demonstration of PCA and PCR.
 Author: Nathan A. Mahynski
 """
 import sklearn
+import scipy
 
 import numpy as np
 import pandas as pd

@@ -225,7 +225,7 @@ if uploaded_file is not None:
       p.legend.location = "top_center"
       p.hover.renderers = [r]
 
-      st.bokeh_chart(p)
+      st.bokeh_chart(p, use_container_width=True)
 
       return fig
 
@@ -235,7 +235,7 @@ if uploaded_file is not None:
     fig = recompute()
 
   with col2:
-    st.pyplot(fig)
+    st.pyplot(fig, use_container_width=True)
   # st.bokeh_chart(p)
 
 # periods = ["I", "II", "III", "IV", "V", "VI", "VII"]

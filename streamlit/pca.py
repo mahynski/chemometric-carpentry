@@ -168,7 +168,7 @@ if (test_size > 0):
       st.subheader('Training Set')
         
       fig, ax = plt.subplots(nrows=1, ncols=1)
-      ax = model.visualize(X, ax=ax)
+      ax = model.visualize(X_train, ax=ax)
 
 #       _ = ax.plot(y_train, model.predict(X_train), 'o', ms=1)
 #       _ = ax.plot(y_train, y_train, '-', color='k', lw=1)

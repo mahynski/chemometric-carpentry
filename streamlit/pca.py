@@ -300,7 +300,7 @@ if (test_size > 0):
           ax.plot([1]*np.sum(mask), proj_[:,0], 'o')
 
         ax.set_xlabel('Class')
-        ax.set_xlim(0, len(cats)+2)
+        ax.set_xlim(0, len(cats)+1)
         ax.set_xticks(np.arange(1, len(cats)+1), cats, rotation=90)
         ax.set_ylabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
 

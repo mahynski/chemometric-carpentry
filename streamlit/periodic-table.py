@@ -131,6 +131,7 @@ if uploaded_file is not None:
       feature_names=X.columns,
       display=True,
       t=st.session_state.t_value, 
+      highlight=False
     )
 
     cm_ = matplotlib.colormaps["rainbow"].resampled(
@@ -223,10 +224,14 @@ if uploaded_file is not None:
 
     st.bokeh_chart(p)
 
+    return fig
+
   # Color things for the first time
   
   t_value = st.slider("t value", min_value=0.0, max_value=2.0, value=0.0, step=0.1, key="t_value")#, on_change=recompute)
-  recompute()
+  fig = recompute()
+
+  st.pyplot(fig)
   # st.bokeh_chart(p)
 
 # periods = ["I", "II", "III", "IV", "V", "VI", "VII"]

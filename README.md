@@ -74,6 +74,8 @@
     * Pipelines
     * Evaluation Metrics
     * Cross-Validation 
+    * Interactive Tools
+        * [Trace Element Correlations](https://chemometric-carpentry-periodic-table.streamlit.app/)
 3. [Pre-processing](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/3_Preprocessing.ipynb)
     * Scaling and Centering
     * Filtering

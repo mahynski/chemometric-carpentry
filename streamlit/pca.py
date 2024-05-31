@@ -25,7 +25,7 @@ with st.sidebar:
     st.title('PCA: Principal Components Analysis')
     st.markdown('''
     ## About this application
-    This tool uses the [PyChemAuth]https://pychemauth.readthedocs.io/en/latest/index.html) python 
+    This tool uses the [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/index.html) python 
     package for analysis.
     
     :heavy_check_mark: It is intended as a teaching tool to demonstrate the use of PCA for modeling data.

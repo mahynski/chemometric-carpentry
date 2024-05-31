@@ -170,34 +170,18 @@ if (test_size > 0):
       fig, ax = plt.subplots(nrows=1, ncols=1)
       ax = model.visualize(X_train, ax=ax)
       ax.set_title('Training Set')
+      ax.legend(fontsize=6)
       configure_plot(ax)
 
-#       fig, ax = plt.subplots(nrows=1, ncols=1)
-#       resid = model.predict(X_train) - y_train
-#       _ = ax.hist(resid, bins=20, density=True)
-#       ax.set_xlabel(r'$y_{predicted} - y_{actual}$')
-#       ax.set_ylabel('Frequency')
-#       fit_gaussian(resid, ax)
-#       configure_plot(ax)
+    with col2sub:
+      st.subheader('Test Set')
 
-#     with col2sub:
-#       st.subheader('Test Set')
+      fig, ax = plt.subplots(nrows=1, ncols=1)
+      ax = model.visualize(X_test, ax=ax)
+      ax.set_title('Test Set')
+      ax.legend(fontsize=6)
+      configure_plot(ax)
 
-#       fig, ax = plt.subplots(nrows=1, ncols=1)
-#       _ = ax.plot(y_test, model.predict(X_test), 'o', ms=1)
-#       _ = ax.plot(y_test, y_test, '-', color='k', lw=1)
-#       ax.set_xlabel('Actual Value')
-#       ax.set_ylabel('Predicted Value')
-#       ax.set_title(r'Test Set ($R^2=$'+f"{'%.3f'%model.score(X_test, y_test)})")
-#       configure_plot(ax)
-
-#       fig, ax = plt.subplots(nrows=1, ncols=1)
-#       resid = model.predict(X_test) - y_test
-#       _ = ax.hist(resid, bins=20, density=True)
-#       ax.set_xlabel(r'$y_{predicted} - y_{actual}$')
-#       ax.set_ylabel('Frequency')
-#       fit_gaussian(resid, ax)
-#       configure_plot(ax)
 
 #   with coef_tab:
 #     fig, ax = plt.subplots()

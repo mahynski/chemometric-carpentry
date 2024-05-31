@@ -169,7 +169,7 @@ if (test_size > 0):
         
       fig, ax = plt.subplots(nrows=1, ncols=1)
       ax = model.visualize(X_train, ax=ax)
-      ax.set_title(r'Training Set")
+      ax.set_title('Training Set')
       configure_plot(ax)
 
 #       fig, ax = plt.subplots(nrows=1, ncols=1)

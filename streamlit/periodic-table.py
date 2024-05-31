@@ -108,7 +108,7 @@ if uploaded_file is not None:
       height=300,
       x_range=groups,
       y_range=list(reversed(periods)),
-      tools="hover" if st.session_state.mouseover else "",
+      tools="", #hover" if st.session_state.mouseover else "",
       toolbar_location=None,
       tooltips=TOOLTIPS if hover else None,
     )

@@ -38,7 +38,18 @@ with st.sidebar:
     st.write('Made by ***Nate Mahynski***')
     st.write('nathan.mahynski@nist.gov')
 
-step = 0.1
+st.header("Overview")
+
+st.markdown('''
+  Collinear features can cause [confusion in models and explanation tools alike](https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html). 
+  It is usually best to try to decorrelate your features as much as possible before modeling.
+  One way to identify and remove multicollinear features is by:
+  
+  1. performing [hierarchical clustering](https://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering) on the [Spearman rank-order correlations](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) between them, 
+  2. picking a threshold, and 
+  3. keeping only a single feature from each cluster.
+
+''')
 
 st.header("Upload Your Data")
 

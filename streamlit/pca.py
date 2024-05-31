@@ -173,17 +173,30 @@ if (test_size > 0):
       ax.legend(fontsize=6, loc='upper right')
       configure_plot(ax)
 
+      fig, ax = plt.subplots(nrows=1, ncols=1)
+      if n_components >= 2:
+        proj_ = model.transform(X_train)[:,:2]
+        if target_columns is not None:
+          cats = (dataframe[target_column].unique())
+          for cat in cats:
+            ax.plot(proj_[:,0], proj_[:,1], 'o', label=cat)
+          ax.legend(fontsize=6, loc='best')
+        else:
+          ax.plot(proj_[:,0], proj_[:,1], 'o')
+      configure_plot(ax)
+        
+
     with col2sub:
       st.subheader('Test Set')
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
       ax = model.visualize(X_test, ax=ax)
       ax.set_title('Test Set')
-      ax.legend(fontsize=6)
+      ax.legend(fontsize=6, loc='upper right')
       configure_plot(ax)
 
 
-#   with coef_tab:
+#   with load_tab:
 #     fig, ax = plt.subplots()
 #     ranked_features = sorted(zip(model.coef_, feature_names), key=lambda x:np.abs(x[0]), reverse=True)
 #     _ = ax.bar(

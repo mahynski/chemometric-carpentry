@@ -176,6 +176,7 @@ if (test_size > 0):
       fig.set_size_inches(*size)
       st.pyplot(fig, use_container_width=False)
 
+    ellipse_data = {}
     def plot_proj(ax, X, y=None, train=True):
       fig, ax = plt.subplots(nrows=1, ncols=1)
       proj_ = model.transform(X)
@@ -190,10 +191,10 @@ if (test_size > 0):
               class_center = np.mean(proj_[mask,:2], axis=0)
               S = MinCovDet(assume_centered=False, random_state=42).fit(proj_[mask,:2]).covariance_
               d_crit = scipy.stats.chi2.ppf(1.0 - alpha, 2)
-              ellipse[cat] = (class_center, S, d_crit)
+              ellipse_data[cat] = (class_center, S, d_crit)
             else:
-              class_center, S, d_crit = ellipse[cat]
-              
+              class_center, S, d_crit = ellipse_data[cat]
+
             cutoff = soft_boundary_2d(
               class_center, S, d_crit,
               rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,

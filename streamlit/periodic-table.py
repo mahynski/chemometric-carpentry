@@ -81,7 +81,9 @@ def create(doc):
       tooltips=TOOLTIPS if hover else None,
   )
 
-# st.bokeh_chart(create, use_container_width=True)
+  return p
+
+st.bokeh_chart(create, use_container_width=True)
 
 periods = ["I", "II", "III", "IV", "V", "VI", "VII"]
 groups = [str(x) for x in range(1, 19)]

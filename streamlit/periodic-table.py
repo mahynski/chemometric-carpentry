@@ -269,5 +269,5 @@ if uploaded_file is not None:
         T=T
       )
 
-  res = pd.DataFrame(data=[[element, categorizer(element)] for element in best_choices], columns=['Element', 'Period']}
+  res = pd.DataFrame(data=[[element, categorizer(element)] for element in best_choices], columns=['Element', 'Period'])
   st.dataframe(res)

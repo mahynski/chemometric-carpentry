@@ -45,13 +45,72 @@ uploaded_file = st.file_uploader(
 
 st.divider()
 
-# Select elements from whatever is provided.
-X = pd.read_csv(uploaded_file)
-known_elements = [str(e).lower() for e in elements.copy().symbol.values]
-used_elements = [
-  str(c) for c in X.columns if str(c).lower() in known_elements
-]
-X = X[used_elements]
+if uploaded_file is not None:
+  # Select elements from whatever is provided.
+  X = pd.read_csv(uploaded_file)
+  known_elements = [str(e).lower() for e in elements.copy().symbol.values]
+  used_elements = [
+    str(c) for c in X.columns if str(c).lower() in known_elements
+  ]
+  X = X[used_elements]
+
+  # Create the periodic table
+  periods = ["I", "II", "III", "IV", "V", "VI", "VII"]
+  groups = [str(x) for x in range(1, 19)]
+
+  df = elements.copy()
+  df["atomic mass"] = df["atomic mass"].astype(str)
+  df["group"] = df["group"].astype(str)
+  df["period"] = [periods[x - 1] for x in df.period]
+  df = df[df.group != "-"]
+  df = df[df.symbol != "Lr"]
+  df = df[df.symbol != "Lu"]
+
+  # For coloring
+  df["cluster"] = ["0"] * df.shape[0]
+
+  source = ColumnDataSource(df)
+
+  TOOLTIPS = [
+    ("Name", "@name"),
+    ("Atomic number", "@{atomic number}"),
+    ("Atomic mass (amu) ", "@{atomic mass}"),
+    ("Type", "@metal"),
+    ("CPK color", "$color[hex, swatch]:CPK"),
+    ("Electronic configuration", "@{electronic configuration}"),
+    ("Electronegativity", "@electronegativity"),
+    ("Atomic Radius (pm)", "@{atomic radius}"),
+    ("Ion Radius (pm)", "@{ion radius}"),
+    ("VdW Radius (pm)", "@{van der Waals radius}"),
+    ("Standard State", "@{standard state}"),
+    ("Bonding Type", "@{bonding type}"),
+    ("Melting Point (K)", "@{melting point}"),
+    ("Boiling Point (K)", "@{boiling point}"),
+    ("Density (g/m^3)", "@density"),
+  ]
+
+  p = figure(
+    title="",
+    width=1000,
+    height=450,
+    x_range=groups,
+    y_range=list(reversed(periods)),
+    tools="hover" if hover else "",
+    toolbar_location=None,
+    tooltips=TOOLTIPS if hover else None,
+  )
+
+  t_slider = Slider(
+                  start=0,
+                  end=2,
+                  value=0,  # Start visualization from t=0
+                  step=0.1,
+                  title="t value",
+              )
+  # t_slider.on_change("value", recompute)
+  st.bokeh_chart(t_slider)
+  st.bokeh_chart(p)
+
 
 # periods = ["I", "II", "III", "IV", "V", "VI", "VII"]
 # groups = [str(x) for x in range(1, 19)]

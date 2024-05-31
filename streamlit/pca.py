@@ -213,6 +213,12 @@ if (test_size > 0):
       ax.legend(fontsize=6, loc='upper right')
       configure_plot(ax)
 
+      fig, ax = plt.subplots(nrows=1, ncols=1)
+      ax = plot_proj(ax, X_test, y_test)
+      ax.set_xlabel(f'PC 1 ({"%.2f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
+      ax.set_ylabel(f'PC 2 ({"%.2f"%(100*model._PCA__pca_.explained_variance_ratio_[1])}%)')
+      configure_plot(ax)
+
 
 #   with load_tab:
 #     fig, ax = plt.subplots()

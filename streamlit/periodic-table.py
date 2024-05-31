@@ -245,7 +245,7 @@ if uploaded_file is not None:
     
   st.divider()
 
-  col1, col2 = st.columns(2)
+  col1, col2, col3 = st.columns([3, 3, 1])
 
   with col2:
     n_restarts = st.slider("Number of restarts", 0, 100, value=10)
@@ -268,6 +268,7 @@ if uploaded_file is not None:
         max_iters=max_iters,
         T=T
       )
-
-  res = pd.DataFrame(data=[[element, categorizer(element)] for element in best_choices], columns=['Element', 'Period'])
-  st.dataframe(res)
+      
+  with col3:
+    res = pd.DataFrame(data=[[element, categorizer(element)] for element in best_choices], columns=['Element', 'Period'])
+    st.dataframe(res)

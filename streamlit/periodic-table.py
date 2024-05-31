@@ -244,4 +244,18 @@ if uploaded_file is not None:
     st.pyplot(fig, use_container_width=True)
     
   st.divider()
-  
+
+  def categorizer(element_symbol):
+    from bokeh.sampledata.periodic_table import elements
+    period = int(elements['period'][elements['symbol'] == element_symbol])
+    return period
+
+  best_choices = InspectData.minimize_cluster_label_entropy(
+    cluster_id_to_feature_ids,
+    categorizer,
+    X=X,
+    seed=0,
+    n_restarts=10,
+    max_iters=1000,
+    T=0.25
+  )

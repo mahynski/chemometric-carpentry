@@ -259,3 +259,5 @@ if uploaded_file is not None:
     max_iters=100,
     T=0.25
   )
+
+  wt.write(best_choices)

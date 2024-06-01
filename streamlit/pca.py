@@ -263,7 +263,7 @@ if (test_size > 0):
 
             cutoff = soft_boundary_2d(
               class_center, S, d_crit,
-              rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 2.0,
+              rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
               rbins=100,
               tbins=180,
             )
@@ -278,7 +278,7 @@ if (test_size > 0):
             largest_evec = ordered[0][1]
             angle = np.arctan2(largest_evec[1], largest_evec[0])*180.0/np.pi
             st.write(angle, class_center, d_crit, ordered[0][0], ordered[1][0])
-            ell = Ellipse(xy=class_center, width=np.sqrt(ordered[0][0])*d_crit/1.2, height=np.sqrt(ordered[1][0])*d_crit/1.2, angle=angle)
+            ell = Ellipse(xy=class_center, width=np.sqrt(ordered[0][0]*d_crit), height=np.sqrt(ordered[1][0]*d_crit), angle=angle)
             ax.add_artist(ell)
 
 

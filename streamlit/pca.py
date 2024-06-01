@@ -267,7 +267,8 @@ if (test_size > 0):
               rbins=100,
               tbins=180,
             )
-            ax.plot(cutoff[:, 0], cutoff[:, 1], color=f'C{i}', lw=1)
+            # ax.plot(cutoff[:, 0], cutoff[:, 1], color=f'C{i}', lw=1)
+
 
 
             from matplotlib.patches import Ellipse

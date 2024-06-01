@@ -279,7 +279,7 @@ if (test_size > 0):
             angle = np.arctan2(largest_evec[1], largest_evec[0])*180.0/np.pi
             k = np.sqrt(-2*np.log(alpha))
             st.write(S, k)
-            ell = Ellipse(xy=class_center, width=np.sqrt(ordered[0][0])*k, height=np.sqrt(ordered[1][0])*k, angle=angle)
+            ell = Ellipse(xy=class_center, width=np.sqrt(ordered[0][0])*k*2, height=np.sqrt(ordered[1][0])*k*2, angle=angle)
             ax.add_artist(ell)
 
 

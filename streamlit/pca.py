@@ -267,7 +267,7 @@ if (test_size > 0):
               rbins=100,
               tbins=180,
             )
-            ax.plot(cutoff[:, 0], cutoff[:, 1], color=f'C{i}', lw=1)
+            # ax.plot(cutoff[:, 0], cutoff[:, 1], color=f'C{i}', lw=1)
 
 
 
@@ -279,7 +279,7 @@ if (test_size > 0):
             k = np.sqrt(-2*np.log(alpha))
             ell = Ellipse(xy=class_center, width=np.sqrt(ordered[0][0])*k*2, height=np.sqrt(ordered[1][0])*k*2, angle=angle)
             ax.add_artist(ell)
-            ell.set_clip_box(ax.bbox)
+            # ell.set_clip_box(ax.bbox)
             ell.set_alpha(0.3)
             ell.set_facecolor(f'C{i}')
 

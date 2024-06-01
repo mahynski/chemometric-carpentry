@@ -267,7 +267,7 @@ if (test_size > 0):
               rbins=100,
               tbins=180,
             )
-            ax.plot(cutoff[:, 0], cutoff[:, 1], color=f'C{i}', lw=1, alpha=0.3) # best to use boundary too because it helps with plotting
+            ax.plot(cutoff[:, 0], cutoff[:, 1], color=f'C{i}', lw=1, alpha=0.0) # best to use boundary too because it helps with plotting
 
 
 

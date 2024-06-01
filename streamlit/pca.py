@@ -273,14 +273,14 @@ if (test_size > 0):
             from matplotlib.patches import Ellipse
             evals, evecs = np.linalg.eig(S)
             ordered = sorted(zip(evals, evecs.T), key=lambda x:x[0], reverse=True)
-            st.write(ordered)
-            largest_eval = ordered[0][0]
             largest_evec = ordered[0][1]
             angle = np.arctan2(largest_evec[1], largest_evec[0])*180.0/np.pi
             k = np.sqrt(-2*np.log(alpha))
-            st.write(S, k)
             ell = Ellipse(xy=class_center, width=np.sqrt(ordered[0][0])*k*2, height=np.sqrt(ordered[1][0])*k*2, angle=angle)
             ax.add_artist(ell)
+            ell.set_clip_box(ax.bbox)
+            ell.set_alpha(0.3)
+            ell.set_facecolor(f'C{i}')
 
 
 

@@ -282,6 +282,7 @@ if (test_size > 0):
             # ell.set_clip_box(ax.bbox)
             ell.set_alpha(0.3)
             ell.set_facecolor(f'C{i}')
+            ell.set_edgecolor('k')
 
 
 

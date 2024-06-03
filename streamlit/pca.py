@@ -314,7 +314,7 @@ if (test_size > 0):
     with col2a:
       fig, ax = plt.subplots()
       ax.plot([i+1 for i in range(len(model._PCA__pca_.components_))], model._PCA__pca_.explained_variance_ratio_.cumsum(), label='Cumulative', color='k')
-      ax.bar(x=[i+1 for i in range(len(model._PCA__pca_.components_))], height=pca.explained_variance_ratio_)
+      ax.bar(x=[i+1 for i in range(len(model._PCA__pca_.components_))], height=model._PCA__pca_.explained_variance_ratio_)
       ax.set_xticks([i+1 for i in range(len(model._PCA__pca_.components_))])
       ax.set_ylabel('Explained Variance Ratio')
       ax.set_xlabel('Principal Component')

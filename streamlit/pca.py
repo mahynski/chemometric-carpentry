@@ -255,15 +255,17 @@ if (test_size > 0):
 
     col1sub, col2sub = st.columns([2, 2])
     with col1sub:
-      st.subheader('Training Set')
-        
       ellipse_alpha = st.slider(label=r"Type I error rate ($\alpha$) for ellipse.", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
+    with col2sub:
       covar_method = st.selectbox("How should the covariance be computed?", ("Minimum Covariance Determinant", "Empirical"), index=0)
       if covar_method == "Minimum Covariance Determinant":
         covar_method = 'mcd'
       else:
         covar_method = 'empirical'
 
+    col1sub, col2sub = st.columns([2, 2])
+    with col1sub:
+      st.subheader('Training Set')
       fig, ax = plt.subplots(nrows=1, ncols=1)
       ax = plot_proj(ax, X_train, y_train, train=True, alpha=ellipse_alpha, covar_method=covar_method)
       configure_plot(ax)

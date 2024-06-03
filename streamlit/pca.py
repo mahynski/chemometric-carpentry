@@ -267,6 +267,7 @@ if (test_size > 0):
     with col1sub:
       st.subheader('Training Set')
       fig, ax = plt.subplots(nrows=1, ncols=1)
+      st.write(target_column)
       ax = plot_proj(ax, X_train, None if target_column is None else y_train, train=True, alpha=ellipse_alpha, covar_method=covar_method)
       configure_plot(ax)
 

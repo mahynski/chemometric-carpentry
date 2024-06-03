@@ -324,16 +324,16 @@ if (test_size > 0):
             else:
               class_center, S, d_crit = ellipse_data[cat]
 
-            # cutoff = soft_boundary_1d(
-            #   class_center, S, d_crit,
-            #   rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
-            #   rbins=100,
-            # )
+            cutoff = soft_boundary_1d(
+              class_center, S, d_crit,
+              rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
+              rbins=100,
+            )
 
-            k = np.sqrt(-2*np.log(alpha))
-            l1 = np.sqrt(np.linalg.eig(S)[0][0])
+            # k = np.sqrt(-2*np.log(alpha))
+            # l1 = np.sqrt(np.linalg.eig(S)[0][0])
 
-            cutoff = [class_center - l1*k, class_center + l1*k]
+            # cutoff = [class_center - l1*k, class_center + l1*k]
 
 
 

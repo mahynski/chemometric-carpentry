@@ -335,7 +335,7 @@ if (test_size > 0):
 
             k = np.sqrt(-2*np.log(alpha))
             l1 = np.sqrt(np.linalg.eig(S)[0][0])
-            cutoff = [class_center - np.sqrt(d_crit)*np.sqrt(S[0][0]), class_center + np.sqrt(d_crit)*np.std(proj_[mask])]
+            cutoff = [class_center - np.sqrt(d_crit)*np.sqrt(S[0][0]), class_center + np.sqrt(d_crit)*np.sqrt(S[0][0])]
 
             ax.plot([i+1-0.4, i+1+0.4], [cutoff[0], cutoff[0]], color='k', lw=1)
             ax.plot([i+1-0.4, i+1+0.4], [cutoff[1], cutoff[1]], color='k', lw=1)

@@ -326,5 +326,3 @@ if (test_size > 0):
 
       st.write('The detailed SFT history is given here:')
       st.write(model.sft_history['iterations'])
-
-      

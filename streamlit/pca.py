@@ -196,33 +196,9 @@ if (test_size > 0):
       fig.set_size_inches(*size)
       st.pyplot(fig, use_container_width=False)
 
-    # def soft_boundary_1d(class_center, S, d_crit, rmax=10.0, rbins=1000):
-    #   def estimate_boundary(rmax, rbins):
-    #     cutoff = []
-    #     # For each center, choose a systematic orientation
-    #     for direction in [+1, -1]:
-    #       # Walk "outward" until you meet the threshold
-    #       for r in np.linspace(0, rmax, rbins):
-    #         sPC = class_center + r * direction
-    #         d = np.matmul(
-    #               np.matmul(
-    #                 (sPC - class_center),
-    #                 np.linalg.inv(S),
-    #               ),
-    #               (sPC - class_center).reshape(-1, 1),
-    #             )[0]
-    #         if d > d_crit:
-    #           cutoff.append(sPC)
-    #           break
-
-    #     return np.array(cutoff)
-
-    #   cutoff = estimate_boundary(rmax=rmax, rbins=rbins)
-    #   return cutoff
-
     ellipse_data = {}
     cov_ell = {}
-    def plot_proj(ax, X, y=None, train=True, alpha=0.05):
+    def plot_proj(ax, X, covar_method, y=None, train=True, alpha=0.05):
       fig, ax = plt.subplots(nrows=1, ncols=1)
       proj_ = model.transform(X)
       if n_components >= 2: # 2d plot
@@ -232,7 +208,7 @@ if (test_size > 0):
             mask = cat == y
             ax.plot(proj_[mask,0], proj_[mask,1], 'o', label=cat, color=f'C{i}', ms=1)
             if train:
-              ellipse = CovarianceEllipse(method='mcd').fit(proj_[mask,:2])
+              ellipse = CovarianceEllipse(method=covar_method).fit(proj_[mask,:2])
               cov_ell[i] = ellipse
             else:
               ellipse = cov_ell[i]
@@ -241,7 +217,7 @@ if (test_size > 0):
         else:
           ax.plot(proj_[:,0], proj_[:,1], 'o')
           if train:
-            ellipse = CovarianceEllipse(method='mcd').fit(proj_[:,:2])
+            ellipse = CovarianceEllipse(method=covar_method).fit(proj_[:,:2])
             cov_ell[i] = ellipse
           else:
             ellipse = cov_ell[i]
@@ -255,7 +231,7 @@ if (test_size > 0):
             mask = cat == y
             ax.plot([i+1]*np.sum(mask), proj_[mask,0], 'o', label=cat, color=f'C{i}', ms=1)
             if train:
-              rectangle = OneDimLimits(method='mcd').fit(proj_[mask,:1])
+              rectangle = OneDimLimits(method=covar_method).fit(proj_[mask,:1])
               cov_ell[i] = rectangle
             else:
               rectangle = cov_ell[i]
@@ -264,7 +240,7 @@ if (test_size > 0):
         else:
           ax.plot([1]*np.sum(mask), proj_[:,0], 'o')
           if train:
-            rectangle = OneDimLimits(method='mcd').fit(proj_[:,0])
+            rectangle = OneDimLimits(method=covar_method).fit(proj_[:,0])
             cov_ell[i] = rectangle
           else:
             rectangle = cov_ell[i]
@@ -282,9 +258,14 @@ if (test_size > 0):
       st.subheader('Training Set')
         
       ellipse_alpha = st.slider(label=r"Type I error rate ($\alpha$) for ellipse.", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
+      covar_method = st.selectbox("How should the covariance be computed?", ("Minimum Covariance Determinant", "Empirical"), index=0)
+      if covar_method == "Minimum Covariance Determinant":
+        covar_method = 'mcd'
+      else:
+        covar_method = 'empirical'
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
-      ax = plot_proj(ax, X_train, y_train, train=True, alpha=ellipse_alpha)
+      ax = plot_proj(ax, X_train, y_train, train=True, alpha=ellipse_alpha, covar_method=covar_method)
       configure_plot(ax)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
@@ -296,10 +277,10 @@ if (test_size > 0):
     with col2sub:
       st.subheader('Test Set')
 
-      add_vertical_space(6)
+      add_vertical_space(12)
       
       fig, ax = plt.subplots(nrows=1, ncols=1)
-      ax = plot_proj(ax, X_test, y_test, train=False, alpha=ellipse_alpha)
+      ax = plot_proj(ax, X_test, y_test, train=False, alpha=ellipse_alpha, covar_method=covar_method)
       configure_plot(ax)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)

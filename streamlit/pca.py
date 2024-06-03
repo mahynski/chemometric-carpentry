@@ -196,29 +196,6 @@ if (test_size > 0):
       fig.set_size_inches(*size)
       st.pyplot(fig, use_container_width=False)
 
-    # def soft_boundary_2d(class_center, S, d_crit, rmax=10.0, rbins=1000, tbins=90):
-    #   def estimate_boundary(rmax, rbins, tbins):
-    #     cutoff = []
-    #     for theta in np.linspace(0, 2 * np.pi, tbins):
-    #       for r in np.linspace(0, rmax, rbins):
-    #         sPC = class_center + r * np.array([np.cos(theta), np.sin(theta)])
-
-    #         d = np.matmul(
-    #               np.matmul(
-    #                 (sPC - class_center),
-    #                 np.linalg.inv(S),
-    #               ),
-    #               (sPC - class_center).reshape(-1, 1),
-    #             )[0]
-    #         if d > d_crit:
-    #           cutoff.append(sPC)
-    #           break
-
-    #     return np.array(cutoff)
-
-    #   cutoff = estimate_boundary(rmax=rmax, rbins=rbins, tbins=tbins)
-    #   return cutoff
-
     def soft_boundary_1d(class_center, S, d_crit, rmax=10.0, rbins=1000):
       def estimate_boundary(rmax, rbins):
         cutoff = []
@@ -282,8 +259,13 @@ if (test_size > 0):
               S = MinCovDet(assume_centered=False, random_state=42).fit(proj_[mask,:1]).covariance_
               d_crit = scipy.stats.chi2.ppf(1.0 - alpha, 1)
               ellipse_data[cat] = (class_center, S, d_crit)
+
+              rect = OneDimLimits(method='mcd').fit(proj_[mask,:1])
+              cov_ell[i] = rect
             else:
               class_center, S, d_crit = ellipse_data[cat]
+
+              rect = cov_ell[i]
 
             cutoff = soft_boundary_1d(
               class_center, S, d_crit,
@@ -305,6 +287,8 @@ if (test_size > 0):
             ax.plot([i+1-0.4, i+1+0.4], [cutoff[0], cutoff[0]], color='k', lw=1)
             ax.plot([i+1-0.4, i+1+0.4], [cutoff[1], cutoff[1]], color='k', lw=1)
 
+
+            ax = rect.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
 
           ax.legend(fontsize=6, loc='best')
         else:

@@ -261,7 +261,7 @@ if (test_size > 0):
               d_crit = scipy.stats.chi2.ppf(1.0 - alpha, 2)
               ellipse_data[cat] = (class_center, S, d_crit)
 
-              ellipse = CovarianceEllipse().fit(proj_[mask,:2])
+              ellipse = CovarianceEllipse(method='mcd').fit(proj_[mask,:2])
               cov_ell[i] = ellipse
             else:
               class_center, S, d_crit = ellipse_data[cat]

@@ -218,9 +218,9 @@ if (test_size > 0):
           ax.plot(proj_[:,0], proj_[:,1], 'o')
           if train:
             ellipse = CovarianceEllipse(method=covar_method).fit(proj_[:,:2])
-            cov_ell[i] = ellipse
+            cov_ell['none'] = ellipse
           else:
-            ellipse = cov_ell[i]
+            ellipse = cov_ell['none']
           ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
         ax.set_xlabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
         ax.set_ylabel(f'PC 2 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[1])}%)')
@@ -241,9 +241,9 @@ if (test_size > 0):
           ax.plot([1]*np.sum(mask), proj_[:,0], 'o')
           if train:
             rectangle = OneDimLimits(method=covar_method).fit(proj_[:,0])
-            cov_ell[i] = rectangle
+            cov_ell['none'] = rectangle
           else:
-            rectangle = cov_ell[i]
+            rectangle = cov_ell['none']
           ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
 
         ax.set_xlabel('Class')
@@ -267,7 +267,6 @@ if (test_size > 0):
     with col1sub:
       st.subheader('Training Set')
       fig, ax = plt.subplots(nrows=1, ncols=1)
-      st.write(target_column)
       ax = plot_proj(ax, X_train, None if target_column is None else y_train, train=True, alpha=ellipse_alpha, covar_method=covar_method)
       configure_plot(ax)
 

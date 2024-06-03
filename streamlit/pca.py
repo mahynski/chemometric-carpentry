@@ -327,7 +327,7 @@ if (test_size > 0):
             cutoff = soft_boundary_1d(
               class_center, S, d_crit,
               rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
-              rbins=100,
+              rbins=500,
             )
 
             # k = np.sqrt(-2*np.log(alpha))

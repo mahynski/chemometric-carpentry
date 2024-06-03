@@ -319,16 +319,27 @@ if (test_size > 0):
             if train:
               class_center = np.mean(proj_[mask,:1], axis=0)
               S = MinCovDet(assume_centered=False, random_state=42).fit(proj_[mask,:1]).covariance_
-              d_crit = scipy.stats.chi2.ppf(1.0 - alpha, 2)
+              d_crit = scipy.stats.chi2.ppf(1.0 - alpha, 1)
               ellipse_data[cat] = (class_center, S, d_crit)
             else:
               class_center, S, d_crit = ellipse_data[cat]
 
-            cutoff = soft_boundary_1d(
-              class_center, S, d_crit,
-              rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
-              rbins=100,
-            )
+            # cutoff = soft_boundary_1d(
+            #   class_center, S, d_crit,
+            #   rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
+            #   rbins=100,
+            # )
+
+            k = np.sqrt(-2*np.log(alpha))
+            l1 = np.linalg.eig(S)[0][0]
+
+            cutoff = [class_center - l1*k, class_center + l1*k]
+
+
+
+
+
+
             ax.plot([i+1-0.2, i+1+0.2], [cutoff[0], cutoff[0]], color=f'C{i}', lw=1)
             ax.plot([i+1-0.2, i+1+0.2], [cutoff[1], cutoff[1]], color=f'C{i}', lw=1)
 

@@ -220,6 +220,7 @@ if (test_size > 0):
       cutoff = estimate_boundary(rmax=rmax, rbins=rbins)
       return cutoff
 
+    ellipse_data = {}
     cov_ell = {}
     def plot_proj(ax, X, y=None, train=True, alpha=0.05):
       fig, ax = plt.subplots(nrows=1, ncols=1)

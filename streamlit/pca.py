@@ -291,23 +291,27 @@ if (test_size > 0):
       configure_plot(ax)
 
   with load_tab:
-    if n_components >= 2:
-      fig, ax = plt.subplots(nrows=1, ncols=1)
-      ax = model.plot_loadings(feature_names, ax=ax)
-      for txt in ax.texts:
-        txt.set_fontsize(6)
-      configure_plot(ax)
-    else:
-      fig, ax = plt.subplots()
-      ranked_features = sorted(zip(model._PCA__pca_.components_[0], feature_names), key=lambda x:np.abs(x[0]), reverse=True)
-      _ = ax.bar(
-        x=np.arange(1, len(model._PCA__pca_.components_[0])+1),
-        height=[x[0] for x in ranked_features],
-        align='center'
-      )
-      ax.set_xticks(np.arange(1, len(model._PCA__pca_.components_[0])+1), [x[1] for x in ranked_features], rotation=90)
-      configure_plot(ax, size=(int(round(len(model._PCA__pca_.components_[0])/4.)),2))
+    col1a, col2a = st.columns(2)
 
+    with col1a:
+      if n_components >= 2:
+        fig, ax = plt.subplots(nrows=1, ncols=1)
+        ax = model.plot_loadings(feature_names, ax=ax)
+        for txt in ax.texts:
+          txt.set_fontsize(6)
+        configure_plot(ax)
+      else:
+        fig, ax = plt.subplots()
+        ranked_features = sorted(zip(model._PCA__pca_.components_[0], feature_names), key=lambda x:np.abs(x[0]), reverse=True)
+        _ = ax.bar(
+          x=np.arange(1, len(model._PCA__pca_.components_[0])+1),
+          height=[x[0] for x in ranked_features],
+          align='center'
+        )
+        ax.set_xticks(np.arange(1, len(model._PCA__pca_.components_[0])+1), [x[1] for x in ranked_features], rotation=90)
+        configure_plot(ax, size=(int(round(len(model._PCA__pca_.components_[0])/4.)),2))
+    
+    with col2a:
       fig, ax = plt.subplots()
       ax.plot([i+1 for i in range(len(model._PCA__pca_.components_))], model._PCA__pca_.explained_variance_ratio_.cumsum(), label='Cumulative', color='k')
       ax.bar(x=[i+1 for i in range(len(model._PCA__pca_.components_))], height=pca.explained_variance_ratio_)

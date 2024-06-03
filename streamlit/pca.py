@@ -255,9 +255,9 @@ if (test_size > 0):
 
     col1sub, col2sub = st.columns([2, 2])
     with col1sub:
-      ellipse_alpha = st.slider(label=r"Type I error rate ($\alpha$) for ellipse.", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
+      ellipse_alpha = st.slider(label=r"Type I error rate ($\alpha$) for class ellipses.", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
     with col2sub:
-      covar_method = st.selectbox("How should the covariance be computed?", ("Minimum Covariance Determinant", "Empirical"), index=0)
+      covar_method = st.selectbox("How should class covariances be computed?", ("Minimum Covariance Determinant", "Empirical"), index=0)
       if covar_method == "Minimum Covariance Determinant":
         covar_method = 'mcd'
       else:

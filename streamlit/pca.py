@@ -196,29 +196,29 @@ if (test_size > 0):
       fig.set_size_inches(*size)
       st.pyplot(fig, use_container_width=False)
 
-    def soft_boundary_1d(class_center, S, d_crit, rmax=10.0, rbins=1000):
-      def estimate_boundary(rmax, rbins):
-        cutoff = []
-        # For each center, choose a systematic orientation
-        for direction in [+1, -1]:
-          # Walk "outward" until you meet the threshold
-          for r in np.linspace(0, rmax, rbins):
-            sPC = class_center + r * direction
-            d = np.matmul(
-                  np.matmul(
-                    (sPC - class_center),
-                    np.linalg.inv(S),
-                  ),
-                  (sPC - class_center).reshape(-1, 1),
-                )[0]
-            if d > d_crit:
-              cutoff.append(sPC)
-              break
+    # def soft_boundary_1d(class_center, S, d_crit, rmax=10.0, rbins=1000):
+    #   def estimate_boundary(rmax, rbins):
+    #     cutoff = []
+    #     # For each center, choose a systematic orientation
+    #     for direction in [+1, -1]:
+    #       # Walk "outward" until you meet the threshold
+    #       for r in np.linspace(0, rmax, rbins):
+    #         sPC = class_center + r * direction
+    #         d = np.matmul(
+    #               np.matmul(
+    #                 (sPC - class_center),
+    #                 np.linalg.inv(S),
+    #               ),
+    #               (sPC - class_center).reshape(-1, 1),
+    #             )[0]
+    #         if d > d_crit:
+    #           cutoff.append(sPC)
+    #           break
 
-        return np.array(cutoff)
+    #     return np.array(cutoff)
 
-      cutoff = estimate_boundary(rmax=rmax, rbins=rbins)
-      return cutoff
+    #   cutoff = estimate_boundary(rmax=rmax, rbins=rbins)
+    #   return cutoff
 
     ellipse_data = {}
     cov_ell = {}
@@ -254,62 +254,21 @@ if (test_size > 0):
           for i,cat in enumerate(cats):
             mask = cat == y
             ax.plot([i+1]*np.sum(mask), proj_[mask,0], 'o', label=cat, color=f'C{i}', ms=1)
-
             if train:
-              class_center = np.mean(proj_[mask,:1], axis=0)
-              S = MinCovDet(assume_centered=False, random_state=42).fit(proj_[mask,:1]).covariance_
-              d_crit = scipy.stats.chi2.ppf(1.0 - alpha, 1)
-              ellipse_data[cat] = (class_center, S, d_crit)
-
               rectangle = OneDimLimits(method='mcd').fit(proj_[mask,:1])
               cov_ell[i] = rectangle
             else:
-              class_center, S, d_crit = ellipse_data[cat]
-
               rectangle = cov_ell[i]
-
-            cutoff = soft_boundary_1d(
-              class_center, S, d_crit,
-              rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
-              rbins=500,
-            )
-
-            # ax.plot([i+1-0.2, i+1+0.2], [cutoff[0], cutoff[0]], color=f'C{i}', lw=1)
-            # ax.plot([i+1-0.2, i+1+0.2], [cutoff[1], cutoff[1]], color=f'C{i}', lw=1)
-
-            # k = np.sqrt(-2*np.log(alpha))
-            # l1 = np.sqrt(np.linalg.eig(S)[0][0])
-            # cutoff = [class_center - np.sqrt(d_crit)*np.sqrt(S[0][0]), class_center + np.sqrt(d_crit)*np.sqrt(S[0][0])]
-
-            # from matplotlib.patches import Rectangle
-            # st.write(class_center)
-            # rect = Rectangle(xy=[i+1-0.3, class_center[0]- np.sqrt(d_crit)*np.sqrt(S[0][0])], width=0.6, height=2*np.sqrt(d_crit)*np.sqrt(S[0][0]), facecolor=f'C{i}', alpha=0.3)
-            # ax.add_artist(rect)
-            ax.plot([i+1-0.4, i+1+0.4], [cutoff[0], cutoff[0]], color='k', lw=1)
-            ax.plot([i+1-0.4, i+1+0.4], [cutoff[1], cutoff[1]], color='k', lw=1)
-
-
             ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
-
           ax.legend(fontsize=6, loc='best')
         else:
           ax.plot([1]*np.sum(mask), proj_[:,0], 'o')
-
           if train:
-            class_center = np.mean(proj_[mask,:1], axis=0)
-            S = MinCovDet(assume_centered=False, random_state=42).fit(proj_[mask,:1]).covariance_
-            d_crit = scipy.stats.chi2.ppf(1.0 - alpha, 2)
-            ellipse_data['none'] = (class_center, S, d_crit)
+            rectangle = OneDimLimits(method='mcd').fit(proj_[:,0])
+            cov_ell[i] = rectangle
           else:
-            class_center, S, d_crit = ellipse_data['none']
-
-          cutoff = soft_boundary_1d(
-            class_center, S, d_crit,
-            rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
-            rbins=100,
-          )
-          ax.plot([i+1-0.2, i+1+0.2], [cutoff[0], cutoff[0]], color=f'C{i}', lw=1)
-          ax.plot([i+1-0.2, i+1+0.2], [cutoff[1], cutoff[1]], color=f'C{i}', lw=1)
+            rectangle = cov_ell[i]
+          ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
 
         ax.set_xlabel('Class')
         ax.set_xlim(0, len(cats)+1)

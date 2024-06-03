@@ -264,7 +264,7 @@ if (test_size > 0):
             cutoff = soft_boundary_2d(
               class_center, S, d_crit,
               rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
-              rbins=500,
+              rbins=1000,
               tbins=360,
             )
             ax.plot(cutoff[:, 0], cutoff[:, 1], color='k', lw=1, alpha=1.0) # best to use boundary too because it helps with plotting

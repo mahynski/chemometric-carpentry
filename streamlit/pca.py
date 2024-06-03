@@ -198,7 +198,7 @@ if (test_size > 0):
 
     ellipse_data = {}
     cov_ell = {}
-    def plot_proj(ax, X, covar_method, y=None, train=True, alpha=0.05):
+    def plot_proj(ax, X, y=None, train=True, alpha=0.05, covar_method=None):
       fig, ax = plt.subplots(nrows=1, ncols=1)
       proj_ = model.transform(X)
       if n_components >= 2: # 2d plot

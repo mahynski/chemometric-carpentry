@@ -196,28 +196,28 @@ if (test_size > 0):
       fig.set_size_inches(*size)
       st.pyplot(fig, use_container_width=False)
 
-    def soft_boundary_2d(class_center, S, d_crit, rmax=10.0, rbins=1000, tbins=90):
-      def estimate_boundary(rmax, rbins, tbins):
-        cutoff = []
-        for theta in np.linspace(0, 2 * np.pi, tbins):
-          for r in np.linspace(0, rmax, rbins):
-            sPC = class_center + r * np.array([np.cos(theta), np.sin(theta)])
+    # def soft_boundary_2d(class_center, S, d_crit, rmax=10.0, rbins=1000, tbins=90):
+    #   def estimate_boundary(rmax, rbins, tbins):
+    #     cutoff = []
+    #     for theta in np.linspace(0, 2 * np.pi, tbins):
+    #       for r in np.linspace(0, rmax, rbins):
+    #         sPC = class_center + r * np.array([np.cos(theta), np.sin(theta)])
 
-            d = np.matmul(
-                  np.matmul(
-                    (sPC - class_center),
-                    np.linalg.inv(S),
-                  ),
-                  (sPC - class_center).reshape(-1, 1),
-                )[0]
-            if d > d_crit:
-              cutoff.append(sPC)
-              break
+    #         d = np.matmul(
+    #               np.matmul(
+    #                 (sPC - class_center),
+    #                 np.linalg.inv(S),
+    #               ),
+    #               (sPC - class_center).reshape(-1, 1),
+    #             )[0]
+    #         if d > d_crit:
+    #           cutoff.append(sPC)
+    #           break
 
-        return np.array(cutoff)
+    #     return np.array(cutoff)
 
-      cutoff = estimate_boundary(rmax=rmax, rbins=rbins, tbins=tbins)
-      return cutoff
+    #   cutoff = estimate_boundary(rmax=rmax, rbins=rbins, tbins=tbins)
+    #   return cutoff
 
     def soft_boundary_1d(class_center, S, d_crit, rmax=10.0, rbins=1000):
       def estimate_boundary(rmax, rbins):
@@ -243,7 +243,6 @@ if (test_size > 0):
       cutoff = estimate_boundary(rmax=rmax, rbins=rbins)
       return cutoff
 
-    # ellipse_data = {}
     cov_ell = {}
     def plot_proj(ax, X, y=None, train=True, alpha=0.05):
       fig, ax = plt.subplots(nrows=1, ncols=1)
@@ -254,75 +253,21 @@ if (test_size > 0):
           for i,cat in enumerate(cats):
             mask = cat == y
             ax.plot(proj_[mask,0], proj_[mask,1], 'o', label=cat, color=f'C{i}', ms=1)
-
             if train:
-              # class_center = np.mean(proj_[mask,:2], axis=0)
-              # S = MinCovDet(assume_centered=False, random_state=42).fit(proj_[mask,:2]).covariance_
-              # d_crit = scipy.stats.chi2.ppf(1.0 - alpha, 2)
-              # ellipse_data[cat] = (class_center, S, d_crit)
-
               ellipse = CovarianceEllipse(method='mcd').fit(proj_[mask,:2])
               cov_ell[i] = ellipse
             else:
-              # class_center, S, d_crit = ellipse_data[cat]
-
               ellipse = cov_ell[i]
-
-            # cutoff = soft_boundary_2d(
-            #   class_center, S, d_crit,
-            #   rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
-            #   rbins=100,
-            #   tbins=180,
-            # )
-            # ax.plot(cutoff[:, 0], cutoff[:, 1], color='k', lw=1, alpha=1.0) # best to use boundary too because it helps with plotting
-
-
-
-            # from matplotlib.patches import Ellipse
-            # evals, evecs = np.linalg.eig(S)
-            # ordered = sorted(zip(evals, evecs.T), key=lambda x:x[0], reverse=True)
-            # largest_evec = ordered[0][1]
-            # angle = np.arctan2(largest_evec[1], largest_evec[0])*180.0/np.pi
-            # k = np.sqrt(-2*np.log(alpha))
-            # ell = Ellipse(xy=class_center, width=np.sqrt(ordered[0][0])*k*2, height=np.sqrt(ordered[1][0])*k*2, angle=angle, facecolor=f'C{i}')
-            # ax.add_artist(ell)
-            # # ell.set_clip_box(ax.bbox)
-            # ell.set_alpha(0.3)
-            # # ell.set_facecolor(f'C{i}')
-            # ell.set_edgecolor('k')
-            # ell.set_linestyle('--')
-
             ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
-
-
-
           ax.legend(fontsize=6, loc='best')
         else:
           ax.plot(proj_[:,0], proj_[:,1], 'o')
-
           if train:
-            # class_center = np.mean(proj_[:,:2], axis=0)
-            # S = MinCovDet(assume_centered=False, random_state=42).fit(proj_[:,:2]).covariance_
-            # d_crit = scipy.stats.chi2.ppf(1.0 - alpha, 2)
-            # ellipse_data['none'] = (class_center, S, d_crit)
-
             ellipse = CovarianceEllipse(method='mcd').fit(proj_[:,:2])
             cov_ell[i] = ellipse
           else:
-            # class_center, S, d_crit = ellipse_data['none']
-
             ellipse = cov_ell[i]
-
-          # cutoff = soft_boundary_2d(
-          #   class_center, S, d_crit,
-          #   rmax=np.sqrt(d_crit * np.max(np.diag(S))) * 1.2,
-          #   rbins=100,
-          #   tbins=180,
-          # )
-          # ax.plot(cutoff[:, 0], cutoff[:, 1], color=f'C{i}', lw=1)
-
           ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
-
         ax.set_xlabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
         ax.set_ylabel(f'PC 2 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[1])}%)')
       else:  # 1D plot

@@ -261,12 +261,12 @@ if (test_size > 0):
               d_crit = scipy.stats.chi2.ppf(1.0 - alpha, 1)
               ellipse_data[cat] = (class_center, S, d_crit)
 
-              rect = OneDimLimits(method='mcd').fit(proj_[mask,:1])
-              cov_ell[i] = rect
+              rectangle = OneDimLimits(method='mcd').fit(proj_[mask,:1])
+              cov_ell[i] = rectangle
             else:
               class_center, S, d_crit = ellipse_data[cat]
 
-              rect = cov_ell[i]
+              rectangle = cov_ell[i]
 
             cutoff = soft_boundary_1d(
               class_center, S, d_crit,
@@ -289,7 +289,7 @@ if (test_size > 0):
             ax.plot([i+1-0.4, i+1+0.4], [cutoff[1], cutoff[1]], color='k', lw=1)
 
 
-            ax = rect.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
+            ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
 
           ax.legend(fontsize=6, loc='best')
         else:

@@ -292,7 +292,7 @@ if (test_size > 0):
             # ell.set_edgecolor('k')
             # ell.set_linestyle('--')
 
-            ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha:0.3', 'facecolor':f'C{i}', 'linestyle':'--'})
+            ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
 
 
 

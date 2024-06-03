@@ -337,8 +337,8 @@ if (test_size > 0):
             l1 = np.sqrt(np.linalg.eig(S)[0][0])
             cutoff = [class_center - l1*k, class_center + l1*k]
 
-            ax.plot([i+1-0.4, i+1+0.4], [cutoff[0], cutoff[0]], color=f'C{i}', lw=1)
-            ax.plot([i+1-0.4, i+1+0.4], [cutoff[1], cutoff[1]], color=f'C{i}', lw=1)
+            ax.plot([i+1-0.4, i+1+0.4], [cutoff[0], cutoff[0]], color='k', lw=1)
+            ax.plot([i+1-0.4, i+1+0.4], [cutoff[1], cutoff[1]], color='k', lw=1)
 
 
           ax.legend(fontsize=6, loc='best')

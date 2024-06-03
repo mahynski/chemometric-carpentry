@@ -309,7 +309,7 @@ if (test_size > 0):
           align='center'
         )
         ax.set_xticks(np.arange(1, len(model._PCA__pca_.components_[0])+1), [x[1] for x in ranked_features], rotation=90)
-        configure_plot(ax, size=(int(round(len(model._PCA__pca_.components_[0])/4.)),2))
+        configure_plot(ax, size=(int(np.max([4, round(len(model._PCA__pca_.components_[0])/4.)])), 2))
     
     with col2a:
       fig, ax = plt.subplots()

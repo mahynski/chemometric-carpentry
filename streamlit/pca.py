@@ -216,11 +216,12 @@ if (test_size > 0):
           ax.legend(fontsize=6, loc='best')
         else:
           ax.plot(proj_[:,0], proj_[:,1], 'o')
+          i = 0
           if train:
             ellipse = CovarianceEllipse(method=covar_method).fit(proj_[:,:2])
-            cov_ell['none'] = ellipse
+            cov_ell[i] = ellipse
           else:
-            ellipse = cov_ell['none']
+            ellipse = cov_ell[i]
           ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
         ax.set_xlabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
         ax.set_ylabel(f'PC 2 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[1])}%)')
@@ -239,11 +240,12 @@ if (test_size > 0):
           ax.legend(fontsize=6, loc='best')
         else:
           ax.plot([1]*np.sum(mask), proj_[:,0], 'o')
+          i = 0
           if train:
             rectangle = OneDimLimits(method=covar_method).fit(proj_[:,0])
-            cov_ell['none'] = rectangle
+            cov_ell[i] = rectangle
           else:
-            rectangle = cov_ell['none']
+            rectangle = cov_ell[i]
           ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
 
         ax.set_xlabel('Class')

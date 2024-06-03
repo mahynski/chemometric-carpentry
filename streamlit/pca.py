@@ -331,7 +331,7 @@ if (test_size > 0):
             # )
 
             k = np.sqrt(-2*np.log(alpha))
-            l1 = np.linalg.eig(S)[0][0]
+            l1 = np.sqrt(np.linalg.eig(S)[0][0])
 
             cutoff = [class_center - l1*k, class_center + l1*k]
 

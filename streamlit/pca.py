@@ -15,6 +15,7 @@ from sklearn.covariance import MinCovDet
 
 from pychemauth.classifier.pca import PCA
 from pychemauth.preprocessing.scaling import RobustScaler, CorrectedScaler
+from pychemauth.utils import CovarianceEllipse
 
 from streamlit_drawable_canvas import st_canvas
 from streamlit_extras.add_vertical_space import add_vertical_space
@@ -243,6 +244,7 @@ if (test_size > 0):
       return cutoff
 
     ellipse_data = {}
+    cov_ell = {}
     def plot_proj(ax, X, y=None, train=True, alpha=0.05):
       fig, ax = plt.subplots(nrows=1, ncols=1)
       proj_ = model.transform(X)
@@ -258,8 +260,13 @@ if (test_size > 0):
               S = MinCovDet(assume_centered=False, random_state=42).fit(proj_[mask,:2]).covariance_
               d_crit = scipy.stats.chi2.ppf(1.0 - alpha, 2)
               ellipse_data[cat] = (class_center, S, d_crit)
+
+              ellipse = CovarianceEllipse().fit(proj_[mask,:2])
+              cov_ell[i] = ellipse
             else:
               class_center, S, d_crit = ellipse_data[cat]
+
+              ellipse = cov_ell[i]
 
             cutoff = soft_boundary_2d(
               class_center, S, d_crit,
@@ -271,19 +278,21 @@ if (test_size > 0):
 
 
 
-            from matplotlib.patches import Ellipse
-            evals, evecs = np.linalg.eig(S)
-            ordered = sorted(zip(evals, evecs.T), key=lambda x:x[0], reverse=True)
-            largest_evec = ordered[0][1]
-            angle = np.arctan2(largest_evec[1], largest_evec[0])*180.0/np.pi
-            k = np.sqrt(-2*np.log(alpha))
-            ell = Ellipse(xy=class_center, width=np.sqrt(ordered[0][0])*k*2, height=np.sqrt(ordered[1][0])*k*2, angle=angle, facecolor=f'C{i}')
-            ax.add_artist(ell)
-            # ell.set_clip_box(ax.bbox)
-            ell.set_alpha(0.3)
-            # ell.set_facecolor(f'C{i}')
-            ell.set_edgecolor('k')
-            ell.set_linestyle('--')
+            # from matplotlib.patches import Ellipse
+            # evals, evecs = np.linalg.eig(S)
+            # ordered = sorted(zip(evals, evecs.T), key=lambda x:x[0], reverse=True)
+            # largest_evec = ordered[0][1]
+            # angle = np.arctan2(largest_evec[1], largest_evec[0])*180.0/np.pi
+            # k = np.sqrt(-2*np.log(alpha))
+            # ell = Ellipse(xy=class_center, width=np.sqrt(ordered[0][0])*k*2, height=np.sqrt(ordered[1][0])*k*2, angle=angle, facecolor=f'C{i}')
+            # ax.add_artist(ell)
+            # # ell.set_clip_box(ax.bbox)
+            # ell.set_alpha(0.3)
+            # # ell.set_facecolor(f'C{i}')
+            # ell.set_edgecolor('k')
+            # ell.set_linestyle('--')
+
+            ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha:0.3', 'facecolor':f'C{i}', 'linestyle':'--'})
 
 
 

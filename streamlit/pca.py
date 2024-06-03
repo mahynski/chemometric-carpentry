@@ -308,6 +308,15 @@ if (test_size > 0):
       ax.set_xticks(np.arange(1, len(model._PCA__pca_.components_[0])+1), [x[1] for x in ranked_features], rotation=90)
       configure_plot(ax, size=(int(round(len(model._PCA__pca_.components_[0])/4.)),2))
 
+      fig, ax = plt.subplots()
+      ax.plot([i+1 for i in range(len(model._PCA__pca_.components_))], model._PCA__pca_.explained_variance_ratio_.cumsum(), label='Cumulative', color='k')
+      ax.bar(x=[i+1 for i in range(len(model._PCA__pca_.components_))], height=pca.explained_variance_ratio_)
+      ax.set_xticks([i+1 for i in range(len(model._PCA__pca_.components_))])
+      ax.set_ylabel('Explained Variance Ratio')
+      ax.set_xlabel('Principal Component')
+      ax.legend(loc='best')
+      configure_plot(ax, size=(2,2))
+
   with props_tab:
     st.write(r"$N_h = $"+f"{model._PCA__Nh_}")
     st.write(r"$N_q = $"+f"{model._PCA__Nq_}")

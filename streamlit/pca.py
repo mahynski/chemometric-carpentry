@@ -337,8 +337,11 @@ if (test_size > 0):
             l1 = np.sqrt(np.linalg.eig(S)[0][0])
             cutoff = [class_center - np.sqrt(d_crit)*np.sqrt(S[0][0]), class_center + np.sqrt(d_crit)*np.sqrt(S[0][0])]
 
-            ax.plot([i+1-0.4, i+1+0.4], [cutoff[0], cutoff[0]], color='k', lw=1)
-            ax.plot([i+1-0.4, i+1+0.4], [cutoff[1], cutoff[1]], color='k', lw=1)
+            from matplotlib.patches import Rectangle
+            rect = Rectangle(xy=i+1-0.4, width=0.8, height=cutoff[1]-cutoff[0], facecolor=f'C{i}', alpha=0.3)
+            ax.add_artist(rect)
+            # ax.plot([i+1-0.4, i+1+0.4], [cutoff[0], cutoff[0]], color='k', lw=1)
+            # ax.plot([i+1-0.4, i+1+0.4], [cutoff[1], cutoff[1]], color='k', lw=1)
 
 
           ax.legend(fontsize=6, loc='best')

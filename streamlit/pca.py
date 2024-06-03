@@ -15,7 +15,7 @@ from sklearn.covariance import MinCovDet
 
 from pychemauth.classifier.pca import PCA
 from pychemauth.preprocessing.scaling import RobustScaler, CorrectedScaler
-from pychemauth.utils import CovarianceEllipse
+from pychemauth.utils import CovarianceEllipse, OneDimLimits
 
 from streamlit_drawable_canvas import st_canvas
 from streamlit_extras.add_vertical_space import add_vertical_space

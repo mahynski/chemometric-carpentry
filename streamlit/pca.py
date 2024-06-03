@@ -274,17 +274,17 @@ if (test_size > 0):
               rbins=500,
             )
 
-            ax.plot([i+1-0.2, i+1+0.2], [cutoff[0], cutoff[0]], color=f'C{i}', lw=1)
-            ax.plot([i+1-0.2, i+1+0.2], [cutoff[1], cutoff[1]], color=f'C{i}', lw=1)
+            # ax.plot([i+1-0.2, i+1+0.2], [cutoff[0], cutoff[0]], color=f'C{i}', lw=1)
+            # ax.plot([i+1-0.2, i+1+0.2], [cutoff[1], cutoff[1]], color=f'C{i}', lw=1)
 
-            k = np.sqrt(-2*np.log(alpha))
-            l1 = np.sqrt(np.linalg.eig(S)[0][0])
-            cutoff = [class_center - np.sqrt(d_crit)*np.sqrt(S[0][0]), class_center + np.sqrt(d_crit)*np.sqrt(S[0][0])]
+            # k = np.sqrt(-2*np.log(alpha))
+            # l1 = np.sqrt(np.linalg.eig(S)[0][0])
+            # cutoff = [class_center - np.sqrt(d_crit)*np.sqrt(S[0][0]), class_center + np.sqrt(d_crit)*np.sqrt(S[0][0])]
 
-            from matplotlib.patches import Rectangle
-            st.write(class_center)
-            rect = Rectangle(xy=[i+1-0.3, class_center[0]- np.sqrt(d_crit)*np.sqrt(S[0][0])], width=0.6, height=2*np.sqrt(d_crit)*np.sqrt(S[0][0]), facecolor=f'C{i}', alpha=0.3)
-            ax.add_artist(rect)
+            # from matplotlib.patches import Rectangle
+            # st.write(class_center)
+            # rect = Rectangle(xy=[i+1-0.3, class_center[0]- np.sqrt(d_crit)*np.sqrt(S[0][0])], width=0.6, height=2*np.sqrt(d_crit)*np.sqrt(S[0][0]), facecolor=f'C{i}', alpha=0.3)
+            # ax.add_artist(rect)
             ax.plot([i+1-0.4, i+1+0.4], [cutoff[0], cutoff[0]], color='k', lw=1)
             ax.plot([i+1-0.4, i+1+0.4], [cutoff[1], cutoff[1]], color='k', lw=1)
 

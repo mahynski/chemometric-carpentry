@@ -261,6 +261,7 @@ if (test_size > 0):
       ax.set_xlabel('Actual Value')
       ax.set_ylabel('Predicted Value')
       ax.set_title(r'Test Set ($R^2=$'+f"{'%.3f'%model.score(X_test, y_test)})")
+      _ = plot_irregular(ax, model, X_test, y_test)
       configure_plot(ax)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)

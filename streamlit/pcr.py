@@ -215,13 +215,13 @@ if (test_size > 0):
       ax.set_title(r'Training Set ($R^2=$'+f"{'%.3f'%model.score(X_train, y_train)})")
       configure_plot(ax)
 
-      # fig, ax = plt.subplots(nrows=1, ncols=1)
-      # resid = model.predict(X_train) - y_train
-      # _ = ax.hist(resid, bins=20, density=True)
-      # ax.set_xlabel(r'$y_{predicted} - y_{actual}$')
-      # ax.set_ylabel('Frequency')
-      # fit_gaussian(resid, ax)
-      # configure_plot(ax)
+      fig, ax = plt.subplots(nrows=1, ncols=1)
+      resid = model.predict(X_train) - y_train
+      _ = ax.hist(resid, bins=20, density=True)
+      ax.set_xlabel(r'$y_{predicted} - y_{actual}$')
+      ax.set_ylabel('Frequency')
+      fit_gaussian(resid, ax)
+      configure_plot(ax)
 
     with col2sub:
       st.subheader('Test Set')

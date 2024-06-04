@@ -248,7 +248,12 @@ if (test_size > 0):
       configure_plot(ax)
 
       axes = model.visualize(X_train, y_train, figsize=(12,4))
-      configure_plot(axes[0])
+      for ax in axes:
+        for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+          item.set_fontsize(6)
+      fig = plt.gcf()
+      fig.set_size_inches(*size)
+      st.pyplot(fig, use_container_width=False)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
       resid = model.predict(X_train) - y_train

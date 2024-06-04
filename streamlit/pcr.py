@@ -146,7 +146,7 @@ with st.expander("Settings"):
         st.write("Note: SFT relies on a Semi-Robust approach during data cleaning, then uses a Classical at the end for the final model.")
 
 if (test_size > 0):
-    X_train, X_test, idx_train, idx_test = train_test_split(
+  X_train, X_test, idx_train, idx_test = train_test_split(
       dataframe[feature_names].values,
       dataframe.index.values,
       shuffle=True,

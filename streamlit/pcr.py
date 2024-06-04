@@ -203,6 +203,30 @@ if (test_size > 0):
       ax.axvline(mu, color='r', label=f'Gaussian Center ({"%.3f"%mu})')
       ax.legend(loc='best', fontsize=6)
 
+    def plot_irregular(ax, model, X, y):
+      extremes, outliers = model.check_xy_outliers(X, y)
+      ax.plot(
+          y[outliers],
+          model.predict(X[outliers]),
+          color='red',
+          marker='x',
+          ms=10,
+          lw=0,
+          label='Outliers'
+      )
+
+      ax.plot(
+          y[extremes],
+          model.predict(X[extremes]),
+          color='yellow',
+          marker='*',
+          ms=10,
+          lw=0,
+          label='Extreme Values'
+      )
+
+      return ax
+
     col1sub, col2sub = st.columns([2, 2])
     with col1sub:
       st.subheader('Training Set')
@@ -213,6 +237,7 @@ if (test_size > 0):
       ax.set_xlabel('Actual Value')
       ax.set_ylabel('Predicted Value')
       ax.set_title(r'Training Set ($R^2=$'+f"{'%.3f'%model.score(X_train, y_train)})")
+      _ = plot_irregular(ax, model, X_train, y_train)
       configure_plot(ax)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)
@@ -260,3 +285,5 @@ if (test_size > 0):
 
       st.write('The detailed SFT history is given here:')
       st.write(model.sft_history['iterations'])
+
+# Plot outliers in trainin / test set

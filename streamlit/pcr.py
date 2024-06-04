@@ -141,6 +141,7 @@ with st.expander("Settings"):
         if robust == 'semi-robust':
           robust = 'semi' # Rename for PyChemAuth
         scale_x = st.toggle(label="Scale X columns by their standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
+        center_y = st.toggle(label="Center Y.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
         scale_y = st.toggle(label="Scale Y by its standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
         sft = st.toggle(label="Use sequential focused trimming (SFT) for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
         st.write("Note: SFT relies on a Semi-Robust approach during data cleaning, then uses a Classical at the end for the final model.")
@@ -168,26 +169,28 @@ if (test_size > 0):
     st.header("Testing Data")
     st.dataframe(pd.DataFrame(data=X_test, columns=feature_names, index=idx_test))
       
-  # with results_tab:
-  #   st.header("Modeling Results")
+  with results_tab:
+    st.header("Modeling Results")
 
-  #   model = PCA(
-  #       n_components=n_components,
-  #       alpha=alpha,
-  #       gamma=gamma,
-  #       scale_x=scale_x, # PCA always centers, but you can choose whether or not to scale the columns by st. dev. (autoscaling)
-  #       robust=robust, # Estimate the degrees of freedom for the chi-squared acceptance area below using robust, data-driven approach
-  #       sft=sft
-  #   )
+    model = PCR(
+        n_components=n_components,
+        alpha=alpha,
+        gamma=gamma,
+        scale_x=scale_x, 
+        scale_y=scale_y, 
+        center_y=center_y,
+        robust=robust, 
+        sft=sft
+    )
 
-  #   _ = model.fit(X_train)
+    _ = model.fit(X_train)
 
-  #   def configure_plot(ax, size=(3,3)):
-  #     for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
-  #       item.set_fontsize(6)
-  #     fig = plt.gcf()
-  #     fig.set_size_inches(*size)
-  #     st.pyplot(fig, use_container_width=False)
+    def configure_plot(ax, size=(3,3)):
+      for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+        item.set_fontsize(6)
+      fig = plt.gcf()
+      fig.set_size_inches(*size)
+      st.pyplot(fig, use_container_width=False)
 
   #   ellipse_data = {}
   #   cov_ell = {}

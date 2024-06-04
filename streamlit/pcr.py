@@ -234,13 +234,13 @@ if (test_size > 0):
       ax.set_title(r'Test Set ($R^2=$'+f"{'%.3f'%model.score(X_test, y_test)})")
       configure_plot(ax)
 
-      # fig, ax = plt.subplots(nrows=1, ncols=1)
-      # resid = model.predict(X_test) - y_test
-      # _ = ax.hist(resid, bins=20, density=True)
-      # ax.set_xlabel(r'$y_{predicted} - y_{actual}$')
-      # ax.set_ylabel('Frequency')
-      # fit_gaussian(resid, ax)
-      # configure_plot(ax)
+      fig, ax = plt.subplots(nrows=1, ncols=1)
+      resid = model.predict(X_test) - y_test
+      _ = ax.hist(resid, bins=20, density=True)
+      ax.set_xlabel(r'$y_{predicted} - y_{actual}$')
+      ax.set_ylabel('Frequency')
+      fit_gaussian(resid, ax)
+      configure_plot(ax)
 
   with props_tab:
     st.write(r"$N_h = $"+f"{model._PCR__Nh_}")

@@ -1,5 +1,5 @@
 """
-Interactive demonstration of PCA and PCR.
+Interactive demonstration of PCA.
 Author: Nathan A. Mahynski
 """
 import sklearn

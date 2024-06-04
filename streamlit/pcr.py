@@ -248,6 +248,7 @@ if (test_size > 0):
       configure_plot(ax)
 
       ax = model.visualize(X_train, y_train, figsize=(12,4))
+      ax.set_title('sdf')
       configure_plot(ax)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)

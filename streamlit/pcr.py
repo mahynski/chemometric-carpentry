@@ -252,7 +252,7 @@ if (test_size > 0):
         for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
           item.set_fontsize(6)
       fig = plt.gcf()
-      fig.set_size_inches((2,2))
+      fig.set_size_inches((3,3))
       st.pyplot(fig, use_container_width=False)
 
       fig, ax = plt.subplots(nrows=1, ncols=1)

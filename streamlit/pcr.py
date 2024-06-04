@@ -249,6 +249,7 @@ if (test_size > 0):
 
       axes = model.visualize(X_train, y_train, figsize=(12,2))
       for ax in axes:
+        ax.legend(loc='best', fontsize=6)
         for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
           item.set_fontsize(6)
       fig = plt.gcf()

@@ -205,29 +205,32 @@ if (test_size > 0):
 
     def plot_irregular(ax, model, X, y):
       extremes, outliers = model.check_xy_outliers(X, y)
-      ax.plot(
-          y[outliers],
-          model.predict(X[outliers]),
-          color='red',
-          marker='x',
-          ms=4,
-          lw=0,
-          alpha=0.5,
-          label='Outliers'
-      )
+      if np.sum(outliers) > 0:
+        ax.plot(
+            y[outliers],
+            model.predict(X[outliers]),
+            color='red',
+            marker='x',
+            ms=4,
+            lw=0,
+            alpha=0.5,
+            label='Outliers'
+        )
 
-      ax.plot(
-          y[extremes],
-          model.predict(X[extremes]),
-          color='yellow',
-          marker='*',
-          ms=4,
-          lw=0,
-          alpha=0.5,
-          label='Extreme Values'
-      )
+      if np.sum(extremes) > 0:
+        ax.plot(
+            y[extremes],
+            model.predict(X[extremes]),
+            color='yellow',
+            marker='*',
+            ms=4,
+            lw=0,
+            alpha=0.5,
+            label='Extreme Values'
+        )
 
-      ax.legend(loc='best', fontsize=6)
+      if np.sum(outliers) + np.sum(extremes) > 0:
+        ax.legend(loc='best', fontsize=6)
 
       return ax
 

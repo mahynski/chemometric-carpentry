@@ -210,8 +210,9 @@ if (test_size > 0):
           model.predict(X[outliers]),
           color='red',
           marker='x',
-          ms=10,
+          ms=3,
           lw=0,
+          alpha=0.3,
           label='Outliers'
       )
 
@@ -220,10 +221,13 @@ if (test_size > 0):
           model.predict(X[extremes]),
           color='yellow',
           marker='*',
-          ms=10,
+          ms=3,
           lw=0,
+          alpha=0.3,
           label='Extreme Values'
       )
+
+      ax.legend(loc='best')
 
       return ax
 

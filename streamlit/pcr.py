@@ -193,99 +193,43 @@ if (test_size > 0):
       fig.set_size_inches(*size)
       st.pyplot(fig, use_container_width=False)
 
-  #   ellipse_data = {}
-  #   cov_ell = {}
-  #   def plot_proj(ax, X, y=None, train=True, alpha=0.05, covar_method=None):
-  #     fig, ax = plt.subplots(nrows=1, ncols=1)
-  #     proj_ = model.transform(X)
-  #     if n_components >= 2: # 2d plot
-  #       if y is not None:
-  #         cats = np.unique(y)
-  #         for i,cat in enumerate(cats):
-  #           mask = cat == y
-  #           ax.plot(proj_[mask,0], proj_[mask,1], 'o', label=cat, color=f'C{i}', ms=1)
-  #           if train:
-  #             ellipse = CovarianceEllipse(method=covar_method).fit(proj_[mask,:2])
-  #             cov_ell[i] = ellipse
-  #           else:
-  #             ellipse = cov_ell[i]
-  #           ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
-  #         ax.legend(fontsize=6, loc='best')
-  #       else:
-  #         ax.plot(proj_[:,0], proj_[:,1], 'o')
-  #         i = 0
-  #         if train:
-  #           ellipse = CovarianceEllipse(method=covar_method).fit(proj_[:,:2])
-  #           cov_ell[i] = ellipse
-  #         else:
-  #           ellipse = cov_ell[i]
-  #         ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
-  #       ax.set_xlabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
-  #       ax.set_ylabel(f'PC 2 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[1])}%)')
-  #     else:  # 1D plot
-  #       if y is not None:
-  #         cats = np.unique(y)
-  #         for i,cat in enumerate(cats):
-  #           mask = cat == y
-  #           ax.plot([i+1]*np.sum(mask), proj_[mask,0], 'o', label=cat, color=f'C{i}', ms=1)
-  #           if train:
-  #             rectangle = OneDimLimits(method=covar_method).fit(proj_[mask,:1])
-  #             cov_ell[i] = rectangle
-  #           else:
-  #             rectangle = cov_ell[i]
-  #           ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
-  #         ax.legend(fontsize=6, loc='best')
-  #       else:
-  #         ax.plot([1]*np.sum(mask), proj_[:,0], 'o')
-  #         i = 0
-  #         if train:
-  #           rectangle = OneDimLimits(method=covar_method).fit(proj_[:,0])
-  #           cov_ell[i] = rectangle
-  #         else:
-  #           rectangle = cov_ell[i]
-  #         ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
+    with col1sub:
+      st.subheader('Training Set')
+        
+      fig, ax = plt.subplots(nrows=1, ncols=1)
+      _ = ax.plot(y_train, model.predict(X_train), 'o', ms=1)
+      _ = ax.plot(y_train, y_train, '-', color='k', lw=1)
+      ax.set_xlabel('Actual Value')
+      ax.set_ylabel('Predicted Value')
+      ax.set_title(r'Training Set ($R^2=$'+f"{'%.3f'%model.score(X_train, y_train)})")
+      configure_plot(ax)
 
-  #       ax.set_xlabel('Class')
-  #       ax.set_xlim(0, len(cats)+1)
-  #       ax.set_xticks(np.arange(1, len(cats)+1), cats, rotation=90)
-  #       ax.set_ylabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
+      # fig, ax = plt.subplots(nrows=1, ncols=1)
+      # resid = model.predict(X_train) - y_train
+      # _ = ax.hist(resid, bins=20, density=True)
+      # ax.set_xlabel(r'$y_{predicted} - y_{actual}$')
+      # ax.set_ylabel('Frequency')
+      # fit_gaussian(resid, ax)
+      # configure_plot(ax)
 
-  #     return ax
+    with col2sub:
+      st.subheader('Test Set')
 
-  #   col1sub, col2sub = st.columns([2, 2])
-  #   with col1sub:
-  #     ellipse_alpha = st.slider(label=r"Type I error rate ($\alpha$) for class ellipses.", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
-  #   with col2sub:
-  #     covar_method = st.selectbox("How should class covariances be computed?", ("Minimum Covariance Determinant", "Empirical"), index=0)
-  #     if covar_method == "Minimum Covariance Determinant":
-  #       covar_method = 'mcd'
-  #     else:
-  #       covar_method = 'empirical'
+      fig, ax = plt.subplots(nrows=1, ncols=1)
+      _ = ax.plot(y_test, model.predict(X_test), 'o', ms=1)
+      _ = ax.plot(y_test, y_test, '-', color='k', lw=1)
+      ax.set_xlabel('Actual Value')
+      ax.set_ylabel('Predicted Value')
+      ax.set_title(r'Test Set ($R^2=$'+f"{'%.3f'%model.score(X_test, y_test)})")
+      configure_plot(ax)
 
-  #   col1sub, col2sub = st.columns([2, 2])
-  #   with col1sub:
-  #     st.subheader('Training Set')
-  #     fig, ax = plt.subplots(nrows=1, ncols=1)
-  #     ax = plot_proj(ax, X_train, None if target_column is None else y_train, train=True, alpha=ellipse_alpha, covar_method=covar_method)
-  #     configure_plot(ax)
-
-  #     fig, ax = plt.subplots(nrows=1, ncols=1)
-  #     ax = model.visualize(X_train, ax=ax)
-  #     ax.set_title('Training Set')
-  #     ax.legend(fontsize=6, loc='upper right')
-  #     configure_plot(ax)
-
-  #   with col2sub:
-  #     st.subheader('Test Set')
-  #     fig, ax = plt.subplots(nrows=1, ncols=1)
-  #     ax = plot_proj(ax, X_test, None if target_column is None else y_test, train=False, alpha=ellipse_alpha, covar_method=covar_method)
-  #     configure_plot(ax)
-
-  #     fig, ax = plt.subplots(nrows=1, ncols=1)
-  #     ax = model.visualize(X_test, ax=ax)
-  #     ax.set_title('Test Set')
-  #     ax.legend(fontsize=6, loc='upper right')
-  #     configure_plot(ax)
+      # fig, ax = plt.subplots(nrows=1, ncols=1)
+      # resid = model.predict(X_test) - y_test
+      # _ = ax.hist(resid, bins=20, density=True)
+      # ax.set_xlabel(r'$y_{predicted} - y_{actual}$')
+      # ax.set_ylabel('Frequency')
+      # fit_gaussian(resid, ax)
+      # configure_plot(ax)
 
   with props_tab:
     st.write(r"$N_h = $"+f"{model._PCR__Nh_}")

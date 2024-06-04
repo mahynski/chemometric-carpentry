@@ -140,7 +140,7 @@ with st.expander("Settings"):
         robust = str(robust).lower()
         if robust == 'semi-robust':
           robust = 'semi' # Rename for PyChemAuth
-        scale_x = st.toggle(label="Scale X columns by their standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
+        scale_x = st.toggle(label="Scale X columns by their standard deviation (it is always centered).", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
         center_y = st.toggle(label="Center Y.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
         scale_y = st.toggle(label="Scale Y by its standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
         sft = st.toggle(label="Use sequential focused trimming (SFT) for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
@@ -287,21 +287,21 @@ if (test_size > 0):
   #     ax.legend(fontsize=6, loc='upper right')
   #     configure_plot(ax)
 
-  # with props_tab:
-  #   st.write(r"$N_h = $"+f"{model._PCA__Nh_}")
-  #   st.write(r"$N_q = $"+f"{model._PCA__Nq_}")
+  with props_tab:
+    st.write(r"$N_h = $"+f"{model._PCA__Nh_}")
+    st.write(r"$N_q = $"+f"{model._PCA__Nq_}")
 
-  #   st.write(r"$h_0 = $"+f"{model._PCA__h0_}")
-  #   st.write(r"$q_0 = $"+f"{model._PCA__q0_}")
+    st.write(r"$h_0 = $"+f"{model._PCA__h0_}")
+    st.write(r"$q_0 = $"+f"{model._PCA__q0_}")
           
-  # with out_tab:
-  #   st.write("If SFT is used, here are the points identified and removed from the training set.")
+  with out_tab:
+    st.write("If SFT is used, here are the points identified and removed from the training set.")
 
-  #   if sft:
-  #     st.dataframe(
-  #       pd.DataFrame(data=model.sft_history['removed']['X'], columns=feature_names),
-  #       hide_index=True
-  #     )
+    if sft:
+      st.dataframe(
+        pd.DataFrame(data=model.sft_history['removed']['X'], columns=feature_names),
+        hide_index=True
+      )
 
-  #     st.write('The detailed SFT history is given here:')
-  #     st.write(model.sft_history['iterations'])
+      st.write('The detailed SFT history is given here:')
+      st.write(model.sft_history['iterations'])

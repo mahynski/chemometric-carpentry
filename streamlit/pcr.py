@@ -193,6 +193,17 @@ if (test_size > 0):
       fig.set_size_inches(*size)
       st.pyplot(fig, use_container_width=False)
 
+    def fit_gaussian(data, ax):
+      from scipy.stats import norm
+      mu, std = norm.fit(data)
+      xmin, xmax = ax.get_xlim()
+      x = np.linspace(xmin, xmax, 100)
+      p = norm.pdf(x, mu, std)
+      ax.plot(x, p, 'k', linewidth=1, label='Guassian Fit')
+      ax.axvline(mu, color='r', label=f'Gaussian Center ({"%.3f"%mu})')
+      ax.legend(loc='best', fontsize=6)
+
+    col1sub, col2sub = st.columns([2, 2])
     with col1sub:
       st.subheader('Training Set')
         

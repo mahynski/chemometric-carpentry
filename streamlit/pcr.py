@@ -183,7 +183,7 @@ if (test_size > 0):
         sft=sft
     )
 
-    _ = model.fit(X_train)
+    _ = model.fit(X_train, y_train)
 
     def configure_plot(ax, size=(3,3)):
       for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):

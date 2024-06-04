@@ -247,6 +247,9 @@ if (test_size > 0):
       _ = plot_irregular(ax, model, X_train, y_train)
       configure_plot(ax)
 
+      ax = model.visualize(X_train, y_train, figsize=(12,4))
+      configure_plot(ax)
+
       fig, ax = plt.subplots(nrows=1, ncols=1)
       resid = model.predict(X_train) - y_train
       _ = ax.hist(resid, bins=20, density=True)

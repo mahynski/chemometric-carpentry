@@ -276,6 +276,15 @@ if (test_size > 0):
       _ = plot_irregular(ax, model, X_test, y_test)
       configure_plot(ax)
 
+      axes = model.visualize(X_test, y_test, figsize=(12,2))
+      for ax in axes:
+        ax.legend(loc='best', fontsize=6)
+        for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+          item.set_fontsize(6)
+      fig = plt.gcf()
+      fig.set_size_inches((3,3))
+      st.pyplot(fig, use_container_width=False)
+
       fig, ax = plt.subplots(nrows=1, ncols=1)
       resid = model.predict(X_test) - y_test
       _ = ax.hist(resid, bins=20, density=True)

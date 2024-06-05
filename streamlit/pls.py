@@ -55,11 +55,9 @@ with col1_:
 
     where $E$ and $F$ are error terms (assumed to be IID). $X$ has dimensions $n \times p$, and $Y$ has dimensions $n \times l$; $T$ is the $n \times k$ projection matrix of $X$, which is computed by taking both $X$ and $Y$ into account.  Here, $k \le p$ represents a dimensionality reduction; while $P$ is $p \times k$ and $Q$ is $l \times k$. 
 
-    PLS is an algorithm which can be summarized as follows:
+    PLS Regression is an algorithm which can be summarized as follows (for PLS1, PLS2 deals with multiple responses instead of a single colum for $\vec{y}$):
 
-    Algorithmically, the formulation of PLS1 goes like this (PLS2 deals with multiple responses instead of a single colum for $\vec{y}$):
-
-    1. Mean-center X and Y.  Scaling is optional.
+    1. Mean-center $X$ and $Y$.  Scaling is optional.
 
     Then for $k$ steps:
 
@@ -75,7 +73,7 @@ with col1_:
 
     6. We have now approximated $X = TP^T$ as a sum of rank-1 matrices. For convenience, we can define $XA = T$, which [provides the necessary](https://scikit-learn.org/stable/modules/cross_decomposition.html#transforming-data) transformation; sklearn refers to this as the `rotations` matrix (a similar one exists for Y). This formula is also proven [here](https://allmodelsarewrong.github.io/pls.html) in Eq. 16.20, and given on [Wikipedia](https://en.wikipedia.org/wiki/Partial_least_squares_regression):
 
-    $$A = X_w(P^TX_w)^{-1}$$
+        $$A = X_w(P^TX_w)^{-1}$$
 
     7. Now we can obtain a final relationship for $Y$ in terms of $X$.  Recall that since $Y$ is centered there is no intercept to worry about.
 

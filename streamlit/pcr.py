@@ -69,6 +69,8 @@ with col1_:
 
     PCA searches for the dimensions representing the highest degree of data variability in an unsupervised way.  However, if the response variable is not correlated with the natural "spatial" 
     variability in its regressors, $X$, then PCA will reduce the predictive ability of the model. 
+
+    See the description of [DD-SIMCA](https://chemometric-carpentry-ddsimca.streamlit.app/) for an explanation of the other settings like $\gamma$ and model properties.
 ''')
 
 with col2_:

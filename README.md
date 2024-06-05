@@ -8,7 +8,7 @@
 1. Give you a new set of tools to help you do your job better
 2. Create a coherent and more consistent approach to chemometric analysis by introducing you to a standard library for these tasks
 3. Improve reproducibility and transparency
-4. Create a community where ideas, needs, and methodologies can be exchanged.
+4. Create a community where ideas, needs, and methodologies can be exchanged
 
 :books: In the end you will be able to go to a [library of standardized example notebooks](https://pychemauth.readthedocs.io/en/latest/applications.html), select the one you need, enter your data, then run it from start to finish.  This course will also teach you to modify and expand things as needed.
 

@@ -56,13 +56,13 @@ with col1_:
     
     $$X = TP^T + E_x$$
 
-    3. Fit the transformed data with linear regression, including an intercept term because $Y$ is not necessarily centered.  As discussed in OLS, a column of "1"s should be added as the first column in $T$ to account for the intercept term if $Y$ is not centered.
+    3. Fit the transformed data with linear regression, including an intercept term because $Y$ is not necessarily centered.  A column of "1"s should be added as the first column in $T$ to account for the intercept term if $Y$ is not centered.
 
     $$Y = TQ + E_y$$
      
     $$Q = (T^TT)^{-1}T^TY$$
 
-    The final model that makes predictions is roughly: $\hat{Y} = TQ = (XP)Q$ (but not exactly because $XP$ has a column added manually - if no intercept is used this is exact).
+    The final model that makes predictions is essentially: $\hat{Y} = TQ = (XP)Q$.
 
     PCA searches for the dimensions representing the highest degree of data variability in an unsupervised way.  However, if the response variable is not correlated with the natural "spatial" 
     variability in its regressors, $X$, then PCA will reduce the predictive ability of the model. 
@@ -185,12 +185,6 @@ if (test_size > 0):
     )
 
     _ = model.fit(X_train, y_train)
-
-    # st.write(model.sft_history)
-    # ext_, out_ = model.check_xy_outliers(model.sft_history['removed']['X'], model.sft_history['removed']['y']) 
-    # st.write(ext_, out_)
-    # model.check_xy_outliers(X_train, y_train)
-    # st.write(X_train[ext_], X_train[out_])
 
     def configure_plot(ax, size=(3,3)):
       for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):

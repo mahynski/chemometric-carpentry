@@ -98,7 +98,7 @@
         * Principal Components Analysis (PCA) and Regression (PCR)
             * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/pca_pcr.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/pca.html) | [Interactive PCA Tool](https://chemometric-carpentry-pca.streamlit.app/), [Interactive PCR Tool](https://chemometric-carpentry-pcr.streamlit.app/)
         * Partial Least-Squares (PLS) or Projection to Latent Structures
-            * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/pls.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/pls.html) | Interactive Tool
+            * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/pls.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/pls.html) | [Interactive Tool]((https://chemometric-carpentry-pls.streamlit.app/))
     * ✅ Classification and Authentication Models
         * Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis (QDA)
             * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/lda.html) | [sklearn API](https://scikit-learn.org/stable/modules/generated/sklearn.discriminant_analysis.LinearDiscriminantAnalysis.html) | Interactive Tool

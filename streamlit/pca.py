@@ -34,6 +34,8 @@ with st.sidebar:
     :x: It is not intended to be used in production.  Instead, use the Jupyter notebooks provided in 
     [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/index.html) for reproducible, high-quality
     analysis. For example, consider using [this notebook instead.](https://pychemauth.readthedocs.io/en/latest/jupyter/api/pca.html)
+
+    :books: This implementation is based on [Pomerantsev, A. L., & Rodionova, O. Y. (2014). Concept and role of extreme objects in PCA/SIMCA. Journal of Chemometrics, 28(5), 429-438.](https://doi.org/10.1002/cem.2506).
     ''')
     add_vertical_space(2)
     st.write('Made by ***Nate Mahynski***')

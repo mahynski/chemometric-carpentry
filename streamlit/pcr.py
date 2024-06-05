@@ -187,8 +187,10 @@ if (test_size > 0):
     _ = model.fit(X_train, y_train)
 
     st.write(model.sft_history)
-    ext_, out_ = model.check_xy_outliers(X_train, y_train)
-    st.write(X_train[ext_], X_train[out_])
+    ext_, out_ = model.check_xy_outliers(model.sft_history['removed']['X'], model.sft_history['removed']['y']) 
+    st.write(ext_, out_)
+    # model.check_xy_outliers(X_train, y_train)
+    # st.write(X_train[ext_], X_train[out_])
 
     def configure_plot(ax, size=(3,3)):
       for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):

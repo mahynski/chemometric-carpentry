@@ -272,11 +272,11 @@ if (test_size > 0):
       configure_plot(ax)
 
   with props_tab:
-    st.write(r"$N_h = $"+f"{model._PCR__Nh_}")
-    st.write(r"$N_q = $"+f"{model._PCR__Nq_}")
+    st.write(r"$N_h = $"+f"{model._PLS__Nh_}")
+    st.write(r"$N_q = $"+f"{model._PLS__Nq_}")
 
-    st.write(r"$h_0 = $"+f"{model._PCR__h0_}")
-    st.write(r"$q_0 = $"+f"{model._PCR__q0_}")
+    st.write(r"$h_0 = $"+f"{model._PLS__h0_}")
+    st.write(r"$q_0 = $"+f"{model._PLS__q0_}")
           
   with out_tab:
     st.write("If SFT is used, here are the points identified and removed from the training set.")

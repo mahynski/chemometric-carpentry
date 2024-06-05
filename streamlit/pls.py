@@ -45,7 +45,45 @@ col1_, col2_ = st.columns(2)
 with col1_:
   with st.expander('Click here to see the details.'):
     st.markdown(r'''
-    
+    [Partial least squares (PLS) regression](https://en.wikipedia.org/wiki/Partial_least_squares_regression) is also known as "projection to latent structures". There are several variations on the algorithm which are available in [sklearn](https://scikit-learn.org/stable/modules/cross_decomposition.html), however the commonly used "PLS1" (if y has one column) or "PLS2" (if y has multiple columns) are a form of [PLSRegression](https://scikit-learn.org/stable/modules/cross_decomposition.html#plsregression).
+
+    In essence PLS is actually a scheme to project both X and Y while taking each other into account.  Assume we model **centered matrices** $X$ and $Y$ as follows:
+
+    $$X = TP^T + E,$$
+
+    $$Y = TQ^T + F,$$
+
+    where $E$ and $F$ are error terms (assumed to be IID). $X$ has dimensions $n \times p$, and $Y$ has dimensions $n \times l$; $T$ is the $n \times k$ projection matrix of $X$, which is computed by taking both $X$ and $Y$ into account.  Here, $k \le p$ represents a dimensionality reduction; while $P$ is $p \times k$ and $Q$ is $l \times k$. 
+
+    PLS is an algorithm which can be summarized as follows:
+
+    Algorithmically, the formulation of PLS1 goes like this (PLS2 deals with multiple responses instead of a single colum for $\vec{y}$):
+
+    1. Mean-center X and Y.  Scaling is optional.
+
+    Then for $k$ steps:
+
+    2. Compute the first left and right singular vectors of the cross-covariance matrix, $C = X^TY$, $\vec{x_w}$ and $\vec{y_w}$ (column vectors). These vectors are called `weights` - note these are single vectors corresponding to this particular iteration, $k$.  The loadings matrices, $P$ and $Q$, will be computed later.
+
+    3. Use these weights to project $X$ to obtain the x-scores in 1D: $\vec{t} = X \vec{x_w}$.
+
+    4. Obtain the loadings by regressing both the $X$ and $Y$ matrices using the x-scores. The $k^{\rm th}$ column in $P$ is given by $\vec{p} = X^T \vec{t} / (\vec{t}^T \vec{t})$; similarly, the $k^{\rm th}$ column in $Q$ is given by $\vec{q} = Y^T \vec{t} / (\vec{t}^T \vec{t})$.
+
+    5. Deflate the matrices: $X \rightarrow X - \vec{t}\vec{p}^T$, $Y \rightarrow Y - \vec{t}\vec{q}^T$. 
+
+    End loop
+
+    6. We have now approximated $X = TP^T$ as a sum of rank-1 matrices. For convenience, we can define $XA = T$, which [provides the necessary](https://scikit-learn.org/stable/modules/cross_decomposition.html#transforming-data) transformation; sklearn refers to this as the `rotations` matrix (a similar one exists for Y). This formula is also proven [here](https://allmodelsarewrong.github.io/pls.html) in Eq. 16.20, and given on [Wikipedia](https://en.wikipedia.org/wiki/Partial_least_squares_regression):
+
+    $$A = X_w(P^TX_w)^{-1}$$
+
+    7. Now we can obtain a final relationship for $Y$ in terms of $X$.  Recall that since $Y$ is centered there is no intercept to worry about.
+
+    $$Y = T Q^T = X A Q^T$$
+
+    $$Y = X (A Q^T) = XB$$
+
+    PLS Regression is particularly useful when (1) we have more regressors than observations ($p > n$), or (2) when the output is correlated with **dimensions that have low variance**, in which case unsupervised PCA will discard those dimensions, and with them, predictive power. 
 
     See the description of [DD-SIMCA](https://chemometric-carpentry-ddsimca.streamlit.app/) for an explanation of the other settings like $\gamma$ and model properties.
 ''')

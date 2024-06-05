@@ -49,9 +49,9 @@ with col1_:
 
     In essence PLS is actually a scheme to project both X and Y while taking each other into account.  Assume we model **centered matrices** $X$ and $Y$ as follows:
     
-        $$X = TP^T + E,$$
+        $$X = TP^T + E$$
         
-        $$Y = TQ^T + F,$$
+        $$Y = TQ^T + F$$
 
     where $E$ and $F$ are error terms (assumed to be IID). $X$ has dimensions $n \times p$, and $Y$ has dimensions $n \times l$; $T$ is the $n \times k$ projection matrix of $X$, which is computed by taking both $X$ and $Y$ into account.  Here, $k \le p$ represents a dimensionality reduction; while $P$ is $p \times k$ and $Q$ is $l \times k$. 
 

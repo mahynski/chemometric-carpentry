@@ -11,11 +11,8 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 from sklearn.model_selection import train_test_split
-from sklearn.covariance import MinCovDet
 
 from pychemauth.regressor.pcr import PCR
-from pychemauth.preprocessing.scaling import RobustScaler, CorrectedScaler
-from pychemauth.utils import CovarianceEllipse, OneDimLimits
 
 from streamlit_drawable_canvas import st_canvas
 from streamlit_extras.add_vertical_space import add_vertical_space
@@ -316,5 +313,3 @@ if (test_size > 0):
 
       st.write('The detailed SFT history is given here:')
       st.write(model.sft_history['iterations'])
-
-# Plot outliers in trainin / test set

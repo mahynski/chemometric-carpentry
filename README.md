@@ -55,7 +55,7 @@
         * Regression, Classification, and Clustering
         * scitkit-learn
         * PyChemAuth
-    * 🎯 [Statistics Background](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/1.4_Statistics_Background.ipynb)
+    * 🔮 [Statistics Background](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/1.4_Statistics_Background.ipynb)
         * $\chi^2$ statistics 
         * Baseline Performance Metrics
         * Rashomon sets

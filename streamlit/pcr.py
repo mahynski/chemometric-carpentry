@@ -303,7 +303,7 @@ if (test_size > 0):
     st.write(r"$q_0 = $"+f"{model._PCR__q0_}")
           
   with out_tab:
-    st.write("If SFT is used, here are the points identified and removed from the training set.")
+    st.write("If SFT is used, here are the points identified and removed from the training set.  Note that this approach uses a semi-rigorous setting to remove outliers during training, but after final removal of these points, trains the final model using a classical setting.  As a result, the points which are removed below (determined in semi-rigorous mode) are not guaranteed to be the same as those identified as outliers in the Modeling Results tab since the latter uses the final, classical model.")
 
     if sft:
       st.dataframe(

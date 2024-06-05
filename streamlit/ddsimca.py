@@ -251,7 +251,7 @@ if (uploaded_file is not None) and (test_size > 0) and (target_column is not Non
     st.write(r"$q_0 = $"+f"{dds.model._DDSIMCA_Model__q0_}")
           
   with out_tab:
-    st.write(f"If SFT is used, here are the {target_class} points identified and removed from the training set.")
+    st.write(f"If SFT is used, here are the {target_class} points identified and removed from the training set. Note that this approach uses a semi-rigorous setting to remove outliers during training, but after final removal of these points, trains the final model using a classical setting.  As a result, the points which are removed below (determined in semi-rigorous mode) are not guaranteed to be the same as those identified as outliers in the Modeling Results tab since the latter uses the final, classical model.")
 
     if sft:
       st.dataframe(
@@ -262,6 +262,4 @@ if (uploaded_file is not None) and (test_size > 0) and (target_column is not Non
       st.write('The detailed SFT history is given here:')
       st.write(dds.model._DDSIMCA_Model__sft_history_["iterations"])
             
-
-# display training set outliers if removed via SFT
 # class SPS

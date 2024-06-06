@@ -213,6 +213,11 @@ if (test_size > 0) and (target_column is not None):
                     ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
                 ax.legend(fontsize=6, loc='best')
 
+                ax.set_xlabel('Class')
+                ax.set_xlim(0, len(cats)+1)
+                ax.set_xticks(np.arange(1, len(cats)+1), cats, rotation=90)
+                ax.set_ylabel(f'LD 1 ({"%.4f"%(100*model.explained_variance_ratio_[0])}%)')
+
             return ax
 
         col1sub, col2sub = st.columns([2, 2])

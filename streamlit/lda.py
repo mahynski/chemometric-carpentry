@@ -279,9 +279,9 @@ if (test_size > 0) and (target_column is not None):
         
         with col2a:
             fig, ax = plt.subplots()
-            ax.plot([i+1 for i in range(len(model.scalings_.T))], model.explained_variance_ratio_.cumsum(), label='Cumulative', color='k')
-            ax.bar(x=[i+1 for i in range(len(model.scalings_.T))], height=model.explained_variance_ratio_)
-            ax.set_xticks([i+1 for i in range(len(model.scalings_.T))])
+            ax.plot([i+1 for i in range(n_components)], model.explained_variance_ratio_.cumsum(), label='Cumulative', color='k')
+            ax.bar(x=[i+1 for i in range(n_components)], height=model.explained_variance_ratio_)
+            ax.set_xticks([i+1 for i in range(n_components)])
             ax.set_ylabel('Discriminability Ratio')
             ax.set_xlabel('Linear Discriminant')
             ax.legend(loc='best')

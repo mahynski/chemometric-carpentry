@@ -185,66 +185,40 @@ if (test_size > 0) and (target_column is not None):
             st.pyplot(fig, use_container_width=False)
 
         cov_ell = {}
-        def plot_proj(ax, X, y=None, train=True, alpha=0.05, covar_method=None):
+        def plot_proj(ax, X, y, train=True, alpha=0.05, covar_method=None):
             fig, ax = plt.subplots(nrows=1, ncols=1)
             proj_ = model.transform(X)
             if n_components >= 2: # 2d plot
-                if y is not None:
-                    cats = np.unique(y)
-                    for i,cat in enumerate(cats):
-                        mask = cat == y
-                        ax.plot(proj_[mask,0], proj_[mask,1], 'o', label=cat, color=f'C{i}', ms=1)
-                        if train:
-                            ellipse = CovarianceEllipse(method=covar_method).fit(proj_[mask,:2])
-                            cov_ell[i] = ellipse
-                        else:
-                            ellipse = cov_ell[i]
-                        ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
-                    ax.legend(fontsize=6, loc='best')
-                else:
-                    ax.plot(proj_[:,0], proj_[:,1], 'o')
-                    i = 0
+                cats = np.unique(y)
+                for i,cat in enumerate(cats):
+                    mask = cat == y
+                    ax.plot(proj_[mask,0], proj_[mask,1], 'o', label=cat, color=f'C{i}', ms=1)
                     if train:
-                        ellipse = CovarianceEllipse(method=covar_method).fit(proj_[:,:2])
+                        ellipse = CovarianceEllipse(method=covar_method).fit(proj_[mask,:2])
                         cov_ell[i] = ellipse
                     else:
                         ellipse = cov_ell[i]
                     ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
-                    ax.set_xlabel(f'LD 1 ({"%.4f"%(100*model.explained_variance_ratio_[0])}%)')
-                    ax.set_ylabel(f'LD 2 ({"%.4f"%(100*model.explained_variance_ratio_[1])}%)')
+                ax.legend(fontsize=6, loc='best')
             else:  # 1D plot
-                if y is not None:
-                    cats = np.unique(y)
-                    for i,cat in enumerate(cats):
-                        mask = cat == y
-                        ax.plot([i+1]*np.sum(mask), proj_[mask,0], 'o', label=cat, color=f'C{i}', ms=1)
-                        if train:
-                            rectangle = OneDimLimits(method=covar_method).fit(proj_[mask,:1])
-                            cov_ell[i] = rectangle
-                        else:
-                            rectangle = cov_ell[i]
-                            ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
-                        ax.legend(fontsize=6, loc='best')
-                else:
-                    ax.plot([1]*np.sum(mask), proj_[:,0], 'o')
-                    i = 0
+                cats = np.unique(y)
+                for i,cat in enumerate(cats):
+                    mask = cat == y
+                    ax.plot([i+1]*np.sum(mask), proj_[mask,0], 'o', label=cat, color=f'C{i}', ms=1)
                     if train:
-                        rectangle = OneDimLimits(method=covar_method).fit(proj_[:,0])
+                        rectangle = OneDimLimits(method=covar_method).fit(proj_[mask,:1])
                         cov_ell[i] = rectangle
                     else:
                         rectangle = cov_ell[i]
-                    ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
-
-                    ax.set_xlabel('Class')
-                    ax.set_xlim(0, len(cats)+1)
-                    ax.set_xticks(np.arange(1, len(cats)+1), cats, rotation=90)
-                    ax.set_ylabel(f'LD 1 ({"%.4f"%(100*model.explained_variance_ratio_[0])}%)')
+                        ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
+                    ax.legend(fontsize=6, loc='best')
 
             return ax
 
         col1sub, col2sub = st.columns([2, 2])
         with col1sub:
             ellipse_alpha = st.slider(label=r"Type I error rate ($\alpha$) for class ellipses.", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
+
         with col2sub:
             covar_method = st.selectbox("How should class covariances be computed?", ("Minimum Covariance Determinant", "Empirical"), index=0)
             if covar_method == "Minimum Covariance Determinant":

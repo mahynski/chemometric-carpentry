@@ -265,26 +265,26 @@ if (test_size > 0) and (target_column is not None):
             ax = plot_proj(ax, X_test, None if target_column is None else y_test, train=False, alpha=ellipse_alpha, covar_method=covar_method)
             configure_plot(ax)
 
-    # with scalings_tab:
-    #     col1a, col2a = st.columns(2)
+    with scalings_tab:
+        col1a, col2a = st.columns(2)
 
-    #     with col1a:
-    #     if n_components >= 2:
-    #         fig, ax = plt.subplots(nrows=1, ncols=1)
-    #         ax = model.plot_loadings(feature_names, ax=ax)
-    #         for txt in ax.texts:
-    #         txt.set_fontsize(6)
-    #         configure_plot(ax, size=(2,2))
-    #     else:
-    #         fig, ax = plt.subplots()
-    #         ranked_features = sorted(zip(model._PCA__pca_.components_[0], feature_names), key=lambda x:np.abs(x[0]), reverse=True)
-    #         _ = ax.bar(
-    #         x=np.arange(1, len(model._PCA__pca_.components_[0])+1),
-    #         height=[x[0] for x in ranked_features],
-    #         align='center'
-    #         )
-    #         ax.set_xticks(np.arange(1, len(model._PCA__pca_.components_[0])+1), [x[1] for x in ranked_features], rotation=90)
-    #         configure_plot(ax, size=(int(round(len(model._PCA__pca_.components_[0])/4.)), 2))
+        with col1a:
+            if n_components >= 2:
+                fig, ax = plt.subplots(nrows=1, ncols=1)
+                ax = model.plot_loadings(feature_names, ax=ax)
+                for txt in ax.texts:
+                txt.set_fontsize(6)
+                configure_plot(ax, size=(2,2))
+            else:
+                fig, ax = plt.subplots()
+                ranked_features = sorted(zip(model.scalings_.T[0], feature_names), key=lambda x:np.abs(x[0]), reverse=True)
+                _ = ax.bar(
+                    x=np.arange(1, len(model.scalings_.T[0])+1),
+                    height=[x[0] for x in ranked_features],
+                    align='center'
+                )
+                ax.set_xticks(np.arange(1, len(model.scalings_.T[0])+1), [x[1] for x in ranked_features], rotation=90)
+                configure_plot(ax, size=(int(round(len(model.scalings_.T[0])/4.)), 2))
         
     #     with col2a:
     #     fig, ax = plt.subplots()

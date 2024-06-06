@@ -224,7 +224,7 @@ if (test_size > 0) and (target_column is not None):
                         else:
                             rectangle = cov_ell[i]
                             ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
-                     ax.legend(fontsize=6, loc='best')
+                        ax.legend(fontsize=6, loc='best')
                 else:
                     ax.plot([1]*np.sum(mask), proj_[:,0], 'o')
                     i = 0

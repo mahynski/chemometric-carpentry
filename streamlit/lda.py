@@ -200,6 +200,8 @@ if (test_size > 0) and (target_column is not None):
                         ellipse = cov_ell[i]
                     ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
                 ax.legend(fontsize=6, loc='best')
+                ax.set_xlabel(f'LD 1 ({"%.4f"%(100*model.explained_variance_ratio_[0])}%)')
+                ax.set_ylabel(f'LD 2 ({"%.4f"%(100*model.explained_variance_ratio_[1])}%)')
             else:  # 1D plot
                 cats = np.unique(y)
                 for i,cat in enumerate(cats):

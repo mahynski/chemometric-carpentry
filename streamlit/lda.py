@@ -45,7 +45,7 @@ col1_, col2_ = st.columns(2)
 with col1_:
   with st.expander('Click here to see the details.'):
     st.markdown(r'''
-    With [PCA](pca_pcr.ipynb), we found the orthogonal principal components that characterized the spread of the data, i.e., the covariance of X with itself (unsupervised).  With [PLS](pls.ipynb), we looked for directions that characterized the covariance of the product of X and Y (supervised).  LDA is a supervised method which instead looks for axes that **maximize the separation between labelled classes**.  This is done by finding the eigenvectors ("linear discriminants") of the matrix $S_W^{-1}S_B$, where $S_W$ is the within-class scatter matrix and $S_B$ is the between-class scatter matrix.  
+    With [PCA](pca_pcr.ipynb), we found the orthogonal principal components that characterized the spread of the data, i.e., the covariance of $X$ (dimensions $n \times p$) with itself (unsupervised).  With [PLS](pls.ipynb), we looked for directions that characterized the covariance of the product of $X$ and $Y$ (supervised).  LDA is a supervised method which instead looks for axes that **maximize the separation between labelled classes**.  This is done by finding the eigenvectors ("linear discriminants") of the matrix $S_W^{-1}S_B$, where $S_W$ is the within-class scatter matrix and $S_B$ is the between-class scatter matrix.  
     
     LDA can be used as a [classification model](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/lda.html#LDA-as-a-classifier), but is more commonly used for dimensionality reduction akin to PCA. This can be described in 5 steps:
 

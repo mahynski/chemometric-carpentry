@@ -273,7 +273,7 @@ if (test_size > 0) and (target_column is not None):
                 fig, ax = plt.subplots(nrows=1, ncols=1)
                 ax = model.plot_loadings(feature_names, ax=ax)
                 for txt in ax.texts:
-                txt.set_fontsize(6)
+                    txt.set_fontsize(6)
                 configure_plot(ax, size=(2,2))
             else:
                 fig, ax = plt.subplots()

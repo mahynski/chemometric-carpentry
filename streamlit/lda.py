@@ -277,12 +277,12 @@ if (test_size > 0) and (target_column is not None):
                 ax.set_xticks(np.arange(1, len(model.scalings_.T[0])+1), [x[1] for x in ranked_features], rotation=90)
                 configure_plot(ax, size=(int(round(len(model.scalings_.T[0])/4.)), 2))
         
-    #     with col2a:
-    #     fig, ax = plt.subplots()
-    #     ax.plot([i+1 for i in range(len(model._PCA__pca_.components_))], model._PCA__pca_.explained_variance_ratio_.cumsum(), label='Cumulative', color='k')
-    #     ax.bar(x=[i+1 for i in range(len(model._PCA__pca_.components_))], height=model._PCA__pca_.explained_variance_ratio_)
-    #     ax.set_xticks([i+1 for i in range(len(model._PCA__pca_.components_))])
-    #     ax.set_ylabel('Explained Variance Ratio')
-    #     ax.set_xlabel('Principal Component')
-    #     ax.legend(loc='best')
-    #     configure_plot(ax, size=(2,2))
+        with col2a:
+            fig, ax = plt.subplots()
+            ax.plot([i+1 for i in range(len(model.scalings_.T))], model.explained_variance_ratio_.cumsum(), label='Cumulative', color='k')
+            ax.bar(x=[i+1 for i in range(len(model.scalings_.T))], height=model.explained_variance_ratio_)
+            ax.set_xticks([i+1 for i in range(len(model.scalings_.T))])
+            ax.set_ylabel('Explained Variance ("Discriminability") Ratio')
+            ax.set_xlabel('Linear Discriminant')
+            ax.legend(loc='best')
+            configure_plot(ax, size=(2,2))

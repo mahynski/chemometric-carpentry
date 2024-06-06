@@ -259,22 +259,10 @@ if (test_size > 0) and (target_column is not None):
             ax = plot_proj(ax, X_train, y_train, train=True, alpha=ellipse_alpha, covar_method=covar_method)
             configure_plot(ax)
 
-            fig, ax = plt.subplots(nrows=1, ncols=1)
-            ax = model.visualize(X_train, ax=ax)
-            ax.set_title('Training Set')
-            ax.legend(fontsize=6, loc='upper right')
-            configure_plot(ax)
-
         with col2sub:
             st.subheader('Test Set')
             fig, ax = plt.subplots(nrows=1, ncols=1)
             ax = plot_proj(ax, X_test, None if target_column is None else y_test, train=False, alpha=ellipse_alpha, covar_method=covar_method)
-            configure_plot(ax)
-
-            fig, ax = plt.subplots(nrows=1, ncols=1)
-            ax = model.visualize(X_test, ax=ax)
-            ax.set_title('Test Set')
-            ax.legend(fontsize=6, loc='upper right')
             configure_plot(ax)
 
     # with scalings_tab:

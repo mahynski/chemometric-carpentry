@@ -126,8 +126,9 @@ with st.expander("Settings"):
       with col2:
         st.subheader("Model Settings")
 
-        n_components = st.slider(label="Number of dimensions to project into.", min_value=1, max_value=len(feature_names)-1,
-        value=1, step=1, disabled=False, label_visibility="visible")
+        if target_column is not None:
+            n_components = st.slider(label="Number of dimensions to project into.", min_value=1, max_value=np.min(len(feature_names), len(dataframe[target_column].unique())-1),
+            value=1, step=1, disabled=False, label_visibility="visible")
 
         standardization = st.selectbox("What type of standardization should be applied?", (None, "Scaler", "Robust Scaler"), index=0)
         if standardization is not None:

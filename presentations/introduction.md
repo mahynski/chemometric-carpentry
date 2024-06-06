@@ -22,7 +22,7 @@ https://github.com/mahynski/chemometrics_short_course
 
 <style scoped>section{font-size:30px;}</style>
 
-:dart: The goal of this short course is to introduce and explain elementary chemometric analysis methods relevant for our work at NIST. We will also touch on more advanced ML approaches. The course will cover the use of python-based tools that can accelerate your workflow and improve reproducibility. 
+:dart: The goal of this short course is to introduce and explain elementary chemometric analysis methods. We will also touch on more advanced ML approaches. The course will cover the use of python-based tools that can accelerate your workflow and improve reproducibility. 
 
 We will assume **no prior knowledge or familiarity** with any of these methods, tools, or mathematical background. We will review only as much mathematics as is necessary to ground an understanding of the methods discussed since a deep understanding is not necessary for application, which is the focus of this course.
 
@@ -42,6 +42,42 @@ We will assume **no prior knowledge or familiarity** with any of these methods, 
 
 --- 
 
+# Example
+
+<style scoped>section{font-size:30px;}</style>
+
+Given the following sequence: [1, 2, 3, 4]
+
+Q1: What is the median?
+
+Q2: What is the 75th percentile?
+
+---
+
+# Example
+
+<style scoped>section{font-size:30px;}</style>
+
+A: There are, in fact, up to 13 different ways to compute percentile (median = 50th percentile)!
+
+A1: "Correct" answers include: [2.0, 2.5, 3.0]
+
+A2: "Correct" answers include: [3.0, 3.25, 3.5, 3.5625, 3.583, 3.75, 4.0]
+
+The main 9 are reviewed here: [R. J. Hyndman and Y. Fan, "Sample quantiles in statistical packages," The American Statistician, 50(4), pp. 361-365, 1996](https://www.tandfonline.com/doi/abs/10.1080/00031305.1996.10473566), but [numpy](https://numpy.org) has implemented [4 more](https://numpy.org/doc/stable/reference/generated/numpy.quantile.html)!
+
+---
+
+# Example
+
+<style scoped>section{font-size:30px;}</style>
+
+> There are a large number of different definitions used for sample quantiles in statistical computer packages. Often within the same package one definition will be used to compute a quantile explicitly, while other definitions may be used when producing a boxplot, a probability plot, or a QQ plot. ... We argue that there is a **need to adopt a standard definition** for sample quantiles so that the same answers are produced by different packages and within each package.
+
+-Hyndman & Fan
+
+---
+
 # What Should I Get Out of This?
 
 <style scoped>section{font-size:30px;}</style>
@@ -54,7 +90,11 @@ This course will also teach you to modify and expand things as needed.
 
 # Instructors
 
+<style scoped>section{font-size:30px;}</style>
+
 646.04 - Nate Mahynski, nathan.mahynski@nist.gov
+
+Thanks :clap: also goes to:
 646.04 - Bill Krekelberg, william.krekelberg@nist.gov
 646.04 - Tom Allison, thomas.allison@nist.gov
 

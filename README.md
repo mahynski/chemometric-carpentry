@@ -51,7 +51,7 @@
             * Some Motivating Examples
             * Class Models
             * A Machine Learning Perspective 
-        * N << p
+        * $N << p$
         * Regression, Classification, and Clustering
         * scitkit-learn
         * PyChemAuth

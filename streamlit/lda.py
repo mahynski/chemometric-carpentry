@@ -126,17 +126,13 @@ with st.expander("Settings"):
       with col2:
         st.subheader("Model Settings")
 
-        # alpha = st.slider(label=r"Type I error rate ($\alpha$).", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
         n_components = st.slider(label="Number of dimensions to project into.", min_value=1, max_value=len(feature_names)-1,
         value=1, step=1, disabled=False, label_visibility="visible")
-        # gamma = st.slider(label=r"Significance level for determining outliers ($\gamma$).", min_value=0.0, max_value=alpha, value=0.01, step=0.01, disabled=False, label_visibility="visible")
-        # robust = st.selectbox(label="How should we estimate $\chi^2$ degrees of freedom?", options=["Semi-Robust", "Classical"], index=0, key=None, help=None, on_change=None, args=None, kwargs=None, placeholder="Choose an option", disabled=False, label_visibility="visible")
-        # robust = str(robust).lower()
-        # if robust == 'semi-robust':
-        #   robust = 'semi' # Rename for PyChemAuth
-        # scale_x = st.toggle(label="Scale X columns by their standard deviation.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
-        # sft = st.toggle(label="Use sequential focused trimming (SFT) for iterative outlier removal.", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
-        # st.write("Note: SFT relies on a Semi-Robust approach during data cleaning, then uses a Classical at the end for the final model.")
+
+        standardization = st.selectbox("What type of standardization should be applied?", (None, "Scaler", "Robust Scaler"), index=0)
+        if standardization is not None:
+          center = st.toggle("Use centering", value=False)
+          scale = st.toggle("Use scale", value=False)
 
 if (test_size > 0) and (target_column is not None):
     X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
@@ -147,6 +143,16 @@ if (test_size > 0) and (target_column is not None):
       random_state=random_state,
       test_size=test_size,
     )
+
+    if standardization == "Scaler":
+        scaler = CorrectedScaler(with_mean=center, with_std=scale)
+    elif standardization == "RobustScaler":
+        scaler = RobustScaler(with_median=center, with_iqr=scale)
+    else:
+        scaler = CorrectedScaler(with_mean=False, with_std=False)
+
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
 
     data_tab, train_tab, test_tab, results_tab, scalings_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results", "Scalings"])
 
@@ -162,108 +168,102 @@ if (test_size > 0) and (target_column is not None):
         st.header("Testing Data")
         st.dataframe(pd.DataFrame(data=X_test, columns=feature_names, index=idx_test))
         
-    # with results_tab:
-    #     st.header("Modeling Results")
+    with results_tab:
+        st.header("Modeling Results")
 
-    #     model = PCA(
-    #         n_components=n_components,
-    #         alpha=alpha,
-    #         gamma=gamma,
-    #         scale_x=scale_x, # PCA always centers, but you can choose whether or not to scale the columns by st. dev. (autoscaling)
-    #         robust=robust, # Estimate the degrees of freedom for the chi-squared acceptance area below using robust, data-driven approach
-    #         sft=sft
-    #     )
+        model = LDA(
+            n_components=n_components,
+        )
 
-    #     _ = model.fit(X_train)
+        _ = model.fit(X_train, y_train)
 
-    #     def configure_plot(ax, size=(3,3)):
-    #     for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
-    #         item.set_fontsize(6)
-    #     fig = plt.gcf()
-    #     fig.set_size_inches(*size)
-    #     st.pyplot(fig, use_container_width=False)
+        def configure_plot(ax, size=(3,3)):
+            for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+                item.set_fontsize(6)
+            fig = plt.gcf()
+            fig.set_size_inches(*size)
+            st.pyplot(fig, use_container_width=False)
 
-    #     ellipse_data = {}
-    #     cov_ell = {}
-    #     def plot_proj(ax, X, y=None, train=True, alpha=0.05, covar_method=None):
-    #     fig, ax = plt.subplots(nrows=1, ncols=1)
-    #     proj_ = model.transform(X)
-    #     if n_components >= 2: # 2d plot
-    #         if y is not None:
-    #         cats = np.unique(y)
-    #         for i,cat in enumerate(cats):
-    #             mask = cat == y
-    #             ax.plot(proj_[mask,0], proj_[mask,1], 'o', label=cat, color=f'C{i}', ms=1)
-    #             if train:
-    #             ellipse = CovarianceEllipse(method=covar_method).fit(proj_[mask,:2])
-    #             cov_ell[i] = ellipse
-    #             else:
-    #             ellipse = cov_ell[i]
-    #             ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
-    #         ax.legend(fontsize=6, loc='best')
-    #         else:
-    #         ax.plot(proj_[:,0], proj_[:,1], 'o')
-    #         i = 0
-    #         if train:
-    #             ellipse = CovarianceEllipse(method=covar_method).fit(proj_[:,:2])
-    #             cov_ell[i] = ellipse
-    #         else:
-    #             ellipse = cov_ell[i]
-    #         ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
-    #         ax.set_xlabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
-    #         ax.set_ylabel(f'PC 2 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[1])}%)')
-    #     else:  # 1D plot
-    #         if y is not None:
-    #         cats = np.unique(y)
-    #         for i,cat in enumerate(cats):
-    #             mask = cat == y
-    #             ax.plot([i+1]*np.sum(mask), proj_[mask,0], 'o', label=cat, color=f'C{i}', ms=1)
-    #             if train:
-    #             rectangle = OneDimLimits(method=covar_method).fit(proj_[mask,:1])
-    #             cov_ell[i] = rectangle
-    #             else:
-    #             rectangle = cov_ell[i]
-    #             ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
-    #         ax.legend(fontsize=6, loc='best')
-    #         else:
-    #         ax.plot([1]*np.sum(mask), proj_[:,0], 'o')
-    #         i = 0
-    #         if train:
-    #             rectangle = OneDimLimits(method=covar_method).fit(proj_[:,0])
-    #             cov_ell[i] = rectangle
-    #         else:
-    #             rectangle = cov_ell[i]
-    #         ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
+        cov_ell = {}
+        def plot_proj(ax, X, y=None, train=True, alpha=0.05, covar_method=None):
+            fig, ax = plt.subplots(nrows=1, ncols=1)
+            proj_ = model.transform(X)
+            if n_components >= 2: # 2d plot
+                if y is not None:
+                    cats = np.unique(y)
+                    for i,cat in enumerate(cats):
+                        mask = cat == y
+                        ax.plot(proj_[mask,0], proj_[mask,1], 'o', label=cat, color=f'C{i}', ms=1)
+                        if train:
+                            ellipse = CovarianceEllipse(method=covar_method).fit(proj_[mask,:2])
+                            cov_ell[i] = ellipse
+                        else:
+                            ellipse = cov_ell[i]
+                        ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
+                    ax.legend(fontsize=6, loc='best')
+                else:
+                    ax.plot(proj_[:,0], proj_[:,1], 'o')
+                    i = 0
+                    if train:
+                        ellipse = CovarianceEllipse(method=covar_method).fit(proj_[:,:2])
+                        cov_ell[i] = ellipse
+                    else:
+                        ellipse = cov_ell[i]
+                    ax = ellipse.visualize(ax, alpha=alpha, ellipse_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
+                    ax.set_xlabel(f'LD 1 ({"%.4f"%(100*model.explained_variance_ratio_[0])}%)')
+                    ax.set_ylabel(f'LD 2 ({"%.4f"%(100*model.explained_variance_ratio_[1])}%)')
+            else:  # 1D plot
+                if y is not None:
+                    cats = np.unique(y)
+                    for i,cat in enumerate(cats):
+                        mask = cat == y
+                        ax.plot([i+1]*np.sum(mask), proj_[mask,0], 'o', label=cat, color=f'C{i}', ms=1)
+                        if train:
+                            rectangle = OneDimLimits(method=covar_method).fit(proj_[mask,:1])
+                            cov_ell[i] = rectangle
+                        else:
+                            rectangle = cov_ell[i]
+                            ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
+                     ax.legend(fontsize=6, loc='best')
+                else:
+                    ax.plot([1]*np.sum(mask), proj_[:,0], 'o')
+                    i = 0
+                    if train:
+                        rectangle = OneDimLimits(method=covar_method).fit(proj_[:,0])
+                        cov_ell[i] = rectangle
+                    else:
+                        rectangle = cov_ell[i]
+                    ax = rectangle.visualize(ax, x=i+1-0.3, alpha=alpha, rectangle_kwargs={'alpha':0.3, 'facecolor':f"C{i}", 'linestyle':'--'})
 
-    #         ax.set_xlabel('Class')
-    #         ax.set_xlim(0, len(cats)+1)
-    #         ax.set_xticks(np.arange(1, len(cats)+1), cats, rotation=90)
-    #         ax.set_ylabel(f'PC 1 ({"%.4f"%(100*model._PCA__pca_.explained_variance_ratio_[0])}%)')
+                    ax.set_xlabel('Class')
+                    ax.set_xlim(0, len(cats)+1)
+                    ax.set_xticks(np.arange(1, len(cats)+1), cats, rotation=90)
+                    ax.set_ylabel(f'LD 1 ({"%.4f"%(100*model.explained_variance_ratio_[0])}%)')
 
-    #     return ax
+            return ax
 
-    #     col1sub, col2sub = st.columns([2, 2])
-    #     with col1sub:
-    #     ellipse_alpha = st.slider(label=r"Type I error rate ($\alpha$) for class ellipses.", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
-    #     with col2sub:
-    #     covar_method = st.selectbox("How should class covariances be computed?", ("Minimum Covariance Determinant", "Empirical"), index=0)
-    #     if covar_method == "Minimum Covariance Determinant":
-    #         covar_method = 'mcd'
-    #     else:
-    #         covar_method = 'empirical'
+        col1sub, col2sub = st.columns([2, 2])
+        with col1sub:
+            ellipse_alpha = st.slider(label=r"Type I error rate ($\alpha$) for class ellipses.", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
+        with col2sub:
+            covar_method = st.selectbox("How should class covariances be computed?", ("Minimum Covariance Determinant", "Empirical"), index=0)
+            if covar_method == "Minimum Covariance Determinant":
+                covar_method = 'mcd'
+            else:
+                covar_method = 'empirical'
 
-    #     col1sub, col2sub = st.columns([2, 2])
-    #     with col1sub:
-    #     st.subheader('Training Set')
-    #     fig, ax = plt.subplots(nrows=1, ncols=1)
-    #     ax = plot_proj(ax, X_train, None if target_column is None else y_train, train=True, alpha=ellipse_alpha, covar_method=covar_method)
-    #     configure_plot(ax)
+        col1sub, col2sub = st.columns([2, 2])
+        with col1sub:
+        st.subheader('Training Set')
+        fig, ax = plt.subplots(nrows=1, ncols=1)
+        ax = plot_proj(ax, X_train, y_train, train=True, alpha=ellipse_alpha, covar_method=covar_method)
+        configure_plot(ax)
 
-    #     fig, ax = plt.subplots(nrows=1, ncols=1)
-    #     ax = model.visualize(X_train, ax=ax)
-    #     ax.set_title('Training Set')
-    #     ax.legend(fontsize=6, loc='upper right')
-    #     configure_plot(ax)
+        fig, ax = plt.subplots(nrows=1, ncols=1)
+        ax = model.visualize(X_train, ax=ax)
+        ax.set_title('Training Set')
+        ax.legend(fontsize=6, loc='upper right')
+        configure_plot(ax)
 
     #     with col2sub:
     #     st.subheader('Test Set')

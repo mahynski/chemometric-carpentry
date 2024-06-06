@@ -184,6 +184,16 @@ if (test_size > 0) and (target_column is not None):
             fig.set_size_inches(*size)
             st.pyplot(fig, use_container_width=False)
 
+        def plot_scalings(ax, model):
+            for name, pos in zip(feature_names, model.scalings_):
+                ax.plot(pos[0], pos[1], 'o', color='C0', label=name)
+                ax.text(pos[0], pos[1], name)
+            ax.axvline(0, ls='--', color='k')
+            ax.axhline(0, ls='--', color='k')
+
+            ax.set_xlabel(f'LD 1 ({"%.3f"%(model.explained_variance_ratio_[0]*100)}%)')
+            ax.set_ylabel(f'LD 2 ({"%.3f"%(model.explained_variance_ratio_[1]*100)}%)')
+
         cov_ell = {}
         def plot_proj(ax, X, y, train=True, alpha=0.05, covar_method=None):
             fig, ax = plt.subplots(nrows=1, ncols=1)
@@ -252,7 +262,7 @@ if (test_size > 0) and (target_column is not None):
         with col1a:
             if n_components >= 2:
                 fig, ax = plt.subplots(nrows=1, ncols=1)
-                ax = model.plot_loadings(feature_names, ax=ax)
+                plot_scalings(ax, model)
                 for txt in ax.texts:
                     txt.set_fontsize(6)
                 configure_plot(ax, size=(2,2))

@@ -282,7 +282,7 @@ if (test_size > 0) and (target_column is not None):
             ax.plot([i+1 for i in range(len(model.scalings_.T))], model.explained_variance_ratio_.cumsum(), label='Cumulative', color='k')
             ax.bar(x=[i+1 for i in range(len(model.scalings_.T))], height=model.explained_variance_ratio_)
             ax.set_xticks([i+1 for i in range(len(model.scalings_.T))])
-            ax.set_ylabel('Explained Variance ("Discriminability") Ratio')
+            ax.set_ylabel('Discriminability Ratio')
             ax.set_xlabel('Linear Discriminant')
             ax.legend(loc='best')
             configure_plot(ax, size=(2,2))

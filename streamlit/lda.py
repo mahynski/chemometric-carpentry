@@ -26,17 +26,14 @@ with st.sidebar:
     st.title('LDA: Linear Discriminant Analysis')
     st.markdown('''
     ## About this application
-    This tool uses the [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/index.html) python 
-    package for analysis.
+    This tool uses the [scikit-learn](https://scikit-learn.org/stable/) python 
+    package for analysis, but is designed to accompany [PyChemAuth](https://pychemauth.readthedocs.io) as a teaching tool.
     
     :heavy_check_mark: It is intended as a teaching tool to demonstrate the use of PCA for modeling data.
 
     :x: It is not intended to be used in production.  Instead, use the Jupyter notebooks provided in 
     [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/index.html) for reproducible, high-quality
     analysis. For example, consider using [this notebook instead.](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/lda.html)
-
-    <!--:books: This implementation is based on [Pomerantsev, A. L., & Rodionova, O. Y. (2014). Concept and role of extreme objects in PCA/SIMCA. Journal of Chemometrics, 28(5), 429-438.](https://doi.org/10.1002/cem.2506) and also implements SFT as described in [Rodionova OY., Pomerantsev AL. "Detection of Outliers in Projection-Based Modeling",
-    Analytical Chemistry 2020, 92, 2656−2664.](http://dx.doi.org/10.1021/acs.analchem.9b04611). -->
     ''')
     add_vertical_space(2)
     st.write('Made by ***Nate Mahynski***')
@@ -48,9 +45,21 @@ col1_, col2_ = st.columns(2)
 with col1_:
   with st.expander('Click here to see the details.'):
     st.markdown(r'''
+    With [PCA](pca_pcr.ipynb), we found the orthogonal principal components that characterized the spread of the data, i.e., the covariance of X with itself (unsupervised).  With [PLS](pls.ipynb), we looked for directions that characterized the covariance of the product of X and Y (supervised).  LDA is a supervised method which instead looks for axes that **maximize the separation between labelled classes**.  This is done by finding the eigenvectors ("linear discriminants") of the matrix $S_W^{-1}S_B$, where $S_W$ is the within-class scatter matrix and $S_B$ is the between-class scatter matrix.  
     
+    LDA can be used as a [classification model](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/lda.html#LDA-as-a-classifier), but is more commonly used for dimensionality reduction akin to PCA. This can be described in 5 steps:
 
-    This demonstration tool will accept data with multiple classes and use all the data it is given.  Authentication models like DD-SIMCA break up this data by class and create a PCA-based model for each individual class.  See the description of [DD-SIMCA](https://chemometric-carpentry-ddsimca.streamlit.app/) for an explanation of the other settings like $\gamma$ and model properties.
+    1. Compute the $p$-dimensional mean vectors for all classes from the dataset.
+
+    2. Compute the scatter matrices (between-class and within-class scatter matrix).
+
+    3. Compute the eigenvectors and eigenvalues for these matrices.
+
+    4. Sort the eigenvectors by decreasing eigenvalue and choose the first $k$ eigenvectors; stack these columns to form a $p \times k$ dimensional matrix $W$.  This is analogous to the "loadings" matrix in PCA.
+
+    5. Use this $p \times k$ matrix to project the samples into the new subspace by performing matrix multiplication: $T = XW$, where $T$ are the "x-scores".
+
+    PCA can be used to perform dimensionality reduction by only selecting the leading $k$ eigenvectors from the covariance matrix; assuming it is full rank, we have as many dimensions as the size of that matrix.  However, in LDA, the matrix $S_W^{-1}S_B$ will only have [at most](https://en.wikipedia.org/wiki/Linear_discriminant_analysis#Multiclass_LDA) ${\rm min}(p, c-1)$ non-zero eigenvectors where $p$ is the number of features and $c$ is the number of classes.  Thus, if we want to separate 2 classes, LDA will only be able to return the single axes that separates them best.  In such a case, it might be better to even do PCA if we desire a low, but higher than 1-, dimensional result.
     ''')
 
 with col2_:

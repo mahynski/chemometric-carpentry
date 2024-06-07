@@ -91,7 +91,7 @@ st.divider()
 st.header("Upload Your Data")
 
 uploaded_file = st.file_uploader(
-  label="Upload a CSV file. Observations should be in rows, while columns should correspond to different features. An example file is available [here](https://github.com/mahynski/chemometric-carpentry/blob/c9a91d65f8f5d151dad40a6aed8044c9654cf48c/data/simca-iris.csv).",
+  label="Upload a CSV file. Observations should be in rows, while columns should correspond to different features. Classes should be specified as integers or strings. An example file is available [here](https://github.com/mahynski/chemometric-carpentry/blob/c9a91d65f8f5d151dad40a6aed8044c9654cf48c/data/simca-iris.csv).",
   type=['csv'], accept_multiple_files=False, 
   key=None, help="", 
   on_change=None, label_visibility="visible")
@@ -113,6 +113,9 @@ with st.expander("Settings"):
 
         target_column = st.selectbox(label="Select a column as the target.", options=dataframe.columns, index=None, placeholder="Select a column", disabled=False, label_visibility="visible")
         feature_names = [c for c in dataframe.columns if c != target_column]
+
+        if target_column is not None:
+            type()
           
         random_state = st.number_input(label="Random seed for data shuffling before splitting.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
         test_size = st.slider(label="Select a positive fraction of the data to use as a test set to begin analysis.", min_value=0.0, max_value=1.0, value=0.0, step=0.05, disabled=False, label_visibility="visible")
@@ -129,7 +132,7 @@ with st.expander("Settings"):
         style = st.selectbox(label="PLS-DA style", options=["Hard", "Soft"], index=None, placeholder="Style", disabled=False, label_visibility="visible")
 
 if (test_size > 0) and (style is not None) and (target_column is not None):
-  X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
+    X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
       dataframe[feature_names].values,
       dataframe[target_column].values,
       dataframe.index.values,
@@ -138,17 +141,35 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
       test_size=test_size,
     )
 
-  data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])
+    if isinstance(y_train.dtype, (int32, int64, int, np.int32, np.int64)):
+        not_assigned = int(dataframe[target_column].min()) - 1
+    else:
+        not_assigned = "UNKNOWN"
+        if not_assigned in dataframe[target_column].unique():
+            raise Exception("Do not use 'UNKNOWN' as class since this is used internally to denote 'no recognized class.'")
 
-  with data_tab:
-    st.header("Original Data")
-    st.dataframe(dataframe)
+    data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])
 
-  with train_tab:
-    st.header("Training Data")
-    st.dataframe(pd.DataFrame(data=np.hstack((X_train, y_train.reshape(-1,1))), columns=feature_names+[target_column], index=idx_train))
+    with data_tab:
+        st.header("Original Data")
+        st.dataframe(dataframe)
 
-  with test_tab:
-    st.header("Testing Data")
-    st.dataframe(pd.DataFrame(data=np.hstack((X_test, y_test.reshape(-1,1))), columns=feature_names+[target_column], index=idx_test))
-      
+    with train_tab:
+        st.header("Training Data")
+        st.dataframe(pd.DataFrame(data=np.hstack((X_train, y_train.reshape(-1,1))), columns=feature_names+[target_column], index=idx_train))
+
+    with test_tab:
+        st.header("Testing Data")
+        st.dataframe(pd.DataFrame(data=np.hstack((X_test, y_test.reshape(-1,1))), columns=feature_names+[target_column], index=idx_test))
+        
+        model = PLSDA(
+            n_components=n_components,
+            alpha=alpha,
+            gamma=gamma,
+            not_assigned=not_assigned, 
+            style=style,
+            scale_x=scale_x,
+            score_metric='TEFF'
+        )
+    
+        _ = model.fit(X_train, y_train)

@@ -204,8 +204,7 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
 
             # try:
             ax = model.visualize(styles=[style], show_training=True)
-            print(ax._OneDimLimits__S_, ax._OneDimLimits__class_center_)
-            # configure_plot(ax)
+            configure_plot(ax)
             # except:
             # pass # If > 3 classes
 

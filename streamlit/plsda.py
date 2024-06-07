@@ -147,8 +147,6 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
         if not_assigned in dataframe[target_column].unique():
             raise Exception("Do not use 'UNKNOWN' as class since this is used internally to denote 'no recognized class.'")
 
-    st.write(not_assigned)
-
     data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])
 
     with data_tab:
@@ -163,6 +161,7 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
         st.header("Testing Data")
         st.dataframe(pd.DataFrame(data=np.hstack((X_test, y_test.reshape(-1,1))), columns=feature_names+[target_column], index=idx_test))
         
+    with results_tab:
         model = PLSDA(
             n_components=n_components,
             alpha=alpha,
@@ -173,9 +172,8 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
             score_metric='TEFF'
         )
     
-        st.write('a')
         _ = model.fit(X_train, y_train)
-        st.write('b')
+
         def display_metrics(X, y, model):
             metrics = model.figures_of_merit(model.predict(X), y)
             col1_, col2_, col3_, col4_ = st.columns(4)
@@ -189,8 +187,8 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
         col1sub, col2sub = st.columns([2, 2])
         with col1sub:
             st.subheader('Training Set')
-            # display_metrics(X_train, y_train.reshape(-1,1), model)
+            display_metrics(X_train, y_train.reshape(-1,1), model)
 
         with col2sub:
             st.subheader('Test Set')
-            # display_metrics(X_test, y_test.reshape(-1,1), model)
+            display_metrics(X_test, y_test.reshape(-1,1), model)

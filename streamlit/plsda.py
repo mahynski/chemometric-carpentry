@@ -147,6 +147,8 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
         if not_assigned in dataframe[target_column].unique():
             raise Exception("Do not use 'UNKNOWN' as class since this is used internally to denote 'no recognized class.'")
 
+    st.write(not_assigned)
+
     data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])
 
     with data_tab:

@@ -107,11 +107,14 @@
         * Soft Independent Modeling of Class Analogies (SIMCA)
             * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/simca.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/simca.html) | [Interactive Tool](https://chemometric-carpentry-ddsimca.streamlit.app/)
 5. 💻 [Machine Learning Models](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/5_Machine_Learning_Models.ipynb)
-    * Artificial Neural Networks
-    * Decision Trees
-    * Ensemble Methods
-    * Random Forests
-    * Logistic Regression (actually classification!)
+    * 📈 Regression Models
+        * Artificial Neural Networks
+        * Explainable Boosting Machine 
+    * ✅ Classification Models
+        * Decision Trees
+        * Ensemble Methods
+        * Random Forests
+        * Logistic Regression (actually classification!)
     * Out-of-Distribution / Novelty Detection
     * AutoML
 6. 🔍 [Inspection and Comparison](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/6_Inspection_and_Comparison.ipynb)

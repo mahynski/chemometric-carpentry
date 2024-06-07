@@ -204,20 +204,21 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
 
             # try:
             ax = model.visualize(styles=[style], show_training=True)
-            configure_plot(ax)
+            print(ax._OneDimLimits__S_, ax._OneDimLimits__class_center_)
+            # configure_plot(ax)
             # except:
             # pass # If > 3 classes
 
-        with col2sub:
-            st.subheader('Test Set')
-            display_metrics(X_test, y_test, model)
+        # with col2sub:
+        #     st.subheader('Test Set')
+        #     display_metrics(X_test, y_test, model)
 
-            try:
-                ax = model.visualize(styles=[style], show_training=False)
-                T = model.transform(X_test)
-                for i,cat in enumerate(model.categories):
-                    mask = y_test == cat
-                    ax.plot(T[mask, 0], T[mask, 1], '*', color=f'C{i}', label='{} (Test)'.format(cat))
-                configure_plot(ax)
-            except:
-                pass # If > 3 classes
+        #     try:
+        #         ax = model.visualize(styles=[style], show_training=False)
+        #         T = model.transform(X_test)
+        #         for i,cat in enumerate(model.categories):
+        #             mask = y_test == cat
+        #             ax.plot(T[mask, 0], T[mask, 1], '*', color=f'C{i}', label='{} (Test)'.format(cat))
+        #         configure_plot(ax)
+        #     except:
+        #         pass # If > 3 classes

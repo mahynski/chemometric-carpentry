@@ -201,12 +201,27 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
             st.subheader('Training Set')
             display_metrics(X_train, y_train, model)
 
-            # try:
-            ax = model.visualize(styles=[style])
-            configure_plot(ax)
-            # except:
-            #     pass
+            try:
+                ax = model.visualize(styles=[style])
+                configure_plot(ax)
+
+                print(ax.lines)
+            except:
+                pass
 
         with col2sub:
             st.subheader('Test Set')
             display_metrics(X_test, y_test, model)
+
+            # try:
+            #     ax = model.visualize(styles=[style])
+
+            #     test_set_proj = model.transform(X_test)
+            #     for color_, class_ in zip(['cyan', 'magenta', 'black'], model._PLSDA__ohencoder_.categories_[0]):
+            #         mask = y_test == class_
+            #         ax.plot(test_set_proj[mask, 0], test_set_proj[mask, 1], '*', color=color_, label='{} (Test)'.format(class_))
+            #     ax.legend(loc='best')
+
+            #     configure_plot(ax)
+            # except:
+            #     pass

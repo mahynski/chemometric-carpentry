@@ -56,6 +56,8 @@ with col1_:
 4. Classify points in $T$ using either a "hard" (LDA-inspired) or "soft" (QDA-inspired) method.
 
 Hard PLS-DA assigns a point to the class whose center is the closest in terms of Mahalanobis distance.  While it is possible to create a cutoff (based on $\chi^2$ statistics, for example) the hard version does not do this, and thus always assigns a point to one of the known classes.  Soft PLS-DA insteads uses a QDA-like distance (heteroscedastic) and uses a statistical cutoff from each class center to determine membership.  Thus, soft PLS-DA can assign a point to 0, 1, or multiple known classes.
+
+Be wary that the definition of ["specificity" changes](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/plsda.html#Soft-PLS-DA) for soft PLS-DA from hard PLS-DA, which can make its performance appear better (numerically higher).
 ''')
 
 with col2_:
@@ -188,6 +190,11 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
         with col1sub:
             st.subheader('Training Set')
             display_metrics(X_train, y_train.reshape(-1,1), model)
+
+            try:
+                ax = plsda.visualize(styles=style)
+            except:
+                pass
 
         with col2sub:
             st.subheader('Test Set')

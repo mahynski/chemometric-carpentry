@@ -181,7 +181,7 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
             col3_.metric(label='Total Specificity (TSPS)', value='%.3f'%metrics['TSPS'])
             col4_.metric(label='Model Score', value='%.3f'%model.score(X, y))
 
-            print(metrics['CM'])
+            st.write(metrics['CM'])
 
         col1sub, col2sub = st.columns([2, 2])
         with col1sub:

@@ -201,13 +201,13 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
             st.subheader('Training Set')
             display_metrics(X_train, y_train, model)
 
-            try:
-                ax = model.visualize(styles=[style])
-                # for i in range(len(dataframe[target_column].unique())):
-                #     ax.lines[i].remove()
-                configure_plot(ax)
-            except:
-                pass
+            # try:
+            ax = model.visualize(styles=[style])
+            # for i in range(len(dataframe[target_column].unique())):
+            #     ax.lines[i].remove()
+            configure_plot(ax)
+            # except:
+                # pass
 
         with col2sub:
             st.subheader('Test Set')

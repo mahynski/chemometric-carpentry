@@ -188,13 +188,21 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
 
             st.write(metrics['CM'])
 
+        def configure_plot(ax):
+            for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+                item.set_fontsize(6)
+            fig = plt.gcf()
+            fig.set_size_inches(2, 2)
+            st.pyplot(fig, use_container_width=False)
+
         col1sub, col2sub = st.columns([2, 2])
         with col1sub:
             st.subheader('Training Set')
             display_metrics(X_train, y_train, model)
 
             # try:
-            _ = model.visualize(styles=[style])
+            ax = model.visualize(styles=[style])
+            configure_plot(ax)
             # except:
             #     pass
 

@@ -146,9 +146,9 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
 
   with train_tab:
     st.header("Training Data")
-    st.dataframe(pd.DataFrame(data=np.hstack((X_train, y_train.reshape(-1,1))), columns=[feature_names]+[target_column], index=idx_train))
+    st.dataframe(pd.DataFrame(data=np.hstack((X_train, y_train.reshape(-1,1))), columns=feature_names+[target_column], index=idx_train))
 
   with test_tab:
     st.header("Testing Data")
-    st.dataframe(pd.DataFrame(data=np.hstack((X_test, y_test.reshape(-1,1))), columns=[feature_names]+[target_column], index=idx_test))
+    st.dataframe(pd.DataFrame(data=np.hstack((X_test, y_test.reshape(-1,1))), columns=feature_names+[target_column], index=idx_test))
       

@@ -203,9 +203,12 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
 
             try:
                 ax = model.visualize(styles=[style])
-                configure_plot(ax)
+                
 
-                st.write(ax.lines[:3])
+                for i in range(len(dataframe[target_column].unique())):
+                    ax.lines[i].remove()
+
+                configure_plot(ax)
             except:
                 pass
 

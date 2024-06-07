@@ -193,6 +193,7 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
                 item.set_fontsize(6)
             fig = plt.gcf()
             fig.set_size_inches(2, 2)
+            plt.legend(fontsize=6)#, bbox_to_anchor=(1,1))
             st.pyplot(fig, use_container_width=False)
 
         col1sub, col2sub = st.columns([2, 2])

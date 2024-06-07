@@ -128,7 +128,7 @@ with st.expander("Settings"):
 
         style = st.selectbox(label="PLS-DA style", options=["Hard", "Soft"], index=None, placeholder="Style", disabled=False, label_visibility="visible")
 
-if (test_size > 0):
+if (test_size > 0) and (style is not None) and (target_column is not None):
   X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
       dataframe[feature_names].values,
       dataframe[target_column].values,
@@ -140,4 +140,15 @@ if (test_size > 0):
 
   data_tab, train_tab, test_tab, results_tab = st.tabs(["Original Data", "Training Data", "Testing Data", "Modeling Results"])
 
-  
+  with data_tab:
+    st.header("Original Data")
+    st.dataframe(dataframe)
+
+  with train_tab:
+    st.header("Training Data")
+    st.dataframe(pd.DataFrame(data=np.hstack((X_train, y_train.reshape(-1,1))), columns=[feature_names]+[target_column], index=idx_train))
+
+  with test_tab:
+    st.header("Testing Data")
+    st.dataframe(pd.DataFrame(data=np.hstack((X_test, y_test.reshape(-1,1))), columns=[feature_names]+[target_column], index=idx_test))
+      

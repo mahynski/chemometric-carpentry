@@ -191,10 +191,10 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
             st.subheader('Training Set')
             display_metrics(X_train, y_train.reshape(-1,1), model)
 
-            try:
-                ax = model.visualize(styles=[style])
-            except:
-                pass
+            # try:
+            ax = model.visualize(styles=[style])
+            # except:
+            #     pass
 
         with col2sub:
             st.subheader('Test Set')

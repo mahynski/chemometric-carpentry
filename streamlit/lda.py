@@ -143,6 +143,7 @@ if (test_size > 0) and (target_column is not None):
       shuffle=True,
       random_state=random_state,
       test_size=test_size,
+      stratify=dataframe[target_column].values
     )
 
     if standardization == "Scaler":

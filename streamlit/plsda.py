@@ -142,6 +142,7 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
       shuffle=True,
       random_state=random_state,
       test_size=test_size,
+      stratify=dataframe[target_column].values
     )
 
     if isinstance(y_train.dtype, (int, np.int32, np.int64)):

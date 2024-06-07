@@ -210,20 +210,8 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
             display_metrics(X_test, y_test, model)
 
             ax = model.visualize(styles=[style], show_training=False)
+            T = model.transform(X_test)
+            for cat in model.categories:
+                mask = y_test == cat
+                ax.plot(T[mask, 0], T[mask, 1], '*', color=color_, label='{} (Test)'.format(cat))
             configure_plot(ax)
-
-            # for i in range(len(dataframe[target_column].unique())):
-            #     ax.lines[i].remove()
-
-            # try:
-            #     ax = model.visualize(styles=[style])
-
-            #     test_set_proj = model.transform(X_test)
-            #     for color_, class_ in zip(['cyan', 'magenta', 'black'], model._PLSDA__ohencoder_.categories_[0]):
-            #         mask = y_test == class_
-            #         ax.plot(test_set_proj[mask, 0], test_set_proj[mask, 1], '*', color=color_, label='{} (Test)'.format(class_))
-            #     ax.legend(loc='best')
-
-            #     configure_plot(ax)
-            # except:
-            #     pass

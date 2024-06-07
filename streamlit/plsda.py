@@ -33,6 +33,8 @@ with st.sidebar:
     analysis. For example, consider using [this notebook instead.](https://pychemauth.readthedocs.io/en/latest/jupyter/api/plsda.html)
 
     :books: This implementation is based on [Pomerantsev, A. L., & Rodionova, O. Y. (2018). Multiclass partial least squares discriminant analysis: Taking the right way - A critical tutorial. Journal of Chemometrics, 32(8), 1-16.](https://doi.org/10.1002/cem.3030).
+
+    This tool is provided "as-is" without warranty.  See our [Licence](https://github.com/mahynski/chemometric-carpentry/blob/9e372e99de89ff2733d11f66c814542c37b1e2bf/LICENSE.md) for more details.
     ''')
     add_vertical_space(2)
     st.write('Made by ***Nate Mahynski***')
@@ -95,7 +97,7 @@ st.divider()
 st.header("Upload Your Data")
 
 uploaded_file = st.file_uploader(
-  label="Upload a CSV file. Observations should be in rows, while columns should correspond to different features. Classes should be specified as integers or strings. An example file is available [here](https://github.com/mahynski/chemometric-carpentry/blob/c9a91d65f8f5d151dad40a6aed8044c9654cf48c/data/simca-iris.csv).",
+  label="Upload a CSV file. Observations should be in rows, while columns should correspond to different features. Classes should be specified as integers or strings. An example file is available [here](https://github.com/mahynski/chemometric-carpentry/blob/9e372e99de89ff2733d11f66c814542c37b1e2bf/data/plsda-2-iris.csv).",
   type=['csv'], accept_multiple_files=False, 
   key=None, help="", 
   on_change=None, label_visibility="visible")

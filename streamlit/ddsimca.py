@@ -35,6 +35,8 @@ with st.sidebar:
 
     :books: This implementation is based on [Pomerantsev, A. L., & Rodionova, O. Y. (2014). Concept and role of extreme objects in PCA/SIMCA. Journal of Chemometrics, 28(5), 429-438.](https://doi.org/10.1002/cem.2506) and also implements SFT as described in [Rodionova OY., Pomerantsev AL. "Detection of Outliers in Projection-Based Modeling",
     Analytical Chemistry 2020, 92, 2656−2664.](http://dx.doi.org/10.1021/acs.analchem.9b04611).
+
+    This tool is provided "as-is" without warranty.  See our [Licence](https://github.com/mahynski/chemometric-carpentry/blob/9e372e99de89ff2733d11f66c814542c37b1e2bf/LICENSE.md) for more details.
     ''')
     add_vertical_space(2)
     st.write('Made by ***Nate Mahynski***')
@@ -74,7 +76,6 @@ with col1_:
       * A robust approach is recommended when the data is "dirty".
       * If the data has been cleaned, it is recommended to use a classical approach to estimate these numbers.
 
-      
       The final decision rule for a class is $c < c_{\rm crit}$ with $c_{\rm crit} = \chi^{-2}(1-\alpha, N_h+N_q)$.
     ''')
 

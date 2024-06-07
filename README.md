@@ -113,6 +113,7 @@
     * Random Forests
     * Logistic Regression (actually classification!)
     * Out-of-Distribution / Novelty Detection
+    * AutoML
 6. 🔍 [Inspection and Comparison](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/6_Inspection_and_Comparison.ipynb)
     * Comparing Relative Performance of Pipelines
     * Model-agnostic Inspection Methods

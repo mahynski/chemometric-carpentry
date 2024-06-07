@@ -217,9 +217,15 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
             try:
                 ax = model.visualize(styles=[style], show_training=False)
                 T = model.transform(X_test)
+                
                 for i,cat in enumerate(model.categories):
                     mask = y_test == cat
-                    ax.plot(T[mask], [i]*np.sum(mask), '*', color=f'C{i}', label='{} (Test)'.format(cat))
+                    if len(dataframe[target_column].unique()) == 2:
+                        ax.plot(T[mask], [i]*np.sum(mask), '*', color=f'C{i}', label='{} (Test)'.format(cat))
+                    elif len(dataframe[target_column].unique()) == 3:
+                        ax.plot(T[mask, 0], T[mask, 1], '*', color=f'C{i}', label='{} (Test)'.format(cat))
+                    else:
+                        raise Exception("Cannot visualize this number of classes.")
                 configure_plot(ax)
             except:
                 pass # If > 3 classes

@@ -122,6 +122,8 @@
 6. 🔍 [Inspection and Comparison](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/6_Inspection_and_Comparison.ipynb)
     * Comparing Relative Performance of Pipelines
     * Model-agnostic Inspection Methods
+        * Permutation Feature Importance (PFI)
+        * SHapley Additive exPlanations (SHAP)
     * Do I Need More Data?
 7. 📁 [Case Studies](https://pychemauth.readthedocs.io/en/latest/applications.html)
 

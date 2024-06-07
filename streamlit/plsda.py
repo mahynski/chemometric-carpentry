@@ -174,7 +174,7 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
         _ = model.fit(X_train, y_train)
 
         def display_metrics(X, y, model):
-            metrics = model.figures_of_merit(X, y)
+            metrics = model.figures_of_merit(model.predict(X), y)
             col1_, col2_, col3_, col4_ = st.columns(4)
             col1_.metric(label='Total Efficiency (TEFF)', value='%.3f'%metrics['TEFF'])
             col2_.metric(label='Total Sensitivity (TSNS)', value='%.3f'%metrics['TSNS'])

@@ -35,7 +35,7 @@ with st.sidebar:
     [PyChemAuth](https://pychemauth.readthedocs.io/en/latest/index.html) for reproducible, high-quality
     analysis. For example, consider using [this notebook instead.](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/lda.html)
 
-    This tool is provided "as-is" without warranty.  See our [Licence](https://github.com/mahynski/chemometric-carpentry/blob/9e372e99de89ff2733d11f66c814542c37b1e2bf/LICENSE.md) for more details.
+    This tool is provided "as-is" without warranty.  See our [License](https://github.com/mahynski/chemometric-carpentry/blob/9e372e99de89ff2733d11f66c814542c37b1e2bf/LICENSE.md) for more details.
     ''')
     add_vertical_space(2)
     st.write('Made by ***Nate Mahynski***')

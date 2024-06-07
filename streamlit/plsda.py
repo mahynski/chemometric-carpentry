@@ -34,7 +34,7 @@ with st.sidebar:
 
     :books: This implementation is based on [Pomerantsev, A. L., & Rodionova, O. Y. (2018). Multiclass partial least squares discriminant analysis: Taking the right way - A critical tutorial. Journal of Chemometrics, 32(8), 1-16.](https://doi.org/10.1002/cem.3030).
 
-    This tool is provided "as-is" without warranty.  See our [Licence](https://github.com/mahynski/chemometric-carpentry/blob/9e372e99de89ff2733d11f66c814542c37b1e2bf/LICENSE.md) for more details.
+    This tool is provided "as-is" without warranty.  See our [License](https://github.com/mahynski/chemometric-carpentry/blob/9e372e99de89ff2733d11f66c814542c37b1e2bf/LICENSE.md) for more details.
     ''')
     add_vertical_space(2)
     st.write('Made by ***Nate Mahynski***')

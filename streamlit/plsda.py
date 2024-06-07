@@ -205,7 +205,7 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
                 ax = model.visualize(styles=[style])
                 configure_plot(ax)
 
-                print(ax.lines)
+                st.write(ax.lines)
             except:
                 pass
 

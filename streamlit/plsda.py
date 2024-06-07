@@ -171,8 +171,9 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
             score_metric='TEFF'
         )
     
+        st.write('a')
         _ = model.fit(X_train, y_train)
-
+        st.write('b')
         def display_metrics(X, y, model):
             metrics = model.figures_of_merit(model.predict(X), y)
             col1_, col2_, col3_, col4_ = st.columns(4)

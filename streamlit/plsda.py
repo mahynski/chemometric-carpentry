@@ -202,16 +202,22 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
             st.subheader('Training Set')
             display_metrics(X_train, y_train, model)
 
-            ax = model.visualize(styles=[style], show_training=True)
-            configure_plot(ax)
+            try:
+                ax = model.visualize(styles=[style], show_training=True)
+                configure_plot(ax)
+            except:
+                pass # If > 3 classes
 
         with col2sub:
             st.subheader('Test Set')
             display_metrics(X_test, y_test, model)
 
-            ax = model.visualize(styles=[style], show_training=False)
-            T = model.transform(X_test)
-            for i,cat in enumerate(model.categories):
-                mask = y_test == cat
-                ax.plot(T[mask, 0], T[mask, 1], '*', color=f'C{i}', label='{} (Test)'.format(cat))
-            configure_plot(ax)
+            try:
+                ax = model.visualize(styles=[style], show_training=False)
+                T = model.transform(X_test)
+                for i,cat in enumerate(model.categories):
+                    mask = y_test == cat
+                    ax.plot(T[mask, 0], T[mask, 1], '*', color=f'C{i}', label='{} (Test)'.format(cat))
+                configure_plot(ax)
+            except:
+                pass # If > 3 classes

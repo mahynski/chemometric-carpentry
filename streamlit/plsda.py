@@ -193,7 +193,7 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
             for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
                 item.set_fontsize(6)
             fig = plt.gcf()
-            fig.set_size_inches(3, 3)
+            fig.set_size_inches(2, 2)
             plt.legend(fontsize=6, bbox_to_anchor=(1,1))
             st.pyplot(fig, use_container_width=False)
 

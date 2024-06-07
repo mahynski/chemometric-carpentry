@@ -217,7 +217,7 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
             T = model.transform(X_test)
             for i,cat in enumerate(model.categories):
                 mask = y_test == cat
-                ax.plot(T[mask, 0], T[mask, 1], '*', color=f'C{i}', label='{} (Test)'.format(cat))
+                ax.plot(T[mask], [i]*np.sum(mask), '*', color=f'C{i}', label='{} (Test)'.format(cat))
             configure_plot(ax)
             # except:
             #     pass # If > 3 classes

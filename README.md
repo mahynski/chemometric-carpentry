@@ -103,7 +103,7 @@
         * Linear Discriminant Analysis (LDA) and Quadratic Discriminant Analysis (QDA)
             * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/lda.html) | [sklearn API](https://scikit-learn.org/stable/modules/generated/sklearn.discriminant_analysis.LinearDiscriminantAnalysis.html) | [Interactive Tool](https://chemometric-carpentry-lda.streamlit.app/)
         * Partial Least-Squares-Discriminant Analysis (PLS-DA)
-            * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/plsda.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/plsda.html) | Interactive Tool
+            * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/plsda.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/plsda.html) | [Interactive Tool](https://chemometric-carpentry-plsda.streamlit.app/)
         * Soft Independent Modeling of Class Analogies (SIMCA)
             * [Learn](https://pychemauth.readthedocs.io/en/latest/jupyter/learn/simca.html) | [API](https://pychemauth.readthedocs.io/en/latest/jupyter/api/simca.html) | [Interactive Tool](https://chemometric-carpentry-ddsimca.streamlit.app/)
 5. 💻 [Machine Learning Models](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/5_Machine_Learning_Models.ipynb)

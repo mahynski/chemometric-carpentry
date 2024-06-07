@@ -138,7 +138,7 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
       test_size=test_size,
     )
 
-    if isinstance(y_train.dtype, (int32, int64, int, np.int32, np.int64)):
+    if isinstance(y_train.dtype, (int, np.int32, np.int64)):
         not_assigned = int(dataframe[target_column].min()) - 1
     else:
         not_assigned = "UNKNOWN"

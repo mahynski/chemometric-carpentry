@@ -192,7 +192,7 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
             display_metrics(X_train, y_train.reshape(-1,1), model)
 
             try:
-                ax = plsda.visualize(styles=style)
+                ax = model.visualize(styles=[style])
             except:
                 pass
 

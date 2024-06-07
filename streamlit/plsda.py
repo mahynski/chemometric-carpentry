@@ -172,3 +172,22 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
         )
     
         _ = model.fit(X_train, y_train)
+
+        def display_metrics(X, y, model):
+            metrics = model.figures_of_merit(X, y)
+            col1_, col2_, col3_, col4_ = st.columns(4)
+            col1_.metric(label='Total Efficiency (TEFF)', value='%.3f'%metrics['TEFF'])
+            col2_.metric(label='Total Sensitivity (TSNS)', value='%.3f'%metrics['TSNS'])
+            col3_.metric(label='Total Specificity (TSPS)', value='%.3f'%metrics['TSPS'])
+            col4_.metric(label='Model Score', value='%.3f'%model.score(X, y))
+
+            st.dataframe(metrics['CM'])
+
+        col1sub, col2sub = st.columns([2, 2])
+        with col1sub:
+            st.subheader('Training Set')
+            display_metrics(X_train, y_train, dds)
+
+        with col2sub:
+            st.subheader('Test Set')
+            display_metrics(X_test, y_test, dds)

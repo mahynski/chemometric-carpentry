@@ -131,6 +131,8 @@ with st.expander("Settings"):
         scale_x = st.toggle(label="Scale X columns by their standard deviation (it is always centered).", value=False, key=None, help=None, on_change=None, args=None, disabled=False, label_visibility="visible")
 
         style = st.selectbox(label="PLS-DA style", options=["Hard", "Soft"], index=None, placeholder="Style", disabled=False, label_visibility="visible")
+        if style is not None:
+            style = style.lower()
 
 if (test_size > 0) and (style is not None) and (target_column is not None):
     X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(
@@ -192,10 +194,10 @@ if (test_size > 0) and (style is not None) and (target_column is not None):
             display_metrics(X_train, y_train, model)
 
             # try:
-            ax = model.visualize(styles=[style])
+            _ = model.visualize(styles=[style])
             # except:
             #     pass
 
         with col2sub:
             st.subheader('Test Set')
-            display_metrics(X_test, y_test.reshape(-1,1), model)
+            display_metrics(X_test, y_test, model)

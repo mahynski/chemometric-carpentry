@@ -115,7 +115,9 @@
         * Ensemble Methods
         * Random Forests
         * Logistic Regression (actually classification!)
-    * Out-of-Distribution / Novelty Detection
+    * Authentication Models
+        * Out-of-Distribution / Novelty Detection
+        * Open Set Recognition
     * AutoML
 6. 🔍 [Inspection and Comparison](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/6_Inspection_and_Comparison.ipynb)
     * Comparing Relative Performance of Pipelines

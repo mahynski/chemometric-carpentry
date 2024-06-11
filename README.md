@@ -112,7 +112,12 @@
         * Explainable Boosting Machine 
     * ✅ Classification Models
         * Decision Trees
+           * Visualizing Decision Trees
+           * Visualizing Decision Boundaries
+           * Pros and Cons  
         * Ensemble Methods
+           * Bagging
+           * Boosting
         * Random Forests
         * Logistic Regression (actually classification!)
     * Authentication Models

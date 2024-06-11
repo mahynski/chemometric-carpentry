@@ -111,14 +111,14 @@
         * Artificial Neural Networks
         * Explainable Boosting Machine 
     * ✅ Classification Models
-        * Decision Trees
+        * 🌳 Decision Trees
            * Visualizing Decision Trees
            * Visualizing Decision Boundaries
            * Pros and Cons  
-        * Ensemble Methods
+        * 🎼 Ensemble Methods
            * Bagging
            * Boosting
-        * Random Forests
+        * 🌳🌳🌳 Random Forests
         * Logistic Regression (actually classification!)
     * Authentication Models
         * Out-of-Distribution / Novelty Detection

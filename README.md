@@ -121,9 +121,9 @@
         * 🌳🌳🌳 Random Forests
         * Logistic Regression
     * Authentication Models
+        * EllipticManifold
         * Out-of-Distribution / Novelty Detection
         * Open Set Recognition
-        * EllipticManifold
     * AutoML
 6. 🔍 [Inspection and Comparison](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/6_Inspection_and_Comparison.ipynb)
     * Comparing Relative Performance of Pipelines

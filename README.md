@@ -119,7 +119,7 @@
            * Bagging
            * Boosting
         * 🌳🌳🌳 Random Forests
-        * Logistic Regression (actually classification!)
+        * Logistic Regression
     * Authentication Models
         * Out-of-Distribution / Novelty Detection
         * Open Set Recognition

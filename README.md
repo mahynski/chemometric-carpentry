@@ -163,7 +163,9 @@
   
 ---
 
-Instructors:
+Instructor(s):
 * Nate Mahynski, nathan.mahynski@nist.gov
+
+Thanks to 👏
 * Bill Krekelberg, william.krekelberg@nist.gov
 * Tom Allison, thomas.allison@nist.gov

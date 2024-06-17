@@ -130,7 +130,7 @@
     * AutoML
        * What is it?
        * Caveats 
-6. 🔍 [Inspection and Comparison](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/6_Inspection_and_Comparison.ipynb)
+6. 🔍 [Inspection and Comparison](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/6_Comparison_and_Inspection.ipynb)
     * Comparing Relative Performance of Pipelines
     * Model-agnostic Inspection Methods
         * Permutation Feature Importance (PFI)

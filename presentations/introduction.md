@@ -1,5 +1,5 @@
 ---
-marp: true
+marp: false
 theme: gaia
 _class: lead
 paginate: true
@@ -12,9 +12,7 @@ footer: Chemometrics Short Course
 
 # **A Short Course in Chemometrics**
 
-Python tools to standardize and accelerate data analysis.
-
-https://github.com/mahynski/chemometrics_short_course
+Python tools to standardize and accelerate chemometric modeling and data analysis.
 
 ---
 
@@ -48,9 +46,9 @@ We will assume **no prior knowledge or familiarity** with any of these methods, 
 
 Given the following sequence: [1, 2, 3, 4]
 
-Q1: What is the median?
+:question: Q1: What is the median?
 
-Q2: What is the 75th percentile?
+:question: Q2: What is the 75th percentile?
 
 ---
 
@@ -60,9 +58,9 @@ Q2: What is the 75th percentile?
 
 A: There are, in fact, up to 13 different ways to compute percentile (median = 50th percentile)!
 
-A1: "Correct" answers include: [2.0, 2.5, 3.0]
+:raising_hand: A1: "Correct" answers include: [2.0, 2.5, 3.0]
 
-A2: "Correct" answers include: [3.0, 3.25, 3.5, 3.5625, 3.583, 3.75, 4.0]
+:raising_hand: A2: "Correct" answers include: [3.0, 3.25, 3.5, 3.5625, 3.583, 3.75, 4.0]
 
 The main 9 are reviewed here: [R. J. Hyndman and Y. Fan, "Sample quantiles in statistical packages," The American Statistician, 50(4), pp. 361-365, 1996](https://www.tandfonline.com/doi/abs/10.1080/00031305.1996.10473566), but [numpy](https://numpy.org) has implemented [4 more](https://numpy.org/doc/stable/reference/generated/numpy.quantile.html)!
 
@@ -129,13 +127,14 @@ The syllabus ([README](https://github.com/mahynski/chemometric-carpentry/blob/ma
 
 # Getting Started
 
+<style scoped>section{font-size:30px;}</style>
+
 You will need:
 
-1. A Google account (personal or NIST).
+1. A Google account, and
 
-2. An open mind!
+2. :brain: An open mind!
 
 All code is free and open source.  It is run in the cloud on [Google Colab](https://colab.research.google.com/) so you do not need to install anything, and you can access it anywhere, anytime as long as you have an internet connection.
 
-Let's get [started](https://github.com/mahynski/chemometric-carpentry/).
-
+Let's get started: [https://github.com/mahynski/chemometrics_short_course](https://github.com/mahynski/chemometrics_short_course)

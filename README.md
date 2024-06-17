@@ -124,8 +124,12 @@
     * Authentication Models
         * EllipticManifold
         * Out-of-Distribution / Novelty Detection
+           * 🌳🙉🌳 Isolation Forest
+           * Other Resources  
         * Open Set Recognition
     * AutoML
+       * What is it?
+       * Caveats 
 6. 🔍 [Inspection and Comparison](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/6_Inspection_and_Comparison.ipynb)
     * Comparing Relative Performance of Pipelines
     * Model-agnostic Inspection Methods

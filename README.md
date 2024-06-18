@@ -59,7 +59,7 @@
         * $\chi^2$ statistics 
         * Baseline Performance Metrics
         * Rashomon sets
-           * Bias-Variance Tradeoff 
+        * Bias-Variance Tradeoff 
 2. ✨ [Techniques](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/2_Techniques.ipynb)
     * Exploratory Data Analysis (EDA)
         * Basic Suggestions

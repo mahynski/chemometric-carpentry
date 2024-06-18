@@ -139,7 +139,7 @@
 7. 📁 [Case Studies](https://pychemauth.readthedocs.io/en/latest/applications.html)
 
 <!--5. Deep Learning
-    * Universal Approximation Theorem
+    * Automatic Featurization
     * Working in the Small Data Limit
         * Transfer Learning 
         * Fine Tuning

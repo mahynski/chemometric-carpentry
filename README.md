@@ -132,7 +132,7 @@
        * Caveats 
 6. 🔍 [Comparison and Inspection](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/6_Comparison_and_Inspection.ipynb)
     * Comparing Relative Performance of Pipelines
-    * Model-agnostic Inspection Methods
+    * 👀 Model-agnostic Inspection Methods
         * Permutation Feature Importance (PFI)
         * SHapley Additive exPlanations (SHAP)
     * Do I Need More Data?

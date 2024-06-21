@@ -74,6 +74,11 @@ The main 9 are reviewed here: [R. J. Hyndman and Y. Fan, "Sample quantiles in st
 
 -Hyndman & Fan
 
+
+---
+
+![bg contain](https://imgs.xkcd.com/comics/standards.png)
+
 ---
 
 # What Should I Get Out of This?
@@ -83,6 +88,8 @@ The main 9 are reviewed here: [R. J. Hyndman and Y. Fan, "Sample quantiles in st
 :books: In the end you will be able to go to a library of standardized example notebooks, select the one you need, enter your data, then run it from start to finish. 
 
 This course will also teach you to modify and expand things as needed.
+
+This course is currently structured in a lecture-based format, but may change in the future to include more interactive aspects.
 
 ---
 

@@ -135,6 +135,10 @@
     * 👀 Model-agnostic Inspection Methods
         * Permutation Feature Importance (PFI)
         * SHapley Additive exPlanations (SHAP)
+           * Shapley Values (Theory)
+           * Computing SHAP Values (Practice)
+           * Margin Space Explanation
+           * Best Practices
     * Do I Need More Data?
 7. 📁 [Case Studies](https://pychemauth.readthedocs.io/en/latest/applications.html)
 

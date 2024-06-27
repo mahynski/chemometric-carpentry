@@ -176,5 +176,6 @@ Instructor(s):
 * Nate Mahynski, nathan.mahynski@nist.gov
 
 Thanks to 👏
-* Bill Krekelberg, william.krekelberg@nist.gov
 * Tom Allison, thomas.allison@nist.gov
+* Bill Krekelberg, william.krekelberg@nist.gov
+* Dave Sheen, david.sheen@nist.gov

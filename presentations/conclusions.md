@@ -54,8 +54,9 @@ How can we improve the website?  How about the course itself?
 646.04 - Nate Mahynski, nathan.mahynski@nist.gov
 
 Thanks :clap: also goes to:
-646.04 - Bill Krekelberg, william.krekelberg@nist.gov
 646.04 - Tom Allison, thomas.allison@nist.gov
+646.04 - Bill Krekelberg, william.krekelberg@nist.gov
+646.04 - Dave Sheen, david.sheen@nist.gov
 
 Feel free to reach out with 
 

@@ -141,6 +141,7 @@
            * Best Practices
     * Do I Need More Data?
 7. 📁 [Case Studies](https://pychemauth.readthedocs.io/en/latest/applications.html)
+8. 💾 [Saving and Sharing Models](https://pychemauth.readthedocs.io/en/latest/jupyter/api/sharing_models.html)
 
 <!--5. Deep Learning
     * Automatic Featurization

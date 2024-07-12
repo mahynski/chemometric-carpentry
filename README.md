@@ -143,7 +143,10 @@
 7. 📁 [Case Studies](https://pychemauth.readthedocs.io/en/latest/applications.html)
 8. 💾 [Saving and Sharing Models](https://pychemauth.readthedocs.io/en/latest/jupyter/api/sharing_models.html)
 
-<!--5. Deep Learning
+<!--
+https://sebastianraschka.com/blog/2022/deep-learning-for-tabular-data.html
+
+5. Deep Learning
     * Automatic Featurization
     * Working in the Small Data Limit
         * Transfer Learning 
@@ -161,7 +164,8 @@
     * Chemical Foundation Models
         * Huggingface
         * ChemBERTA
-    * DeepChem-->
+    * DeepChem   
+-->
 
 # Next Steps:
 

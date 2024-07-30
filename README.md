@@ -140,8 +140,8 @@
            * Margin Space Explanation
            * Best Practices
     * Do I Need More Data?
-7. 📁 [Case Studies](https://pychemauth.readthedocs.io/en/latest/applications.html)
-8. 💾 [Saving and Sharing Models](https://pychemauth.readthedocs.io/en/latest/jupyter/api/sharing_models.html)
+7. 💾 [Saving and Sharing Models](https://pychemauth.readthedocs.io/en/latest/jupyter/api/sharing_models.html)
+8. 📁 [Case Studies](https://pychemauth.readthedocs.io/en/latest/applications.html)
 
 <!--
 https://sebastianraschka.com/blog/2022/deep-learning-for-tabular-data.html

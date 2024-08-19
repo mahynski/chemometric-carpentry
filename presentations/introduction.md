@@ -130,12 +130,12 @@ The syllabus ([README](https://github.com/mahynski/chemometric-carpentry/blob/ma
 We will try to cover the first two-thirds of the material; if time allows we will continue onward, but you are free to read this material on your own at any time.
 
 Thursday - August 22, 2024 - :hammer: Tools & Groundwork (Sect. 1 - 2):
-* Session 1: 10:30am – 12:00pm 
-* Session 2: 1:00pm – 2:30pm
+* Session 1: 10:30am – 12:00pm (40 min + 10 min break + 40 min)
+* Session 2: 1:00pm – 2:30pm (40 min + 10 min break + 40 min)
 
 Friday - August 23, 2024 - :rocket: Building the Models (Sect. 2 - 4):
-* Session 1: 10:30am – 12:00pm
-* Session 2: 1:00pm – 2:30pm
+* Session 1: 10:30am – 12:00pm (40 min + 10 min break + 40 min)
+* Session 2: 1:00pm – 2:30pm (40 min + 10 min break + 40 min)
 
 --- 
 

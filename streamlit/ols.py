@@ -137,7 +137,7 @@ with st.expander("Settings"):
         random_state = st.number_input(label="Random seed for data shuffling before splitting.", min_value=None, max_value=None, value=42, step=1, placeholder="Seed", disabled=False, label_visibility="visible")
         test_size = st.slider(label="Select a positive fraction of the data to use as a test set to begin analysis.", min_value=0.0, max_value=1.0, value=0.0, step=0.05, disabled=False, label_visibility="visible")
 
-        standardization = st.selectbox("What type of standardization should be applied?", (None, "Scaler", "Robust Scaler"), index=0)
+        standardization = st.selectbox("What type of standardization should be applied?", (None, "Scaler", "RobustScaler"), index=0)
         if standardization is not None:
           center = st.toggle("Use centering", value=False)
           scale = st.toggle("Use scale", value=False)

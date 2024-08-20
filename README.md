@@ -57,7 +57,7 @@
         * PyChemAuth
     * 🔮 [Statistics Background](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/1.4_Statistics_Background.ipynb)
         * $\chi^2$ statistics 
-        * Baseline Performance Metrics
+        * Performance Metrics
         * Rashomon sets
         * Bias-Variance Tradeoff 
 2. ✨ [Techniques](https://github.com/mahynski/chemometric-carpentry/blob/main/notebooks/2_Techniques.ipynb)

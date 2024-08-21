@@ -135,7 +135,7 @@ with st.expander("Settings"):
       with col2:
         st.subheader("Model Settings")
 
-        alpha = st.slider(label=r"Type I error rate ($\alpha$).", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
+        alpha = st.slider(label=r"Type I error rate ($\alpha$) to determine regular points.", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
         n_components = st.slider(label="Number of dimensions to project into.", min_value=1, max_value=len(feature_names)-1,
         value=1, step=1, disabled=False, label_visibility="visible")
         gamma = st.slider(label=r"Significance level for determining outliers ($\gamma$).", min_value=0.0, max_value=alpha, value=0.01, step=0.01, disabled=False, label_visibility="visible")
@@ -262,7 +262,7 @@ if (test_size > 0):
 
     col1sub, col2sub = st.columns([2, 2])
     with col1sub:
-      ellipse_alpha = st.slider(label=r"Type I error rate ($\alpha$) for class ellipses.", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
+      ellipse_alpha = st.slider(label=r"Type I error rate for class ellipses / boundaries.  This is purely for visualization purposes.", min_value=0.0, max_value=1.0, value=0.05, step=0.01, disabled=False, label_visibility="visible")
     with col2sub:
       covar_method = st.selectbox("How should class covariances be computed?", ("Minimum Covariance Determinant", "Empirical"), index=0)
       if covar_method == "Minimum Covariance Determinant":

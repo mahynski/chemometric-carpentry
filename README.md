@@ -187,4 +187,4 @@ Thanks to 👏
 * Bill Krekelberg, william.krekelberg@nist.gov
 * Dave Sheen, david.sheen@nist.gov
 
-The logo was designed using Google Gemini with the prompt "Design a logo for determining geographic origin using chemistry and statistical models" on Nov. 8, 2024.
+The logo was designed using Google Gemini (Imagen 3) with the prompt "Design a logo for determining geographic origin using chemistry and statistical models" on Nov. 8, 2024.
